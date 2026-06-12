@@ -60,9 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <nav class="nav">
 
         <a class="logo" href="index.html">
-          <span class="logo-mark">01</span>
-          <span class="logo-text">0103abc</span>
-        </a>
+  <img
+    class="logo-img"
+    src="https://cdn.luogu.com.cn/upload/image_hosting/jabg55zn.png"
+    alt="0103abc"
+  >
+</a>
 
         <div class="nav-right">
 
