@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
       href: "solution_list.html"
     },
     {
+      name: "做题记录",
+      href: "spnotes_list.html"
+    },
+    {
       name: "算法学习笔记",
       href: "algorithm_list.html"
     },
