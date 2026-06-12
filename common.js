@@ -27,9 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       href: "algorithm_list.html"
     },
     {
-      name: "做题记录", 
+      name: "做题记录",
       href: "solve_list.html"
-    }, 
+    },
+    {
+      name: "博客",
+      href: "blog_list.html"
+    },
     {
       name: "应用",
       href: "app_list.html"
@@ -96,6 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="index.html">Home</a>
           <a href="solution_list.html">Solutions</a>
           <a href="algorithm_list.html">Algorithms</a>
+          <a href="solve_list.html">Solves</a>
+          <a href="blog_list.html">Blog</a>
           <a href="app_list.html">Apps</a>
         </div>
       </div>
@@ -139,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 初始化单击折线彩带特效
+  // 初始化单击淡色折线彩带特效
   initClickRibbonEffect();
 });
 
@@ -174,32 +180,37 @@ function initClickRibbonEffect() {
 
   function randomColor() {
     const colors = [
-      "rgba(251, 113, 133, 0.42)",
-      "rgba(244, 114, 182, 0.35)",
-      "rgba(96, 165, 250, 0.34)",
-      "rgba(45, 212, 191, 0.34)",
-      "rgba(134, 239, 172, 0.38)",
-      "rgba(253, 186, 116, 0.34)"
+      "rgba(248, 180, 190, 0.22)",
+      "rgba(250, 200, 210, 0.20)",
+      "rgba(170, 205, 245, 0.22)",
+      "rgba(190, 220, 255, 0.20)",
+      "rgba(205, 215, 255, 0.18)",
+      "rgba(255, 220, 230, 0.18)"
     ];
 
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
   function createRibbon(x, y) {
-    const count = 8;
+    // 数量调低，不会一炸一大片
+    const count = 4;
 
     for (let i = 0; i < count; i++) {
       const points = [];
       const angle = Math.random() * Math.PI * 2;
-      const speed = 1.2 + Math.random() * 2.4;
-      const length = 4 + Math.floor(Math.random() * 4);
+
+      // 速度更慢
+      const speed = 0.45 + Math.random() * 0.8;
+
+      // 折线更短
+      const length = 3 + Math.floor(Math.random() * 3);
 
       let px = x;
       let py = y;
 
       for (let j = 0; j < length; j++) {
-        px += Math.cos(angle + Math.random() * 0.8 - 0.4) * (10 + Math.random() * 18);
-        py += Math.sin(angle + Math.random() * 0.8 - 0.4) * (10 + Math.random() * 18);
+        px += Math.cos(angle + Math.random() * 0.7 - 0.35) * (6 + Math.random() * 12);
+        py += Math.sin(angle + Math.random() * 0.7 - 0.35) * (6 + Math.random() * 12);
 
         points.push({
           x: px,
@@ -214,8 +225,12 @@ function initClickRibbonEffect() {
         color: randomColor(),
         alpha: 1,
         life: 0,
-        maxLife: 55 + Math.random() * 25,
-        lineWidth: 0.8 + Math.random() * 1.1
+
+        // 存活时间更短
+        maxLife: 38 + Math.random() * 18,
+
+        // 线更细
+        lineWidth: 0.55 + Math.random() * 0.55
       });
     }
   }
@@ -247,14 +262,17 @@ function initClickRibbonEffect() {
 
   function updateRibbon(ribbon) {
     ribbon.life++;
-    ribbon.alpha = 1 - ribbon.life / ribbon.maxLife;
+
+    // 消失更自然
+    const progress = ribbon.life / ribbon.maxLife;
+    ribbon.alpha = Math.max(0, 1 - progress * 1.25);
 
     const driftX = Math.cos(ribbon.angle) * ribbon.speed;
-    const driftY = Math.sin(ribbon.angle) * ribbon.speed - 0.35;
+    const driftY = Math.sin(ribbon.angle) * ribbon.speed - 0.18;
 
     for (const point of ribbon.points) {
-      point.x += driftX + Math.sin(ribbon.life * 0.08) * 0.3;
-      point.y += driftY + Math.cos(ribbon.life * 0.06) * 0.3;
+      point.x += driftX + Math.sin(ribbon.life * 0.06) * 0.16;
+      point.y += driftY + Math.cos(ribbon.life * 0.05) * 0.16;
     }
   }
 
