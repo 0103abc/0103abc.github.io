@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
       href: "algorithm_list.html"
     },
     {
+      name: "做题记录", 
+      href: "solve_list.html"
+    }, 
+    {
       name: "应用",
       href: "app_list.html"
     },
