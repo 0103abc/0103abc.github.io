@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="nav-links">
           <a href="index.html" class="${currentPage === "index.html" ? "active" : ""}">首页</a>
           <a href="about.html" class="${currentPage === "about.html" ? "active" : ""}">关于我</a>
+          <a href="about.html" class="${currentPage === "solution_list.html" ? "active" : ""}">题解</a>
+          <a href="about.html" class="${currentPage === "algorithm_list.html" ? "active" : ""}">算法学习笔记</a>
+          <a href="about.html" class="${currentPage === "app_list.html" ? "active" : ""}">应用</a>
+          <a href="about.html" class="${currentPage === "misc.html" ? "active" : ""}">杂物</a>
         </div>
       </nav>
     </header>
