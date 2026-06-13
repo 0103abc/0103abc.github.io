@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <header class="site-header">
       <nav class="nav">
 
-        <a class="logo" href="index.html">
+        <a class="logo" href="${siteUrl("index.html")}">
           <img
             class="logo-img"
             src="https://cdn.luogu.com.cn/upload/image_hosting/jabg55zn.png"
@@ -107,12 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>© ${new Date().getFullYear()} 0103abc. Built with GitHub Pages.</p>
 
         <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="solution_list.html">Solutions</a>
-          <a href="algorithm_list.html">Algorithms</a>
-          <a href="solve_list.html">Solves</a>
-          <a href="blog_list.html">Blog</a>
-          <a href="app_list.html">Apps</a>
+          <a href="${siteUrl("index.html")}">Home</a>
+          <a href="${siteUrl("solution_list.html")}">Solutions</a>
+          <a href="${siteUrl("algorithm_list.html")}">Algorithms</a>
+          <a href="${siteUrl("solve_list.html")}">Solves</a>
+          <a href="${siteUrl("blog_list.html")}">Blog</a>
+          <a href="${siteUrl("app_list.html")}">Apps</a>
         </div>
       </div>
     </footer>
