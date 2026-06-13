@@ -1,3 +1,13 @@
+const commonScriptUrl = document.currentScript
+  ? document.currentScript.src
+  : location.href;
+
+const siteRootUrl = new URL(".", commonScriptUrl);
+
+function siteUrl(path) {
+  return new URL(path, siteRootUrl).href;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const currentPage = location.pathname.split("/").pop() || "index.html";
 
@@ -50,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const isActive = currentPage === item.href;
 
       return `
-        <a href="${item.href}" class="${isActive ? "active" : ""}">
+        <a href="${siteUrl(item.href)}" class="${isActive ? "active" : ""}">
           ${item.name}
         </a>
       `;
