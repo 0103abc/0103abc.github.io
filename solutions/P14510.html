@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>棋子序列题解 - 0103abc</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../common.js"></script>
+
+  <!-- Markdown 渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax：用于显示 LaTeX 公式 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <main class="container">
+    <article class="content fade-in">
+
+      <span class="badge">题解 · 组合数学 · 线段树</span>
+
+      <h1>棋子序列题解</h1>
+
+      <div id="solutionContent"></div>
+
+      <p>
+        <a href="../solution_list.html">← 返回题解列表</a>
+      </p>
+
+    </article>
+  </main>
+
+  <script id="solutionMarkdown" type="text/markdown">
+后面把一个位置上有棋子看作这个位置上值为 $1$，没有棋子看作这个位置上值为 $0$。
+
+注意到序列上形如 $11$ 的连续段可以在序列上随便平移移动，因此容易想到把所有的 $11$ 块从序列上先拿走。对于序列上一个长度为 $len$ 的连续全 $1$ 段，可以在这个位置只保留 $len\bmod 2$ 个 $1$，剩余的 $len-len\bmod 2$ 个 $1$ 看作是 $\lfloor\frac{len}2\rfloor$ 个 $11$ 块单独考虑。
+
+先考虑 $O(nq)$ 怎么做。维护下面三个量 $cnt_0$ 表示当前序列中 $0$ 的数量，$cnt_1$ 表示删掉所有 $11$ 块后序列中 $1$ 的数量，$cnt_2$ 表示被删掉的 $11$ 段的数量。后面 $01$ 序列将不考虑所有 $11$ 块对应的位置。
+
+从左往右扫描新得到的 $01$ 序列 $a$，设当前扫到的位置为 $x$，则：
+
++ 若 $a_x=1$，则这里本身就有棋子，当前位置可选可不选，对答案的贡献是总贡献乘以 $2$。
++ 若 $a_x=0$，则需要进一步分类讨论：
+  + 若 $x\not\in S$，则直接跳过即可。
+  + 若 $x\in S$，则这里必须要有棋子，拿一个 $11$ 块过来覆盖即可。
+
+考虑枚举拿过来的 $11$ 块的数量 $k$，则总的贡献就可以写作是 $2^{cnt_1}\sum\limits_{k=0}^{cnt_2}\binom{cnt_0+k-1}k2^k4^{cnt_2-k}$ 的形式。直接暴力计算时间复杂度即为 $O(nq)$。
+
+考虑进一步优化。如果做过[这个题](https://www.luogu.com.cn/problem/P8367)的话很容易想到维护组合数的变化量，因此考虑对 $cnt_0,cnt_1,cnt_2$ 这三个量做 $\pm 1$ 的修改以快速维护答案的变化，简单推一下组合数即可，具体见代码。
+
+```cpp line-numbers
+int fac[N], inv[N], ifac[N], pwr[N];
+
+inline void init() {
+    fac[0] = inv[0] = ifac[0] = 1;
+    fac[1] = inv[1] = ifac[1] = 1;
+    for (int i = 2; i < N; ++i) {
+        fac[i] = fac[i - 1] * i % mod;
+        inv[i] = mod - inv[mod % i] * (mod / i) % mod;
+        ifac[i] = ifac[i - 1] * inv[i] % mod;
+    } pwr[0] = 1;
+    for (int i = 1; i < N; ++i) pwr[i] = pwr[i - 1] * 2 % mod;
+}
+
+inline int binom(int a, int b) {
+    if (a == -1 && !b) return 1;
+    if (b < 0 || a < b) return 0;
+    return fac[a] * ifac[b] % mod * ifac[a - b] % mod;
+}
+
+char s[N];
+
+struct Node {
+    int l, r, lx, rx, a, b, c, same;
+    inline void init(int p) {
+        l = r = p;
+        if (s[p] == '1') lx = rx = 1, a = c = 0, b = 1, same = 1;
+        else lx = rx = 0, b = c = 0, a = 1, same = 0;
+    }
+} tree[N << 2];
+
+inline Node operator+(const Node &l, const Node &r) {
+    Node res;
+    res.l = l.l, res.r = r.r;
+    res.lx = l.lx + (l.same ? r.lx : 0), res.rx = r.rx + (r.same ? l.rx : 0);
+    res.a = l.a + r.a, res.same = l.same && r.same;
+    res.b = l.b + r.b - (l.rx & 1) - (r.lx & 1) + ((l.rx + r.lx) & 1);
+    res.c = l.c + r.c - l.rx / 2 - r.lx / 2 + (l.rx + r.lx) / 2;
+    return res;
+}
+
+inline void build(int l, int r, int rt) {
+    if (l == r) return tree[rt].init(l);
+    int mid = l + r >> 1;
+    build(l, mid, rt << 1), build(mid + 1, r, rt << 1 | 1);
+    tree[rt] = tree[rt << 1] + tree[rt << 1 | 1];
+}
+
+inline void mdf(int rt, int pos) {
+    int &l = tree[rt].l, &r = tree[rt].r;
+    if (l == r) return tree[rt].init(l);
+    int mid = l + r >> 1;
+    mdf((pos <= mid) ? (rt << 1) : (rt << 1 | 1), pos);
+    tree[rt] = tree[rt << 1] + tree[rt << 1 | 1];
+}
+
+int res;
+const int i4 = inversion(4);
+inline void addA(int &a, int &b, int &c) { res = (2 * res % mod - pwr[b + c] * binom(a + c, c) % mod + mod) % mod, ++a; }
+inline void delA(int &a, int &b, int &c) { res = (res + pwr[b + c] * binom(a + c - 1, c) % mod) * i2 % mod, --a; }
+inline void addB(int &a, int &b, int &c) { res = res * 2 % mod, ++b; }
+inline void delB(int &a, int &b, int &c) { res = res * i2 % mod, --b; }
+inline void addC(int &a, int &b, int &c) { res = (4 * res + pwr[b + c + 1] * binom(a + c, c + 1) % mod) % mod, ++c; }
+inline void delC(int &a, int &b, int &c) { res = (res + mod - pwr[b + c] * binom(a + c - 1, c) % mod + mod) * i4 % mod, --c; }
+
+inline void move(int &a, int &b, int &c, int A, int B, int C) {
+    while (a < A) addA(a, b, c);
+    while (a > A) delA(a, b, c);
+    while (b < B) addB(a, b, c);
+    while (b > B) delB(a, b, c);
+    while (c < C) addC(a, b, c);
+    while (c > C) delC(a, b, c);
+}
+
+inline void sol() {
+    int n, q; cin >> n >> q;
+    scanf("%s", s + 1);
+    build(1, n, 1);
+    int A = tree[1].a, B = tree[1].b, C = tree[1].c;
+    for (int i = 0; i <= C; ++i) res = (res + pwr[2 * C + B - i] * binom(A + i - 1, i) % mod) % mod;
+    cout << res << '\n';
+    while (q--) {
+        int pos; cin >> pos;
+        s[pos] ^= 1, mdf(1, pos);
+        move(A, B, C, tree[1].a, tree[1].b, tree[1].c);
+        cout << res << '\n';
+    }
+}
+````
+
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const source = document.querySelector("#solutionMarkdown").textContent.trim();
+      const target = document.querySelector("#solutionContent");
+
+      marked.setOptions({
+        breaks: false,
+        gfm: true
+      });
+
+      target.innerHTML = marked.parse(source);
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([target]);
+      }
+    });
+  </script>
+
+</body>
+</html>
