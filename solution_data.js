@@ -3,7 +3,7 @@
 window.SOLUTION_ITEMS = [
   {
     title: "P14510 夜里亦始终想念着你 miss 题解",
-    href: "solutions/P15410.html",
+    href: "solutions/P14510.html",
     date: "2026-06-13",
     oj: "洛谷",
     difficulty: "NOI/NOI+/CTSC",
