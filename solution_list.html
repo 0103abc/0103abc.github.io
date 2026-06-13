@@ -8,46 +8,59 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- 你的公共导航栏 / 页脚 / 主题切换 -->
   <script defer src="common.js"></script>
-
-  <!-- 题解数据 -->
   <script defer src="solution_data.js"></script>
 </head>
 
 <body>
   <main class="container">
-    <section class="content fade-in solution-page">
+    <section class="solution-shell fade-in">
 
-      <div class="solution-page-header">
+      <div class="solution-hero">
         <div>
           <span class="badge">Solutions</span>
           <h1>题解</h1>
-          <p class="solution-page-desc">
+          <p>
             这里整理了一些算法题题解、思路记录和代码实现。
           </p>
         </div>
+
+        <div class="solution-stats">
+          <div>
+            <strong id="totalCount">0</strong>
+            <span>篇题解</span>
+          </div>
+          <div>
+            <strong>20</strong>
+            <span>每页显示</span>
+          </div>
+        </div>
       </div>
 
-      <div class="solution-toolbar">
-        <input
-          id="solutionSearch"
-          class="solution-search"
-          type="search"
-          placeholder="搜索题目、标签、OJ、难度……"
-          autocomplete="off"
-        >
+      <div class="solution-panel">
+        <div class="solution-toolbar">
+          <div class="solution-search-wrap">
+            <span>🔍</span>
+            <input
+              id="solutionSearch"
+              class="solution-search"
+              type="search"
+              placeholder="搜索题目、标签、OJ、难度……"
+              autocomplete="off"
+            >
+          </div>
 
-        <select id="solutionOjFilter" class="solution-select">
-          <option value="all">全部 OJ</option>
-        </select>
+          <select id="solutionOjFilter" class="solution-select">
+            <option value="all">全部 OJ</option>
+          </select>
+        </div>
+
+        <div class="solution-info" id="solutionInfo"></div>
+
+        <div class="solution-list" id="solutionList"></div>
+
+        <div class="pagination" id="pagination"></div>
       </div>
-
-      <div class="solution-info" id="solutionInfo"></div>
-
-      <div class="solution-list" id="solutionList"></div>
-
-      <div class="pagination" id="pagination"></div>
 
     </section>
   </main>
@@ -61,15 +74,17 @@
       const solutionInfo = document.querySelector("#solutionInfo");
       const searchInput = document.querySelector("#solutionSearch");
       const ojFilter = document.querySelector("#solutionOjFilter");
+      const totalCount = document.querySelector("#totalCount");
 
       const allSolutions = Array.isArray(window.SOLUTION_ITEMS)
         ? [...window.SOLUTION_ITEMS]
         : [];
 
-      // 按日期从新到旧排序
       allSolutions.sort((a, b) => {
         return new Date(b.date || "1970-01-01") - new Date(a.date || "1970-01-01");
       });
+
+      totalCount.textContent = allSolutions.length;
 
       const params = new URLSearchParams(location.search);
 
@@ -156,19 +171,22 @@
 
       function renderInfo(total, totalPages) {
         if (total === 0) {
-          solutionInfo.textContent = "没有找到符合条件的题解。";
+          solutionInfo.innerHTML = `没有找到符合条件的题解。`;
           return;
         }
 
-        solutionInfo.textContent =
-          `共 ${total} 篇题解，每页 ${PAGE_SIZE} 篇，当前第 ${currentPage} / ${totalPages} 页。`;
+        solutionInfo.innerHTML = `
+          共 <strong>${total}</strong> 篇题解，
+          当前第 <strong>${currentPage}</strong> / <strong>${totalPages}</strong> 页
+        `;
       }
 
       function renderList(items) {
         if (items.length === 0) {
           solutionList.innerHTML = `
             <div class="empty-card">
-              暂时没有题解。可以先去喝口水，或者马上写一篇。
+              <div class="empty-icon">🫧</div>
+              <p>暂时没有找到题解。</p>
             </div>
           `;
           return;
@@ -179,39 +197,39 @@
             const tags = Array.isArray(item.tags) ? item.tags : [];
 
             return `
-              <article class="solution-item">
-                <div class="solution-main">
-                  <a class="solution-title" href="${escapeAttr(item.href || "#")}">
-                    ${escapeHtml(item.title || "未命名题解")}
-                  </a>
+              <article class="solution-card">
+                <a class="solution-card-link" href="${escapeAttr(item.href || "#")}">
+                  <div class="solution-card-top">
+                    <div class="solution-title-wrap">
+                      <span class="solution-oj">${escapeHtml(item.oj || "题解")}</span>
+                      <h2>${escapeHtml(item.title || "未命名题解")}</h2>
+                    </div>
 
-                  <div class="solution-meta">
-                    ${item.date ? `<span>${escapeHtml(item.date)}</span>` : ""}
-                    ${item.oj ? `<span>${escapeHtml(item.oj)}</span>` : ""}
-                    ${item.difficulty ? `<span>${escapeHtml(item.difficulty)}</span>` : ""}
+                    <span class="solution-arrow">→</span>
                   </div>
 
-                  ${
-                    item.summary
-                      ? `<p class="solution-summary">${escapeHtml(item.summary)}</p>`
-                      : ""
-                  }
+                  <p class="solution-summary">
+                    ${escapeHtml(item.summary || "暂无简介。")}
+                  </p>
 
-                  ${
-                    tags.length
-                      ? `
-                        <div class="solution-tags">
-                          ${tags
-                            .map((tag) => `<span>${escapeHtml(tag)}</span>`)
-                            .join("")}
-                        </div>
-                      `
-                      : ""
-                  }
-                </div>
+                  <div class="solution-bottom">
+                    <div class="solution-meta">
+                      ${item.date ? `<span>📅 ${escapeHtml(item.date)}</span>` : ""}
+                      ${item.difficulty ? `<span>⭐ ${escapeHtml(item.difficulty)}</span>` : ""}
+                    </div>
 
-                <a class="solution-read-btn" href="${escapeAttr(item.href || "#")}">
-                  阅读
+                    ${
+                      tags.length
+                        ? `
+                          <div class="solution-tags">
+                            ${tags
+                              .map((tag) => `<span>${escapeHtml(tag)}</span>`)
+                              .join("")}
+                          </div>
+                        `
+                        : ""
+                    }
+                  </div>
                 </a>
               </article>
             `;
@@ -263,7 +281,7 @@
               updateUrl();
               render();
 
-              document.querySelector(".solution-page").scrollIntoView({
+              document.querySelector(".solution-shell").scrollIntoView({
                 behavior: "smooth",
                 block: "start"
               });
@@ -304,11 +322,12 @@
         }
 
         const query = newParams.toString();
-        const newUrl = query
-          ? `${location.pathname}?${query}`
-          : location.pathname;
 
-        history.replaceState(null, "", newUrl);
+        history.replaceState(
+          null,
+          "",
+          query ? `${location.pathname}?${query}` : location.pathname
+        );
       }
 
       function escapeHtml(value) {
