@@ -871,3 +871,348 @@ body.dark .footer-links a:hover {
     align-items: flex-start;
   }
 }
+
+/* =========
+   题解列表页
+   ========= */
+
+.solution-page {
+  overflow: hidden;
+}
+
+.solution-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.solution-page h1 {
+  margin-bottom: 12px;
+}
+
+.solution-page-desc {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.solution-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.solution-search,
+.solution-select {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+
+  outline: none;
+  font: inherit;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.solution-search {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 16px;
+}
+
+.solution-select {
+  flex-shrink: 0;
+  padding: 11px 14px;
+  cursor: pointer;
+}
+
+.solution-search:focus,
+.solution-select:focus {
+  border-color: rgba(140, 191, 243, 0.62);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 0 0 4px rgba(140, 191, 243, 0.12);
+}
+
+body.dark .solution-search,
+body.dark .solution-select {
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.solution-info {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.solution-list {
+  display: grid;
+  gap: 14px;
+}
+
+.solution-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.42);
+
+  padding: 20px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.solution-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(140, 191, 243, 0.44);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 18px 48px rgba(99, 116, 145, 0.12);
+}
+
+body.dark .solution-item {
+  background: rgba(15, 23, 42, 0.34);
+}
+
+body.dark .solution-item:hover {
+  background: rgba(15, 23, 42, 0.52);
+}
+
+.solution-main {
+  min-width: 0;
+}
+
+.solution-title {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  color: var(--text-strong);
+  text-decoration: none;
+  border-bottom: none !important;
+
+  font-size: 20px;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.solution-title:hover {
+  color: #5d8fc7;
+}
+
+body.dark .solution-title:hover {
+  color: #bfdbfe;
+}
+
+.solution-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.solution-meta span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 9px;
+  border-radius: 999px;
+
+  background: rgba(140, 191, 243, 0.13);
+  color: #5d8fc7;
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+body.dark .solution-meta span {
+  color: #bfdbfe;
+  background: rgba(147, 197, 253, 0.13);
+}
+
+.solution-summary {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.solution-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.solution-tags span {
+  padding: 3px 8px;
+  border-radius: 999px;
+
+  background: rgba(244, 167, 185, 0.14);
+  color: #9b6170;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+body.dark .solution-tags span {
+  color: #fbcfe8;
+  background: rgba(244, 167, 185, 0.13);
+}
+
+.solution-read-btn {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 14px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #f5a9bb, #9bc7f4);
+  color: #ffffff !important;
+
+  text-decoration: none;
+  border-bottom: none !important;
+
+  font-size: 14px;
+  font-weight: 850;
+
+  box-shadow: 0 12px 26px rgba(140, 191, 243, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.solution-read-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(244, 167, 185, 0.22);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.pagination button,
+.page-ellipsis {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+  border: 1px solid var(--border);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pagination button {
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.54);
+  color: var(--text);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(140, 191, 243, 0.48);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 10px 24px rgba(140, 191, 243, 0.14);
+}
+
+.pagination button.active {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #f5a9bb, #9bc7f4);
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.page-ellipsis {
+  border-color: transparent;
+  color: var(--muted);
+}
+
+body.dark .pagination button {
+  background: rgba(15, 23, 42, 0.48);
+}
+
+body.dark .pagination button:hover:not(:disabled) {
+  background: rgba(147, 197, 253, 0.12);
+}
+
+.empty-card {
+  padding: 24px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* =========
+   题解页手机适配
+   ========= */
+
+@media (max-width: 760px) {
+  .solution-page-header {
+    flex-direction: column;
+  }
+
+  .solution-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .solution-select {
+    width: 100%;
+  }
+
+  .solution-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .solution-read-btn {
+    width: 100%;
+  }
+
+  .solution-title {
+    font-size: 18px;
+  }
+
+  .pagination {
+    justify-content: flex-start;
+  }
+}
