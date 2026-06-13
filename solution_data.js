@@ -2,6 +2,15 @@
 
 window.SOLUTION_ITEMS = [
   {
+    title: "P16910 「MierOI R2」靈 题解",
+    href: "solutions/P16910.html",
+    date: "2026-06-13",
+    oj: "洛谷",
+    difficulty: "提高+/省选-",
+    tags: ["动态规划"],
+    summary: "拿下周边"
+  }, 
+  {
     title: "P14510 夜里亦始终想念着你 miss 题解",
     href: "solutions/P14510.html",
     date: "2026-06-13",
