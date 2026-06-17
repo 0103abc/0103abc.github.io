@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>做题记录 - 0103abc</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script defer src="common.js"></script>
+  <script defer src="solve_data.js"></script>
+</head>
+
+<body>
+  <main class="container">
+    <section class="solution-shell fade-in">
+
+      <div class="solution-hero">
+        <div>
+          <span class="badge">Solves</span>
+          <h1>做题记录</h1>
+          <p>
+            这里记录了一些刷过的题目、提交状态、复盘笔记和补题进度。
+          </p>
+        </div>
+
+        <div class="solution-stats">
+          <div>
+            <strong id="totalCount">0</strong>
+            <span>道记录</span>
+          </div>
+          <div>
+            <strong>20</strong>
+            <span>每页显示</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-panel">
+        <div class="solution-toolbar">
+          <div class="solution-search-wrap">
+            <span>🔍</span>
+            <input
+              id="solveSearch"
+              class="solution-search"
+              type="search"
+              placeholder="搜索题目、标签、OJ、难度、状态……"
+              autocomplete="off"
+            >
+          </div>
+
+          <select id="solveOjFilter" class="solution-select">
+            <option value="all">全部 OJ</option>
+          </select>
+        </div>
+
+        <div class="solution-info" id="solveInfo"></div>
+
+        <div class="solution-list" id="solveList"></div>
+
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const PAGE_SIZE = 20;
+
+      const solveList = document.querySelector("#solveList");
+      const pagination = document.querySelector("#pagination");
+      const solveInfo = document.querySelector("#solveInfo");
+      const searchInput = document.querySelector("#solveSearch");
+      const ojFilter = document.querySelector("#solveOjFilter");
+      const totalCount = document.querySelector("#totalCount");
+
+      const allSolves = Array.isArray(window.SOLVE_ITEMS)
+        ? [...window.SOLVE_ITEMS]
+        : [];
+
+      allSolves.sort((a, b) => {
+        return new Date(b.date || "1970-01-01") - new Date(a.date || "1970-01-01");
+      });
+
+      totalCount.textContent = allSolves.length;
+
+      const params = new URLSearchParams(location.search);
+
+      let currentPage = Number(params.get("page")) || 1;
+      let currentKeyword = params.get("q") || "";
+      let currentOj = params.get("oj") || "all";
+
+      searchInput.value = currentKeyword;
+
+      initOjFilter();
+      render();
+
+      searchInput.addEventListener("input", () => {
+        currentKeyword = searchInput.value.trim();
+        currentPage = 1;
+        updateUrl();
+        render();
+      });
+
+      ojFilter.addEventListener("change", () => {
+        currentOj = ojFilter.value;
+        currentPage = 1;
+        updateUrl();
+        render();
+      });
+
+      function initOjFilter() {
+        const ojSet = new Set();
+
+        allSolves.forEach((item) => {
+          if (item.oj) {
+            ojSet.add(item.oj);
+          }
+        });
+
+        [...ojSet].sort().forEach((oj) => {
+          const option = document.createElement("option");
+          option.value = oj;
+          option.textContent = oj;
+          ojFilter.appendChild(option);
+        });
+
+        ojFilter.value = currentOj;
+      }
+
+      function getFilteredSolves() {
+        const keyword = currentKeyword.toLowerCase();
+
+        return allSolves.filter((item) => {
+          const text = [
+            item.title,
+            item.href,
+            item.date,
+            item.oj,
+            item.difficulty,
+            item.status,
+            item.result,
+            item.verdict,
+            item.summary,
+            item.note,
+            ...(item.tags || [])
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          const matchKeyword = !keyword || text.includes(keyword);
+          const matchOj = currentOj === "all" || item.oj === currentOj;
+
+          return matchKeyword && matchOj;
+        });
+      }
+
+      function render() {
+        const filtered = getFilteredSolves();
+
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        const startIndex = (currentPage - 1) * PAGE_SIZE;
+        const pageItems = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+
+        renderInfo(filtered.length, totalPages);
+        renderList(pageItems);
+        renderPagination(totalPages);
+      }
+
+      function renderInfo(total, totalPages) {
+        if (total === 0) {
+          solveInfo.innerHTML = `没有找到符合条件的做题记录。`;
+          return;
+        }
+
+        solveInfo.innerHTML = `
+          共 <strong>${total}</strong> 道记录，
+          当前第 <strong>${currentPage}</strong> / <strong>${totalPages}</strong> 页
+        `;
+      }
+
+      function renderList(items) {
+        if (items.length === 0) {
+          solveList.innerHTML = `
+            <div class="empty-card">
+              <div class="empty-icon">🫧</div>
+              <p>暂时没有找到做题记录。</p>
+            </div>
+          `;
+          return;
+        }
+
+        solveList.innerHTML = items
+          .map((item) => {
+            const tags = Array.isArray(item.tags) ? item.tags : [];
+            const status = item.status || item.result || item.verdict || "";
+
+            return `
+              <article class="solution-card">
+                <a class="solution-card-link" href="${escapeAttr(item.href || "#")}">
+                  <div class="solution-card-top">
+                    <div class="solution-title-wrap">
+                      <span class="solution-oj">${escapeHtml(item.oj || "做题记录")}</span>
+                      <h2>${escapeHtml(item.title || "未命名题目")}</h2>
+                    </div>
+
+                    <span class="solution-arrow">→</span>
+                  </div>
+
+                  <p class="solution-summary">
+                    ${escapeHtml(item.summary || item.note || "暂无记录。")}
+                  </p>
+
+                  <div class="solution-bottom">
+                    <div class="solution-meta">
+                      ${item.date ? `<span>📅 ${escapeHtml(item.date)}</span>` : ""}
+                      ${item.difficulty ? `<span>⭐ ${escapeHtml(item.difficulty)}</span>` : ""}
+                      ${status ? `<span>✅ ${escapeHtml(status)}</span>` : ""}
+                    </div>
+
+                    ${
+                      tags.length
+                        ? `
+                          <div class="solution-tags">
+                            ${tags
+                              .map((tag) => `<span>${escapeHtml(tag)}</span>`)
+                              .join("")}
+                          </div>
+                        `
+                        : ""
+                    }
+                  </div>
+                </a>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      function renderPagination(totalPages) {
+        if (totalPages <= 1) {
+          pagination.innerHTML = "";
+          return;
+        }
+
+        const pages = getPageNumbers(currentPage, totalPages);
+
+        pagination.innerHTML = `
+          <button ${currentPage === 1 ? "disabled" : ""} data-page="${currentPage - 1}">
+            上一页
+          </button>
+
+          ${pages
+            .map((page) => {
+              if (page === "...") {
+                return `<span class="page-ellipsis">...</span>`;
+              }
+
+              return `
+                <button
+                  class="${page === currentPage ? "active" : ""}"
+                  data-page="${page}"
+                >
+                  ${page}
+                </button>
+              `;
+            })
+            .join("")}
+
+          <button ${currentPage === totalPages ? "disabled" : ""} data-page="${currentPage + 1}">
+            下一页
+          </button>
+        `;
+
+        pagination.querySelectorAll("button[data-page]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const page = Number(button.dataset.page);
+
+            if (!Number.isNaN(page)) {
+              currentPage = page;
+              updateUrl();
+              render();
+
+              document.querySelector(".solution-shell").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          });
+        });
+      }
+
+      function getPageNumbers(current, total) {
+        if (total <= 7) {
+          return Array.from({ length: total }, (_, index) => index + 1);
+        }
+
+        if (current <= 4) {
+          return [1, 2, 3, 4, 5, "...", total];
+        }
+
+        if (current >= total - 3) {
+          return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
+        }
+
+        return [1, "...", current - 1, current, current + 1, "...", total];
+      }
+
+      function updateUrl() {
+        const newParams = new URLSearchParams();
+
+        if (currentPage > 1) {
+          newParams.set("page", currentPage);
+        }
+
+        if (currentKeyword) {
+          newParams.set("q", currentKeyword);
+        }
+
+        if (currentOj !== "all") {
+          newParams.set("oj", currentOj);
+        }
+
+        const query = newParams.toString();
+
+        history.replaceState(
+          null,
+          "",
+          query ? `${location.pathname}?${query}` : location.pathname
+        );
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function escapeAttr(value) {
+        return escapeHtml(value).replaceAll("`", "&#096;");
+      }
+    });
+  </script>
+</body>
+</html>
