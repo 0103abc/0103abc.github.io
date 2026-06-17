@@ -2,6 +2,15 @@
 
 window.SOLUTION_ITEMS = [
   {
+    title: "CF1654F Minimal String Xoration 题解",
+    href: "solutions/CF1654F.html",
+    date: "2026-06-17",
+    oj: "CodeForces",
+    difficulty: "*2600",
+    tags: ["倍增", "字符串", "后缀数组"],
+    summary: "这么喜欢诈骗"
+  }, 
+  {
     title: "P16910 「MierOI R2」靈 题解",
     href: "solutions/P16910.html",
     date: "2026-06-13",
