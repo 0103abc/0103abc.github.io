@@ -65,6 +65,32 @@
     </section>
   </main>
 
+  <!--
+    页面内已有数据可以放这里。
+    之后如果你把数据迁移到了 solve_data.js，也不用删这里，
+    程序会自动把这里的数据和 solve_data.js 里的 window.SOLVE_ITEMS 合并。
+  -->
+  <script>
+    window.SOLVE_INLINE_ITEMS = [
+      /*
+      示例：
+
+      {
+        title: "P1001 A+B Problem",
+        href: "solve/p1001.html",
+        oj: "洛谷",
+        difficulty: "入门",
+        status: "AC",
+        date: "2026-06-17",
+        summary: "简单输入输出练习。",
+        tags: ["模拟", "入门"]
+      }
+
+      继续在这里添加你的已有做题记录。
+      */
+    ];
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const PAGE_SIZE = 20;
@@ -76,12 +102,21 @@
       const ojFilter = document.querySelector("#solveOjFilter");
       const totalCount = document.querySelector("#totalCount");
 
-      const allSolves = Array.isArray(window.SOLVE_ITEMS)
-        ? [...window.SOLVE_ITEMS]
+      const externalSolves = Array.isArray(window.SOLVE_ITEMS)
+        ? window.SOLVE_ITEMS
         : [];
 
+      const inlineSolves = Array.isArray(window.SOLVE_INLINE_ITEMS)
+        ? window.SOLVE_INLINE_ITEMS
+        : [];
+
+      const allSolves = mergeSolveItems([
+        ...inlineSolves,
+        ...externalSolves
+      ]);
+
       allSolves.sort((a, b) => {
-        return new Date(b.date || "1970-01-01") - new Date(a.date || "1970-01-01");
+        return getDateValue(b.date) - getDateValue(a.date);
       });
 
       totalCount.textContent = allSolves.length;
@@ -126,6 +161,11 @@
           option.textContent = oj;
           ojFilter.appendChild(option);
         });
+
+        if (currentOj !== "all" && !ojSet.has(currentOj)) {
+          currentOj = "all";
+          updateUrl();
+        }
 
         ojFilter.value = currentOj;
       }
@@ -334,6 +374,52 @@
           "",
           query ? `${location.pathname}?${query}` : location.pathname
         );
+      }
+
+      function mergeSolveItems(items) {
+        const map = new Map();
+
+        items.forEach((item) => {
+          if (!item || typeof item !== "object") {
+            return;
+          }
+
+          const key = getSolveKey(item);
+
+          if (!map.has(key)) {
+            map.set(key, item);
+            return;
+          }
+
+          map.set(key, {
+            ...map.get(key),
+            ...item
+          });
+        });
+
+        return [...map.values()];
+      }
+
+      function getSolveKey(item) {
+        const href = String(item.href || "").trim().toLowerCase();
+        const title = String(item.title || "").trim().toLowerCase();
+        const oj = String(item.oj || "").trim().toLowerCase();
+
+        if (href) {
+          return `href:${href}`;
+        }
+
+        return `title:${oj}:${title}`;
+      }
+
+      function getDateValue(value) {
+        const time = new Date(value || "1970-01-01").getTime();
+
+        if (Number.isNaN(time)) {
+          return 0;
+        }
+
+        return time;
       }
 
       function escapeHtml(value) {
