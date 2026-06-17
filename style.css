@@ -2014,3 +2014,151 @@ body.dark .solve-tags span:nth-child(2n) {
     flex-direction: column;
   }
 }
+
+/* =========
+   做题记录页 Cute Override
+   直接覆盖 solution_list 同款结构
+   ========= */
+
+body.solve-page .solution-hero {
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255, 205, 222, 0.58), transparent 34%),
+    radial-gradient(circle at 88% 20%, rgba(182, 222, 255, 0.56), transparent 34%),
+    radial-gradient(circle at 55% 105%, rgba(255, 235, 185, 0.44), transparent 36%),
+    var(--bg-card);
+}
+
+body.solve-page .solution-hero::before {
+  content: "♡";
+  right: 34px;
+  top: 22px;
+  bottom: auto;
+
+  width: auto;
+  height: auto;
+
+  background: none;
+  color: rgba(244, 167, 185, 0.42);
+  font-size: 78px;
+  font-weight: 900;
+  line-height: 1;
+
+  transform: rotate(12deg);
+}
+
+body.solve-page .solution-hero::after {
+  content: "✦";
+  left: 38px;
+  bottom: 28px;
+
+  width: auto;
+  height: auto;
+
+  background: none;
+  color: rgba(140, 191, 243, 0.45);
+  font-size: 42px;
+  line-height: 1;
+
+  transform: rotate(-12deg);
+}
+
+body.solve-page .badge {
+  color: #6f94c8;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 10px 26px rgba(244, 167, 185, 0.14);
+}
+
+body.solve-page .solution-hero h1::after {
+  content: " 🐰";
+  font-size: 0.38em;
+  vertical-align: middle;
+}
+
+body.solve-page .solution-stats div {
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.30));
+  box-shadow: 0 16px 38px rgba(140, 191, 243, 0.12);
+}
+
+body.solve-page .solution-panel {
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 205, 222, 0.22), transparent 28%),
+    radial-gradient(circle at 100% 100%, rgba(182, 222, 255, 0.24), transparent 32%),
+    var(--bg-card);
+}
+
+body.solve-page .solution-search-wrap:focus-within {
+  border-color: rgba(244, 167, 185, 0.62);
+  box-shadow: 0 0 0 4px rgba(244, 167, 185, 0.12);
+}
+
+body.solve-page .solution-card {
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 96% 10%, rgba(255, 210, 225, 0.28), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.28));
+}
+
+body.dark.solve-page .solution-card {
+  background:
+    radial-gradient(circle at 96% 10%, rgba(244, 167, 185, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.34));
+}
+
+body.solve-page .solution-card::before {
+  width: 7px;
+  background: linear-gradient(180deg, #ffc4d6, #b7ddff, #ffe6a7);
+}
+
+body.solve-page .solution-card::after {
+  content: "♡";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+
+  color: rgba(244, 167, 185, 0.16);
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+body.solve-page .solution-card:hover {
+  transform: translateY(-5px) rotate(-0.25deg);
+  border-color: rgba(244, 167, 185, 0.50);
+  box-shadow: 0 26px 70px rgba(244, 167, 185, 0.15);
+}
+
+body.solve-page .solution-card:hover h2 {
+  color: #d97b93;
+}
+
+body.dark.solve-page .solution-card:hover h2 {
+  color: #fbcfe8;
+}
+
+body.solve-page .solution-oj {
+  color: #5d8fc7;
+  background: rgba(140, 191, 243, 0.14);
+}
+
+body.solve-page .solution-meta span:nth-child(3) {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(128, 210, 170, 0.16);
+  color: #3b8a61;
+}
+
+body.solve-page .solution-tags span {
+  background: rgba(244, 167, 185, 0.14);
+  color: #9b6170;
+}
+
+body.solve-page .solution-tags span:nth-child(2n) {
+  background: rgba(140, 191, 243, 0.14);
+  color: #5d8fc7;
+}
