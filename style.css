@@ -2032,3 +2032,617 @@ body.dark .solve-tags span:nth-child(2n) {
     flex-direction: column;
   }
 }
+
+/* =========
+   做题记录页 Cute Diary
+   ========= */
+
+.solve-shell {
+  display: grid;
+  gap: 24px;
+}
+
+.solve-hero {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+
+  padding: 52px;
+
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255, 205, 222, 0.56), transparent 34%),
+    radial-gradient(circle at 88% 20%, rgba(180, 220, 255, 0.52), transparent 34%),
+    radial-gradient(circle at 58% 105%, rgba(255, 236, 188, 0.44), transparent 34%),
+    var(--bg-card);
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.solve-hero::before {
+  content: "♡";
+  position: absolute;
+  top: 20px;
+  right: 32px;
+
+  color: rgba(244, 167, 185, 0.44);
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+.solve-hero::after {
+  content: "✦";
+  position: absolute;
+  left: 34px;
+  bottom: 26px;
+
+  color: rgba(140, 191, 243, 0.42);
+  font-size: 42px;
+  line-height: 1;
+
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.solve-hero-main {
+  position: relative;
+  z-index: 1;
+}
+
+.solve-hero h1 {
+  margin: 14px 0 14px;
+  font-size: clamp(46px, 7vw, 82px);
+}
+
+.solve-hero p {
+  max-width: 720px;
+  margin: 0;
+
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.solve-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.solve-stickers span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.50);
+
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+
+  box-shadow: 0 10px 24px rgba(244, 167, 185, 0.10);
+}
+
+body.dark .solve-stickers span {
+  background: rgba(15, 23, 42, 0.38);
+}
+
+.solve-side {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  gap: 14px;
+  min-width: 230px;
+}
+
+.solve-mascot {
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.24));
+
+  text-align: center;
+}
+
+.solve-mascot-face {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 12px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.86), transparent 34%),
+    linear-gradient(135deg, rgba(255, 190, 210, 0.55), rgba(172, 213, 255, 0.46));
+
+  font-size: 46px;
+  box-shadow: 0 18px 42px rgba(244, 167, 185, 0.18);
+
+  animation: solveMascotFloat 3.2s ease-in-out infinite;
+}
+
+.solve-mascot strong {
+  display: block;
+
+  color: var(--text-strong);
+  font-size: 15px;
+}
+
+.solve-mascot span {
+  display: block;
+  margin-top: 4px;
+
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+body.dark .solve-mascot {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.52), rgba(15, 23, 42, 0.28));
+}
+
+@keyframes solveMascotFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+.solve-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(96px, 1fr));
+  gap: 12px;
+}
+
+.solve-stats div {
+  padding: 16px 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.46);
+
+  text-align: center;
+}
+
+body.dark .solve-stats div {
+  background: rgba(15, 23, 42, 0.42);
+}
+
+.solve-stats strong {
+  display: block;
+
+  color: var(--text-strong);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.solve-stats span {
+  display: block;
+  margin-top: 8px;
+
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.solve-panel {
+  padding: 26px;
+
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--bg-card);
+  box-shadow: 0 20px 60px rgba(99, 116, 145, 0.10);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.solve-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 14px;
+
+  margin-bottom: 14px;
+}
+
+.solve-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.solve-search-wrap:focus-within {
+  border-color: rgba(244, 167, 185, 0.62);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 0 0 4px rgba(244, 167, 185, 0.12);
+}
+
+.solve-search {
+  width: 100%;
+  height: 46px;
+
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+
+  font: inherit;
+}
+
+.solve-search::placeholder {
+  color: var(--muted);
+}
+
+.solve-select {
+  height: 48px;
+  padding: 0 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.solve-select:focus {
+  border-color: rgba(140, 191, 243, 0.62);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 0 0 4px rgba(140, 191, 243, 0.12);
+}
+
+body.dark .solve-search-wrap,
+body.dark .solve-select {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.solve-info {
+  margin: 10px 2px 18px;
+
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.solve-info strong {
+  color: var(--text-strong);
+}
+
+.solve-list {
+  display: grid;
+  gap: 16px;
+}
+
+.solve-card {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.30));
+
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.solve-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+
+  width: 7px;
+
+  background: linear-gradient(180deg, #ffc4d6, #b7ddff, #ffe6a7);
+  opacity: 0.95;
+}
+
+.solve-card::after {
+  content: "♡";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+
+  color: rgba(244, 167, 185, 0.16);
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+.solve-card:hover {
+  transform: translateY(-4px) rotate(-0.2deg);
+  border-color: rgba(244, 167, 185, 0.48);
+  box-shadow: 0 24px 66px rgba(99, 116, 145, 0.16);
+}
+
+body.dark .solve-card {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.34));
+}
+
+.solve-card-link {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  padding: 22px 24px 22px 30px;
+
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.solve-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.solve-title-wrap {
+  min-width: 0;
+}
+
+.solve-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 10px;
+}
+
+.solve-oj,
+.solve-status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.solve-oj {
+  background: rgba(140, 191, 243, 0.15);
+  color: #5d8fc7;
+}
+
+.solve-status {
+  background: rgba(244, 167, 185, 0.16);
+  color: #9b6170;
+}
+
+.solve-status.status-ac {
+  background: rgba(128, 210, 170, 0.16);
+  color: #3b8a61;
+}
+
+.solve-status.status-wa {
+  background: rgba(244, 167, 185, 0.18);
+  color: #a85569;
+}
+
+.solve-status.status-tle {
+  background: rgba(250, 204, 120, 0.22);
+  color: #9a6a16;
+}
+
+.solve-status.status-wip {
+  background: rgba(140, 191, 243, 0.15);
+  color: #5d8fc7;
+}
+
+.solve-card h2 {
+  margin: 0;
+
+  color: var(--text-strong);
+  font-size: 23px;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+
+  transition: color 0.2s ease;
+}
+
+.solve-card:hover h2 {
+  color: #d97b93;
+}
+
+body.dark .solve-card:hover h2 {
+  color: #fbcfe8;
+}
+
+.solve-arrow {
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56);
+  color: #d97b93;
+
+  font-size: 19px;
+  font-weight: 900;
+
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease;
+}
+
+.solve-card:hover .solve-arrow {
+  transform: translateX(4px) rotate(-8deg);
+  background: rgba(244, 167, 185, 0.16);
+}
+
+body.dark .solve-arrow {
+  background: rgba(15, 23, 42, 0.48);
+  color: #fbcfe8;
+}
+
+.solve-summary {
+  margin: 14px 0 18px;
+
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.solve-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.solve-meta,
+.solve-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.solve-meta span {
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.solve-tags span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 9px;
+  border-radius: 999px;
+
+  background: rgba(244, 167, 185, 0.14);
+  color: #9b6170;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.solve-tags span:nth-child(2n) {
+  background: rgba(140, 191, 243, 0.14);
+  color: #5d8fc7;
+}
+
+body.dark .solve-tags span {
+  color: #fbcfe8;
+  background: rgba(244, 167, 185, 0.13);
+}
+
+body.dark .solve-tags span:nth-child(2n) {
+  color: #bfdbfe;
+  background: rgba(147, 197, 253, 0.13);
+}
+
+/* =========
+   做题记录页手机适配
+   ========= */
+
+@media (max-width: 900px) {
+  .solve-hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .solve-side {
+    min-width: 0;
+  }
+
+  .solve-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .solve-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .solve-hero {
+    padding: 34px 24px;
+  }
+
+  .solve-hero h1 {
+    font-size: clamp(38px, 14vw, 58px);
+  }
+
+  .solve-hero p {
+    font-size: 16px;
+  }
+
+  .solve-panel {
+    padding: 18px;
+  }
+
+  .solve-card-link {
+    padding: 20px 20px 20px 26px;
+  }
+
+  .solve-card h2 {
+    font-size: 19px;
+  }
+
+  .solve-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
