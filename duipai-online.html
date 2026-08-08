@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C++ 对拍器</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --panel: #11182b;
+      --panel2: #0d1426;
+      --line: #26324d;
+      --text: #edf2ff;
+      --muted: #91a0be;
+      --accent: #7aa2ff;
+      --ok: #58d68d;
+      --bad: #ff6b7a;
+      --warn: #f7c65f;
+      --shadow: 0 16px 48px rgba(0, 0, 0, .28);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(122,162,255,.12), transparent 32rem),
+        radial-gradient(circle at 90% 10%, rgba(88,214,141,.08), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button, input, select { outline: none; }
+    button { cursor: pointer; }
+
+    .app { width: min(1500px, calc(100% - 28px)); margin: 24px auto 50px; }
+    .hero {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0 0 6px; font-size: clamp(27px, 4vw, 42px); letter-spacing: -.04em; }
+    .subtitle { color: var(--muted); font-size: 14px; line-height: 1.65; max-width: 780px; }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.018), transparent 70%), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: minmax(260px, 1.7fr) repeat(5, minmax(100px, .65fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .field { min-width: 0; }
+    .field label {
+      display: block; margin: 0 0 6px; color: var(--muted); font-size: 12px;
+    }
+    .field input, .field select {
+      width: 100%; height: 40px; padding: 0 11px; color: var(--text);
+      background: var(--panel2); border: 1px solid var(--line); border-radius: 10px;
+    }
+    .field input:focus, .field select:focus, textarea:focus { border-color: var(--accent); }
+
+    .api-note {
+      grid-column: 1 / -1; color: var(--muted); font-size: 12px; line-height: 1.55;
+      padding: 2px 2px 0;
+    }
+    code { color: #c8d5ff; }
+
+    .editors {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .editor-card { overflow: hidden; }
+    .editor-head {
+      min-height: 53px; padding: 10px 12px 10px 15px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .editor-title { min-width: 0; }
+    .editor-title strong { display: block; font-size: 15px; }
+    .editor-title span { color: var(--muted); font-size: 11px; }
+    .editor-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn, .file-btn {
+      border: 1px solid var(--line); background: #18223a; color: var(--text);
+      min-height: 34px; padding: 7px 11px; border-radius: 9px; font-size: 12px;
+      transition: .15s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn:hover, .file-btn:hover { transform: translateY(-1px); border-color: #40527b; }
+    .btn.primary { background: #315fd4; border-color: #416fe0; }
+    .btn.danger { background: #4a1e2a; border-color: #6f2e3d; }
+    .btn.good { background: #174832; border-color: #226849; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    input[type=file] { display: none; }
+
+    textarea.code {
+      display: block; width: 100%; min-height: 320px; resize: vertical;
+      padding: 14px 15px; border: 0; outline: 0; color: #dbe5ff;
+      background: #090f1d; line-height: 1.55; font-size: 13px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      tab-size: 4;
+    }
+    .drop-active textarea.code { box-shadow: inset 0 0 0 2px var(--accent); }
+
+    .runbar {
+      margin-top: 16px; padding: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .runbar .spacer { flex: 1; }
+    .status-pill {
+      min-height: 34px; display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line);
+      color: var(--muted); background: var(--panel2); font-size: 12px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #64708a; }
+    .dot.running { background: var(--warn); box-shadow: 0 0 0 5px rgba(247,198,95,.08); }
+    .dot.ok { background: var(--ok); }
+    .dot.bad { background: var(--bad); }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px;
+      margin-top: 16px;
+    }
+    .stat { padding: 14px 16px; }
+    .stat .k { color: var(--muted); font-size: 11px; }
+    .stat .v { margin-top: 5px; font-size: 22px; font-weight: 750; letter-spacing: -.03em; }
+
+    .results { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .result-card { overflow: hidden; }
+    .result-head {
+      padding: 10px 12px 10px 15px; border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .result-head strong { font-size: 13px; }
+    pre.output {
+      margin: 0; min-height: 180px; max-height: 390px; overflow: auto; white-space: pre-wrap; word-break: break-word;
+      background: #090f1d; padding: 14px 15px; color: #dbe5ff; font: 12px/1.55 "SFMono-Regular", Consolas, monospace;
+    }
+
+    .log-panel { margin-top: 16px; overflow: hidden; }
+    .log-head {
+      padding: 10px 13px 10px 15px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    #log { min-height: 120px; max-height: 300px; }
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+
+    @media (max-width: 1050px) {
+      .toolbar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .toolbar .api { grid-column: 1 / -1; }
+      .editors { grid-template-columns: 1fr; }
+      .results { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .app { width: min(100% - 16px, 1500px); margin-top: 12px; }
+      .hero { align-items: flex-start; flex-direction: column; }
+      .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbar .api { grid-column: 1 / -1; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stat:last-child { grid-column: 1 / -1; }
+      textarea.code { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <h1>C++ 对拍器</h1>
+        <div class="subtitle">
+          上传生成器、暴力和正解，可选 validator。页面按 seed 生成测试，validator 返回 0 才继续，随后比较暴力与正解输出；发现首个差异立即停止。
+        </div>
+      </div>
+      <button class="btn" id="loadExample">载入示例</button>
+    </header>
+
+    <section class="panel toolbar">
+      <div class="field api">
+        <label for="apiBase">Piston API Base</label>
+        <input id="apiBase" value="http://localhost:2000/api/v2" spellcheck="false" />
+      </div>
+      <div class="field">
+        <label for="tests">有效测试数</label>
+        <input id="tests" type="number" min="1" max="100000" value="100" />
+      </div>
+      <div class="field">
+        <label for="seed">起始 seed</label>
+        <input id="seed" type="number" value="1" />
+      </div>
+      <div class="field">
+        <label for="runTimeout">运行超时 / ms</label>
+        <input id="runTimeout" type="number" min="100" max="30000" value="3000" />
+      </div>
+      <div class="field">
+        <label for="compileTimeout">编译超时 / ms</label>
+        <input id="compileTimeout" type="number" min="1000" max="60000" value="10000" />
+      </div>
+      <div class="field">
+        <label for="compareMode">输出比较</label>
+        <select id="compareMode">
+          <option value="tokens" selected>按非空白 token</option>
+          <option value="trim">忽略行尾空白</option>
+          <option value="exact">严格比较</option>
+        </select>
+      </div>
+      <div class="api-note">
+        默认适配自建 Piston 的 <code>/api/v2/runtimes</code> 与 <code>/api/v2/execute</code>。生成器每轮会收到一个命令行参数 <code>argv[1] = seed</code>；validator、暴力、正解都从 stdin 读取生成数据。
+      </div>
+    </section>
+
+    <section class="editors">
+      <article class="panel editor-card" data-role="generator">
+        <div class="editor-head">
+          <div class="editor-title"><strong>数据生成器</strong><span>必需 · stdout 作为测试输入</span></div>
+          <div class="editor-actions">
+            <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="generator"></label>
+            <button class="btn" data-clear="generator">清空</button>
+          </div>
+        </div>
+        <textarea class="code" id="generator" spellcheck="false" placeholder="// generator.cpp"></textarea>
+      </article>
+
+      <article class="panel editor-card" data-role="brute">
+        <div class="editor-head">
+          <div class="editor-title"><strong>暴力程序</strong><span>必需 · stdin 为测试数据</span></div>
+          <div class="editor-actions">
+            <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="brute"></label>
+            <button class="btn" data-clear="brute">清空</button>
+          </div>
+        </div>
+        <textarea class="code" id="brute" spellcheck="false" placeholder="// brute.cpp"></textarea>
+      </article>
+
+      <article class="panel editor-card" data-role="solution">
+        <div class="editor-head">
+          <div class="editor-title"><strong>正解程序</strong><span>必需 · stdin 为测试数据</span></div>
+          <div class="editor-actions">
+            <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="solution"></label>
+            <button class="btn" data-clear="solution">清空</button>
+          </div>
+        </div>
+        <textarea class="code" id="solution" spellcheck="false" placeholder="// solution.cpp"></textarea>
+      </article>
+
+      <article class="panel editor-card" data-role="validator">
+        <div class="editor-head">
+          <div class="editor-title"><strong>数据合法性验证器</strong><span>可选 · 返回 0 表示合法</span></div>
+          <div class="editor-actions">
+            <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="validator"></label>
+            <button class="btn" data-clear="validator">清空</button>
+          </div>
+        </div>
+        <textarea class="code" id="validator" spellcheck="false" placeholder="// validator.cpp（可留空）"></textarea>
+      </article>
+    </section>
+
+    <section class="panel runbar">
+      <button class="btn primary" id="start">开始对拍</button>
+      <button class="btn danger" id="stop" disabled>停止</button>
+      <button class="btn" id="testApi">测试 API</button>
+      <button class="btn" id="clearResult">清空结果</button>
+      <div class="spacer"></div>
+      <div class="status-pill"><span class="dot" id="statusDot"></span><span id="statusText">未运行</span></div>
+    </section>
+
+    <section class="stats">
+      <div class="panel stat"><div class="k">已通过</div><div class="v" id="passed">0</div></div>
+      <div class="panel stat"><div class="k">生成次数</div><div class="v" id="generated">0</div></div>
+      <div class="panel stat"><div class="k">validator 丢弃</div><div class="v" id="rejected">0</div></div>
+      <div class="panel stat"><div class="k">当前 seed</div><div class="v" id="currentSeed">—</div></div>
+      <div class="panel stat"><div class="k">耗时</div><div class="v" id="elapsed">0.00s</div></div>
+    </section>
+
+    <section class="results">
+      <article class="panel result-card">
+        <div class="result-head">
+          <strong>失败数据 / 最近数据</strong>
+          <div class="editor-actions">
+            <button class="btn" data-copy="caseInput">复制</button>
+            <button class="btn" data-download="caseInput" data-name="case.in">下载</button>
+          </div>
+        </div>
+        <pre class="output" id="caseInput"></pre>
+      </article>
+      <article class="panel result-card">
+        <div class="result-head">
+          <strong>暴力输出</strong>
+          <div class="editor-actions">
+            <button class="btn" data-copy="bruteOutput">复制</button>
+            <button class="btn" data-download="bruteOutput" data-name="brute.out">下载</button>
+          </div>
+        </div>
+        <pre class="output" id="bruteOutput"></pre>
+      </article>
+      <article class="panel result-card">
+        <div class="result-head">
+          <strong>正解输出</strong>
+          <div class="editor-actions">
+            <button class="btn" data-copy="solutionOutput">复制</button>
+            <button class="btn" data-download="solutionOutput" data-name="solution.out">下载</button>
+          </div>
+        </div>
+        <pre class="output" id="solutionOutput"></pre>
+      </article>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="log-head"><strong>运行日志</strong><button class="btn" id="clearLog">清空日志</button></div>
+      <pre class="output" id="log"></pre>
+    </section>
+  </main>
+
+  <script>
+    'use strict';
+
+    const $ = (id) => document.getElementById(id);
+    const editors = ['generator', 'brute', 'solution', 'validator'];
+    const state = {
+      running: false,
+      stopRequested: false,
+      controller: null,
+      startedAt: 0,
+      timer: null,
+      cppRuntime: null,
+    };
+
+    const settings = ['apiBase', 'tests', 'seed', 'runTimeout', 'compileTimeout', 'compareMode'];
+
+    function log(message, kind = '') {
+      const t = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+      const prefix = kind === 'err' ? '[错误]' : kind === 'ok' ? '[通过]' : kind === 'warn' ? '[提示]' : '[信息]';
+      const el = $('log');
+      el.textContent += `${t} ${prefix} ${message}\n`;
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function setStatus(text, type = '') {
+      $('statusText').textContent = text;
+      $('statusDot').className = `dot ${type}`.trim();
+    }
+
+    function setRunning(running) {
+      state.running = running;
+      $('start').disabled = running;
+      $('testApi').disabled = running;
+      $('stop').disabled = !running;
+      if (!running && state.timer) {
+        clearInterval(state.timer);
+        state.timer = null;
+      }
+    }
+
+    function resetStats() {
+      $('passed').textContent = '0';
+      $('generated').textContent = '0';
+      $('rejected').textContent = '0';
+      $('currentSeed').textContent = '—';
+      $('elapsed').textContent = '0.00s';
+    }
+
+    function clearOutputs() {
+      $('caseInput').textContent = '';
+      $('bruteOutput').textContent = '';
+      $('solutionOutput').textContent = '';
+    }
+
+    function saveLocal() {
+      try {
+        const obj = {};
+        for (const id of editors.concat(settings)) obj[id] = $(id).value;
+        localStorage.setItem('cpp-stress-tester-v1', JSON.stringify(obj));
+      } catch (_) {}
+    }
+
+    function loadLocal() {
+      try {
+        const raw = localStorage.getItem('cpp-stress-tester-v1');
+        if (!raw) return;
+        const obj = JSON.parse(raw);
+        for (const id of editors.concat(settings)) {
+          if (Object.prototype.hasOwnProperty.call(obj, id)) $(id).value = obj[id];
+        }
+      } catch (_) {}
+    }
+
+    function normalizeBase(s) {
+      return s.trim().replace(/\/+$/, '');
+    }
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, options);
+      let data;
+      try {
+        data = await response.json();
+      } catch (_) {
+        throw new Error(`API 返回了非 JSON（HTTP ${response.status}）`);
+      }
+      if (!response.ok) {
+        throw new Error(data?.message || `HTTP ${response.status}`);
+      }
+      return data;
+    }
+
+    async function detectCppRuntime(force = false) {
+      if (state.cppRuntime && !force) return state.cppRuntime;
+      const base = normalizeBase($('apiBase').value);
+      if (!base) throw new Error('请填写 Piston API Base');
+      const runtimes = await fetchJson(`${base}/runtimes`, { signal: state.controller?.signal });
+      if (!Array.isArray(runtimes)) throw new Error('runtimes 返回格式不正确');
+
+      const runtime = runtimes.find(r =>
+        r.language === 'c++' || r.language === 'cpp' ||
+        (Array.isArray(r.aliases) && (r.aliases.includes('c++') || r.aliases.includes('cpp')))
+      );
+      if (!runtime) throw new Error('该 Piston 实例没有安装 C++ runtime');
+      state.cppRuntime = { language: runtime.language, version: runtime.version };
+      return state.cppRuntime;
+    }
+
+    function stageError(result, label) {
+      const compile = result?.compile;
+      if (compile && (compile.code !== 0 || compile.signal || compile.status)) {
+        return `${label}编译失败：\n${compile.output || compile.stderr || compile.message || `exit ${compile.code}`}`;
+      }
+      const run = result?.run;
+      if (!run) return `${label}没有返回 run 结果`;
+      if (run.code !== 0 || run.signal || run.status) {
+        return `${label}运行失败：\n${run.output || run.stderr || run.message || `exit ${run.code}`}`;
+      }
+      return '';
+    }
+
+    async function executeCpp(code, stdin = '', args = [], label = '程序') {
+      const base = normalizeBase($('apiBase').value);
+      const runtime = await detectCppRuntime();
+      const body = {
+        language: runtime.language,
+        version: runtime.version,
+        files: [{ name: 'main.cpp', content: code }],
+        stdin,
+        args: args.map(String),
+        compile_timeout: Number($('compileTimeout').value),
+        run_timeout: Number($('runTimeout').value),
+        compile_cpu_time: Number($('compileTimeout').value),
+        run_cpu_time: Number($('runTimeout').value),
+      };
+
+      const data = await fetchJson(`${base}/execute`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: state.controller?.signal,
+      });
+
+      return { data, error: stageError(data, label), output: data?.run?.stdout ?? '' };
+    }
+
+    function normalized(s, mode) {
+      s = String(s ?? '').replace(/\r\n?/g, '\n');
+      if (mode === 'exact') return s;
+      if (mode === 'trim') {
+        const lines = s.split('\n').map(x => x.replace(/[\t ]+$/g, ''));
+        while (lines.length && lines[lines.length - 1] === '') lines.pop();
+        return lines.join('\n');
+      }
+      const t = s.trim();
+      return t ? t.split(/\s+/) : [];
+    }
+
+    function outputsEqual(a, b, mode) {
+      const x = normalized(a, mode);
+      const y = normalized(b, mode);
+      if (Array.isArray(x)) {
+        if (x.length !== y.length) return false;
+        for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return false;
+        return true;
+      }
+      return x === y;
+    }
+
+    function firstDifference(a, b, mode) {
+      if (mode === 'tokens') {
+        const x = normalized(a, mode), y = normalized(b, mode);
+        const n = Math.min(x.length, y.length);
+        for (let i = 0; i < n; i++) {
+          if (x[i] !== y[i]) return `第 ${i + 1} 个 token 不同：暴力=${JSON.stringify(x[i])}，正解=${JSON.stringify(y[i])}`;
+        }
+        return `token 数不同：暴力 ${x.length} 个，正解 ${y.length} 个`;
+      }
+      const x = normalized(a, mode), y = normalized(b, mode);
+      let i = 0;
+      while (i < x.length && i < y.length && x[i] === y[i]) i++;
+      const line = x.slice(0, i).split('\n').length;
+      const col = i - x.lastIndexOf('\n', i - 1);
+      return `首个不同位置约在第 ${line} 行、第 ${col} 列`;
+    }
+
+    function requireSources() {
+      for (const id of ['generator', 'brute', 'solution']) {
+        if (!$(id).value.trim()) throw new Error(`${id === 'generator' ? '生成器' : id === 'brute' ? '暴力程序' : '正解程序'}不能为空`);
+      }
+      const tests = Number($('tests').value);
+      if (!Number.isInteger(tests) || tests <= 0) throw new Error('有效测试数必须是正整数');
+      const rt = Number($('runTimeout').value);
+      const ct = Number($('compileTimeout').value);
+      if (!(rt > 0) || !(ct > 0)) throw new Error('超时必须为正数');
+    }
+
+    async function runStress() {
+      if (state.running) return;
+      try { requireSources(); } catch (e) { log(e.message, 'err'); setStatus('配置有误', 'bad'); return; }
+
+      saveLocal();
+      clearOutputs();
+      resetStats();
+      $('log').textContent = '';
+      state.stopRequested = false;
+      state.controller = new AbortController();
+      state.cppRuntime = null;
+      state.startedAt = performance.now();
+      setRunning(true);
+      setStatus('连接编译器…', 'running');
+      state.timer = setInterval(() => {
+        $('elapsed').textContent = `${((performance.now() - state.startedAt) / 1000).toFixed(2)}s`;
+      }, 100);
+
+      const generator = $('generator').value;
+      const brute = $('brute').value;
+      const solution = $('solution').value;
+      const validator = $('validator').value.trim();
+      const need = Number($('tests').value);
+      const seed0 = Number($('seed').value) || 0;
+      const mode = $('compareMode').value;
+      let passed = 0, generated = 0, rejected = 0;
+      // 防止 validator 永远拒绝导致死循环。
+      const generationLimit = Math.max(need * 100, 1000);
+
+      try {
+        const runtime = await detectCppRuntime(true);
+        log(`已连接 C++ runtime：${runtime.language} ${runtime.version}`, 'ok');
+        setStatus('对拍中', 'running');
+
+        while (passed < need && generated < generationLimit) {
+          if (state.stopRequested) break;
+          const currentSeed = seed0 + generated;
+          generated++;
+          $('generated').textContent = String(generated);
+          $('currentSeed').textContent = String(currentSeed);
+
+          const gen = await executeCpp(generator, '', [currentSeed], '生成器');
+          if (gen.error) throw new Error(gen.error);
+          const input = gen.output;
+          $('caseInput').textContent = input;
+
+          if (validator) {
+            const val = await executeCpp(validator, input, [], 'validator');
+            // validator 的非 0 返回码是“数据不合法”，不是对拍器自身错误；编译失败仍应终止。
+            if (val.data?.compile && (val.data.compile.code !== 0 || val.data.compile.signal || val.data.compile.status)) {
+              throw new Error(`validator 编译失败：\n${val.data.compile.output || val.data.compile.stderr || val.data.compile.message || ''}`);
+            }
+            const run = val.data?.run;
+            if (!run) throw new Error('validator 没有返回运行结果');
+            // 普通非 0 返回码表示“不合法”；超时、信号、输出超限等属于 validator 自身故障。
+            const fatalStatus = new Set(['TO', 'SG', 'OL', 'EL', 'XX']);
+            if (run.signal || fatalStatus.has(run.status)) {
+              throw new Error(`validator 运行异常：\n${run.output || run.stderr || run.message || run.status || run.signal}`);
+            }
+            if (run.code !== 0 || run.status === 'RE') {
+              rejected++;
+              $('rejected').textContent = String(rejected);
+              if (rejected <= 10 || rejected % 100 === 0) {
+                log(`seed=${currentSeed} 被 validator 拒绝${run.stderr ? `：${run.stderr.trim()}` : ''}`, 'warn');
+              }
+              continue;
+            }
+          }
+
+          const br = await executeCpp(brute, input, [], '暴力程序');
+          if (br.error) throw new Error(`seed=${currentSeed}\n${br.error}`);
+          $('bruteOutput').textContent = br.output;
+
+          const sol = await executeCpp(solution, input, [], '正解程序');
+          if (sol.error) throw new Error(`seed=${currentSeed}\n${sol.error}`);
+          $('solutionOutput').textContent = sol.output;
+
+          if (!outputsEqual(br.output, sol.output, mode)) {
+            log(`发现不一致！seed=${currentSeed}；${firstDifference(br.output, sol.output, mode)}`, 'err');
+            setStatus(`WA · seed ${currentSeed}`, 'bad');
+            return;
+          }
+
+          passed++;
+          $('passed').textContent = String(passed);
+          if (passed <= 5 || passed % 10 === 0 || passed === need) {
+            log(`通过 ${passed}/${need}，seed=${currentSeed}`, 'ok');
+          }
+          await new Promise(r => setTimeout(r, 0));
+        }
+
+        if (state.stopRequested) {
+          setStatus('已停止', '');
+          log('用户停止了对拍。', 'warn');
+        } else if (passed >= need) {
+          setStatus(`全部通过 · ${passed} 组`, 'ok');
+          log(`完成：${passed} 组有效数据全部一致。`, 'ok');
+        } else {
+          setStatus('validator 拒绝过多', 'bad');
+          log(`生成次数已达到 ${generationLimit}，仍未得到足够的合法数据。`, 'err');
+        }
+      } catch (e) {
+        if (e?.name === 'AbortError') {
+          setStatus('已停止', '');
+          log('请求已取消。', 'warn');
+        } else {
+          setStatus('运行失败', 'bad');
+          log(e?.message || String(e), 'err');
+        }
+      } finally {
+        $('elapsed').textContent = `${((performance.now() - state.startedAt) / 1000).toFixed(2)}s`;
+        setRunning(false);
+        state.controller = null;
+      }
+    }
+
+    async function testApi() {
+      if (state.running) return;
+      state.controller = new AbortController();
+      state.cppRuntime = null;
+      setStatus('测试 API…', 'running');
+      try {
+        const rt = await detectCppRuntime(true);
+        const test = await executeCpp('#include <iostream>\nint main(){std::cout << "OK\\n";}', '', [], '测试程序');
+        if (test.error) throw new Error(test.error);
+        if (test.output.trim() !== 'OK') throw new Error(`测试程序输出异常：${JSON.stringify(test.output)}`);
+        log(`API 正常，C++ runtime：${rt.language} ${rt.version}`, 'ok');
+        setStatus('API 可用', 'ok');
+      } catch (e) {
+        log(`API 测试失败：${e?.message || e}`, 'err');
+        setStatus('API 不可用', 'bad');
+      } finally {
+        state.controller = null;
+      }
+    }
+
+    function stopStress() {
+      if (!state.running) return;
+      state.stopRequested = true;
+      state.controller?.abort();
+      setStatus('正在停止…', 'running');
+    }
+
+    function loadFile(file, targetId) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => { $(targetId).value = String(reader.result ?? ''); saveLocal(); };
+      reader.onerror = () => log(`读取文件 ${file.name} 失败`, 'err');
+      reader.readAsText(file);
+    }
+
+    function downloadText(name, text) {
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    const example = {
+      generator: `#include <bits/stdc++.h>\nusing namespace std;\nint main(int argc, char** argv) {\n    long long seed = argc > 1 ? atoll(argv[1]) : 1;\n    mt19937_64 rng(seed);\n    int n = rng() % 20 + 1;\n    cout << n << '\\n';\n    for (int i = 0; i < n; ++i) cout << (long long)(rng() % 101) - 50 << " \\n"[i + 1 == n];\n}\n`,
+      brute: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    for (auto &x : a) cin >> x;\n    long long ans = LLONG_MIN;\n    for (int l = 0; l < n; ++l) {\n        long long s = 0;\n        for (int r = l; r < n; ++r) s += a[r], ans = max(ans, s);\n    }\n    cout << ans << '\\n';\n}\n`,
+      solution: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    long long ans = LLONG_MIN, cur = 0, x;\n    while (n--) {\n        cin >> x;\n        cur = max(x, cur + x);\n        ans = max(ans, cur);\n    }\n    cout << ans << '\\n';\n}\n`,
+      validator: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n;\n    if (!(cin >> n) || n < 1 || n > 20) return 1;\n    long long x;\n    for (int i = 0; i < n; ++i) if (!(cin >> x) || x < -50 || x > 50) return 2;\n    string extra;\n    if (cin >> extra) return 3;\n    return 0;\n}\n`
+    };
+
+    document.addEventListener('input', (e) => {
+      if (editors.concat(settings).includes(e.target.id)) saveLocal();
+    });
+
+    document.querySelectorAll('input[data-file]').forEach(inp => {
+      inp.addEventListener('change', () => { loadFile(inp.files?.[0], inp.dataset.file); inp.value = ''; });
+    });
+
+    document.querySelectorAll('[data-clear]').forEach(btn => {
+      btn.addEventListener('click', () => { $(btn.dataset.clear).value = ''; saveLocal(); });
+    });
+
+    document.querySelectorAll('.editor-card').forEach(card => {
+      const id = card.dataset.role;
+      card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drop-active'); });
+      card.addEventListener('dragleave', () => card.classList.remove('drop-active'));
+      card.addEventListener('drop', e => {
+        e.preventDefault(); card.classList.remove('drop-active'); loadFile(e.dataTransfer?.files?.[0], id);
+      });
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = $(btn.dataset.copy).textContent;
+        try { await navigator.clipboard.writeText(text); log(`已复制 ${btn.dataset.copy}`, 'ok'); }
+        catch (_) { log('浏览器拒绝剪贴板权限，可以手动复制。', 'warn'); }
+      });
+    });
+
+    document.querySelectorAll('[data-download]').forEach(btn => {
+      btn.addEventListener('click', () => downloadText(btn.dataset.name, $(btn.dataset.download).textContent));
+    });
+
+    $('start').addEventListener('click', runStress);
+    $('stop').addEventListener('click', stopStress);
+    $('testApi').addEventListener('click', testApi);
+    $('clearLog').addEventListener('click', () => $('log').textContent = '');
+    $('clearResult').addEventListener('click', () => { clearOutputs(); resetStats(); setStatus('未运行', ''); });
+    $('loadExample').addEventListener('click', () => {
+      for (const [id, code] of Object.entries(example)) $(id).value = code;
+      saveLocal(); log('已载入最大子段和示例。', 'ok');
+    });
+
+    loadLocal();
+  </script>
+</body>
+</html>
