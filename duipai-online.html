@@ -19,6 +19,19 @@
       --warn: #f7c65f;
       --shadow: 0 16px 48px rgba(0, 0, 0, .28);
       --radius: 16px;
+
+      --code-bg: #090f1d;
+      --code-text: #dbe5ff;
+      --code-gutter: #697897;
+      --code-keyword: #c792ea;
+      --code-type: #82aaff;
+      --code-string: #c3e88d;
+      --code-number: #f78c6c;
+      --code-comment: #65758f;
+      --code-preprocessor: #ffcb6b;
+      --code-variable: #f07178;
+      --code-function: #82aaff;
+      --code-operator: #89ddff;
     }
 
     * { box-sizing: border-box; }
@@ -37,138 +50,165 @@
     button, input, select, textarea { font: inherit; }
     button, input, select { outline: none; }
     button { cursor: pointer; }
+    code { color: #c8d5ff; }
 
-    .app { width: min(1500px, calc(100% - 28px)); margin: 24px auto 50px; }
-    .hero {
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 18px;
-      margin-bottom: 18px;
-    }
-    h1 { margin: 0 0 6px; font-size: clamp(27px, 4vw, 42px); letter-spacing: -.04em; }
-    .subtitle { color: var(--muted); font-size: 14px; line-height: 1.65; max-width: 780px; }
+    .app { width: min(1540px, calc(100% - 28px)); margin: 24px auto 50px; }
+    .hero { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:18px; }
+    .hero-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    h1 { margin:0 0 6px; font-size:clamp(27px,4vw,42px); letter-spacing:-.04em; }
+    .subtitle { color:var(--muted); font-size:14px; line-height:1.65; max-width:900px; }
 
     .panel {
       background: linear-gradient(180deg, rgba(255,255,255,.018), transparent 70%), var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
     }
 
     .toolbar {
-      padding: 14px;
-      display: grid;
-      grid-template-columns: minmax(260px, 1.7fr) repeat(5, minmax(100px, .65fr));
-      gap: 10px;
-      margin-bottom: 16px;
+      padding:14px; display:grid;
+      grid-template-columns: repeat(6, minmax(125px, 1fr));
+      gap:10px; margin-bottom:16px;
     }
-    .field { min-width: 0; }
-    .field label {
-      display: block; margin: 0 0 6px; color: var(--muted); font-size: 12px;
-    }
+    .field { min-width:0; }
+    .field.wide { grid-column: span 2; }
+    .field label { display:block; margin:0 0 6px; color:var(--muted); font-size:12px; }
     .field input, .field select {
-      width: 100%; height: 40px; padding: 0 11px; color: var(--text);
-      background: var(--panel2); border: 1px solid var(--line); border-radius: 10px;
+      width:100%; height:40px; padding:0 11px; color:var(--text);
+      background:var(--panel2); border:1px solid var(--line); border-radius:10px;
     }
-    .field input:focus, .field select:focus, textarea:focus { border-color: var(--accent); }
+    .field input:focus, .field select:focus { border-color:var(--accent); }
+    .field input:disabled, .field select:disabled { opacity:.55; cursor:not-allowed; }
+    .inline-control { display:flex; gap:7px; align-items:center; }
+    .inline-control > input, .inline-control > select { flex:1; }
+    .check {
+      min-height:40px; display:inline-flex; align-items:center; gap:7px;
+      padding:0 10px; border:1px solid var(--line); border-radius:10px; background:var(--panel2);
+      white-space:nowrap; font-size:12px; color:var(--muted);
+    }
+    .check input { width:15px; height:15px; margin:0; accent-color:var(--accent); }
+    .toolbar-note { grid-column:1 / -1; color:var(--muted); font-size:12px; line-height:1.6; padding:2px 2px 0; }
 
-    .api-note {
-      grid-column: 1 / -1; color: var(--muted); font-size: 12px; line-height: 1.55;
-      padding: 2px 2px 0;
-    }
-    code { color: #c8d5ff; }
+    details.advanced { margin-bottom:16px; overflow:hidden; }
+    details.advanced > summary { padding:12px 14px; cursor:pointer; color:var(--muted); user-select:none; }
+    .advanced-body { border-top:1px solid var(--line); padding:14px; display:grid; grid-template-columns:2fr auto; gap:10px; align-items:end; }
+    .advanced-note { grid-column:1 / -1; color:var(--muted); font-size:12px; line-height:1.6; }
 
-    .editors {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .editor-card { overflow: hidden; }
+    .editors { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .editor-card { overflow:hidden; }
+    .editor-card.spj-card { grid-column:1 / -1; }
     .editor-head {
-      min-height: 53px; padding: 10px 12px 10px 15px;
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      border-bottom: 1px solid var(--line);
+      min-height:55px; padding:10px 12px 10px 15px; display:flex; align-items:center;
+      justify-content:space-between; gap:10px; border-bottom:1px solid var(--line);
     }
-    .editor-title { min-width: 0; }
-    .editor-title strong { display: block; font-size: 15px; }
-    .editor-title span { color: var(--muted); font-size: 11px; }
-    .editor-actions { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+    .editor-title { min-width:0; }
+    .editor-title strong { display:block; font-size:15px; }
+    .editor-title span { color:var(--muted); font-size:11px; }
+    .editor-actions { display:flex; gap:7px; flex-wrap:wrap; justify-content:flex-end; align-items:center; }
+    .mini-check { display:inline-flex; align-items:center; gap:5px; color:var(--muted); font-size:11px; padding:0 4px; }
+    .mini-check input { accent-color:var(--accent); }
+
     .btn, .file-btn {
-      border: 1px solid var(--line); background: #18223a; color: var(--text);
-      min-height: 34px; padding: 7px 11px; border-radius: 9px; font-size: 12px;
-      transition: .15s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      border:1px solid var(--line); background:#18223a; color:var(--text);
+      min-height:34px; padding:7px 11px; border-radius:9px; font-size:12px;
+      transition:.15s ease; display:inline-flex; align-items:center; justify-content:center; gap:6px;
     }
-    .btn:hover, .file-btn:hover { transform: translateY(-1px); border-color: #40527b; }
-    .btn.primary { background: #315fd4; border-color: #416fe0; }
-    .btn.danger { background: #4a1e2a; border-color: #6f2e3d; }
-    .btn.good { background: #174832; border-color: #226849; }
-    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-    input[type=file] { display: none; }
+    .btn:hover, .file-btn:hover { transform:translateY(-1px); border-color:#40527b; }
+    .btn.primary { background:#315fd4; border-color:#416fe0; }
+    .btn.danger { background:#4a1e2a; border-color:#6f2e3d; }
+    .btn.good { background:#174832; border-color:#226849; }
+    .btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+    input[type=file] { display:none; }
 
-    textarea.code {
-      display: block; width: 100%; min-height: 320px; resize: vertical;
-      padding: 14px 15px; border: 0; outline: 0; color: #dbe5ff;
-      background: #090f1d; line-height: 1.55; font-size: 13px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      tab-size: 4;
+    .code-editor {
+      display:grid; grid-template-columns:auto minmax(0,1fr); height:340px; min-height:220px; max-height:760px; resize:vertical;
+      background:var(--code-bg); overflow:hidden;
+      font:13px/1.55 "SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
     }
-    .drop-active textarea.code { box-shadow: inset 0 0 0 2px var(--accent); }
+    .line-gutter {
+      margin:0; min-width:46px; padding:14px 9px 14px 7px; overflow:hidden;
+      text-align:right; white-space:pre; user-select:none; color:var(--code-gutter);
+      background:color-mix(in srgb, var(--code-bg) 92%, white 8%); border-right:1px solid var(--line);
+      font:inherit; line-height:1.55;
+    }
+    .editor-inner { position:relative; min-width:0; height:100%; overflow:hidden; background:var(--code-bg); }
+    .syntax-layer, textarea.code-fallback {
+      position:absolute; inset:0; width:100%; height:100%; margin:0; padding:14px 15px;
+      border:0; outline:0; white-space:pre; overflow:auto; tab-size:4;
+      font:inherit; line-height:1.55; letter-spacing:normal;
+    }
+    .syntax-layer { z-index:1; pointer-events:none; overflow:hidden; color:var(--code-text); background:var(--code-bg); }
+    textarea.code-fallback {
+      z-index:2; resize:none; background:transparent; color:transparent; caret-color:var(--code-text);
+      -webkit-text-fill-color:transparent;
+    }
+    textarea.code-fallback::selection { background:rgba(122,162,255,.28); }
+    .code-editor.no-highlight .syntax-layer { display:none; }
+    .code-editor.no-highlight textarea.code-fallback {
+      color:var(--code-text); -webkit-text-fill-color:var(--code-text); background:var(--code-bg);
+    }
+    .tok-keyword { color:var(--code-keyword); }
+    .tok-type { color:var(--code-type); }
+    .tok-string { color:var(--code-string); }
+    .tok-number { color:var(--code-number); }
+    .tok-comment { color:var(--code-comment); font-style:italic; }
+    .tok-preprocessor { color:var(--code-preprocessor); }
+    .tok-function { color:var(--code-function); }
+    .tok-operator { color:var(--code-operator); }
+    .drop-active .code-editor { box-shadow:inset 0 0 0 2px var(--accent); }
 
-    .runbar {
-      margin-top: 16px; padding: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    .runbar .spacer { flex: 1; }
+
+    .protocol { border-top:1px solid var(--line); padding:10px 14px 12px; color:var(--muted); font-size:12px; line-height:1.65; }
+    .protocol summary { cursor:pointer; user-select:none; }
+    .protocol pre { white-space:pre-wrap; margin:9px 0 0; padding:10px; background:var(--panel2); border-radius:9px; overflow:auto; }
+
+    .runbar { margin-top:16px; padding:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .runbar .spacer { flex:1; }
     .status-pill {
-      min-height: 34px; display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line);
-      color: var(--muted); background: var(--panel2); font-size: 12px;
+      min-height:34px; display:inline-flex; align-items:center; gap:7px; padding:6px 11px;
+      border-radius:999px; border:1px solid var(--line); color:var(--muted); background:var(--panel2); font-size:12px;
     }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: #64708a; }
-    .dot.running { background: var(--warn); box-shadow: 0 0 0 5px rgba(247,198,95,.08); }
-    .dot.ok { background: var(--ok); }
-    .dot.bad { background: var(--bad); }
+    .dot { width:8px; height:8px; border-radius:50%; background:#64708a; }
+    .dot.running { background:var(--warn); box-shadow:0 0 0 5px rgba(247,198,95,.08); }
+    .dot.ok { background:var(--ok); }
+    .dot.bad { background:var(--bad); }
 
-    .stats {
-      display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px;
-      margin-top: 16px;
-    }
-    .stat { padding: 14px 16px; }
-    .stat .k { color: var(--muted); font-size: 11px; }
-    .stat .v { margin-top: 5px; font-size: 22px; font-weight: 750; letter-spacing: -.03em; }
+    .stats { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; margin-top:16px; }
+    .stat { padding:14px 16px; }
+    .stat .k { color:var(--muted); font-size:11px; }
+    .stat .v { margin-top:5px; font-size:21px; font-weight:750; letter-spacing:-.03em; overflow:hidden; text-overflow:ellipsis; }
 
-    .results { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .result-card { overflow: hidden; }
-    .result-head {
-      padding: 10px 12px 10px 15px; border-bottom: 1px solid var(--line);
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    }
-    .result-head strong { font-size: 13px; }
+    .results { margin-top:16px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .result-card { overflow:hidden; }
+    .result-head { padding:10px 12px 10px 15px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .result-head strong { font-size:13px; }
     pre.output {
-      margin: 0; min-height: 180px; max-height: 390px; overflow: auto; white-space: pre-wrap; word-break: break-word;
-      background: #090f1d; padding: 14px 15px; color: #dbe5ff; font: 12px/1.55 "SFMono-Regular", Consolas, monospace;
+      margin:0; min-height:180px; max-height:390px; overflow:auto; white-space:pre-wrap; word-break:break-word;
+      background:var(--code-bg); padding:14px 15px; color:var(--code-text); font:12px/1.55 "SFMono-Regular",Consolas,monospace;
     }
+    .log-panel { margin-top:16px; overflow:hidden; }
+    .log-head { padding:10px 13px 10px 15px; display:flex; align-items:center; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); }
+    #log { min-height:140px; max-height:340px; }
+    .muted { color:var(--muted); }
+    .hidden { display:none !important; }
 
-    .log-panel { margin-top: 16px; overflow: hidden; }
-    .log-head {
-      padding: 10px 13px 10px 15px; display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid var(--line);
+    @media (max-width:1200px) {
+      .toolbar { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .field.wide { grid-column:span 1; }
+      .stats { grid-template-columns:repeat(3,minmax(0,1fr)); }
     }
-    #log { min-height: 120px; max-height: 300px; }
-    .muted { color: var(--muted); }
-    .hidden { display: none !important; }
-
-    @media (max-width: 1050px) {
-      .toolbar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .toolbar .api { grid-column: 1 / -1; }
-      .editors { grid-template-columns: 1fr; }
-      .results { grid-template-columns: 1fr; }
+    @media (max-width:900px) {
+      .editors { grid-template-columns:1fr; }
+      .editor-card.spj-card { grid-column:auto; }
+      .results { grid-template-columns:1fr; }
+      .advanced-body { grid-template-columns:1fr; }
     }
-    @media (max-width: 680px) {
-      .app { width: min(100% - 16px, 1500px); margin-top: 12px; }
-      .hero { align-items: flex-start; flex-direction: column; }
-      .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .toolbar .api { grid-column: 1 / -1; }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .stat:last-child { grid-column: 1 / -1; }
-      textarea.code { min-height: 280px; }
+    @media (max-width:680px) {
+      .app { width:min(100% - 16px,1540px); margin-top:12px; }
+      .hero { align-items:flex-start; flex-direction:column; }
+      .hero-actions { justify-content:flex-start; }
+      .toolbar { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .toolbar-note { grid-column:1/-1; }
+      .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .code-editor { height:310px; }
     }
   </style>
 </head>
@@ -178,96 +218,173 @@
       <div>
         <h1>C++ 对拍器</h1>
         <div class="subtitle">
-          上传生成器、暴力和正解，可选 validator。页面按 seed 生成测试，validator 返回 0 才继续，随后比较暴力与正解输出；发现首个差异立即停止。
+          开箱即用的浏览器 C++ 对拍工具：生成器 → 可选 validator → 暴力 → 正解 → 普通比较 / 可选 Special Judge。
+          默认使用 Judge0 CE，无需填写 API；首次运行需要联网。
         </div>
       </div>
-      <button class="btn" id="loadExample">载入示例</button>
+      <div class="hero-actions">
+        <label class="file-btn">上传配色<input id="themeFile" type="file" accept=".json,.css,application/json,text/css"></label>
+        <button class="btn" id="resetTheme">恢复默认配色</button>
+        <button class="btn" id="themeTemplate">下载配色模板</button>
+        <button class="btn" id="loadExample">载入示例</button>
+      </div>
     </header>
 
     <section class="panel toolbar">
-      <div class="field api">
-        <label for="apiBase">Piston API Base</label>
-        <input id="apiBase" value="http://localhost:2000/api/v2" spellcheck="false" />
-      </div>
       <div class="field">
         <label for="tests">有效测试数</label>
-        <input id="tests" type="number" min="1" max="100000" value="100" />
+        <div class="inline-control">
+          <input id="tests" type="number" min="1" max="1000000" value="100" />
+          <label class="check" title="持续运行直到发现错误或手动停止"><input id="infiniteTests" type="checkbox">∞</label>
+        </div>
       </div>
       <div class="field">
         <label for="seed">起始 seed</label>
         <input id="seed" type="number" value="1" />
       </div>
       <div class="field">
-        <label for="runTimeout">运行超时 / ms</label>
-        <input id="runTimeout" type="number" min="100" max="30000" value="3000" />
+        <label for="timeLimit">时间限制 / ms</label>
+        <input id="timeLimit" type="number" min="50" max="30000" value="2000" />
       </div>
       <div class="field">
-        <label for="compileTimeout">编译超时 / ms</label>
-        <input id="compileTimeout" type="number" min="1000" max="60000" value="10000" />
+        <label for="memoryLimit">空间限制 / MB</label>
+        <input id="memoryLimit" type="number" min="16" max="2048" value="256" />
       </div>
       <div class="field">
-        <label for="compareMode">输出比较</label>
+        <label for="compiler">GCC 版本</label>
+        <select id="compiler"></select>
+      </div>
+      <div class="field">
+        <label for="cppStandard">C++ 标准</label>
+        <select id="cppStandard"></select>
+      </div>
+      <div class="field">
+        <label for="optimization">优化等级</label>
+        <select id="optimization">
+          <option value="O0">-O0</option>
+          <option value="O1">-O1</option>
+          <option value="O2" selected>-O2</option>
+          <option value="O3">-O3</option>
+          <option value="Ofast">-Ofast</option>
+        </select>
+      </div>
+      <div class="field wide">
+        <label for="extraFlags">额外编译参数</label>
+        <input id="extraFlags" spellcheck="false" placeholder="例如：-DLOCAL -Wall" />
+      </div>
+      <div class="field">
+        <label for="compareMode">无 SPJ 时输出比较</label>
         <select id="compareMode">
           <option value="tokens" selected>按非空白 token</option>
           <option value="trim">忽略行尾空白</option>
           <option value="exact">严格比较</option>
         </select>
       </div>
-      <div class="api-note">
-        默认适配自建 Piston 的 <code>/api/v2/runtimes</code> 与 <code>/api/v2/execute</code>。生成器每轮会收到一个命令行参数 <code>argv[1] = seed</code>；validator、暴力、正解都从 stdin 读取生成数据。
+      <div class="field wide">
+        <label>编译器状态</label>
+        <div class="check" style="width:100%"><span id="compilerStatus">正在读取 Judge0 语言列表…</span></div>
+      </div>
+      <div class="toolbar-note">
+        C++98 / 03 / 11 / 14 / 17 / 20 / 23 / 26 与对应 GNU++ 方言都可选；最终参数形如 <code>-std=gnu++20 -O2 ...</code>。
+        GCC 15.2 / 16.1 会显示在列表中，但只有当前 Judge0 后端真正安装对应运行时时才能选择。旧 GCC 选择较新的 C++ 标准时，可能正常产生编译错误。
       </div>
     </section>
+
+    <details class="panel advanced">
+      <summary>高级后端设置（正常使用无需展开）</summary>
+      <div class="advanced-body">
+        <div class="field">
+          <label for="apiBase">Judge0 API Base</label>
+          <input id="apiBase" value="https://ce.judge0.com" spellcheck="false" />
+        </div>
+        <button class="btn" id="refreshLanguages">刷新编译器列表</button>
+        <div class="advanced-note">
+          默认使用公开 Judge0 CE。你也可以填兼容的自建 Judge0 地址。单文件 Judge0 模式支持自定义 compiler options，但不直接替换完整的 <code>g++ ...</code> 编译命令；若需要完全自定义 compile/run 脚本，需要 Judge0 的 Multi-file program 模式。
+        </div>
+      </div>
+    </details>
 
     <section class="editors">
       <article class="panel editor-card" data-role="generator">
         <div class="editor-head">
-          <div class="editor-title"><strong>数据生成器</strong><span>必需 · stdout 作为测试输入</span></div>
+          <div class="editor-title"><strong>数据生成器</strong><span>必需 · stdout 作为测试输入 · argv[1] = seed</span></div>
           <div class="editor-actions">
+            <label class="mini-check"><input type="checkbox" data-highlight="generator" checked>语法配色</label>
             <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="generator"></label>
             <button class="btn" data-clear="generator">清空</button>
           </div>
         </div>
-        <textarea class="code" id="generator" spellcheck="false" placeholder="// generator.cpp"></textarea>
+        <textarea class="code-fallback" id="generator" spellcheck="false" placeholder="// generator.cpp"></textarea>
       </article>
 
       <article class="panel editor-card" data-role="brute">
         <div class="editor-head">
           <div class="editor-title"><strong>暴力程序</strong><span>必需 · stdin 为测试数据</span></div>
           <div class="editor-actions">
+            <label class="mini-check"><input type="checkbox" data-highlight="brute" checked>语法配色</label>
             <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="brute"></label>
             <button class="btn" data-clear="brute">清空</button>
           </div>
         </div>
-        <textarea class="code" id="brute" spellcheck="false" placeholder="// brute.cpp"></textarea>
+        <textarea class="code-fallback" id="brute" spellcheck="false" placeholder="// brute.cpp"></textarea>
       </article>
 
       <article class="panel editor-card" data-role="solution">
         <div class="editor-head">
           <div class="editor-title"><strong>正解程序</strong><span>必需 · stdin 为测试数据</span></div>
           <div class="editor-actions">
+            <label class="mini-check"><input type="checkbox" data-highlight="solution" checked>语法配色</label>
             <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="solution"></label>
             <button class="btn" data-clear="solution">清空</button>
           </div>
         </div>
-        <textarea class="code" id="solution" spellcheck="false" placeholder="// solution.cpp"></textarea>
+        <textarea class="code-fallback" id="solution" spellcheck="false" placeholder="// solution.cpp"></textarea>
       </article>
 
       <article class="panel editor-card" data-role="validator">
         <div class="editor-head">
-          <div class="editor-title"><strong>数据合法性验证器</strong><span>可选 · 返回 0 表示合法</span></div>
+          <div class="editor-title"><strong>数据合法性验证器</strong><span>可选 · 返回 0 表示合法，非 0 表示丢弃该数据</span></div>
           <div class="editor-actions">
+            <label class="mini-check"><input type="checkbox" data-highlight="validator" checked>语法配色</label>
             <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="validator"></label>
             <button class="btn" data-clear="validator">清空</button>
           </div>
         </div>
-        <textarea class="code" id="validator" spellcheck="false" placeholder="// validator.cpp（可留空）"></textarea>
+        <textarea class="code-fallback" id="validator" spellcheck="false" placeholder="// validator.cpp（可留空）"></textarea>
+      </article>
+
+      <article class="panel editor-card spj-card" data-role="spj">
+        <div class="editor-head">
+          <div class="editor-title"><strong>Special Judge</strong><span>可选 · 返回 0 表示接受，非 0 表示暴力与正解不等价</span></div>
+          <div class="editor-actions">
+            <label class="mini-check"><input type="checkbox" data-highlight="spj" checked>语法配色</label>
+            <button class="btn" id="loadSpjTemplate">载入 SPJ 模板</button>
+            <label class="file-btn">上传 .cpp<input type="file" accept=".cpp,.cc,.cxx,.txt,text/plain" data-file="spj"></label>
+            <button class="btn" data-clear="spj">清空</button>
+          </div>
+        </div>
+        <textarea class="code-fallback" id="spj" spellcheck="false" placeholder="// spj.cpp（可留空）"></textarea>
+        <details class="protocol">
+          <summary>SPJ stdin 协议</summary>
+          <pre>第一行：inputBytes bruteBytes solutionBytes
+随后紧接三段原始字节：
+[测试输入][暴力输出][正解输出]
+
+建议读取方式：
+size_t a, b, c; cin &gt;&gt; a &gt;&gt; b &gt;&gt; c; cin.get();
+string input(a, '\0'), brute(b, '\0'), solution(c, '\0');
+cin.read(input.data(), a); cin.read(brute.data(), b); cin.read(solution.data(), c);
+
+return 0;  // 接受
+return 1;  // 判错</pre>
+        </details>
       </article>
     </section>
 
     <section class="panel runbar">
       <button class="btn primary" id="start">开始对拍</button>
       <button class="btn danger" id="stop" disabled>停止</button>
-      <button class="btn" id="testApi">测试 API</button>
+      <button class="btn" id="testApi">测试执行后端</button>
       <button class="btn" id="clearResult">清空结果</button>
       <div class="spacer"></div>
       <div class="status-pill"><span class="dot" id="statusDot"></span><span id="statusText">未运行</span></div>
@@ -278,6 +395,7 @@
       <div class="panel stat"><div class="k">生成次数</div><div class="v" id="generated">0</div></div>
       <div class="panel stat"><div class="k">validator 丢弃</div><div class="v" id="rejected">0</div></div>
       <div class="panel stat"><div class="k">当前 seed</div><div class="v" id="currentSeed">—</div></div>
+      <div class="panel stat"><div class="k">最近内存</div><div class="v" id="lastMemory">—</div></div>
       <div class="panel stat"><div class="k">耗时</div><div class="v" id="elapsed">0.00s</div></div>
     </section>
 
@@ -315,29 +433,41 @@
     </section>
 
     <section class="panel log-panel">
-      <div class="log-head"><strong>运行日志</strong><button class="btn" id="clearLog">清空日志</button></div>
+      <div class="log-head">
+        <strong>运行日志</strong>
+        <div class="editor-actions">
+          <button class="btn" id="downloadLog">下载 .log</button>
+          <button class="btn" id="clearLog">清空日志</button>
+        </div>
+      </div>
       <pre class="output" id="log"></pre>
     </section>
   </main>
 
+  <style id="customThemeStyle"></style>
   <script>
     'use strict';
 
-    const $ = (id) => document.getElementById(id);
-    const editors = ['generator', 'brute', 'solution', 'validator'];
+    const $ = id => document.getElementById(id);
+    const editorIds = ['generator', 'brute', 'solution', 'validator', 'spj'];
+    const editorUI = {};
     const state = {
       running: false,
       stopRequested: false,
       controller: null,
       startedAt: 0,
       timer: null,
-      cppRuntime: null,
+      languages: [],
+      compilerMap: new Map(),
     };
 
-    const settings = ['apiBase', 'tests', 'seed', 'runTimeout', 'compileTimeout', 'compareMode'];
+    const desiredCompilers = ['16.1', '15.2', '14.1', '9.2', '8.3', '7.4'];
+    const defaultCompilerIds = { '14.1': 105, '9.2': 54, '8.3': 53, '7.4': 52 };
+    const standardVersions = ['98','03','11','14','17','20','23','26'];
+    const settings = ['apiBase','tests','infiniteTests','seed','timeLimit','memoryLimit','compiler','cppStandard','optimization','extraFlags','compareMode'];
 
     function log(message, kind = '') {
-      const t = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+      const t = new Date().toLocaleTimeString('zh-CN', { hour12:false });
       const prefix = kind === 'err' ? '[错误]' : kind === 'ok' ? '[通过]' : kind === 'warn' ? '[提示]' : '[信息]';
       const el = $('log');
       el.textContent += `${t} ${prefix} ${message}\n`;
@@ -353,6 +483,7 @@
       state.running = running;
       $('start').disabled = running;
       $('testApi').disabled = running;
+      $('refreshLanguages').disabled = running;
       $('stop').disabled = !running;
       if (!running && state.timer) {
         clearInterval(state.timer);
@@ -365,6 +496,7 @@
       $('generated').textContent = '0';
       $('rejected').textContent = '0';
       $('currentSeed').textContent = '—';
+      $('lastMemory').textContent = '—';
       $('elapsed').textContent = '0.00s';
     }
 
@@ -374,358 +506,636 @@
       $('solutionOutput').textContent = '';
     }
 
+    function normalizeBase(s) { return String(s || '').trim().replace(/\/+$/, ''); }
+    function getEditorValue(id) { return $(id).value; }
+    function setEditorValue(id, value) {
+      $(id).value = String(value ?? '');
+      updateEditor(id);
+    }
+
     function saveLocal() {
       try {
         const obj = {};
-        for (const id of editors.concat(settings)) obj[id] = $(id).value;
-        localStorage.setItem('cpp-stress-tester-v1', JSON.stringify(obj));
+        for (const id of editorIds) obj[id] = getEditorValue(id);
+        for (const id of settings) {
+          const el = $(id);
+          obj[id] = el.type === 'checkbox' ? el.checked : el.value;
+        }
+        document.querySelectorAll('[data-highlight]').forEach(el => obj[`highlight.${el.dataset.highlight}`] = el.checked);
+        localStorage.setItem('cpp-stress-tester-v3', JSON.stringify(obj));
       } catch (_) {}
     }
 
     function loadLocal() {
       try {
-        const raw = localStorage.getItem('cpp-stress-tester-v1');
+        const raw = localStorage.getItem('cpp-stress-tester-v3') || localStorage.getItem('cpp-stress-tester-v1');
         if (!raw) return;
         const obj = JSON.parse(raw);
-        for (const id of editors.concat(settings)) {
-          if (Object.prototype.hasOwnProperty.call(obj, id)) $(id).value = obj[id];
+        for (const id of editorIds) if (Object.prototype.hasOwnProperty.call(obj,id)) $(id).value = obj[id];
+        for (const id of settings) {
+          if (!Object.prototype.hasOwnProperty.call(obj,id)) continue;
+          const el = $(id);
+          if (el.type === 'checkbox') el.checked = Boolean(obj[id]);
+          else if (id !== 'compiler') el.value = obj[id];
         }
+        document.querySelectorAll('[data-highlight]').forEach(el => {
+          const key = `highlight.${el.dataset.highlight}`;
+          if (Object.prototype.hasOwnProperty.call(obj,key)) el.checked = Boolean(obj[key]);
+        });
+        if (obj.compiler) sessionStorage.setItem('cpp-stress-saved-compiler', obj.compiler);
       } catch (_) {}
     }
 
-    function normalizeBase(s) {
-      return s.trim().replace(/\/+$/, '');
+    function initStandards() {
+      const sel = $('cppStandard');
+      sel.textContent = '';
+      for (const v of standardVersions) {
+        const iso = document.createElement('option');
+        iso.value = `c++${v}`; iso.textContent = `C++${v}  (-std=c++${v})`;
+        sel.appendChild(iso);
+        const gnu = document.createElement('option');
+        gnu.value = `gnu++${v}`; gnu.textContent = `GNU++${v}  (-std=gnu++${v})`;
+        sel.appendChild(gnu);
+      }
+      sel.value = 'gnu++20';
+    }
+
+    const cppKeywords = new Set(('alignas alignof asm auto break case catch class concept const consteval constexpr constinit const_cast continue co_await co_return co_yield decltype default delete do dynamic_cast else enum explicit export extern false for friend goto if inline mutable namespace new noexcept nullptr operator private protected public register reinterpret_cast requires return sizeof static static_assert static_cast struct switch template this thread_local throw true try typedef typeid typename union using virtual volatile while').split(' '));
+    const cppTypes = new Set(('bool char char8_t char16_t char32_t double float int long short signed unsigned void wchar_t size_t ssize_t string vector array deque list map unordered_map set unordered_set pair tuple queue priority_queue stack bitset optional variant any function').split(' '));
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function span(cls, text) { return `<span class="${cls}">${escHtml(text)}</span>`; }
+
+    function highlightCpp(src) {
+      let out='', i=0, lineStart=true;
+      const n=src.length;
+      while (i<n) {
+        const ch=src[i], nx=src[i+1];
+        if (lineStart) {
+          let j=i;
+          while (j<n && (src[j]===' ' || src[j]==='\t')) j++;
+          if (src[j]==='#') {
+            let k=j;
+            do {
+              k=src.indexOf('\n',k);
+              if (k<0) { k=n; break; }
+              let q=k-1;
+              while (q>=j && src[q]==='\r') q--;
+              if (src[q]==='\\') k++;
+              else break;
+            } while (k<n);
+            out += escHtml(src.slice(i,j)) + span('tok-preprocessor',src.slice(j,k));
+            i=k; lineStart=true; continue;
+          }
+        }
+        if (ch==='/' && nx==='/') {
+          let k=src.indexOf('\n',i); if (k<0) k=n;
+          out+=span('tok-comment',src.slice(i,k)); i=k; continue;
+        }
+        if (ch==='/' && nx==='*') {
+          let k=src.indexOf('*/',i+2); k=k<0?n:k+2;
+          const text=src.slice(i,k); out+=span('tok-comment',text); lineStart=text.endsWith('\n'); i=k; continue;
+        }
+        if (ch==='"' || ch==="'") {
+          const quote=ch; let k=i+1;
+          while (k<n) {
+            if (src[k]==='\\') { k+=2; continue; }
+            if (src[k]===quote) { k++; break; }
+            k++;
+          }
+          out+=span('tok-string',src.slice(i,k)); lineStart=false; i=k; continue;
+        }
+        if (/[0-9]/.test(ch) || (ch==='.' && /[0-9]/.test(nx||''))) {
+          const m=src.slice(i).match(/^(?:0[xX][0-9a-fA-F']+|0[bB][01']+|(?:\d[\d']*(?:\.[\d']*)?|\.[\d']+)(?:[eE][+-]?[\d']+)?)(?:[uUlLfF]|ll|LL|ull|ULL)*/);
+          const t=m?m[0]:ch; out+=span('tok-number',t); i+=t.length; lineStart=false; continue;
+        }
+        if (/[A-Za-z_]/.test(ch)) {
+          const m=src.slice(i).match(/^[A-Za-z_][A-Za-z0-9_]*/); const t=m[0];
+          let cls='';
+          if (cppKeywords.has(t)) cls='tok-keyword';
+          else if (cppTypes.has(t)) cls='tok-type';
+          else {
+            let k=i+t.length; while (k<n && /\s/.test(src[k])) k++;
+            if (src[k]==='(') cls='tok-function';
+          }
+          out += cls ? span(cls,t) : escHtml(t); i+=t.length; lineStart=false; continue;
+        }
+        if ('+-*/%=!<>|&^~?:'.includes(ch)) {
+          let t=ch;
+          if (i+1<n && ['++','--','==','!=','<=','>=','&&','||','<<','>>','+=','-=','*=','/=','%=','->','::','&=','|=','^='].includes(ch+nx)) t=ch+nx;
+          out+=span('tok-operator',t); i+=t.length; lineStart=false; continue;
+        }
+        out+=escHtml(ch);
+        lineStart=(ch==='\n') ? true : (lineStart && (ch===' ' || ch==='\t' || ch==='\r'));
+        i++;
+      }
+      return out || ' ';
+    }
+
+    function updateEditor(id) {
+      const ui=editorUI[id]; if (!ui) return;
+      const text=$(id).value;
+      ui.layer.innerHTML=highlightCpp(text);
+      const lines=Math.max(1,text.split('\n').length);
+      ui.gutter.textContent=Array.from({length:lines},(_,i)=>i+1).join('\n');
+      syncEditorScroll(id);
+    }
+
+    function syncEditorScroll(id) {
+      const ui=editorUI[id]; if (!ui) return;
+      const ta=$(id);
+      ui.layer.scrollTop=ta.scrollTop; ui.layer.scrollLeft=ta.scrollLeft;
+      ui.gutter.scrollTop=ta.scrollTop;
+    }
+
+    function initEditors() {
+      for (const id of editorIds) {
+        const ta=$(id);
+        const wrap=document.createElement('div'); wrap.className='code-editor';
+        const gutter=document.createElement('pre'); gutter.className='line-gutter';
+        const inner=document.createElement('div'); inner.className='editor-inner';
+        const layer=document.createElement('pre'); layer.className='syntax-layer'; layer.setAttribute('aria-hidden','true');
+        ta.parentNode.insertBefore(wrap,ta); wrap.appendChild(gutter); wrap.appendChild(inner); inner.appendChild(layer); inner.appendChild(ta);
+        editorUI[id]={wrap,gutter,layer};
+        ta.addEventListener('input',()=>{updateEditor(id);saveLocal();});
+        ta.addEventListener('scroll',()=>syncEditorScroll(id));
+        ta.addEventListener('keydown',e=>{
+          if (e.key==='Tab') {
+            e.preventDefault();
+            const start=ta.selectionStart,end=ta.selectionEnd;
+            ta.setRangeText('    ',start,end,'end');
+            ta.dispatchEvent(new Event('input',{bubbles:true}));
+          }
+        });
+        updateEditor(id);
+      }
+      document.querySelectorAll('[data-highlight]').forEach(toggle=>applyHighlight(toggle.dataset.highlight,toggle.checked));
+    }
+
+    function applyHighlight(id, enabled) {
+      const ui=editorUI[id]; if (!ui) return;
+      ui.wrap.classList.toggle('no-highlight',!enabled);
+      updateEditor(id);
+    }
+
+    function initFallbackCompilers(message = '使用内置 Judge0 CE 编译器表') {
+      state.compilerMap.clear();
+      for (const [ver,id] of Object.entries(defaultCompilerIds)) state.compilerMap.set(ver,{id,name:`C++ (GCC ${ver}.x)`});
+      renderCompilerOptions(message);
+    }
+
+    function gccVersionFromName(name) {
+      const m = String(name).match(/C\+\+\s*\(GCC\s+([0-9]+(?:\.[0-9]+){1,2})\)/i);
+      if (!m) return null;
+      const p = m[1].split('.');
+      return `${Number(p[0])}.${Number(p[1])}`;
+    }
+
+    function renderCompilerOptions(statusText = '') {
+      const sel = $('compiler');
+      const prev = sel.value || sessionStorage.getItem('cpp-stress-saved-compiler') || '14.1';
+      sel.textContent = '';
+      const shown = new Set();
+
+      for (const ver of desiredCompilers) {
+        shown.add(ver);
+        const data = state.compilerMap.get(ver);
+        const op = document.createElement('option');
+        op.value = ver;
+        op.disabled = !data;
+        op.textContent = data ? `GCC ${ver}${data.name ? ` · ${data.name}` : ''}` : `GCC ${ver} · 当前后端未安装`;
+        sel.appendChild(op);
+      }
+      for (const [ver,data] of [...state.compilerMap.entries()].sort((a,b) => Number(b[0])-Number(a[0]))) {
+        if (shown.has(ver)) continue;
+        const op = document.createElement('option');
+        op.value = ver; op.textContent = `GCC ${ver} · ${data.name}`;
+        sel.appendChild(op);
+      }
+
+      if (state.compilerMap.has(prev)) sel.value = prev;
+      else if (state.compilerMap.has('14.1')) sel.value = '14.1';
+      else {
+        const first = [...sel.options].find(o => !o.disabled);
+        if (first) sel.value = first.value;
+      }
+      $('compilerStatus').textContent = statusText || `可用 GCC：${[...state.compilerMap.keys()].join(', ') || '无'}`;
+      saveLocal();
     }
 
     async function fetchJson(url, options = {}) {
       const response = await fetch(url, options);
       let data;
-      try {
-        data = await response.json();
-      } catch (_) {
-        throw new Error(`API 返回了非 JSON（HTTP ${response.status}）`);
-      }
-      if (!response.ok) {
-        throw new Error(data?.message || `HTTP ${response.status}`);
-      }
+      try { data = await response.json(); }
+      catch (_) { throw new Error(`后端返回了非 JSON（HTTP ${response.status}）`); }
+      if (!response.ok) throw new Error(data?.message || data?.error || `HTTP ${response.status}`);
       return data;
     }
 
-    async function detectCppRuntime(force = false) {
-      if (state.cppRuntime && !force) return state.cppRuntime;
+    async function refreshLanguages(silent = false) {
       const base = normalizeBase($('apiBase').value);
-      if (!base) throw new Error('请填写 Piston API Base');
-      const runtimes = await fetchJson(`${base}/runtimes`, { signal: state.controller?.signal });
-      if (!Array.isArray(runtimes)) throw new Error('runtimes 返回格式不正确');
-
-      const runtime = runtimes.find(r =>
-        r.language === 'c++' || r.language === 'cpp' ||
-        (Array.isArray(r.aliases) && (r.aliases.includes('c++') || r.aliases.includes('cpp')))
-      );
-      if (!runtime) throw new Error('该 Piston 实例没有安装 C++ runtime');
-      state.cppRuntime = { language: runtime.language, version: runtime.version };
-      return state.cppRuntime;
+      if (!base) throw new Error('Judge0 API Base 不能为空');
+      $('compilerStatus').textContent = '正在读取语言列表…';
+      try {
+        const list = await fetchJson(`${base}/languages`, { signal: state.controller?.signal });
+        if (!Array.isArray(list)) throw new Error('/languages 返回格式不正确');
+        state.languages = list;
+        state.compilerMap.clear();
+        for (const lang of list) {
+          const ver = gccVersionFromName(lang.name);
+          if (ver) state.compilerMap.set(ver,{id:lang.id,name:lang.name});
+        }
+        if (!state.compilerMap.size) throw new Error('后端语言列表中没有 C++ GCC');
+        renderCompilerOptions(`已连接 · 可用 GCC：${[...state.compilerMap.keys()].sort((a,b)=>Number(b)-Number(a)).join(', ')}`);
+        if (!silent) log(`编译器列表已更新：${[...state.compilerMap.keys()].join(', ')}`,'ok');
+      } catch (e) {
+        const isDefault = normalizeBase(base) === 'https://ce.judge0.com';
+        if (isDefault) {
+          initFallbackCompilers('语言列表读取失败，已使用 Judge0 CE 内置兜底表（GCC 14.1/9.2/8.3/7.4）');
+          if (!silent) log(`读取语言列表失败，改用兜底表：${e.message}`,'warn');
+        } else {
+          initFallbackCompilers(`自定义后端读取失败：${e.message}`);
+          throw e;
+        }
+      }
     }
 
-    function stageError(result, label) {
-      const compile = result?.compile;
-      if (compile && (compile.code !== 0 || compile.signal || compile.status)) {
-        return `${label}编译失败：\n${compile.output || compile.stderr || compile.message || `exit ${compile.code}`}`;
-      }
-      const run = result?.run;
-      if (!run) return `${label}没有返回 run 结果`;
-      if (run.code !== 0 || run.signal || run.status) {
-        return `${label}运行失败：\n${run.output || run.stderr || run.message || `exit ${run.code}`}`;
-      }
-      return '';
+    function compilerOptions() {
+      const std = $('cppStandard').value;
+      const opt = $('optimization').value;
+      const extra = $('extraFlags').value.trim();
+      return [`-std=${std}`, `-${opt}`, extra].filter(Boolean).join(' ');
     }
 
-    async function executeCpp(code, stdin = '', args = [], label = '程序') {
+    function selectedLanguageId() {
+      const ver = $('compiler').value;
+      const item = state.compilerMap.get(ver);
+      if (!item) throw new Error(`当前后端没有 GCC ${ver}`);
+      return item.id;
+    }
+
+    async function createSubmission(code, stdin = '', args = '') {
       const base = normalizeBase($('apiBase').value);
-      const runtime = await detectCppRuntime();
+      const timeMs = Number($('timeLimit').value);
+      const memMb = Number($('memoryLimit').value);
       const body = {
-        language: runtime.language,
-        version: runtime.version,
-        files: [{ name: 'main.cpp', content: code }],
+        source_code: code,
+        language_id: selectedLanguageId(),
         stdin,
-        args: args.map(String),
-        compile_timeout: Number($('compileTimeout').value),
-        run_timeout: Number($('runTimeout').value),
-        compile_cpu_time: Number($('compileTimeout').value),
-        run_cpu_time: Number($('runTimeout').value),
+        compiler_options: compilerOptions(),
+        command_line_arguments: String(args || ''),
+        cpu_time_limit: Math.max(0.05, timeMs / 1000),
+        wall_time_limit: Math.max(1, timeMs / 1000 * 2 + 0.5),
+        memory_limit: Math.round(memMb * 1024),
       };
-
-      const data = await fetchJson(`${base}/execute`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: state.controller?.signal,
+      const data = await fetchJson(`${base}/submissions?base64_encoded=false&wait=false`, {
+        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body), signal:state.controller?.signal,
       });
+      if (!data?.token) throw new Error('Judge0 未返回 submission token');
+      return data.token;
+    }
 
-      return { data, error: stageError(data, label), output: data?.run?.stdout ?? '' };
+    async function waitSubmission(token) {
+      const base = normalizeBase($('apiBase').value);
+      const fields = 'stdout,stderr,compile_output,message,status,time,memory,exit_code,exit_signal';
+      for (;;) {
+        if (state.stopRequested) throw new DOMException('Aborted','AbortError');
+        const data = await fetchJson(`${base}/submissions/${encodeURIComponent(token)}?base64_encoded=false&fields=${fields}`, { signal:state.controller?.signal });
+        const id = Number(data?.status?.id || 0);
+        if (id !== 1 && id !== 2) return data;
+        await new Promise(r => setTimeout(r, 350));
+      }
+    }
+
+    async function executeCpp(code, stdin = '', args = '') {
+      const token = await createSubmission(code, stdin, args);
+      return waitSubmission(token);
+    }
+
+    function judge0Error(data, label) {
+      const id = Number(data?.status?.id || 0);
+      if (id === 3) return '';
+      const status = data?.status?.description || `status ${id}`;
+      const detail = data?.compile_output || data?.stderr || data?.message || '';
+      return `${label}${status}${detail ? `：\n${detail}` : ''}`;
+    }
+
+    function isNonZeroExit(data) {
+      return Number(data?.status?.id) === 11 || (data?.exit_code != null && Number(data.exit_code) !== 0);
     }
 
     function normalized(s, mode) {
-      s = String(s ?? '').replace(/\r\n?/g, '\n');
+      s = String(s ?? '').replace(/\r\n?/g,'\n');
       if (mode === 'exact') return s;
       if (mode === 'trim') {
-        const lines = s.split('\n').map(x => x.replace(/[\t ]+$/g, ''));
-        while (lines.length && lines[lines.length - 1] === '') lines.pop();
+        const lines = s.split('\n').map(x => x.replace(/[\t ]+$/g,''));
+        while (lines.length && lines[lines.length-1] === '') lines.pop();
         return lines.join('\n');
       }
       const t = s.trim();
       return t ? t.split(/\s+/) : [];
     }
 
-    function outputsEqual(a, b, mode) {
-      const x = normalized(a, mode);
-      const y = normalized(b, mode);
+    function outputsEqual(a,b,mode) {
+      const x = normalized(a,mode), y = normalized(b,mode);
       if (Array.isArray(x)) {
         if (x.length !== y.length) return false;
-        for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return false;
+        for (let i=0;i<x.length;i++) if (x[i] !== y[i]) return false;
         return true;
       }
       return x === y;
     }
 
-    function firstDifference(a, b, mode) {
+    function firstDifference(a,b,mode) {
       if (mode === 'tokens') {
-        const x = normalized(a, mode), y = normalized(b, mode);
-        const n = Math.min(x.length, y.length);
-        for (let i = 0; i < n; i++) {
-          if (x[i] !== y[i]) return `第 ${i + 1} 个 token 不同：暴力=${JSON.stringify(x[i])}，正解=${JSON.stringify(y[i])}`;
-        }
+        const x=normalized(a,mode), y=normalized(b,mode), n=Math.min(x.length,y.length);
+        for (let i=0;i<n;i++) if (x[i]!==y[i]) return `第 ${i+1} 个 token 不同：暴力=${JSON.stringify(x[i])}，正解=${JSON.stringify(y[i])}`;
         return `token 数不同：暴力 ${x.length} 个，正解 ${y.length} 个`;
       }
-      const x = normalized(a, mode), y = normalized(b, mode);
-      let i = 0;
-      while (i < x.length && i < y.length && x[i] === y[i]) i++;
-      const line = x.slice(0, i).split('\n').length;
-      const col = i - x.lastIndexOf('\n', i - 1);
+      const x=normalized(a,mode), y=normalized(b,mode);
+      let i=0; while (i<x.length && i<y.length && x[i]===y[i]) i++;
+      const line=x.slice(0,i).split('\n').length;
+      const col=i-x.lastIndexOf('\n',i-1);
       return `首个不同位置约在第 ${line} 行、第 ${col} 列`;
     }
 
+    function byteLength(s) { return new TextEncoder().encode(String(s ?? '')).length; }
+    function makeSpjInput(input, brute, solution) {
+      return `${byteLength(input)} ${byteLength(brute)} ${byteLength(solution)}\n${input}${brute}${solution}`;
+    }
+
     function requireSources() {
-      for (const id of ['generator', 'brute', 'solution']) {
-        if (!$(id).value.trim()) throw new Error(`${id === 'generator' ? '生成器' : id === 'brute' ? '暴力程序' : '正解程序'}不能为空`);
+      for (const id of ['generator','brute','solution']) {
+        if (!getEditorValue(id).trim()) {
+          const name = id==='generator' ? '数据生成器' : id==='brute' ? '暴力程序' : '正解程序';
+          throw new Error(`${name}不能为空`);
+        }
       }
-      const tests = Number($('tests').value);
-      if (!Number.isInteger(tests) || tests <= 0) throw new Error('有效测试数必须是正整数');
-      const rt = Number($('runTimeout').value);
-      const ct = Number($('compileTimeout').value);
-      if (!(rt > 0) || !(ct > 0)) throw new Error('超时必须为正数');
+      if (!$('infiniteTests').checked) {
+        const tests=Number($('tests').value);
+        if (!Number.isInteger(tests) || tests<=0) throw new Error('有效测试数必须是正整数，或勾选 ∞');
+      }
+      const t=Number($('timeLimit').value), m=Number($('memoryLimit').value);
+      if (!(t>0)) throw new Error('时间限制必须为正数');
+      if (!(m>0)) throw new Error('空间限制必须为正数');
+      selectedLanguageId();
+    }
+
+    function updateMemory(data) {
+      if (data?.memory != null) $('lastMemory').textContent = `${(Number(data.memory)/1024).toFixed(1)} MB`;
     }
 
     async function runStress() {
       if (state.running) return;
-      try { requireSources(); } catch (e) { log(e.message, 'err'); setStatus('配置有误', 'bad'); return; }
+      try { requireSources(); } catch(e) { log(e.message,'err'); setStatus('配置有误','bad'); return; }
 
-      saveLocal();
-      clearOutputs();
-      resetStats();
-      $('log').textContent = '';
-      state.stopRequested = false;
-      state.controller = new AbortController();
-      state.cppRuntime = null;
-      state.startedAt = performance.now();
-      setRunning(true);
-      setStatus('连接编译器…', 'running');
-      state.timer = setInterval(() => {
-        $('elapsed').textContent = `${((performance.now() - state.startedAt) / 1000).toFixed(2)}s`;
-      }, 100);
+      saveLocal(); clearOutputs(); resetStats(); $('log').textContent='';
+      state.stopRequested=false; state.controller=new AbortController(); state.startedAt=performance.now();
+      setRunning(true); setStatus('对拍中','running');
+      state.timer=setInterval(()=> $('elapsed').textContent=`${((performance.now()-state.startedAt)/1000).toFixed(2)}s`,100);
 
-      const generator = $('generator').value;
-      const brute = $('brute').value;
-      const solution = $('solution').value;
-      const validator = $('validator').value.trim();
-      const need = Number($('tests').value);
-      const seed0 = Number($('seed').value) || 0;
-      const mode = $('compareMode').value;
-      let passed = 0, generated = 0, rejected = 0;
-      // 防止 validator 永远拒绝导致死循环。
-      const generationLimit = Math.max(need * 100, 1000);
+      const generator=getEditorValue('generator');
+      const brute=getEditorValue('brute');
+      const solution=getEditorValue('solution');
+      const validator=getEditorValue('validator').trim();
+      const spj=getEditorValue('spj').trim();
+      const infinite=$('infiniteTests').checked;
+      const need=infinite ? Infinity : Number($('tests').value);
+      const seed0=Number($('seed').value)||0;
+      const mode=$('compareMode').value;
+      let passed=0,generated=0,rejected=0;
+      const generationLimit=infinite ? Infinity : Math.max(need*100,1000);
+
+      log(`开始：GCC ${$('compiler').value} · -std=${$('cppStandard').value} · -${$('optimization').value} · TL ${$('timeLimit').value}ms · ML ${$('memoryLimit').value}MB · ${infinite?'∞ 组':`${need} 组`}`);
+      if (spj) log('已启用 Special Judge，普通输出比较模式将被忽略。');
 
       try {
-        const runtime = await detectCppRuntime(true);
-        log(`已连接 C++ runtime：${runtime.language} ${runtime.version}`, 'ok');
-        setStatus('对拍中', 'running');
-
-        while (passed < need && generated < generationLimit) {
+        while (passed<need && generated<generationLimit) {
           if (state.stopRequested) break;
-          const currentSeed = seed0 + generated;
+          const currentSeed=seed0+generated;
           generated++;
-          $('generated').textContent = String(generated);
-          $('currentSeed').textContent = String(currentSeed);
+          $('generated').textContent=String(generated);
+          $('currentSeed').textContent=String(currentSeed);
 
-          const gen = await executeCpp(generator, '', [currentSeed], '生成器');
-          if (gen.error) throw new Error(gen.error);
-          const input = gen.output;
-          $('caseInput').textContent = input;
+          const gen=await executeCpp(generator,'',String(currentSeed));
+          const genErr=judge0Error(gen,'生成器：');
+          if (genErr) throw new Error(`seed=${currentSeed}\n${genErr}`);
+          updateMemory(gen);
+          const input=gen.stdout ?? '';
+          $('caseInput').textContent=input;
 
           if (validator) {
-            const val = await executeCpp(validator, input, [], 'validator');
-            // validator 的非 0 返回码是“数据不合法”，不是对拍器自身错误；编译失败仍应终止。
-            if (val.data?.compile && (val.data.compile.code !== 0 || val.data.compile.signal || val.data.compile.status)) {
-              throw new Error(`validator 编译失败：\n${val.data.compile.output || val.data.compile.stderr || val.data.compile.message || ''}`);
-            }
-            const run = val.data?.run;
-            if (!run) throw new Error('validator 没有返回运行结果');
-            // 普通非 0 返回码表示“不合法”；超时、信号、输出超限等属于 validator 自身故障。
-            const fatalStatus = new Set(['TO', 'SG', 'OL', 'EL', 'XX']);
-            if (run.signal || fatalStatus.has(run.status)) {
-              throw new Error(`validator 运行异常：\n${run.output || run.stderr || run.message || run.status || run.signal}`);
-            }
-            if (run.code !== 0 || run.status === 'RE') {
-              rejected++;
-              $('rejected').textContent = String(rejected);
-              if (rejected <= 10 || rejected % 100 === 0) {
-                log(`seed=${currentSeed} 被 validator 拒绝${run.stderr ? `：${run.stderr.trim()}` : ''}`, 'warn');
+            const val=await executeCpp(validator,input,'');
+            if (Number(val?.status?.id) !== 3) {
+              if (isNonZeroExit(val)) {
+                rejected++;
+                $('rejected').textContent=String(rejected);
+                if (rejected<=10 || rejected%100===0) log(`seed=${currentSeed} 被 validator 拒绝${val.stderr?`：${String(val.stderr).trim()}`:''}`,'warn');
+                continue;
               }
-              continue;
+              throw new Error(`seed=${currentSeed}\n${judge0Error(val,'validator：')}`);
             }
           }
 
-          const br = await executeCpp(brute, input, [], '暴力程序');
-          if (br.error) throw new Error(`seed=${currentSeed}\n${br.error}`);
-          $('bruteOutput').textContent = br.output;
+          const br=await executeCpp(brute,input,'');
+          const brErr=judge0Error(br,'暴力程序：');
+          if (brErr) throw new Error(`seed=${currentSeed}\n${brErr}`);
+          updateMemory(br);
+          const bruteOut=br.stdout ?? '';
+          $('bruteOutput').textContent=bruteOut;
 
-          const sol = await executeCpp(solution, input, [], '正解程序');
-          if (sol.error) throw new Error(`seed=${currentSeed}\n${sol.error}`);
-          $('solutionOutput').textContent = sol.output;
+          const sol=await executeCpp(solution,input,'');
+          const solErr=judge0Error(sol,'正解程序：');
+          if (solErr) throw new Error(`seed=${currentSeed}\n${solErr}`);
+          updateMemory(sol);
+          const solutionOut=sol.stdout ?? '';
+          $('solutionOutput').textContent=solutionOut;
 
-          if (!outputsEqual(br.output, sol.output, mode)) {
-            log(`发现不一致！seed=${currentSeed}；${firstDifference(br.output, sol.output, mode)}`, 'err');
-            setStatus(`WA · seed ${currentSeed}`, 'bad');
+          let ok;
+          if (spj) {
+            const spjRun=await executeCpp(spj,makeSpjInput(input,bruteOut,solutionOut),'');
+            if (Number(spjRun?.status?.id)===3) ok=true;
+            else if (isNonZeroExit(spjRun)) {
+              ok=false;
+              const why=[spjRun.stdout,spjRun.stderr].filter(Boolean).join('\n').trim();
+              log(`SPJ 判错${why?`：${why}`:''}`,'err');
+            } else {
+              throw new Error(`seed=${currentSeed}\n${judge0Error(spjRun,'Special Judge：')}`);
+            }
+          } else {
+            ok=outputsEqual(bruteOut,solutionOut,mode);
+          }
+
+          if (!ok) {
+            const detail=spj ? 'Special Judge 返回非 0' : firstDifference(bruteOut,solutionOut,mode);
+            log(`发现不一致！seed=${currentSeed}；${detail}`,'err');
+            setStatus(`WA · seed ${currentSeed}`,'bad');
             return;
           }
 
           passed++;
-          $('passed').textContent = String(passed);
-          if (passed <= 5 || passed % 10 === 0 || passed === need) {
-            log(`通过 ${passed}/${need}，seed=${currentSeed}`, 'ok');
-          }
-          await new Promise(r => setTimeout(r, 0));
+          $('passed').textContent=String(passed);
+          const shouldLog=passed<=5 || passed%10===0 || (!infinite && passed===need);
+          if (shouldLog) log(infinite ? `通过 ${passed} 组，seed=${currentSeed}` : `通过 ${passed}/${need}，seed=${currentSeed}`,'ok');
+          await new Promise(r=>setTimeout(r,0));
         }
 
         if (state.stopRequested) {
-          setStatus('已停止', '');
-          log('用户停止了对拍。', 'warn');
-        } else if (passed >= need) {
-          setStatus(`全部通过 · ${passed} 组`, 'ok');
-          log(`完成：${passed} 组有效数据全部一致。`, 'ok');
-        } else {
-          setStatus('validator 拒绝过多', 'bad');
-          log(`生成次数已达到 ${generationLimit}，仍未得到足够的合法数据。`, 'err');
+          setStatus('已停止',''); log(`用户停止了对拍，已通过 ${passed} 组。`,'warn');
+        } else if (!infinite && passed>=need) {
+          setStatus(`全部通过 · ${passed} 组`,'ok'); log(`完成：${passed} 组有效数据全部一致。`,'ok');
+        } else if (generated>=generationLimit) {
+          setStatus('validator 拒绝过多','bad'); log(`生成次数已达到 ${generationLimit}，仍未得到足够的合法数据。`,'err');
         }
-      } catch (e) {
-        if (e?.name === 'AbortError') {
-          setStatus('已停止', '');
-          log('请求已取消。', 'warn');
-        } else {
-          setStatus('运行失败', 'bad');
-          log(e?.message || String(e), 'err');
-        }
+      } catch(e) {
+        if (e?.name==='AbortError') { setStatus('已停止',''); log(`请求已取消，已通过 ${passed} 组。`,'warn'); }
+        else { setStatus('运行失败','bad'); log(e?.message||String(e),'err'); }
       } finally {
-        $('elapsed').textContent = `${((performance.now() - state.startedAt) / 1000).toFixed(2)}s`;
-        setRunning(false);
-        state.controller = null;
+        $('elapsed').textContent=`${((performance.now()-state.startedAt)/1000).toFixed(2)}s`;
+        setRunning(false); state.controller=null;
       }
     }
 
     async function testApi() {
       if (state.running) return;
-      state.controller = new AbortController();
-      state.cppRuntime = null;
-      setStatus('测试 API…', 'running');
+      state.controller=new AbortController(); setStatus('测试后端…','running');
       try {
-        const rt = await detectCppRuntime(true);
-        const test = await executeCpp('#include <iostream>\nint main(){std::cout << "OK\\n";}', '', [], '测试程序');
-        if (test.error) throw new Error(test.error);
-        if (test.output.trim() !== 'OK') throw new Error(`测试程序输出异常：${JSON.stringify(test.output)}`);
-        log(`API 正常，C++ runtime：${rt.language} ${rt.version}`, 'ok');
-        setStatus('API 可用', 'ok');
-      } catch (e) {
-        log(`API 测试失败：${e?.message || e}`, 'err');
-        setStatus('API 不可用', 'bad');
-      } finally {
-        state.controller = null;
-      }
+        await refreshLanguages(true);
+        const src='#include <iostream>\nint main(){std::cout<<"OK\\n";}';
+        const r=await executeCpp(src,'','');
+        const err=judge0Error(r,'测试程序：');
+        if (err) throw new Error(err);
+        if (String(r.stdout||'').trim()!=='OK') throw new Error(`测试输出异常：${JSON.stringify(r.stdout)}`);
+        log(`后端正常：GCC ${$('compiler').value}，参数 ${compilerOptions()}`,'ok');
+        setStatus('后端可用','ok');
+      } catch(e) {
+        log(`后端测试失败：${e?.message||e}`,'err'); setStatus('后端不可用','bad');
+      } finally { state.controller=null; }
     }
 
     function stopStress() {
       if (!state.running) return;
-      state.stopRequested = true;
-      state.controller?.abort();
-      setStatus('正在停止…', 'running');
+      state.stopRequested=true; state.controller?.abort(); setStatus('正在停止…','running');
     }
 
-    function loadFile(file, targetId) {
+    function loadFile(file,targetId) {
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => { $(targetId).value = String(reader.result ?? ''); saveLocal(); };
-      reader.onerror = () => log(`读取文件 ${file.name} 失败`, 'err');
+      const reader=new FileReader();
+      reader.onload=()=>{ setEditorValue(targetId,String(reader.result??'')); saveLocal(); };
+      reader.onerror=()=>log(`读取文件 ${file.name} 失败`,'err');
       reader.readAsText(file);
     }
 
-    function downloadText(name, text) {
-      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    function downloadText(name,text,type='text/plain;charset=utf-8') {
+      const blob=new Blob([text],{type});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
     }
 
-    const example = {
-      generator: `#include <bits/stdc++.h>\nusing namespace std;\nint main(int argc, char** argv) {\n    long long seed = argc > 1 ? atoll(argv[1]) : 1;\n    mt19937_64 rng(seed);\n    int n = rng() % 20 + 1;\n    cout << n << '\\n';\n    for (int i = 0; i < n; ++i) cout << (long long)(rng() % 101) - 50 << " \\n"[i + 1 == n];\n}\n`,
-      brute: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    for (auto &x : a) cin >> x;\n    long long ans = LLONG_MIN;\n    for (int l = 0; l < n; ++l) {\n        long long s = 0;\n        for (int r = l; r < n; ++r) s += a[r], ans = max(ans, s);\n    }\n    cout << ans << '\\n';\n}\n`,
-      solution: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    long long ans = LLONG_MIN, cur = 0, x;\n    while (n--) {\n        cin >> x;\n        cur = max(x, cur + x);\n        ans = max(ans, cur);\n    }\n    cout << ans << '\\n';\n}\n`,
-      validator: `#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n;\n    if (!(cin >> n) || n < 1 || n > 20) return 1;\n    long long x;\n    for (int i = 0; i < n; ++i) if (!(cin >> x) || x < -50 || x > 50) return 2;\n    string extra;\n    if (cin >> extra) return 3;\n    return 0;\n}\n`
+    const defaultTheme = {
+      background:'#090f1d', text:'#dbe5ff', gutter:'#697897', keyword:'#c792ea', type:'#82aaff',
+      string:'#c3e88d', number:'#f78c6c', comment:'#65758f', preprocessor:'#ffcb6b', variable:'#f07178',
+      function:'#82aaff', operator:'#89ddff'
     };
 
-    document.addEventListener('input', (e) => {
-      if (editors.concat(settings).includes(e.target.id)) saveLocal();
+    function applyThemeObject(obj) {
+      const map={background:'--code-bg',text:'--code-text',gutter:'--code-gutter',keyword:'--code-keyword',type:'--code-type',string:'--code-string',number:'--code-number',comment:'--code-comment',preprocessor:'--code-preprocessor',variable:'--code-variable',function:'--code-function',operator:'--code-operator'};
+      for (const [key,cssVar] of Object.entries(map)) if (obj[key]) document.documentElement.style.setProperty(cssVar,String(obj[key]));
+      for (const id of editorIds) updateEditor(id);
+    }
+
+    function resetTheme() {
+      for (const key of Object.keys(defaultTheme)) document.documentElement.style.removeProperty(`--code-${key==='background'?'bg':key}`);
+      $('customThemeStyle').textContent='';
+      applyThemeObject(defaultTheme);
+      log('已恢复默认代码配色。','ok');
+    }
+
+    function loadThemeFile(file) {
+      if (!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>{
+        try {
+          const text=String(reader.result??'');
+          if (file.name.toLowerCase().endsWith('.css')) {
+            $('customThemeStyle').textContent=text;
+            log(`已载入 CSS 配色：${file.name}`,'ok');
+          } else {
+            const obj=JSON.parse(text);
+            applyThemeObject(obj);
+            log(`已载入 JSON 配色：${file.name}`,'ok');
+          }
+          for (const id of editorIds) updateEditor(id);
+        } catch(e) { log(`配色文件解析失败：${e.message}`,'err'); }
+      };
+      reader.readAsText(file);
+    }
+
+    const spjTemplate = `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    size_t a, b, c;\n    if (!(cin >> a >> b >> c)) return 2;\n    cin.get(); // 吃掉协议头后的换行\n\n    string input(a, '\\0'), brute(b, '\\0'), solution(c, '\\0');\n    cin.read(input.data(), (streamsize)a);\n    cin.read(brute.data(), (streamsize)b);\n    cin.read(solution.data(), (streamsize)c);\n\n    // 在这里自定义判定。示例：忽略所有空白后比较 token。\n    auto tokens = [](const string& s) {\n        vector<string> v;\n        stringstream ss(s);\n        string x;\n        while (ss >> x) v.push_back(x);\n        return v;\n    };\n\n    if (tokens(brute) == tokens(solution)) return 0;\n    cerr << "answers are not equivalent\\n";\n    return 1;\n}\n`;
+
+    const example = {
+      generator:`#include <bits/stdc++.h>\nusing namespace std;\nint main(int argc, char** argv) {\n    long long seed = argc > 1 ? atoll(argv[1]) : 1;\n    mt19937_64 rng(seed);\n    int n = rng() % 20 + 1;\n    cout << n << '\\n';\n    for (int i = 0; i < n; ++i) cout << (long long)(rng() % 101) - 50 << " \\n"[i + 1 == n];\n}\n`,
+      brute:`#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    for (auto &x : a) cin >> x;\n    long long ans = LLONG_MIN;\n    for (int l = 0; l < n; ++l) {\n        long long s = 0;\n        for (int r = l; r < n; ++r) s += a[r], ans = max(ans, s);\n    }\n    cout << ans << '\\n';\n}\n`,
+      solution:`#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    long long ans = LLONG_MIN, cur = 0, x;\n    while (n--) {\n        cin >> x;\n        cur = max(x, cur + x);\n        ans = max(ans, cur);\n    }\n    cout << ans << '\\n';\n}\n`,
+      validator:`#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n    int n;\n    if (!(cin >> n) || n < 1 || n > 20) return 1;\n    long long x;\n    for (int i = 0; i < n; ++i) if (!(cin >> x) || x < -50 || x > 50) return 2;\n    string extra;\n    if (cin >> extra) return 3;\n    return 0;\n}\n`,
+      spj:''
+    };
+
+    document.addEventListener('input',e=>{
+      if (settings.includes(e.target.id)) {
+        if (e.target.id==='infiniteTests') $('tests').disabled=e.target.checked;
+        saveLocal();
+      }
+    });
+    document.addEventListener('change',e=>{
+      if (settings.includes(e.target.id)) saveLocal();
+      if (e.target.matches('[data-highlight]')) { applyHighlight(e.target.dataset.highlight,e.target.checked); saveLocal(); }
     });
 
-    document.querySelectorAll('input[data-file]').forEach(inp => {
-      inp.addEventListener('change', () => { loadFile(inp.files?.[0], inp.dataset.file); inp.value = ''; });
+    document.querySelectorAll('input[data-file]').forEach(inp=>inp.addEventListener('change',()=>{ loadFile(inp.files?.[0],inp.dataset.file); inp.value=''; }));
+    document.querySelectorAll('[data-clear]').forEach(btn=>btn.addEventListener('click',()=>{ setEditorValue(btn.dataset.clear,''); saveLocal(); }));
+    document.querySelectorAll('.editor-card').forEach(card=>{
+      const id=card.dataset.role;
+      card.addEventListener('dragover',e=>{e.preventDefault();card.classList.add('drop-active');});
+      card.addEventListener('dragleave',()=>card.classList.remove('drop-active'));
+      card.addEventListener('drop',e=>{e.preventDefault();card.classList.remove('drop-active');loadFile(e.dataTransfer?.files?.[0],id);});
     });
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{
+      const text=$(btn.dataset.copy).textContent;
+      try { await navigator.clipboard.writeText(text); log(`已复制 ${btn.dataset.copy}`,'ok'); }
+      catch(_) { log('浏览器拒绝剪贴板权限，可以手动复制。','warn'); }
+    }));
+    document.querySelectorAll('[data-download]').forEach(btn=>btn.addEventListener('click',()=>downloadText(btn.dataset.name,$(btn.dataset.download).textContent)));
 
-    document.querySelectorAll('[data-clear]').forEach(btn => {
-      btn.addEventListener('click', () => { $(btn.dataset.clear).value = ''; saveLocal(); });
+    $('start').addEventListener('click',runStress);
+    $('stop').addEventListener('click',stopStress);
+    $('testApi').addEventListener('click',testApi);
+    $('refreshLanguages').addEventListener('click',()=>refreshLanguages(false).catch(e=>log(`刷新失败：${e.message}`,'err')));
+    $('clearLog').addEventListener('click',()=>$('log').textContent='');
+    $('downloadLog').addEventListener('click',()=>{
+      const stamp=new Date().toISOString().replace(/[:.]/g,'-');
+      const header=`C++ Stress Tester Log\nGCC ${$('compiler').value} | -std=${$('cppStandard').value} | -${$('optimization').value} | TL=${$('timeLimit').value}ms | ML=${$('memoryLimit').value}MB\n\n`;
+      downloadText(`stress-${stamp}.log`,header+$('log').textContent,'text/plain;charset=utf-8');
     });
+    $('clearResult').addEventListener('click',()=>{clearOutputs();resetStats();setStatus('未运行','');});
+    $('loadExample').addEventListener('click',()=>{for(const [id,code] of Object.entries(example))setEditorValue(id,code);saveLocal();log('已载入最大子段和示例。','ok');});
+    $('loadSpjTemplate').addEventListener('click',()=>{setEditorValue('spj',spjTemplate);saveLocal();log('已载入 SPJ 模板。','ok');});
+    $('themeFile').addEventListener('change',e=>{loadThemeFile(e.target.files?.[0]);e.target.value='';});
+    $('resetTheme').addEventListener('click',resetTheme);
+    $('themeTemplate').addEventListener('click',()=>downloadText('cpp-stress-theme.json',JSON.stringify(defaultTheme,null,2),'application/json;charset=utf-8'));
+    $('infiniteTests').addEventListener('change',()=>{$('tests').disabled=$('infiniteTests').checked;});
+    $('apiBase').addEventListener('change',()=>refreshLanguages(true).catch(()=>{}));
 
-    document.querySelectorAll('.editor-card').forEach(card => {
-      const id = card.dataset.role;
-      card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drop-active'); });
-      card.addEventListener('dragleave', () => card.classList.remove('drop-active'));
-      card.addEventListener('drop', e => {
-        e.preventDefault(); card.classList.remove('drop-active'); loadFile(e.dataTransfer?.files?.[0], id);
-      });
-    });
-
-    document.querySelectorAll('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const text = $(btn.dataset.copy).textContent;
-        try { await navigator.clipboard.writeText(text); log(`已复制 ${btn.dataset.copy}`, 'ok'); }
-        catch (_) { log('浏览器拒绝剪贴板权限，可以手动复制。', 'warn'); }
-      });
-    });
-
-    document.querySelectorAll('[data-download]').forEach(btn => {
-      btn.addEventListener('click', () => downloadText(btn.dataset.name, $(btn.dataset.download).textContent));
-    });
-
-    $('start').addEventListener('click', runStress);
-    $('stop').addEventListener('click', stopStress);
-    $('testApi').addEventListener('click', testApi);
-    $('clearLog').addEventListener('click', () => $('log').textContent = '');
-    $('clearResult').addEventListener('click', () => { clearOutputs(); resetStats(); setStatus('未运行', ''); });
-    $('loadExample').addEventListener('click', () => {
-      for (const [id, code] of Object.entries(example)) $(id).value = code;
-      saveLocal(); log('已载入最大子段和示例。', 'ok');
-    });
-
+    initStandards();
     loadLocal();
+    $('tests').disabled=$('infiniteTests').checked;
+    initEditors();
+    initFallbackCompilers('正在读取 Judge0 语言列表…');
+    refreshLanguages(true).catch(()=>{});
   </script>
 </body>
 </html>
