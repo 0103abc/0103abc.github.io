@@ -218,8 +218,8 @@
       <div>
         <h1>C++ 对拍器</h1>
         <div class="subtitle">
-          开箱即用的浏览器 C++ 对拍工具：生成器 → 可选 validator → 暴力 → 正解 → 普通比较 / 可选 Special Judge。
-          默认使用 Judge0 CE，无需填写 API；首次运行需要联网。
+          轻轻松松对拍 C++：生成器 → 可选 validator → 暴力 → 正解 → 普通比较 / 可选 Special Judge。
+          默认使用 Compiler Explorer 在线执行，无需填写 API 地址；打开页面、放进代码就能跑。
         </div>
       </div>
       <div class="hero-actions">
@@ -282,25 +282,22 @@
       </div>
       <div class="field wide">
         <label>编译器状态</label>
-        <div class="check" style="width:100%"><span id="compilerStatus">正在读取 Judge0 语言列表…</span></div>
+        <div class="check" style="width:100%"><span id="compilerStatus">☁️ 正在连接在线编译器…</span></div>
       </div>
       <div class="toolbar-note">
         C++98 / 03 / 11 / 14 / 17 / 20 / 23 / 26 与对应 GNU++ 方言都可选；最终参数形如 <code>-std=gnu++20 -O2 ...</code>。
-        GCC 15.2 / 16.1 会显示在列表中，但只有当前 Judge0 后端真正安装对应运行时时才能选择。旧 GCC 选择较新的 C++ 标准时，可能正常产生编译错误。
+        GCC 版本会从 Compiler Explorer 自动读取；若网络暂时不可用，会使用内置常用版本。旧 GCC 选择较新的 C++ 标准时，可能正常产生编译错误。
       </div>
     </section>
 
-    <details class="panel advanced">
-      <summary>高级后端设置（正常使用无需展开）</summary>
+    <details class="panel advanced backend-card">
+      <summary>☁️ 在线执行后端 <span class="backend-ok">无需配置</span></summary>
       <div class="advanced-body">
-        <div class="field">
-          <label for="apiBase">Judge0 API Base</label>
-          <input id="apiBase" value="https://ce.judge0.com" spellcheck="false" />
-        </div>
-        <button class="btn" id="refreshLanguages">刷新编译器列表</button>
         <div class="advanced-note">
-          默认使用公开 Judge0 CE。你也可以填兼容的自建 Judge0 地址。单文件 Judge0 模式支持自定义 compiler options，但不直接替换完整的 <code>g++ ...</code> 编译命令；若需要完全自定义 compile/run 脚本，需要 Judge0 的 Multi-file program 模式。
+          默认使用 <strong>Compiler Explorer</strong> 执行 C++。这里没有 API 地址要填。
+          如果编译器列表没有刷新出来，可以点右侧按钮重新连接。时间/空间限制会在运行代码中注入 Linux 资源限制。
         </div>
+        <button class="btn" id="refreshLanguages">↻ 刷新编译器</button>
       </div>
     </details>
 
@@ -395,7 +392,7 @@ return 1;  // 判错</pre>
       <div class="panel stat"><div class="k">生成次数</div><div class="v" id="generated">0</div></div>
       <div class="panel stat"><div class="k">validator 丢弃</div><div class="v" id="rejected">0</div></div>
       <div class="panel stat"><div class="k">当前 seed</div><div class="v" id="currentSeed">—</div></div>
-      <div class="panel stat"><div class="k">最近内存</div><div class="v" id="lastMemory">—</div></div>
+      <div class="panel stat"><div class="k">空间上限</div><div class="v" id="lastMemory">—</div></div>
       <div class="panel stat"><div class="k">耗时</div><div class="v" id="elapsed">0.00s</div></div>
     </section>
 
@@ -444,6 +441,103 @@ return 1;  // 判错</pre>
     </section>
   </main>
 
+
+  <style id="softUiStyle">
+    :root {
+      color-scheme: light;
+      --bg: #f7f4ff;
+      --panel: rgba(255,255,255,.82);
+      --panel2: #f7f5ff;
+      --line: #e7e0f4;
+      --text: #4a4358;
+      --muted: #8d849d;
+      --accent: #8b7cf6;
+      --ok: #56b998;
+      --bad: #ef7d96;
+      --warn: #e8aa5d;
+      --shadow: 0 14px 40px rgba(100, 84, 145, .10);
+      --radius: 22px;
+      --code-bg: #22202b;
+      --code-text: #f4efff;
+      --code-gutter: #8c849b;
+      --code-keyword: #d5a9ff;
+      --code-type: #9fc6ff;
+      --code-string: #bfe6ad;
+      --code-number: #ffb59e;
+      --code-comment: #817b8d;
+      --code-preprocessor: #f6d38b;
+      --code-function: #9fc6ff;
+      --code-operator: #a9e8eb;
+    }
+    body {
+      background:
+        radial-gradient(circle at 8% 4%, rgba(255, 190, 215, .28), transparent 27rem),
+        radial-gradient(circle at 88% 10%, rgba(174, 213, 255, .32), transparent 29rem),
+        radial-gradient(circle at 48% 90%, rgba(188, 239, 218, .24), transparent 34rem),
+        linear-gradient(160deg, #fbf8ff 0%, #f4f7ff 48%, #fbf8f5 100%);
+      color: var(--text);
+    }
+    body::before, body::after {
+      content:""; position:fixed; pointer-events:none; z-index:-1; border-radius:999px; filter:blur(2px);
+    }
+    body::before { width:180px; height:180px; left:-55px; top:28%; background:rgba(238,210,255,.22); }
+    body::after { width:240px; height:240px; right:-90px; bottom:8%; background:rgba(204,235,255,.22); }
+    .app { width:min(1480px, calc(100% - 34px)); margin:30px auto 58px; }
+    .hero { align-items:center; padding:12px 4px 4px; }
+    h1 { color:#4d4562; font-weight:850; letter-spacing:-.045em; }
+    h1::before { content:'✿ '; color:#a798f7; font-size:.78em; vertical-align:.08em; }
+    .subtitle { color:#8d849d; }
+    .panel {
+      background:linear-gradient(145deg, rgba(255,255,255,.92), rgba(250,248,255,.78));
+      border:1px solid rgba(222,213,239,.86);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+    .toolbar { padding:18px; gap:12px; }
+    .field label { color:#9489a6; font-weight:650; }
+    .field input, .field select {
+      height:43px; border-radius:14px; background:#fbfaff; border-color:#e5def1; color:#554d63;
+      transition:.18s ease; box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    }
+    .field input:hover, .field select:hover { border-color:#d5c9ea; background:#fff; }
+    .field input:focus, .field select:focus { border-color:#afa2f5; box-shadow:0 0 0 4px rgba(139,124,246,.10); }
+    .check { border-radius:14px; border-color:#e5def1; background:#fbfaff; color:#8d849d; }
+    .check input, .mini-check input { accent-color:#9b8df7; }
+    .btn, .file-btn {
+      border-color:#e2daf0; background:#fff; color:#685f77; border-radius:13px; min-height:36px;
+      box-shadow:0 5px 15px rgba(102,85,145,.07); font-weight:650;
+    }
+    .btn:hover, .file-btn:hover { transform:translateY(-1px) scale(1.01); border-color:#cfc3e8; box-shadow:0 8px 20px rgba(102,85,145,.11); }
+    .btn.primary { background:linear-gradient(135deg,#9b8df7,#7f9cf6); border-color:transparent; color:white; box-shadow:0 10px 22px rgba(126,112,238,.22); }
+    .btn.danger { background:#fff2f5; border-color:#f3ccd6; color:#c45f76; }
+    .btn.good { background:#effaf5; border-color:#cce9dc; color:#438e75; }
+    details.advanced { border-radius:18px; }
+    details.advanced > summary { color:#82788f; font-weight:700; }
+    .backend-ok { margin-left:7px; padding:3px 8px; border-radius:999px; background:#eef9f4; color:#4e987d; font-size:11px; }
+    .advanced-body { border-top-color:#eee8f5; }
+    .editor-card { border-radius:22px; }
+    .editor-head { border-bottom-color:#eee8f5; background:rgba(255,255,255,.45); }
+    .editor-title strong { color:#554c65; }
+    .editor-title span { color:#9a90a9; }
+    .mini-check { color:#9a90a9; }
+    .code-editor { border-radius:0 0 21px 21px; }
+    .line-gutter { border-right-color:#393542; background:#1e1c26; }
+    .protocol { border-top-color:#eee8f5; background:#fffafd; }
+    .protocol pre { background:#f7f3fb; color:#6c6278; }
+    .runbar { padding:16px 18px; }
+    .status-pill { background:#faf8ff; border-color:#e6dff2; color:#887f96; border-radius:999px; }
+    .stat { padding:16px 18px; }
+    .stat .k { color:#978ca7; font-weight:650; }
+    .stat .v { color:#51495f; }
+    .result-card, .log-panel { border-radius:22px; }
+    .result-head, .log-head { border-bottom-color:#eee8f5; background:rgba(255,255,255,.44); }
+    pre.output { background:#25222e; color:#f2edf9; }
+    #log { color:#eee8f8; }
+    code { color:#796bd4; background:#f1edff; padding:2px 5px; border-radius:6px; }
+    ::selection { background:rgba(156,140,247,.22); }
+    @media (max-width:680px) { .app { width:min(100% - 18px,1480px); margin-top:14px; } }
+  </style>
+
   <style id="customThemeStyle"></style>
   <script>
     'use strict';
@@ -462,9 +556,9 @@ return 1;  // 判错</pre>
     };
 
     const desiredCompilers = ['16.1', '15.2', '14.1', '9.2', '8.3', '7.4'];
-    const defaultCompilerIds = { '14.1': 105, '9.2': 54, '8.3': 53, '7.4': 52 };
+    const defaultCompilerIds = { '16.1':'g161', '15.2':'g152', '14.1':'g141', '9.2':'g92', '8.3':'g83', '7.4':'g74' };
     const standardVersions = ['98','03','11','14','17','20','23','26'];
-    const settings = ['apiBase','tests','infiniteTests','seed','timeLimit','memoryLimit','compiler','cppStandard','optimization','extraFlags','compareMode'];
+    const settings = ['tests','infiniteTests','seed','timeLimit','memoryLimit','compiler','cppStandard','optimization','extraFlags','compareMode'];
 
     function log(message, kind = '') {
       const t = new Date().toLocaleTimeString('zh-CN', { hour12:false });
@@ -681,151 +775,160 @@ return 1;  // 判错</pre>
       updateEditor(id);
     }
 
-    function initFallbackCompilers(message = '使用内置 Judge0 CE 编译器表') {
+    const CE_BASE = 'https://godbolt.org';
+
+    function initFallbackCompilers(message = '使用内置 Compiler Explorer 编译器表') {
       state.compilerMap.clear();
-      for (const [ver,id] of Object.entries(defaultCompilerIds)) state.compilerMap.set(ver,{id,name:`C++ (GCC ${ver}.x)`});
+      for (const [ver,id] of Object.entries(defaultCompilerIds)) state.compilerMap.set(ver,{id,name:`x86-64 GCC ${ver}`});
       renderCompilerOptions(message);
     }
 
-    function gccVersionFromName(name) {
-      const m = String(name).match(/C\+\+\s*\(GCC\s+([0-9]+(?:\.[0-9]+){1,2})\)/i);
-      if (!m) return null;
-      const p = m[1].split('.');
-      return `${Number(p[0])}.${Number(p[1])}`;
+    function normalizeGccVersion(raw) {
+      const m=String(raw||'').match(/(?:^|\D)(\d+)\.(\d+)(?:\.\d+)?(?:\D|$)/);
+      return m ? `${Number(m[1])}.${Number(m[2])}` : null;
+    }
+
+    function gccVersionFromCompiler(c) {
+      if (!c) return null;
+      if (String(c.compilerType||'').toLowerCase()!=='gcc' && !/gcc|g\+\+/i.test(String(c.name||''))) return null;
+      return normalizeGccVersion(c.semver) || normalizeGccVersion(c.name);
     }
 
     function renderCompilerOptions(statusText = '') {
-      const sel = $('compiler');
-      const prev = sel.value || sessionStorage.getItem('cpp-stress-saved-compiler') || '14.1';
-      sel.textContent = '';
-      const shown = new Set();
-
+      const sel=$('compiler');
+      const prev=sel.value || sessionStorage.getItem('cpp-stress-saved-compiler') || '16.1';
+      sel.textContent='';
+      const shown=new Set();
       for (const ver of desiredCompilers) {
         shown.add(ver);
-        const data = state.compilerMap.get(ver);
-        const op = document.createElement('option');
-        op.value = ver;
-        op.disabled = !data;
-        op.textContent = data ? `GCC ${ver}${data.name ? ` · ${data.name}` : ''}` : `GCC ${ver} · 当前后端未安装`;
+        const data=state.compilerMap.get(ver);
+        const op=document.createElement('option');
+        op.value=ver; op.disabled=!data;
+        op.textContent=data ? `GCC ${ver}` : `GCC ${ver} · 当前在线后端未提供`;
         sel.appendChild(op);
       }
-      for (const [ver,data] of [...state.compilerMap.entries()].sort((a,b) => Number(b[0])-Number(a[0]))) {
+      for (const [ver,data] of [...state.compilerMap.entries()].sort((a,b)=>Number(b[0])-Number(a[0]))) {
         if (shown.has(ver)) continue;
-        const op = document.createElement('option');
-        op.value = ver; op.textContent = `GCC ${ver} · ${data.name}`;
-        sel.appendChild(op);
+        const op=document.createElement('option'); op.value=ver; op.textContent=`GCC ${ver}`; sel.appendChild(op);
       }
-
-      if (state.compilerMap.has(prev)) sel.value = prev;
-      else if (state.compilerMap.has('14.1')) sel.value = '14.1';
-      else {
-        const first = [...sel.options].find(o => !o.disabled);
-        if (first) sel.value = first.value;
-      }
-      $('compilerStatus').textContent = statusText || `可用 GCC：${[...state.compilerMap.keys()].join(', ') || '无'}`;
+      if (state.compilerMap.has(prev)) sel.value=prev;
+      else if (state.compilerMap.has('16.1')) sel.value='16.1';
+      else if (state.compilerMap.has('15.2')) sel.value='15.2';
+      else if (state.compilerMap.has('14.1')) sel.value='14.1';
+      else { const first=[...sel.options].find(o=>!o.disabled); if(first) sel.value=first.value; }
+      $('compilerStatus').textContent=statusText || `☁️ 已就绪 · GCC ${[...state.compilerMap.keys()].sort((a,b)=>Number(b)-Number(a)).join(' / ')}`;
       saveLocal();
     }
 
-    async function fetchJson(url, options = {}) {
-      const response = await fetch(url, options);
+    async function fetchJson(url, options={}) {
+      let response;
+      try { response=await fetch(url,options); }
+      catch(e) {
+        if (e?.name==='AbortError') throw e;
+        throw new Error('无法连接在线编译服务。请检查网络；如果浏览器对本地 file:// 页面有限制，可尝试用 Chrome/Edge 打开，或把 HTML 放到任意静态网页服务器。');
+      }
       let data;
-      try { data = await response.json(); }
-      catch (_) { throw new Error(`后端返回了非 JSON（HTTP ${response.status}）`); }
-      if (!response.ok) throw new Error(data?.message || data?.error || `HTTP ${response.status}`);
+      try { data=await response.json(); }
+      catch(_) { throw new Error(`在线后端返回了非 JSON（HTTP ${response.status}）`); }
+      if (!response.ok) throw new Error(data?.message || data?.error || `在线后端 HTTP ${response.status}`);
       return data;
     }
 
-    async function refreshLanguages(silent = false) {
-      const base = normalizeBase($('apiBase').value);
-      if (!base) throw new Error('Judge0 API Base 不能为空');
-      $('compilerStatus').textContent = '正在读取语言列表…';
+    async function refreshLanguages(silent=false) {
+      $('compilerStatus').textContent='☁️ 正在读取 Compiler Explorer 编译器…';
       try {
-        const list = await fetchJson(`${base}/languages`, { signal: state.controller?.signal });
-        if (!Array.isArray(list)) throw new Error('/languages 返回格式不正确');
-        state.languages = list;
-        state.compilerMap.clear();
-        for (const lang of list) {
-          const ver = gccVersionFromName(lang.name);
-          if (ver) state.compilerMap.set(ver,{id:lang.id,name:lang.name});
+        const list=await fetchJson(`${CE_BASE}/api/compilers/c++?fields=id,name,lang,compilerType,semver,releaseTrack`, {
+          headers:{'Accept':'application/json'}, signal:state.controller?.signal
+        });
+        if(!Array.isArray(list)) throw new Error('编译器列表格式不正确');
+        state.languages=list; state.compilerMap.clear();
+        for(const c of list) {
+          const ver=gccVersionFromCompiler(c);
+          if(!ver || !/x86[-_ ]?64|x86_64/i.test(String(c.name||''))) continue;
+          const track=String(c.releaseTrack||'stable');
+          const old=state.compilerMap.get(ver);
+          if(!old || (old.track!=='stable' && track==='stable')) state.compilerMap.set(ver,{id:c.id,name:c.name,track});
         }
-        if (!state.compilerMap.size) throw new Error('后端语言列表中没有 C++ GCC');
-        renderCompilerOptions(`已连接 · 可用 GCC：${[...state.compilerMap.keys()].sort((a,b)=>Number(b)-Number(a)).join(', ')}`);
-        if (!silent) log(`编译器列表已更新：${[...state.compilerMap.keys()].join(', ')}`,'ok');
-      } catch (e) {
-        const isDefault = normalizeBase(base) === 'https://ce.judge0.com';
-        if (isDefault) {
-          initFallbackCompilers('语言列表读取失败，已使用 Judge0 CE 内置兜底表（GCC 14.1/9.2/8.3/7.4）');
-          if (!silent) log(`读取语言列表失败，改用兜底表：${e.message}`,'warn');
-        } else {
-          initFallbackCompilers(`自定义后端读取失败：${e.message}`);
-          throw e;
-        }
+        if(!state.compilerMap.size) throw new Error('没有找到 x86-64 GCC 编译器');
+        renderCompilerOptions(`☁️ 已连接 Compiler Explorer · 可用 GCC：${[...state.compilerMap.keys()].sort((a,b)=>Number(b)-Number(a)).join(', ')}`);
+        if(!silent) log('Compiler Explorer 编译器列表已更新。','ok');
+      } catch(e) {
+        if(e?.name==='AbortError') throw e;
+        initFallbackCompilers('☁️ 使用内置 GCC 列表 · 在线列表读取失败');
+        if(!silent) log(`在线编译器列表读取失败，已使用内置列表：${e.message}`,'warn');
       }
     }
 
     function compilerOptions() {
-      const std = $('cppStandard').value;
-      const opt = $('optimization').value;
-      const extra = $('extraFlags').value.trim();
-      return [`-std=${std}`, `-${opt}`, extra].filter(Boolean).join(' ');
+      const std=$('cppStandard').value;
+      const opt=$('optimization').value;
+      const extra=$('extraFlags').value.trim();
+      return [`-std=${std}`,`-${opt}`,extra].filter(Boolean).join(' ');
     }
 
-    function selectedLanguageId() {
-      const ver = $('compiler').value;
-      const item = state.compilerMap.get(ver);
-      if (!item) throw new Error(`当前后端没有 GCC ${ver}`);
+    function selectedCompilerId() {
+      const ver=$('compiler').value;
+      const item=state.compilerMap.get(ver);
+      if(!item) throw new Error(`当前在线后端没有 GCC ${ver}`);
       return item.id;
     }
 
-    async function createSubmission(code, stdin = '', args = '') {
-      const base = normalizeBase($('apiBase').value);
-      const timeMs = Number($('timeLimit').value);
-      const memMb = Number($('memoryLimit').value);
-      const body = {
-        source_code: code,
-        language_id: selectedLanguageId(),
-        stdin,
-        compiler_options: compilerOptions(),
-        command_line_arguments: String(args || ''),
-        cpu_time_limit: Math.max(0.05, timeMs / 1000),
-        wall_time_limit: Math.max(1, timeMs / 1000 * 2 + 0.5),
-        memory_limit: Math.round(memMb * 1024),
+    function outputText(v) {
+      if(v==null) return '';
+      if(Array.isArray(v)) return v.map(x=>typeof x==='string'?x:String(x?.text??'')).join('\n');
+      return String(v);
+    }
+
+    function injectLimits(code) {
+      const ms=Math.max(1,Number($('timeLimit').value)||2000);
+      const mb=Math.max(1,Number($('memoryLimit').value)||256);
+      const prelude=`#if defined(__linux__)\n#include <sys/resource.h>\n#include <sys/time.h>\n#include <signal.h>\nnamespace __stress_limits {\nstruct Init { Init() {\n  struct rlimit rl; rl.rlim_cur=rl.rlim_max=(rlim_t)${mb}*1024*1024; setrlimit(RLIMIT_AS,&rl);\n  struct itimerval it; it.it_interval.tv_sec=0; it.it_interval.tv_usec=0; it.it_value.tv_sec=${Math.floor(ms/1000)}; it.it_value.tv_usec=${(ms%1000)*1000}; setitimer(ITIMER_REAL,&it,0);\n} }; static Init init;\n}\n#endif\n`;
+      return prelude+code;
+    }
+
+    async function executeCpp(code, stdin='', args='') {
+      const argList=String(args||'').trim() ? String(args).trim().split(/\s+/) : [];
+      const body={
+        source:injectLimits(code),
+        options:{
+          userArguments:compilerOptions(),
+          compilerOptions:{executorRequest:true},
+          filters:{execute:true},
+          executeParameters:{args:argList,stdin:String(stdin??''),runtimeTools:[]},
+          tools:[], libraries:[]
+        },
+        lang:'c++', allowStoreCodeDebug:false
       };
-      const data = await fetchJson(`${base}/submissions?base64_encoded=false&wait=false`, {
-        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body), signal:state.controller?.signal,
+      return fetchJson(`${CE_BASE}/api/compiler/${encodeURIComponent(selectedCompilerId())}/compile`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(body), signal:state.controller?.signal
       });
-      if (!data?.token) throw new Error('Judge0 未返回 submission token');
-      return data.token;
     }
 
-    async function waitSubmission(token) {
-      const base = normalizeBase($('apiBase').value);
-      const fields = 'stdout,stderr,compile_output,message,status,time,memory,exit_code,exit_signal';
-      for (;;) {
-        if (state.stopRequested) throw new DOMException('Aborted','AbortError');
-        const data = await fetchJson(`${base}/submissions/${encodeURIComponent(token)}?base64_encoded=false&fields=${fields}`, { signal:state.controller?.signal });
-        const id = Number(data?.status?.id || 0);
-        if (id !== 1 && id !== 2) return data;
-        await new Promise(r => setTimeout(r, 350));
-      }
+    function ceRuntime(data) {
+      const build=data?.buildResult || null;
+      const compileCode=build ? Number(build.code??0) : (data?.didExecute===false ? Number(data?.code??0) : 0);
+      const runtimeCode=Number(data?.code??0);
+      return {
+        compileCode,
+        runtimeCode,
+        stdout:outputText(data?.stdout),
+        stderr:outputText(data?.stderr),
+        compileOut:outputText(build?.stderr)||outputText(build?.stdout)||(!build&&data?.didExecute===false?outputText(data?.stderr):''),
+        timedOut:Boolean(data?.timedOut || data?.execResult?.timedOut),
+      };
     }
 
-    async function executeCpp(code, stdin = '', args = '') {
-      const token = await createSubmission(code, stdin, args);
-      return waitSubmission(token);
+    function ceError(data,label) {
+      const r=ceRuntime(data);
+      if(r.compileCode!==0) return `${label}编译失败：\n${r.compileOut || `exit ${r.compileCode}`}`;
+      if(r.timedOut) return `${label}运行超时`;
+      if(r.runtimeCode!==0) return `${label}运行失败（exit ${r.runtimeCode}）：\n${r.stderr}`;
+      return '';
     }
 
-    function judge0Error(data, label) {
-      const id = Number(data?.status?.id || 0);
-      if (id === 3) return '';
-      const status = data?.status?.description || `status ${id}`;
-      const detail = data?.compile_output || data?.stderr || data?.message || '';
-      return `${label}${status}${detail ? `：\n${detail}` : ''}`;
-    }
-
-    function isNonZeroExit(data) {
-      return Number(data?.status?.id) === 11 || (data?.exit_code != null && Number(data.exit_code) !== 0);
-    }
+    function isNonZeroExit(data) { return ceRuntime(data).runtimeCode!==0; }
 
     function normalized(s, mode) {
       s = String(s ?? '').replace(/\r\n?/g,'\n');
@@ -881,11 +984,11 @@ return 1;  // 判错</pre>
       const t=Number($('timeLimit').value), m=Number($('memoryLimit').value);
       if (!(t>0)) throw new Error('时间限制必须为正数');
       if (!(m>0)) throw new Error('空间限制必须为正数');
-      selectedLanguageId();
+      selectedCompilerId();
     }
 
     function updateMemory(data) {
-      if (data?.memory != null) $('lastMemory').textContent = `${(Number(data.memory)/1024).toFixed(1)} MB`;
+      $('lastMemory').textContent = `≤ ${$('memoryLimit').value} MB`;
     }
 
     async function runStress() {
@@ -921,49 +1024,49 @@ return 1;  // 判错</pre>
           $('currentSeed').textContent=String(currentSeed);
 
           const gen=await executeCpp(generator,'',String(currentSeed));
-          const genErr=judge0Error(gen,'生成器：');
+          const genErr=ceError(gen,'生成器：');
           if (genErr) throw new Error(`seed=${currentSeed}\n${genErr}`);
           updateMemory(gen);
-          const input=gen.stdout ?? '';
+          const input=ceRuntime(gen).stdout;
           $('caseInput').textContent=input;
 
           if (validator) {
             const val=await executeCpp(validator,input,'');
-            if (Number(val?.status?.id) !== 3) {
-              if (isNonZeroExit(val)) {
+            if (isNonZeroExit(val)) {
                 rejected++;
                 $('rejected').textContent=String(rejected);
-                if (rejected<=10 || rejected%100===0) log(`seed=${currentSeed} 被 validator 拒绝${val.stderr?`：${String(val.stderr).trim()}`:''}`,'warn');
-                continue;
-              }
-              throw new Error(`seed=${currentSeed}\n${judge0Error(val,'validator：')}`);
+                if (rejected<=10 || rejected%100===0) log(`seed=${currentSeed} 被 validator 拒绝${ceRuntime(val).stderr?`：${ceRuntime(val).stderr.trim()}`:''}`,'warn');
+              continue;
+            } else {
+              const valErr=ceError(val,'validator：');
+              if (valErr) throw new Error(`seed=${currentSeed}\n${valErr}`);
             }
           }
 
           const br=await executeCpp(brute,input,'');
-          const brErr=judge0Error(br,'暴力程序：');
+          const brErr=ceError(br,'暴力程序：');
           if (brErr) throw new Error(`seed=${currentSeed}\n${brErr}`);
           updateMemory(br);
-          const bruteOut=br.stdout ?? '';
+          const bruteOut=ceRuntime(br).stdout;
           $('bruteOutput').textContent=bruteOut;
 
           const sol=await executeCpp(solution,input,'');
-          const solErr=judge0Error(sol,'正解程序：');
+          const solErr=ceError(sol,'正解程序：');
           if (solErr) throw new Error(`seed=${currentSeed}\n${solErr}`);
           updateMemory(sol);
-          const solutionOut=sol.stdout ?? '';
+          const solutionOut=ceRuntime(sol).stdout;
           $('solutionOutput').textContent=solutionOut;
 
           let ok;
           if (spj) {
             const spjRun=await executeCpp(spj,makeSpjInput(input,bruteOut,solutionOut),'');
-            if (Number(spjRun?.status?.id)===3) ok=true;
+            if (!ceError(spjRun,'Special Judge：')) ok=true;
             else if (isNonZeroExit(spjRun)) {
               ok=false;
-              const why=[spjRun.stdout,spjRun.stderr].filter(Boolean).join('\n').trim();
+              const rr=ceRuntime(spjRun); const why=[rr.stdout,rr.stderr].filter(Boolean).join('\n').trim();
               log(`SPJ 判错${why?`：${why}`:''}`,'err');
             } else {
-              throw new Error(`seed=${currentSeed}\n${judge0Error(spjRun,'Special Judge：')}`);
+              throw new Error(`seed=${currentSeed}\n${ceError(spjRun,'Special Judge：')}`);
             }
           } else {
             ok=outputsEqual(bruteOut,solutionOut,mode);
@@ -1006,11 +1109,11 @@ return 1;  // 判错</pre>
         await refreshLanguages(true);
         const src='#include <iostream>\nint main(){std::cout<<"OK\\n";}';
         const r=await executeCpp(src,'','');
-        const err=judge0Error(r,'测试程序：');
-        if (err) throw new Error(err);
-        if (String(r.stdout||'').trim()!=='OK') throw new Error(`测试输出异常：${JSON.stringify(r.stdout)}`);
-        log(`后端正常：GCC ${$('compiler').value}，参数 ${compilerOptions()}`,'ok');
-        setStatus('后端可用','ok');
+        const err=ceError(r,'测试程序：');
+        if(err) throw new Error(err);
+        if(ceRuntime(r).stdout.trim()!=='OK') throw new Error(`测试输出异常：${JSON.stringify(ceRuntime(r).stdout)}`);
+        log(`Compiler Explorer 正常：GCC ${$('compiler').value}，参数 ${compilerOptions()}`,'ok');
+        setStatus('☁️ 后端可用','ok');
       } catch(e) {
         log(`后端测试失败：${e?.message||e}`,'err'); setStatus('后端不可用','bad');
       } finally { state.controller=null; }
@@ -1118,7 +1221,7 @@ return 1;  // 判错</pre>
     $('clearLog').addEventListener('click',()=>$('log').textContent='');
     $('downloadLog').addEventListener('click',()=>{
       const stamp=new Date().toISOString().replace(/[:.]/g,'-');
-      const header=`C++ Stress Tester Log\nGCC ${$('compiler').value} | -std=${$('cppStandard').value} | -${$('optimization').value} | TL=${$('timeLimit').value}ms | ML=${$('memoryLimit').value}MB\n\n`;
+      const header=`C++ Stress Tester Log · Compiler Explorer\nGCC ${$('compiler').value} | -std=${$('cppStandard').value} | -${$('optimization').value} | TL=${$('timeLimit').value}ms | ML=${$('memoryLimit').value}MB\n\n`;
       downloadText(`stress-${stamp}.log`,header+$('log').textContent,'text/plain;charset=utf-8');
     });
     $('clearResult').addEventListener('click',()=>{clearOutputs();resetStats();setStatus('未运行','');});
@@ -1128,13 +1231,12 @@ return 1;  // 判错</pre>
     $('resetTheme').addEventListener('click',resetTheme);
     $('themeTemplate').addEventListener('click',()=>downloadText('cpp-stress-theme.json',JSON.stringify(defaultTheme,null,2),'application/json;charset=utf-8'));
     $('infiniteTests').addEventListener('change',()=>{$('tests').disabled=$('infiniteTests').checked;});
-    $('apiBase').addEventListener('change',()=>refreshLanguages(true).catch(()=>{}));
 
     initStandards();
     loadLocal();
     $('tests').disabled=$('infiniteTests').checked;
     initEditors();
-    initFallbackCompilers('正在读取 Judge0 语言列表…');
+    initFallbackCompilers('☁️ 正在连接 Compiler Explorer…');
     refreshLanguages(true).catch(()=>{});
   </script>
 </body>
