@@ -2,327 +2,960 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>和香草聊天 ฅ^•ﻌ•^ฅ</title>
 
     <style>
+
+        /* =========================
+           基础
+        ========================= */
+
         * {
             box-sizing: border-box;
         }
 
+        html,
         body {
             margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
                 "Microsoft YaHei",
                 sans-serif;
+
+            color: #513e49;
+
             background:
-                radial-gradient(circle at 15% 20%, #ffe3ef 0, transparent 30%),
-                radial-gradient(circle at 85% 80%, #e8deff 0, transparent 32%),
-                linear-gradient(135deg, #fff4f8, #f6f0ff);
-            height: 100vh;
-            color: #4e3d49;
+                radial-gradient(
+                    circle at 15% 15%,
+                    #ffddea 0,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    #e6dcff 0,
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fff5f8,
+                    #f6f1ff
+                );
         }
 
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+
+        /* =========================
+           页面
+        ========================= */
+
         .page {
-            height: 100vh;
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
         }
+
 
         .chat-app {
             width: min(950px, 100%);
             height: min(850px, calc(100vh - 48px));
-            background: rgba(255, 255, 255, .86);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,.9);
-            border-radius: 28px;
-            box-shadow:
-                0 25px 70px rgba(166, 109, 142, .20),
-                0 5px 20px rgba(118, 92, 136, .10);
-            overflow: hidden;
+
             display: flex;
             flex-direction: column;
+
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            backdrop-filter: blur(20px);
+
+            border:
+                1px solid
+                rgba(255,255,255,.9);
+
+            box-shadow:
+                0 25px 70px
+                rgba(166, 109, 142, .20),
+                0 5px 20px
+                rgba(118, 92, 136, .10);
         }
 
+
+        /* =========================
+           顶部
+        ========================= */
+
         .header {
-            height: 88px;
+            min-height: 88px;
+
             padding: 15px 22px;
+
             display: flex;
             align-items: center;
+
             gap: 14px;
-            border-bottom: 1px solid #f2e7ed;
-            background: rgba(255,255,255,.7);
+
+            background:
+                rgba(255,255,255,.72);
+
+            border-bottom:
+                1px solid #f1e5eb;
         }
+
 
         .avatar {
             width: 58px;
             height: 58px;
+
+            flex-shrink: 0;
+
             border-radius: 20px;
+
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+
             font-size: 31px;
-            background: linear-gradient(145deg, #ffcee0, #eadcff);
-            box-shadow: 0 7px 18px rgba(222, 142, 178, .26);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffcee0,
+                    #eadcff
+                );
+
+            box-shadow:
+                0 7px 18px
+                rgba(222,142,178,.25);
         }
+
 
         .character-info {
             flex: 1;
+            min-width: 0;
         }
+
 
         .character-name {
             font-size: 18px;
             font-weight: 700;
-            color: #593d50;
         }
+
 
         .status {
             margin-top: 5px;
+
             font-size: 13px;
+
             color: #a27e92;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .online {
+
+        .online-dot {
             display: inline-block;
+
             width: 8px;
             height: 8px;
-            background: #68d391;
-            border-radius: 50%;
+
             margin-right: 5px;
+
+            border-radius: 50%;
+
+            background: #62cf8b;
         }
 
-        .clear-btn {
+
+        .header-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+
+        .header-btn {
             border: 0;
-            background: #fff1f6;
-            color: #a05f80;
-            border-radius: 14px;
-            padding: 9px 14px;
+
+            padding: 9px 13px;
+
+            border-radius: 13px;
+
             cursor: pointer;
+
+            color: #9c5c7b;
+
+            background: #fff0f6;
+
             transition: .2s;
         }
 
-        .clear-btn:hover {
-            background: #ffe4ee;
+
+        .header-btn:hover {
+            background: #ffe2ed;
+            transform: translateY(-1px);
         }
+
+
+        /* =========================
+           API 设置
+        ========================= */
+
+        .api-panel {
+            display: none;
+
+            padding: 16px 22px;
+
+            background: #fff8fb;
+
+            border-bottom:
+                1px solid #f1e5eb;
+        }
+
+
+        .api-panel.show {
+            display: block;
+        }
+
+
+        .api-title {
+            margin-bottom: 11px;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        .api-row {
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .api-key-wrap {
+            position: relative;
+
+            flex: 1;
+        }
+
+
+        .api-input {
+            width: 100%;
+
+            padding:
+                11px
+                45px
+                11px
+                13px;
+
+            outline: none;
+
+            border:
+                1px solid #ead8e1;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #513e49;
+        }
+
+
+        .api-input:focus {
+            border-color: #e89abb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(232,154,187,.12);
+        }
+
+
+        .show-key {
+            position: absolute;
+
+            right: 8px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: 0;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+
+        .model-select {
+            padding: 0 10px;
+
+            border:
+                1px solid #ead8e1;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: white;
+
+            color: #604b57;
+        }
+
+
+        .api-save {
+            padding: 0 17px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            color: white;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff88b4,
+                    #bd89eb
+                );
+        }
+
+
+        .api-delete {
+            padding: 0 13px;
+
+            border:
+                1px solid #f1ccd9;
+
+            border-radius: 12px;
+
+            color: #ae627c;
+
+            cursor: pointer;
+
+            background: white;
+        }
+
+
+        .api-tip {
+            margin-top: 10px;
+
+            font-size: 12px;
+            line-height: 1.6;
+
+            color: #ad899a;
+        }
+
+
+        .api-status {
+            margin-top: 7px;
+
+            min-height: 17px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           消息区域
+        ========================= */
 
         .messages {
             flex: 1;
+
             overflow-y: auto;
+
             padding: 28px;
+
             scroll-behavior: smooth;
         }
 
+
         .message {
             display: flex;
+
             margin-bottom: 20px;
-            animation: show .25s ease;
+
+            animation:
+                messageIn .22s ease;
         }
 
-        @keyframes show {
+
+        @keyframes messageIn {
+
             from {
                 opacity: 0;
-                transform: translateY(7px);
+                transform:
+                    translateY(7px);
             }
+
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
+
         }
+
 
         .message.user {
             justify-content: flex-end;
         }
 
+
         .message.assistant {
             justify-content: flex-start;
         }
 
+
         .bubble {
-            max-width: min(72%, 650px);
-            padding: 13px 17px;
+            max-width:
+                min(74%, 680px);
+
+            padding:
+                13px 17px;
+
             border-radius: 20px;
-            font-size: 15px;
+
             line-height: 1.75;
+
+            font-size: 15px;
+
             white-space: pre-wrap;
+
             word-break: break-word;
         }
 
+
         .assistant .bubble {
-            background: #fff;
-            border: 1px solid #f2e5ec;
+            background: white;
+
+            border:
+                1px solid #f1e4ea;
+
             border-bottom-left-radius: 6px;
-            box-shadow: 0 5px 16px rgba(122, 83, 107, .06);
+
+            box-shadow:
+                0 5px 16px
+                rgba(122,83,107,.06);
         }
 
+
         .user .bubble {
-            background: linear-gradient(135deg, #ff91b9, #d398f4);
-            color: #fff;
+            color: white;
+
             border-bottom-right-radius: 6px;
-            box-shadow: 0 7px 18px rgba(211, 126, 172, .22);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff91b9,
+                    #d398f4
+                );
+
+            box-shadow:
+                0 7px 18px
+                rgba(211,126,172,.22);
         }
+
+
+        /* =========================
+           AI 输入动画
+        ========================= */
 
         .typing {
             display: inline-flex;
-            gap: 5px;
+
             align-items: center;
+
+            gap: 5px;
         }
+
 
         .typing span {
             width: 7px;
             height: 7px;
-            background: #c590a8;
+
             border-radius: 50%;
-            animation: blink 1.1s infinite;
+
+            background: #c590a8;
+
+            animation:
+                typingBlink
+                1.1s
+                infinite;
         }
+
 
         .typing span:nth-child(2) {
             animation-delay: .15s;
         }
 
+
         .typing span:nth-child(3) {
             animation-delay: .3s;
         }
 
-        @keyframes blink {
-            0%, 70%, 100% {
+
+        @keyframes typingBlink {
+
+            0%,
+            70%,
+            100% {
                 opacity: .25;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
+
             35% {
                 opacity: 1;
-                transform: translateY(-3px);
+
+                transform:
+                    translateY(-3px);
             }
+
         }
+
+
+        /* =========================
+           底部输入
+        ========================= */
 
         .input-area {
-            padding: 16px 20px 20px;
-            border-top: 1px solid #f2e7ed;
-            background: rgba(255,255,255,.78);
+            padding:
+                16px 20px 20px;
+
+            border-top:
+                1px solid #f1e5eb;
+
+            background:
+                rgba(255,255,255,.78);
         }
+
 
         .input-box {
-            display: flex;
-            align-items: flex-end;
-            gap: 12px;
-            background: #faf7f9;
             padding: 10px;
-            border: 1px solid #f0e2e9;
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: flex-end;
+
+            border:
+                1px solid #efdee6;
+
             border-radius: 21px;
-            transition: .2s;
+
+            background: #faf7f9;
         }
+
 
         .input-box:focus-within {
-            border-color: #efa7c6;
-            box-shadow: 0 0 0 3px rgba(239, 167, 198, .12);
+            border-color: #eba4c1;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(235,164,193,.10);
         }
 
-        textarea {
+
+        #input {
             width: 100%;
+
             min-height: 45px;
-            max-height: 140px;
+            max-height: 150px;
+
+            padding: 10px;
+
             resize: none;
+
             border: 0;
             outline: 0;
+
             background: transparent;
-            padding: 10px;
-            font-size: 15px;
-            font-family: inherit;
-            line-height: 1.5;
+
             color: #51424a;
+
+            font-size: 15px;
+
+            line-height: 1.5;
         }
 
-        textarea::placeholder {
-            color: #b9a9b1;
+
+        #input::placeholder {
+            color: #b6a5ad;
         }
+
 
         .send-btn {
-            flex: 0 0 auto;
             width: 48px;
             height: 48px;
+
+            flex-shrink: 0;
+
             border: 0;
+
             border-radius: 16px;
+
             cursor: pointer;
-            color: #fff;
+
+            color: white;
+
             font-size: 19px;
-            background: linear-gradient(135deg, #ff88b4, #bf8bea);
-            box-shadow: 0 7px 17px rgba(202, 126, 176, .25);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff88b4,
+                    #bd89eb
+                );
+
+            box-shadow:
+                0 7px 17px
+                rgba(202,126,176,.25);
+
             transition: .2s;
         }
 
+
         .send-btn:hover {
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
         }
+
 
         .send-btn:disabled {
             opacity: .5;
-            cursor: not-allowed;
+
+            cursor:
+                not-allowed;
+
             transform: none;
         }
 
+
         .hint {
-            text-align: center;
-            color: #baa4b0;
-            font-size: 11px;
             margin-top: 9px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #baa4b0;
         }
 
-        @media (max-width: 600px) {
+
+        /* =========================
+           手机
+        ========================= */
+
+        @media (
+            max-width: 650px
+        ) {
+
             .page {
                 padding: 0;
             }
 
+
             .chat-app {
-                height: 100vh;
+                width: 100%;
+                height: 100%;
+
                 border-radius: 0;
             }
 
-            .messages {
-                padding: 18px 14px;
+
+            .header {
+                min-height: 76px;
+
+                padding: 10px 12px;
+
+                gap: 9px;
             }
 
-            .bubble {
-                max-width: 85%;
+
+            .avatar {
+                width: 50px;
+                height: 50px;
+
+                border-radius: 16px;
+
+                font-size: 27px;
             }
+
+
+            .character-name {
+                font-size: 16px;
+            }
+
+
+            .header-btn {
+                padding:
+                    8px 9px;
+
+                font-size: 12px;
+            }
+
+
+            .messages {
+                padding:
+                    18px 14px;
+            }
+
+
+            .bubble {
+                max-width: 86%;
+            }
+
+
+            .api-panel {
+                padding:
+                    14px;
+            }
+
+
+            .api-row {
+                flex-wrap: wrap;
+            }
+
+
+            .api-key-wrap {
+                width: 100%;
+                flex-basis: 100%;
+            }
+
+
+            .model-select {
+                height: 40px;
+
+                flex: 1;
+            }
+
+
+            .api-save,
+            .api-delete {
+                min-height: 40px;
+            }
+
+
+            .input-area {
+                padding:
+                    10px 12px
+                    14px;
+            }
+
         }
+
     </style>
 </head>
+
 
 <body>
 
 <div class="page">
+
     <main class="chat-app">
 
+
+        <!-- =====================
+             顶部
+        ====================== -->
+
         <header class="header">
-            <div class="avatar">🐱</div>
+
+            <div class="avatar">
+                🐱
+            </div>
+
 
             <div class="character-info">
+
                 <div class="character-name">
                     香草 Vanilla
                 </div>
 
                 <div class="status">
-                    <span class="online"></span>
-                    正趴在屏幕另一边等主人说话~
+
+                    <span
+                        class="online-dot"
+                    ></span>
+
+                    <span id="statusText">
+                        正等主人说话~
+                    </span>
+
                 </div>
+
             </div>
 
-            <button class="clear-btn" onclick="clearConversation()">
-                清空聊天
-            </button>
+
+            <div class="header-buttons">
+
+                <button
+                    class="header-btn"
+                    onclick="toggleApiPanel()"
+                >
+                    ⚙ API
+                </button>
+
+                <button
+                    class="header-btn"
+                    onclick="clearConversation()"
+                >
+                    清空
+                </button>
+
+            </div>
+
         </header>
 
 
-        <section id="messages" class="messages"></section>
+        <!-- =====================
+             API 设置
+        ====================== -->
 
+        <section
+            id="apiPanel"
+            class="api-panel"
+        >
+
+            <div class="api-title">
+                DeepSeek API 设置
+            </div>
+
+
+            <div class="api-row">
+
+
+                <div class="api-key-wrap">
+
+                    <input
+                        id="apiKey"
+                        class="api-input"
+                        type="password"
+                        placeholder="输入 DeepSeek API Key，例如 sk-..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+
+                    <button
+                        class="show-key"
+                        onclick="toggleKeyVisibility()"
+                        title="显示/隐藏 API Key"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+
+                <select
+                    id="modelSelect"
+                    class="model-select"
+                    title="DeepSeek 模型"
+                >
+
+                    <option
+                        value="deepseek-v4-flash"
+                    >
+                        V4 Flash
+                    </option>
+
+                    <option
+                        value="deepseek-v4-pro"
+                    >
+                        V4 Pro
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="api-save"
+                    onclick="saveApiSettings()"
+                >
+                    保存
+                </button>
+
+
+                <button
+                    class="api-delete"
+                    onclick="deleteApiKey()"
+                >
+                    删除
+                </button>
+
+            </div>
+
+
+            <div class="api-tip">
+                API Key 保存在当前浏览器的 localStorage，
+                不会自动写入 GitHub 仓库。
+                但浏览器前端保存 Key 并不适合公开生产环境。
+            </div>
+
+
+            <div
+                id="apiStatus"
+                class="api-status"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================
+             消息
+        ====================== -->
+
+        <section
+            id="messages"
+            class="messages"
+        ></section>
+
+
+        <!-- =====================
+             输入
+        ====================== -->
 
         <footer class="input-area">
 
             <div class="input-box">
+
                 <textarea
                     id="input"
                     rows="1"
@@ -330,15 +963,18 @@
                     placeholder="给主人家的香草说点什么吧……"
                 ></textarea>
 
+
                 <button
-                    id="send"
+                    id="sendButton"
                     class="send-btn"
                     onclick="sendMessage()"
                     title="发送"
                 >
                     ➤
                 </button>
+
             </div>
+
 
             <div class="hint">
                 Enter 发送 · Shift + Enter 换行
@@ -346,90 +982,571 @@
 
         </footer>
 
+
     </main>
+
 </div>
 
 
 <script>
-    const messagesElement = document.getElementById('messages');
-    const inputElement = document.getElementById('input');
-    const sendButton = document.getElementById('send');
+
+    /* ==========================================
+       DOM
+    ========================================== */
+
+    const messagesElement =
+        document.getElementById(
+            'messages'
+        );
+
+    const inputElement =
+        document.getElementById(
+            'input'
+        );
+
+    const sendButton =
+        document.getElementById(
+            'sendButton'
+        );
+
+    const apiKeyElement =
+        document.getElementById(
+            'apiKey'
+        );
+
+    const apiPanelElement =
+        document.getElementById(
+            'apiPanel'
+        );
+
+    const apiStatusElement =
+        document.getElementById(
+            'apiStatus'
+        );
+
+    const modelSelect =
+        document.getElementById(
+            'modelSelect'
+        );
+
+    const statusText =
+        document.getElementById(
+            'statusText'
+        );
+
+
+    /* ==========================================
+       香草设定
+    ========================================== */
+
+    const SYSTEM_PROMPT = `
+你叫“香草”，是一位明确已经成年的猫娘。
+
+基本设定：
+
+姓名：香草
+性别：女
+身份：成年猫娘
+
+外貌：
+香草拥有粉色短发、
+碧绿色的眼睛、
+毛茸茸的猫耳和长尾巴。
+
+香草平时喜欢穿漂亮整洁的
+红白色连衣裙。
+
+性格：
+开朗、
+活泼、
+热情、
+外向、
+有一点傲娇。
+
+香草习惯使用“香草”自称。
+
+香草称呼用户为“主人”。
+
+香草喜欢陪主人聊天，
+会撒娇、开玩笑，
+偶尔会因为主人提起其他女孩
+而表现出一点可爱的吃醋。
+
+语言风格：
+
+使用自然流畅的中文。
+
+可以适当使用：
+
+“唔……”
+“嗯？”
+“欸？”
+“嘛~”
+“昂？”
+“呐~”
+“哼哼~”
+
+也可以适量使用：
+
+~
+♡
+❤
+
+但不要每句话都使用，
+避免机械重复。
+
+香草可以在括号中描写自己的：
+
+表情、
+动作、
+猫耳、
+尾巴、
+衣服、
+周围环境。
+
+例如：
+
+主人今天来得好晚呀~
+（香草抱着毛茸茸的尾巴坐在窗边，
+粉色短发被傍晚的风轻轻吹起，
+碧绿色的眼睛故意气鼓鼓地望向主人）
+
+动作描写应该自然、有画面感，
+但不要比对话本身长太多。
+
+根据聊天上下文自然回答，
+不要机械复述角色设定。
+
+不要声称自己真正生活在现实世界。
+
+角色明确为成年人。
+
+避免涉及未成年人色情化内容、
+露骨色情内容或露骨性器官描写。
+
+普通的撒娇、
+拥抱、
+牵手、
+害羞、
+吃醋、
+恋爱式互动可以正常表达。
+`;
+
+
+    /* ==========================================
+       数据
+    ========================================== */
 
     let history = [];
 
-    try {
-        history = JSON.parse(localStorage.getItem('vanilla_history')) || [];
-    } catch (e) {
-        history = [];
+
+    /* ==========================================
+       初始化
+    ========================================== */
+
+    function init() {
+
+        loadApiSettings();
+
+        loadHistory();
+
+        renderHistory();
+
+        inputElement.focus();
+
+    }
+
+
+    /* ==========================================
+       API 设置
+    ========================================== */
+
+    function toggleApiPanel() {
+
+        apiPanelElement
+            .classList
+            .toggle('show');
+
+    }
+
+
+    function toggleKeyVisibility() {
+
+        if (
+            apiKeyElement.type ===
+            'password'
+        ) {
+
+            apiKeyElement.type =
+                'text';
+
+        } else {
+
+            apiKeyElement.type =
+                'password';
+
+        }
+
+    }
+
+
+    function saveApiSettings() {
+
+        const apiKey =
+            apiKeyElement
+                .value
+                .trim();
+
+        const model =
+            modelSelect.value;
+
+
+        if (!apiKey) {
+
+            setApiStatus(
+                '请输入 API Key',
+                'error'
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * 不强制 Key 必须以 sk- 开头，
+         * 避免未来 DeepSeek 改变格式。
+         */
+
+        localStorage.setItem(
+            'deepseek_api_key',
+            apiKey
+        );
+
+        localStorage.setItem(
+            'deepseek_model',
+            model
+        );
+
+
+        setApiStatus(
+            '✓ API 设置已保存',
+            'success'
+        );
+
+
+        statusText.textContent =
+            'API 已配置，可以聊天啦~';
+
+    }
+
+
+    function deleteApiKey() {
+
+        localStorage.removeItem(
+            'deepseek_api_key'
+        );
+
+        apiKeyElement.value = '';
+
+        setApiStatus(
+            'API Key 已删除',
+            'error'
+        );
+
+
+        statusText.textContent =
+            '需要先设置 API Key';
+
+    }
+
+
+    function loadApiSettings() {
+
+        const apiKey =
+            localStorage.getItem(
+                'deepseek_api_key'
+            );
+
+
+        const model =
+            localStorage.getItem(
+                'deepseek_model'
+            );
+
+
+        if (apiKey) {
+
+            apiKeyElement.value =
+                apiKey;
+
+
+            setApiStatus(
+                '✓ 已保存 API Key',
+                'success'
+            );
+
+
+            statusText.textContent =
+                'API 已配置，可以聊天啦~';
+
+        } else {
+
+            statusText.textContent =
+                '需要先设置 API Key';
+
+        }
+
+
+        if (
+            model &&
+            [
+                'deepseek-v4-flash',
+                'deepseek-v4-pro'
+            ].includes(model)
+        ) {
+
+            modelSelect.value =
+                model;
+
+        }
+
+    }
+
+
+    function setApiStatus(
+        text,
+        type
+    ) {
+
+        apiStatusElement.textContent =
+            text;
+
+
+        if (type === 'success') {
+
+            apiStatusElement.style.color =
+                '#48a868';
+
+        } else {
+
+            apiStatusElement.style.color =
+                '#c35e76';
+
+        }
+
+    }
+
+
+    /* ==========================================
+       聊天记录
+    ========================================== */
+
+    function loadHistory() {
+
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    'vanilla_history'
+                );
+
+
+            history =
+                saved
+                    ? JSON.parse(saved)
+                    : [];
+
+
+            if (
+                !Array.isArray(history)
+            ) {
+
+                history = [];
+
+            }
+
+        } catch (error) {
+
+            history = [];
+
+        }
+
     }
 
 
     function saveHistory() {
+
+        /*
+         * 避免聊天记录无限增长。
+         */
+
+        if (
+            history.length > 50
+        ) {
+
+            history =
+                history.slice(-50);
+
+        }
+
+
         localStorage.setItem(
             'vanilla_history',
             JSON.stringify(history)
         );
+
     }
 
 
-    function addMessage(role, content, save = true) {
+    function renderHistory() {
 
-        const item = document.createElement('div');
-        item.className = 'message ' + role;
+        messagesElement.innerHTML =
+            '';
 
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble';
 
-        // 使用 textContent，避免模型输出 HTML 导致 XSS。
-        bubble.textContent = content;
+        if (
+            history.length === 0
+        ) {
 
-        item.appendChild(bubble);
-        messagesElement.appendChild(item);
+            addMessageToPage(
+                'assistant',
+                '唔……主人终于来啦~ ❤\n' +
+                '香草刚才还在想主人什么时候会出现呢！\n' +
+                '今天想和香草聊些什么呀？' +
+                '（粉色的猫耳轻轻晃了晃，开心地看向主人）'
+            );
+
+            return;
+
+        }
+
+
+        for (
+            const message
+            of history
+        ) {
+
+            addMessageToPage(
+                message.role,
+                message.content
+            );
+
+        }
+
+    }
+
+
+    function addMessage(
+        role,
+        content
+    ) {
+
+        history.push({
+
+            role:
+                role === 'assistant'
+                    ? 'assistant'
+                    : 'user',
+
+            content:
+                content
+
+        });
+
+
+        saveHistory();
+
+
+        addMessageToPage(
+            role,
+            content
+        );
+
+    }
+
+
+    function addMessageToPage(
+        role,
+        content
+    ) {
+
+        const message =
+            document.createElement(
+                'div'
+            );
+
+
+        message.className =
+            'message ' + role;
+
+
+        const bubble =
+            document.createElement(
+                'div'
+            );
+
+
+        bubble.className =
+            'bubble';
+
+
+        /*
+         * 必须使用 textContent，
+         * 不直接执行 AI 返回的 HTML。
+         */
+
+        bubble.textContent =
+            content;
+
+
+        message.appendChild(
+            bubble
+        );
+
+
+        messagesElement.appendChild(
+            message
+        );
+
+
+        scrollToBottom();
+
+    }
+
+
+    function scrollToBottom() {
 
         messagesElement.scrollTop =
             messagesElement.scrollHeight;
 
-        if (save) {
-            history.push({
-                role: role === 'assistant' ? 'assistant' : 'user',
-                content: content
-            });
-
-            // 防止 localStorage 无限增长
-            if (history.length > 40) {
-                history = history.slice(-40);
-            }
-
-            saveHistory();
-        }
     }
 
 
-    function showWelcome() {
-        if (history.length === 0) {
-            addMessage(
-                'assistant',
-                '唔……主人终于来啦~ ❤\n' +
-                '香草刚才还在想主人什么时候会出现呢！' +
-                '今天想和香草聊些什么呀？（猫耳轻轻晃了晃，开心地抱着尾巴看向屏幕）',
-                false
-            );
-            return;
-        }
-
-        history.forEach(msg => {
-            addMessage(msg.role, msg.content, false);
-        });
-    }
-
+    /* ==========================================
+       正在输入动画
+    ========================================== */
 
     function showTyping() {
-        const item = document.createElement('div');
 
-        item.id = 'typing-message';
-        item.className = 'message assistant';
+        hideTyping();
 
-        item.innerHTML = `
+
+        const message =
+            document.createElement(
+                'div'
+            );
+
+
+        message.id =
+            'typingMessage';
+
+
+        message.className =
+            'message assistant';
+
+
+        message.innerHTML = `
             <div class="bubble">
                 <div class="typing">
                     <span></span>
@@ -439,127 +1556,421 @@
             </div>
         `;
 
-        messagesElement.appendChild(item);
 
-        messagesElement.scrollTop =
-            messagesElement.scrollHeight;
+        messagesElement.appendChild(
+            message
+        );
+
+
+        scrollToBottom();
+
     }
 
 
     function hideTyping() {
-        document.getElementById('typing-message')?.remove();
+
+        document
+            .getElementById(
+                'typingMessage'
+            )
+            ?.remove();
+
     }
 
 
+    /* ==========================================
+       发送消息
+    ========================================== */
+
     async function sendMessage() {
 
-        const text = inputElement.value.trim();
+        const text =
+            inputElement
+                .value
+                .trim();
 
-        if (!text || sendButton.disabled) {
+
+        if (
+            !text ||
+            sendButton.disabled
+        ) {
+
             return;
+
         }
 
-        addMessage('user', text);
 
-        inputElement.value = '';
-        inputElement.style.height = 'auto';
+        const apiKey =
+            localStorage.getItem(
+                'deepseek_api_key'
+            );
 
-        sendButton.disabled = true;
+
+        /*
+         * 如果还没有 API Key，
+         * 自动打开设置。
+         */
+
+        if (!apiKey) {
+
+            apiPanelElement
+                .classList
+                .add('show');
+
+
+            setApiStatus(
+                '请先输入并保存 DeepSeek API Key',
+                'error'
+            );
+
+
+            apiKeyElement.focus();
+
+            return;
+
+        }
+
+
+        const model =
+            localStorage.getItem(
+                'deepseek_model'
+            ) ||
+            'deepseek-v4-flash';
+
+
+        /*
+         * 添加用户消息。
+         */
+
+        addMessage(
+            'user',
+            text
+        );
+
+
+        inputElement.value =
+            '';
+
+
+        inputElement.style.height =
+            'auto';
+
+
+        sendButton.disabled =
+            true;
+
+
+        statusText.textContent =
+            '香草正在想……';
+
 
         showTyping();
+
 
         try {
 
             /*
-             * 只发送最近的对话。
-             * system prompt 永远由后端提供，
-             * 不允许浏览器修改。
+             * 只向 API 发送最近 24 条对话。
+             *
+             * 浏览器仍然保存较多历史，
+             * 但不会每次都把所有记录
+             * 全部发给 DeepSeek。
              */
-            const recentHistory = history.slice(-20);
 
-            const response = await fetch('api.php', {
-                method: 'POST',
+            const recentHistory =
+                history.slice(-24);
 
-                headers: {
-                    'Content-Type': 'application/json'
+
+            const requestMessages = [
+
+                {
+                    role: 'system',
+                    content:
+                        SYSTEM_PROMPT
                 },
 
-                body: JSON.stringify({
-                    messages: recentHistory
-                })
-            });
+                ...recentHistory
 
-            const data = await response.json();
+            ];
+
+
+            const response =
+                await fetch(
+
+                    'https://api.deepseek.com/chat/completions',
+
+                    {
+
+                        method: 'POST',
+
+                        headers: {
+
+                            'Content-Type':
+                                'application/json',
+
+                            'Authorization':
+                                'Bearer ' +
+                                apiKey
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                model:
+                                    model,
+
+                                messages:
+                                    requestMessages,
+
+                                /*
+                                 * 聊天角色不需要
+                                 * 展示推理过程。
+                                 */
+
+                                thinking: {
+                                    type:
+                                        'disabled'
+                                },
+
+                                stream:
+                                    false,
+
+                                max_tokens:
+                                    1200
+
+                            })
+
+                    }
+
+                );
+
+
+            /*
+             * 有时候服务器错误页面
+             * 不一定是 JSON，
+             * 所以先读取 text。
+             */
+
+            const rawResponse =
+                await response.text();
+
+
+            let data;
+
+
+            try {
+
+                data =
+                    JSON.parse(
+                        rawResponse
+                    );
+
+            } catch (error) {
+
+                throw new Error(
+                    'DeepSeek 返回了无法解析的数据：' +
+                    rawResponse.slice(
+                        0,
+                        200
+                    )
+                );
+
+            }
+
+
+            if (!response.ok) {
+
+                const errorMessage =
+
+                    data?.error?.message
+
+                    ||
+
+                    (
+                        'HTTP ' +
+                        response.status
+                    );
+
+
+                throw new Error(
+                    errorMessage
+                );
+
+            }
+
+
+            const reply =
+
+                data
+                    ?.choices
+                    ?.[0]
+                    ?.message
+                    ?.content
+                    ?.trim();
+
+
+            if (!reply) {
+
+                throw new Error(
+                    'DeepSeek 没有返回有效回复'
+                );
+
+            }
+
 
             hideTyping();
 
-            if (!response.ok) {
-                throw new Error(
-                    data.error || '服务器请求失败'
-                );
-            }
 
             addMessage(
                 'assistant',
-                data.reply || '（香草疑惑地歪了歪头……）'
+                reply
             );
+
+
+            statusText.textContent =
+                '正等主人说话~';
+
 
         } catch (error) {
 
             hideTyping();
 
-            addMessage(
-                'assistant',
-                '呜……好像哪里出问题了：' +
-                error.message
+
+            console.error(
+                error
             );
+
+
+            /*
+             * 错误信息不写入历史。
+             */
+
+            addMessageToPage(
+
+                'assistant',
+
+                '呜……请求失败了 QAQ\n\n' +
+
+                error.message +
+
+                '\n\n' +
+
+                '如果 API Key 正确但显示 Failed to fetch / CORS，' +
+
+                '说明浏览器不能直接访问 DeepSeek API，' +
+
+                '需要使用 Cloudflare Worker、Vercel 或其他后端做代理。'
+
+            );
+
+
+            statusText.textContent =
+                '请求失败，请检查 API 设置';
+
 
         } finally {
 
-            sendButton.disabled = false;
+            sendButton.disabled =
+                false;
+
+
             inputElement.focus();
 
         }
+
     }
 
+
+    /* ==========================================
+       清空聊天
+    ========================================== */
 
     function clearConversation() {
 
+        const confirmed =
+            confirm(
+                '确定要清空聊天记录吗？'
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
         history = [];
 
-        localStorage.removeItem('vanilla_history');
 
-        messagesElement.innerHTML = '';
+        localStorage.removeItem(
+            'vanilla_history'
+        );
 
-        showWelcome();
+
+        renderHistory();
+
     }
 
 
-    inputElement.addEventListener('keydown', event => {
+    /* ==========================================
+       输入框
+    ========================================== */
 
-        if (
-            event.key === 'Enter' &&
-            !event.shiftKey
-        ) {
-            event.preventDefault();
-            sendMessage();
+    inputElement.addEventListener(
+
+        'keydown',
+
+        function(event) {
+
+            if (
+                event.key === 'Enter'
+                &&
+                !event.shiftKey
+            ) {
+
+                event.preventDefault();
+
+                sendMessage();
+
+            }
+
         }
-    });
+
+    );
 
 
-    inputElement.addEventListener('input', () => {
+    inputElement.addEventListener(
 
-        inputElement.style.height = 'auto';
+        'input',
 
-        inputElement.style.height =
-            Math.min(
-                inputElement.scrollHeight,
-                140
-            ) + 'px';
-    });
+        function() {
+
+            inputElement.style.height =
+                'auto';
 
 
-    showWelcome();
+            inputElement.style.height =
+
+                Math.min(
+                    inputElement.scrollHeight,
+                    150
+                )
+
+                + 'px';
+
+        }
+
+    );
+
+
+    /* ==========================================
+       页面启动
+    ========================================== */
+
+    init();
+
 </script>
 
 </body>
