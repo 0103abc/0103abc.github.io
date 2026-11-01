@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CF1654F Minimal String Xoration 题解 - 0103abc</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../common.js"></script>
+
+  <!-- Markdown 渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax：用于显示 LaTeX 公式 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <main class="container">
+    <article class="content fade-in">
+
+      <span class="badge">题解 · 倍增 · 字符串 · 后缀数组</span>
+
+      <h1>CF1654F Minimal String Xoration 题解</h1>
+
+      <div id="solutionContent"></div>
+
+      <p>
+        <a href="../solution_list.html">← 返回题解列表</a>
+      </p>
+
+    </article>
+  </main>
+
+  <script id="solutionMarkdown" type="text/markdown">
+倍增处理，先倍长字符串，然后记 $f_{i,j}$ 表示从 $i$ 位置开始长度为 $2^j$ 的字符串，则最终答案就是 $f_{*,n}$ 中字典序最小的串。
+
+但是这样的话根据主定理可知倍增过程中串长之和是 $O(n^2\log n)$ 级别的，无法通过。此时注意到倍增过程和后缀排序没有本质区别，因此类比后缀数组维护 rk 和 sa 两个数组即可得到倍增过程中某一层所有串的字典序相对大小关系，最后再 $O(n)$ 时间复杂度还原出字典序最小的串即可。
+
+理论上可以做到 $O(n\log n)$，但是这里偷懒写了 $O(n\log^2n)$。
+
+代码，~~本来看到都写的差不多不想贴了来着~~
+
+```cpp line-numbers
+int sa[N], rk[N], seq[N];
+inline void sol() {
+    int n; cin >> n; n = 1 << n;
+    string s; cin >> s;
+    for (int i = 0; i < n; ++i) sa[i] = i, rk[i] = s[i] - 'a';
+    sort(sa, sa + n, [&](auto &l, auto &r) { return rk[l] < rk[r]; });
+    for (int j = 1; j < n; j <<= 1) {
+        sort(sa, sa + n, [&](auto &l, auto &r) {
+            return rk[l] < rk[r] || rk[l] == rk[r] && rk[l ^ j] < rk[r ^ j];
+        });
+        int idx = 0;
+        for (int i = 0; i < n; ++i)
+            if (!i || rk[sa[i - 1]] < rk[sa[i]] || rk[sa[i - 1]] == rk[sa[i]] && rk[sa[i - 1] ^ j] < rk[sa[i] ^ j]) seq[sa[i]] = idx++;
+            else seq[sa[i]] = seq[sa[i - 1]];
+        for (int i = 0; i < n; ++i) rk[i] = seq[i];
+    } string res;
+    for (int i = 0; i < n; ++i) res.push_back(s[sa[0] ^ i]);
+    cout << res << '\n';
+}
+```
+````
+
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const source = document.querySelector("#solutionMarkdown").textContent.trim();
+      const target = document.querySelector("#solutionContent");
+
+      marked.setOptions({
+        breaks: false,
+        gfm: true
+      });
+
+      target.innerHTML = marked.parse(source);
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([target]);
+      }
+    });
+  </script>
+
+</body>
+</html>

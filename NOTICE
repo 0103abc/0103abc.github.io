@@ -1,0 +1,21 @@
+0103abc website
+https://0103abc.github.io/
+Source: https://github.com/0103abc/0103abc.github.io
+
+This site is based on astro-koharu:
+https://github.com/cosZone/astro-koharu
+Upstream author: cosine (余弦 / yusixian) and astro-koharu contributors.
+Upstream theme license: GNU Affero General Public License version 3.
+The unmodified license text is retained in LICENSE.
+Upstream revision: 329ce55513a8057708c93c11c5b8c096680ad83c
+
+Design inspiration acknowledged by upstream:
+Shoka by amehime: https://github.com/amehime/hexo-theme-shoka
+
+Local changes maintained for 0103abc: site configuration, original-site content
+migration, legacy URL compatibility, problem catalogs, and GitHub Pages workflow.
+
+Blog articles, original applications and third-party materials retain their
+existing authorship, notices and licenses. No new blanket content license is
+granted by this migration. Existing source and content are archived unchanged
+in migration/original. See README.md for the scope of these notices.

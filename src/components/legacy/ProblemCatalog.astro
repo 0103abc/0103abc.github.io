@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import data from '@/data/legacy.json';
+import PageLayout from '@/layouts/PageLayout.astro';
+
+interface Props {
+  records?: boolean;
+}
+const { records = false } = Astro.props;
+const title = records ? '做题记录' : '题解列表';
+const posts = await getCollection('blog', ({ data }) => !data.draft && data.categories?.flat().includes('题解') === true);
+const solutions = posts.map((post) => {
+  const original = data.solutions.find((item) => item.href === `solutions/${post.data.link}.html`);
+  return {
+    title: post.data.title,
+    href: `/post/${post.data.link ?? post.id}`,
+    date: original?.date ?? post.data.date.toISOString().slice(0, 10),
+    oj: original?.oj ?? post.data.categories?.flat()[1] ?? '',
+    difficulty: original?.difficulty ?? '',
+    tags: post.data.tags ?? [],
+    summary: post.data.description ?? '',
+    status: '',
+  };
+});
+const items = (
+  records
+    ? data.solves.map((item) => ({
+        ...item,
+        href: `/${item.href}`,
+        oj: data.solutions.find((solution) => solution.href === item.href)?.oj ?? '',
+      }))
+    : solutions
+).sort((a, b) => b.date.localeCompare(a.date));
+const platforms = [...new Set(items.map((item) => item.oj).filter(Boolean))];
+---
+
+<PageLayout frontmatter={{ title, comments: false }}>
+  <section data-problem-catalog>
+    <p>{records ? '这里记录了一些刷过的题目、提交状态、复盘笔记和补题进度。' : '记录每一道题的思路、推导与代码。'} 共 {items.length} {records ? '道记录' : '篇题解'}。</p>
+    <form class="catalog-filters" role="search">
+      <label>
+        搜索
+        <input name="q" type="search" placeholder="题目、标签、OJ、难度、状态……" autocomplete="off" />
+      </label>
+      <label>
+        OJ
+        <select name="oj">
+          <option value="all">全部 OJ</option>
+          {platforms.map((platform) => <option value={platform}>{platform}</option>)}
+        </select>
+      </label>
+      <button type="submit">查找</button>
+    </form>
+    <p data-catalog-info role="status" aria-live="polite">显示全部 {items.length} 项</p>
+    <div class="catalog-list">
+      {items.map((item) => (
+        <article data-catalog-item data-oj={item.oj} data-search={[item.title, item.oj, item.difficulty, item.status, item.summary, ...item.tags].join(' ').toLowerCase()}>
+          <h2><a href={item.href}>{item.title}</a></h2>
+          <p class="catalog-meta"><time datetime={item.date}>{item.date}</time> · {item.oj} · {item.difficulty}{item.status && ` · ${item.status}`}</p>
+          <p>{item.summary}</p>
+          <p class="catalog-tags">{item.tags.map((tag) => <span>{tag}</span>)}</p>
+        </article>
+      ))}
+    </div>
+    <p data-catalog-empty hidden>没有找到匹配的内容，试试其他关键词。</p>
+    <nav class="catalog-pagination" aria-label="列表分页">
+      <button type="button" data-catalog-prev hidden>上一页</button>
+      <span data-catalog-page></span>
+      <button type="button" data-catalog-next hidden>下一页</button>
+    </nav>
+  </section>
+</PageLayout>
+
+<script>
+  import { initProblemCatalog } from '@/lib/legacy/catalog';
+
+  let cleanup: (() => void) | undefined;
+  const init = () => {
+    cleanup?.();
+    cleanup = initProblemCatalog(document);
+  };
+  if (document.readyState !== 'loading') init();
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:before-swap', () => cleanup?.());
+</script>
+
+<style>
+  .catalog-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; }
+  .catalog-filters label { display: flex; flex-direction: column; gap: .4rem; }
+  .catalog-filters label:first-child { flex: 1; min-width: min(100%, 14rem); }
+  input, select, button { font: inherit; border: 1px solid var(--color-primary, #ed788b); border-radius: .75rem; padding: .6rem .85rem; background: transparent; color: inherit; }
+  select option { background: var(--gradient-bg-start, #fff); color: var(--color-foreground, #333); }
+  button { cursor: pointer; }
+  button:disabled { opacity: .4; cursor: default; }
+  input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid #ed788b; outline-offset: 3px; }
+  .catalog-list article { padding: 1rem 0; border-bottom: 1px solid #ed788b35; }
+  .catalog-list h2 { margin-top: .5rem; font-size: 1.15rem; }
+  .catalog-meta { opacity: .7; font-size: .85rem; }
+  .catalog-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .catalog-tags span { padding: .15rem .7rem; border-radius: 999px; background: #ed788b18; font-size: .8rem; }
+  .catalog-pagination { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+  [hidden] { display: none !important; }
+</style>

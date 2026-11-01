@@ -1,0 +1,98 @@
+# 0103abc · astro-koharu（主题配置说明见 docs/）
+site:
+  title: 0103abc 的网站
+  alternate: 0103abc
+  subtitle: 算法、题解与学习记录
+  name: 0103abc
+  author: 0103abc
+  description: 0103abc 的个人网站，记录算法题解、做题过程与学习笔记。
+  avatar: /img/0103abc-avatar.png
+  showLogo: false
+  url: https://0103abc.github.io
+  defaultOgImage: /img/0103abc-avatar.png
+  startYear: 2026
+  timezone: Asia/Shanghai
+  keywords: [0103abc, 算法, 题解, 洛谷, CodeForces, C++]
+i18n:
+  defaultLocale: zh
+  locales:
+    - code: zh
+      label: 中文
+categoryMap:
+  题解: solutions
+  洛谷: luogu
+  CodeForces: codeforces
+featuredCategories:
+  - link: solutions/luogu
+    label: 洛谷题解
+    image: /img/cover/2.webp
+    description: 思路、推导与代码
+  - link: solutions/codeforces
+    label: CodeForces 题解
+    image: /img/cover/1.webp
+    description: 比赛与算法复盘
+featuredSeries: []
+social:
+  github:
+    url: https://github.com/0103abc
+    icon: ri:github-fill
+    color: '#191717'
+  rss:
+    url: /rss.xml
+    icon: ri:rss-line
+    color: '#ff6600'
+friends:
+  data: []
+announcements: []
+content:
+  enableMath: true
+  enableCodeCopy: true
+  enableCodeFullscreen: true
+  enhanceCodeBlock: true
+  enableLinkEmbed: false
+  enableOGPreview: false
+  enableTweetEmbed: false
+  enableCodePenEmbed: false
+editor:
+  enabled: false
+postActions:
+  copyMarkdown: true
+  downloadMarkdown: true
+  openInEditor: off
+navigation:
+  - name: 首页
+    path: /
+    icon: ri:home-heart-fill
+  - name: 题解
+    path: /solution_list.html
+    icon: ri:code-s-slash-line
+  - name: 做题记录
+    path: /solve_list.html
+    icon: ri:checkbox-circle-line
+  - name: 文章
+    icon: ri:quill-pen-line
+    children:
+      - name: 分类
+        path: /categories
+        icon: ri:grid-fill
+      - name: 标签
+        path: /tags
+        icon: ri:price-tag-3-line
+      - name: 归档
+        path: /archives
+        icon: ri:archive-2-fill
+  - name: 应用
+    path: /apps
+    icon: ri:apps-2-line
+  - name: 关于我
+    path: /about
+    icon: ri:user-smile-line
+comment:
+  provider: none
+analytics:
+  umami:
+    enabled: false
+bgm:
+  enabled: false
+christmas:
+  enabled: false

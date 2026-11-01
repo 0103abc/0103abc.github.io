@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>P16910 「MierOI R2」靈 题解 - 0103abc</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../common.js"></script>
+
+  <!-- Markdown 渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax：用于显示 LaTeX 公式 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <main class="container">
+    <article class="content fade-in">
+
+      <span class="badge">题解 · 动态规划</span>
+
+      <h1>P16910 「MierOI R2」靈 题解 题解</h1>
+
+      <div id="solutionContent"></div>
+
+      <p>
+        <a href="../solution_list.html">← 返回题解列表</a>
+      </p>
+
+    </article>
+  </main>
+
+  <script id="solutionMarkdown" type="text/markdown">
+题目中给的操作形如从队列弹到栈再弹到一个可重集合，这个看着就十分难以维护，考虑转化，注意到若最终从队列 $A$ 中弹出了恰好 $x$ 个元素，则可重集 C 中的元素的和就是队列 $A$ 中前 $x$ 个元素的权值和减去最终留在栈 B 的元素和。
+
+因此容易想到分别用 dp 处理两部分的贡献。
+
+### 1. 从队列 $A$ 中被弹出的元素的贡献
+
+设 $f_{i,j}$ 表示当前从队列 $A$ 中取出了 $i$ 个元素，当前栈大小为 $j$ 方案数是多少。对三个操作分别分类转移即可。该部分是简单的。
+
+此时考虑记 $pre_i=\sum\limits_{j=1}^i a_j$ 即 $a$ 数组的前缀和，$hh_i=\sum\limits_jf_{i,j}$ 即从队列 $A$ 中取出 $i$ 个元素的方案数，则最终该部分的答案就是 $\sum\limits_{i=0}^nhh_ipre_i$。
+
+### 2. 留在栈中元素对答案的反向贡献
+
+考虑一个元素 $a_i$，设其被压入栈 $B$ 时元素数量为 $x$，若其在执行完所有操作后仍然留在栈中，则其必须满足后面的操作中栈的大小始终不会小于 $x$。
+
+因此同样考虑 dp 维护，设 $g_{i,j}$ 表示从当前后缀开始已经从队列中取出了 $i$ 个元素，目标元素上方有 $j$ 个元素，且最终不弹出目标元素的方案数。转移同样分类讨论三种操作，相比上一次 dp 略复杂：
+
++ 操作 $1$：不会影响目标元素上方的元素数量。
++ 操作 $2$：若队列非空则会在目标元素上方增加一个元素。
++ 操作 $3$：若 $j>0$ 则会弹出上方的元素，目标元素上面的元素数量减少 $1$，$j=0$ 显然是不能转移的。
+
+考虑再处理 $h_{i,j}$ 表示当前执行完了前 $i$ 次操作，队列中取出了 $j$ 个元素，且目标元素当前在栈顶时后面有多少种操作方案使得其最终没有被弹栈。则若第 $i$ 次操作可以选操作 $2$，那么 $a_x$ 在这个时刻被压入栈，最终留在栈内的贡献就是 $a_x\times h_{i,x}hh_{x-1}$。对所有这样的 $i,x$ 把所有的贡献加起来就可以得到留在栈中元素对答案的反向贡献。
+
+因此总时间复杂度为 $O(n^3)$，可以通过该题。代码写了滚动数组优化内存。
+
+```cpp line-numbers
+int a[N], pre[N], o[N];
+int f[410][410], g[410][410], nf[410][410], ng[410][410], h[410][410], hh[410];
+inline void add(int &x, int v) { x = (x + v) % mod; }
+inline void sol() {
+    int n, m, cnt = 0; cin >> n >> m;
+    for (int i = 1; i <= n; ++i) cin >> a[i], pre[i] = (pre[i - 1] + a[i]) % mod;
+    for (int i = 1; i <= m; ++i) cin >> o[i];
+    memset(f, 0, sizeof f), memset(g, 0, sizeof g);
+    memset(nf, 0, sizeof nf), memset(ng, 0, sizeof ng);
+    memset(h, 0, sizeof h), memset(hh, 0, sizeof hh);
+    for (int i = 0; i <= n; ++i) {
+        h[m][i] = 1;
+        for (int j = 0; j <= n; ++j) g[i][j] = 1;
+    } for (int i = m; i; --i) {
+        for (int j = 0; j <= n; ++j) {
+            for (int k = 0; k <= n; ++k) {
+                int cnt = 0;
+                if (o[i] & 1) cnt += ((j < n) ? g[j + 1][k] : g[j][k]);
+                if (o[i] & 2) {
+                    if (j < n) {
+                        if (k < n) cnt += g[j + 1][k + 1];
+                    } else cnt += g[j][k];
+                }
+                if ((o[i] & 4) && k) cnt += g[j][k - 1];
+                ng[j][k] = cnt % mod;
+            }
+        } for (int j = 0; j <= n; ++j)
+            for (int k = 0; k <= n; ++k) g[j][k] = ng[j][k], ng[j][k] = 0;
+        for (int j = 0; j <= n; ++j) h[i - 1][j] = g[j][0];
+    } f[0][0] = hh[0] = 1;
+    for (int _ = 1; _ <= m; ++_) {
+        for (int j = 0; j <= n; ++j) for (int k = 0; k <= n; ++k) nf[j][k] = 0;
+        if (o[_] & 2) for (int i = 1; i <= n; ++i) cnt = (cnt + a[i] * hh[i - 1] % mod * h[_][i] % mod) % mod;
+        for (int j = 0; j <= n; ++j) for (int k = 0; k <= j; ++k) {
+            if (o[_] & 1) {
+                if (j < n) add(nf[j + 1][k], f[j][k]);
+                else add(nf[j][k], f[j][k]);
+            } if (o[_] & 2) {
+                if (j < n) add(nf[j + 1][k + 1], f[j][k]);
+                else add(nf[j][k], f[j][k]);
+            } if (o[_] & 4) {
+                if (k) add(nf[j][k - 1], f[j][k]);
+                else add(nf[j][k], f[j][k]);
+            }
+        } for (int j = 0; j <= n; ++j) {
+            hh[j] = 0;
+            for (int k = 0; k <= n; ++k) {
+                f[j][k] = nf[j][k];
+                if (k <= j) add(hh[j], f[j][k]);
+            }
+        }
+    } int all = 0;
+    for (int i = 0; i <= n; ++i) all = (all + pre[i] * hh[i] % mod) % mod;
+    cout << (all - cnt + mod) % mod << '\n';
+}
+```
+
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const source = document.querySelector("#solutionMarkdown").textContent.trim();
+      const target = document.querySelector("#solutionContent");
+
+      marked.setOptions({
+        breaks: false,
+        gfm: true
+      });
+
+      target.innerHTML = marked.parse(source);
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([target]);
+      }
+    });
+  </script>
+
+</body>
+</html>

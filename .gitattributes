@@ -1,0 +1,5 @@
+* text=auto eol=lf
+# Historical content and applications are migration evidence; retain exact bytes.
+migration/original/** -text
+public/** -text
+LICENSE -text
