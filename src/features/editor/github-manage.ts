@@ -95,16 +95,16 @@ export async function changeRemotePost(
   return {
     ...current,
     source,
+    slug: typeof parsed.data.link === 'string' ? parsed.data.link : current.slug,
     sha: saved.content?.sha as string,
     title: String(parsed.data.title ?? current.title),
     hidden: parsed.data.draft === true,
   };
 }
 
-export function preparePostUpdate(source: string, post: RemoteRevision, timezone: string, now = new Date()): string {
+export function preparePostUpdate(source: string, post: RemoteRevision, timezone: string, now = new Date(), slug = post.slug, reservedLinks: readonly string[] = []): string {
   const parsed = parseEditorDocument(source);
-  let updated = preparePublication(source, 'editor-update', [], timezone).source;
-  updated = updateEditorProperty(updated, 'link', post.slug);
+  let updated = preparePublication(source, slug, reservedLinks.filter((link) => link.toLowerCase() !== post.slug.toLowerCase()), timezone).source;
   updated = updateEditorProperty(updated, 'draft', parsed.data.draft === true);
   return updateEditorProperty(updated, 'updated', now.toISOString());
 }

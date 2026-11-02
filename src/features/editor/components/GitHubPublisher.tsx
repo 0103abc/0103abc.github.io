@@ -63,7 +63,8 @@ export default function GitHubPublisher({
   const open = () => {
     if (openedDraft.current !== draftId) {
       openedDraft.current = draftId;
-      setSlug(remote?.slug ?? suggestPostSlug(source));
+      const link = parseEditorDocument(source).data.link;
+      setSlug(typeof link === 'string' && link ? link : remote?.slug ?? suggestPostSlug(source));
       setConfirmed(false);
       setResult(null);
     }
@@ -114,10 +115,9 @@ export default function GitHubPublisher({
     try {
       if (remote) {
         const document = parseEditorDocument(source);
-        if (document.data.link && document.data.link !== remote.slug)
-          throw new Error('当前草稿的文章地址与原文章不一致，已停止保存。请先下载草稿，再从正确的文章页面重新打开。');
         if (document.data.title !== remote.title && !window.confirm(`当前标题与原文章标题不同。\n原文章：${remote.title}\n当前草稿：${String(document.data.title ?? '')}\n\n确定将当前内容保存到原文章吗？`)) return;
-        const sourceToSave = preparePostUpdate(source, remote, siteTimezone);
+        if (slug.trim() !== remote.slug && !window.confirm(`文章地址将从 ${remote.slug} 改为 ${slug.trim()}，原地址可能失效。确定继续吗？`)) return;
+        const sourceToSave = preparePostUpdate(source, remote, siteTimezone, new Date(), slug.trim(), reservedLinks);
         const saved = await changeRemotePost(token.current, remote, sourceToSave);
         if (!saved) throw new Error('未能确认文章更新结果');
         const { source: savedSource, ...revision } = saved;
@@ -248,13 +248,13 @@ export default function GitHubPublisher({
             </p>
             <h3>{typeof title === 'string' ? title : '请先在文章属性中填写标题'}</h3>
             <label className="editor-field" htmlFor={`${id}-slug`}>
-              <span>文章地址（发布后保持不变）</span>
+              <span>文章地址</span>
               <input
                 id={`${id}-slug`}
                 value={slug}
                 onChange={(event) => setSlug(event.target.value)}
                 maxLength={100}
-                disabled={busy || Boolean(remote)}
+                disabled={busy}
                 required
                 autoComplete="off"
                 spellCheck={false}
@@ -263,7 +263,7 @@ export default function GitHubPublisher({
             <p className="editor-muted editor-github-url">https://0103abc.github.io/post/{encodeURIComponent(slug)}</p>
             <p>
               {remote
-                ? `将更新原文件 ${remote.path}。原网址保持不变；若已有其他修改，本次会停止保存。`
+                ? `将更新原文件 ${remote.path}。修改文章地址会改变网址；若已有其他修改，本次会停止保存。`
                 : '点击发布会将当前文章设为公开。已有文章和题解不会被覆盖。'}
             </p>
             {recovering && remote && (

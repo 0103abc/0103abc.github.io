@@ -53,6 +53,13 @@ test('updates keep publication time, body, comments and URL while setting the up
   assert.equal(parseEditorDocument(setPostHidden(hidden, false)).data.draft, false);
 });
 
+test('editing can change the URL while rejecting a reserved URL', () => {
+  const now = new Date('2026-11-02T02:03:04Z');
+  const updated = preparePostUpdate(source, post, 'Asia/Shanghai', now, 'new-address', ['sample', 'other']);
+  assert.equal(parseEditorDocument(updated).data.link, 'new-address');
+  assert.throws(() => preparePostUpdate(source, post, 'Asia/Shanghai', now, 'other', ['sample', 'other']));
+});
+
 test('another account cannot update or delete any article', async () => {
   let writes = 0;
   const request: typeof fetch = async (_url, init) => {
