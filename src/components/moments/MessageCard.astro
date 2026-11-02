@@ -1,5 +1,6 @@
 ---
 import { cn } from '@lib/utils';
+import TagPill from '@/components/tag/TagPill.astro';
 import InlineIcon from './InlineIcon.astro';
 import MediaGallery from './MediaGallery.astro';
 import MessageBody from './MessageBody.astro';
@@ -120,12 +121,7 @@ const railDate = publishedDate?.slice(5);
   {message.tags.length > 0 && (
     <nav aria-label={labels.tags} class="mt-2.5 flex flex-wrap items-center gap-1.5">
       {message.tags.map((tag) => (
-        <a
-          href={tag.href}
-          class="bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary focus-visible:ring-primary inline-flex min-h-10 items-center rounded-full px-2.5 text-[0.8125rem] focus-visible:ring-2 focus-visible:outline-none"
-        >
-          {tag.label}
-        </a>
+        <TagPill tag={tag.label} href={tag.href} class="min-h-10" />
       ))}
     </nav>
   )}

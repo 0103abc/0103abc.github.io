@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import TagPill from '@/components/tag/TagPill.astro';
 import data from '@/data/legacy.json';
 import PageLayout from '@/layouts/PageLayout.astro';
 import { displayDate } from '@/lib/date';
@@ -11,7 +12,11 @@ const { records = false } = Astro.props;
 const title = records ? '做题记录' : '题解列表';
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 const solutions = posts
-  .filter((post) => post.data.categories?.flat().includes(records ? '做题笔记' : '题解'))
+  .filter((post) =>
+    post.data.categories
+      ?.flat()
+      .some((category) => (records ? ['做题笔记', '做题记录'].includes(category) : category === '题解')),
+  )
   .map((post) => {
     const original = data.solutions.find((item) => item.href === `solutions/${post.data.link}.html`);
     return {
@@ -66,7 +71,7 @@ const platforms = [...new Set(items.map((item) => item.oj).filter(Boolean))];
           <h2><a href={item.href}>{item.title}</a></h2>
           <p class="catalog-meta"><time datetime={item.date}>{item.date}</time> · {item.oj} · {item.difficulty}{item.status && ` · ${item.status}`}</p>
           <p>{item.summary}</p>
-          <p class="catalog-tags">{item.tags.map((tag) => <span>{tag}</span>)}</p>
+          <p class="catalog-tags">{item.tags.map((tag) => <TagPill tag={tag} />)}</p>
         </article>
       ))}
     </div>
@@ -105,7 +110,6 @@ const platforms = [...new Set(items.map((item) => item.oj).filter(Boolean))];
   .catalog-list h2 { margin-top: .5rem; font-size: 1.15rem; }
   .catalog-meta { opacity: .7; font-size: .85rem; }
   .catalog-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-  .catalog-tags span { padding: .15rem .7rem; border-radius: 999px; background: #ed788b18; font-size: .8rem; }
   .catalog-pagination { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.5rem; }
   [hidden] { display: none !important; }
 </style>

@@ -1,0 +1,36 @@
+.colored-tag {
+  --tag-ink: hsl(var(--tag-hue) 72% 25%);
+  --tag-fill: hsl(var(--tag-hue) 72% 95%);
+  --tag-border: hsl(var(--tag-hue) 52% 80%);
+}
+.dark .colored-tag {
+  --tag-ink: hsl(var(--tag-hue) 78% 80%);
+  --tag-fill: hsl(var(--tag-hue) 32% 19%);
+  --tag-border: hsl(var(--tag-hue) 35% 35%);
+}
+.colored-tag.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  border: 1px solid var(--tag-border);
+  border-radius: 999px;
+  padding: 0.2em 0.7em;
+  background: var(--tag-fill);
+  color: var(--tag-ink);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.index-tag.colored-tag,
+.index-tag.colored-tag sup {
+  color: var(--tag-ink);
+}
+a.colored-tag:is(:hover, :focus-visible) {
+  filter: saturate(1.2);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+a.colored-tag:focus-visible {
+  outline: 2px solid var(--tag-ink);
+  outline-offset: 3px;
+}

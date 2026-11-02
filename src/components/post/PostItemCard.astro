@@ -1,6 +1,7 @@
 ---
 // 导入所需的库和类型
 import ResponsiveImage from '@components/common/ResponsiveImage.astro';
+import TagPill from '@components/tag/TagPill.astro';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { ScrollableRow } from '@components/ui/ScrollableRow';
@@ -206,14 +207,9 @@ const titleMorph = postTitleMorphName(slug);
           fadeWidth={16}
         >
           {tags.map((tag: string) => (
-            <a href={localizedPath(buildTagPath(tag), locale)}>
-              <Badge
-                className='hover:text-badge-primary/80 shrink-0 cursor-pointer gap-0.5 border-none px-1 text-xs font-bold whitespace-nowrap transition-colors duration-300 flex'
-                variant="outline"
-              >
-                <Icon name="fa6-solid:tags" /> {tag}
-              </Badge>
-            </a>
+            <TagPill tag={tag} href={localizedPath(buildTagPath(tag), locale)} class="shrink-0 whitespace-nowrap">
+              <Icon name="fa6-solid:tags" />
+            </TagPill>
           ))}
         </ScrollableRow>
       )

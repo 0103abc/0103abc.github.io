@@ -1,6 +1,7 @@
 ---
 import { buildTagPath } from '@lib/content/tags';
 import { localizedPath, t } from '@/i18n';
+import { tagColorStyle } from '@/lib/tag-color';
 
 interface Props {
   tag: string;
@@ -10,6 +11,6 @@ interface Props {
 }
 const { tag, count, tier, locale } = Astro.props;
 ---
-<a class="index-tag" data-tag={tag.toLowerCase()} data-tier={tier} href={localizedPath(buildTagPath(tag), locale)} aria-label={t(locale, 'tag.viewTagPosts', { tag, count })}>
+<a class="index-tag colored-tag" style={tagColorStyle(tag)} data-tag={tag.toLowerCase()} data-tier={tier} href={localizedPath(buildTagPath(tag), locale)} aria-label={t(locale, 'tag.viewTagPosts', { tag, count })}>
   {tag}<sup aria-hidden="true">{count}</sup>
 </a>

@@ -36,8 +36,10 @@ import { getOgImageUrl } from '@lib/seo/og-image';
 import { Icon } from 'astro-icon/components';
 import { Comment } from '@/components/comment';
 import PostMarkdownActions from '@/components/post/PostMarkdownActions';
+import TagPill from '@/components/tag/TagPill.astro';
 import PostManager from '@/features/editor/components/PostManager';
 import { defaultLocale, getLocaleLabel, localizedPath, t } from '@/i18n';
+import { buildTagPath } from '@/lib/content/tags';
 import { extractTextFromMarkdown } from '@/lib/sanitize';
 import { postRoute } from '../_shared/routes';
 
@@ -242,6 +244,9 @@ if (post.data.description) {
           )
         }
       </nav>
+      {tags.length > 0 && <nav class="my-3 flex flex-wrap gap-2" aria-label="文章标签">
+        {tags.map((tag) => <TagPill tag={tag} href={localizedPath(buildTagPath(tag), locale)} />)}
+      </nav>}
       {editorConfig.enabled && postRelativePath && isPostSourcePublic(post.data, post.body, import.meta.env.PROD) && (
         <div class="my-3 flex flex-wrap items-center gap-2" data-pagefind-ignore>
           <a class="rounded-lg border border-current/20 px-3 py-1.5 text-sm transition-colors hover:bg-primary/10" href={`/editor/?edit=${encodeURIComponent(`src/content/blog/${postRelativePath}`)}`}>编辑文章</a>

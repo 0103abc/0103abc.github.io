@@ -1,0 +1,12 @@
+---
+import { tagColorStyle } from '@/lib/tag-color';
+
+interface Props {
+  tag: string;
+  href?: string;
+  class?: string;
+}
+const { tag, href, class: className } = Astro.props;
+const Element = href ? 'a' : 'span';
+---
+<Element href={href} class:list={['colored-tag tag-pill', className]} style={tagColorStyle(tag)}><slot />{tag}</Element>
