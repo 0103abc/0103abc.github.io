@@ -22,6 +22,8 @@
 
 ## 启动与检查
 
+在托管 OJ 的这台 Windows 电脑上，可直接访问 <http://localhost:9080/>，跳过公网隧道；与公网使用同一数据库。本地地址可能需要重新登录一次。其他访客使用上面的 HTTPS 公网地址。
+
 在 Windows PowerShell 中启动已有发行版：
 
 ```powershell
@@ -55,6 +57,22 @@ tailscale funnel --bg http://127.0.0.1:9080
 电脑关机、休眠、WSL 被停止或网络中断时无法判题。WSL 服务自启并不等于 Windows 开机自动启动此发行版。重新启动 Windows 后需启动上述 WSL 发行版。
 
 ## 修改博客入口
+
+### 静态资源加速
+
+`server.cdn` 指向 `https://0103abc.github.io/hydro-assets/ui-4.58.5/`；`server.cdn_dynamic` 保持 `false`，插件动态脚本仍由原站生成，登录、API 和 WebSocket 也使用原站。公开前端资源通过 GitHub Pages 分发，减少 Funnel 下载量。
+
+构建脚本 `scripts/prepare-hydro-assets.mjs` 下载官方 `@hydrooj/ui-default@4.58.5` 包，验证固定 SHA-512 后仅提取 `public/`。这 315 个文件与当前 WSL 静态目录逐一 SHA-256 一致。四种公开语言包快照保存在 `static/hydro-locales/`，不含账号、会话或题目数据。
+
+升级 Hydro UI 时先更新 `config/hydro-assets.json`、语言包并部署新的版本目录，确认资源均能访问后，再修改 Hydro 的 `server.cdn`；不要先切换到尚未部署的目录。安装新插件或修改翻译时也应重新导出语言包。需要恢复所有资源由原站提供时，在 WSL 中运行：
+
+```sh
+hydrooj cli system set server.cdn /
+```
+
+原 CDN 配置备份在 `/var/backups/hydro/cdn-before-pages-acceleration.json`。具体系统设置命令请以当前 Hydro 版本为准；恢复后检查页面中的资源地址。
+
+### 博客连接配置
 
 编辑 `src/data/hydro.json` 的 `baseUrl` 和 `domains`，重新部署博客即可。此文件只有公开入口配置；数据库 URI、密码、GitHub OAuth 密钥和测试数据均不放在博客源码中。
 

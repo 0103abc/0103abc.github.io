@@ -14,7 +14,7 @@
     "generate:summaries": "tsx src/scripts/generateSummaries.ts",
     "generate:summaries:force": "tsx src/scripts/generateSummaries.ts --force",
     "generate:all": "npm run generate:lqips && npm run generate:summaries && npm run generate:similarities",
-    "build": "pnpm koharu migrate --check && astro build",
+    "build": "pnpm koharu migrate --check && astro build && node scripts/prepare-hydro-assets.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",

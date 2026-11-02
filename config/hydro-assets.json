@@ -1,0 +1,7 @@
+{
+  "version": "4.58.5",
+  "basePath": "hydro-assets/ui-4.58.5",
+  "tarball": "https://registry.npmjs.org/@hydrooj/ui-default/-/ui-default-4.58.5.tgz",
+  "integrity": "sha512-D4Kmqydj3fEKuPqdd01ar15HIZRP/QEH6ZAfQzFl/dLs1nX5eKryVRvEchHHggCw7ZSesGrDP8w4GLs++6i/Hg==",
+  "source": "https://github.com/hydro-dev/Hydro/tree/11fc1f59c9dba8f790f363d222d4012267d36be0/packages/ui-default"
+}

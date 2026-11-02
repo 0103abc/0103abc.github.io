@@ -41,6 +41,8 @@
 
 博客直接打开原 OJ 的实时题库与记录，不复制或重建数据库，因此在 Hydro 中增题、出比赛和提交后即可看到最新数据。连接地址及题库域位于 [`src/data/hydro.json`](src/data/hydro.json)。恢复和备份说明见 [Hydro 运维说明](docs/features/hydro.md)。
 
+为减少公网隧道传输，Hydro UI 4.58.5 的公开 CSS、JS、字体和语言包由本站 `/hydro-assets/ui-4.58.5/` 提供。构建时下载并校验固定版本的官方 npm 包；语言包来自原站公开接口。登录、题目数据、提交和评测仍由 Hydro 提供。配置见 [`config/hydro-assets.json`](config/hydro-assets.json)，镜像中保留 AGPL 许可与上游源码链接。
+
 ## 本地运行
 
 需要 Node.js >= 22.20.0（建议 Node.js 24）和 pnpm 10.28.2。
