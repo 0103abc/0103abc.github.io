@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { COLOPHON_PLACEMENTS, COLOPHON_TONES } from '../../lib/config/colophon';
+import { utcPostTimestamp } from './date-time';
 import { parseEditorDocument, updateEditorProperty } from './document';
 import { MAX_MARKDOWN_BYTES } from './import-source';
 
@@ -76,7 +77,12 @@ export function suggestPostSlug(source: string): string {
 }
 
 /** Only new, public Markdown files inside the blog collection can be created. */
-export function preparePublication(source: string, slug: string, reservedLinks: readonly string[] = []): Publication {
+export function preparePublication(
+  source: string,
+  slug: string,
+  reservedLinks: readonly string[] = [],
+  siteTimezone = 'Asia/Shanghai',
+): Publication {
   if (new TextEncoder().encode(source).byteLength > MAX_MARKDOWN_BYTES) throw new Error('文章不能超过 5 MB。');
   if (!/^[\p{L}\p{N}][\p{L}\p{N}_-]{0,99}$/u.test(slug))
     throw new Error('文章地址须为 1–100 个字母、中文、数字、短横线或下划线，且以文字或数字开头。');
@@ -92,7 +98,10 @@ export function preparePublication(source: string, slug: string, reservedLinks: 
   if (!parsed.body.trim()) throw new Error('请先填写文章正文。');
   if (validated.data.password || /^\s*:::encrypted\b/m.test(parsed.body))
     throw new Error('网页发布只支持公开文章，请移除加密密码或使用本地工作流。');
-  let published = updateEditorProperty(source, 'link', slug);
+  let published = updateEditorProperty(source, 'date', utcPostTimestamp(parsed.data.date, siteTimezone));
+  if (parsed.data.updated !== undefined)
+    published = updateEditorProperty(published, 'updated', utcPostTimestamp(parsed.data.updated, siteTimezone));
+  published = updateEditorProperty(published, 'link', slug);
   published = updateEditorProperty(published, 'draft', false);
   return { source: published, slug, title: validated.data.title, path: `${ROOT}${slug}.md` };
 }

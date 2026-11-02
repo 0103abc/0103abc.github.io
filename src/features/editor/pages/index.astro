@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BootScripts from '@layouts/BootScripts.astro';
-import { colophonConfig } from '@lib/config/site';
+import { colophonConfig, siteTimezone } from '@lib/config/site';
 import { getPostSlug } from '@lib/content/locale';
 import { buildEditorColophon } from '../colophon-dictionary';
 import Editor from '../Editor';
@@ -26,7 +26,7 @@ const reservedLinks = (await getCollection('blog')).map(getPostSlug);
     <BootScripts />
   </head>
   <body class="editor-page">
-    <Editor client:load ogEndpoint={ogEndpoint} colophon={colophon} reservedLinks={reservedLinks} />
+    <Editor client:load ogEndpoint={ogEndpoint} colophon={colophon} reservedLinks={reservedLinks} siteTimezone={siteTimezone} />
     <noscript>写作室需要 JavaScript 才能编辑和实时预览。</noscript>
   </body>
 </html>

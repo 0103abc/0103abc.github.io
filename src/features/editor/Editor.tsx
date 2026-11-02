@@ -43,6 +43,7 @@ interface Props {
   ogEndpoint?: string;
   colophon?: EditorColophonGroup[];
   reservedLinks?: string[];
+  siteTimezone?: string;
 }
 
 const draftTime = new Intl.DateTimeFormat('zh-CN', {
@@ -61,7 +62,12 @@ function createDraft(source = createEditorSource(), filename?: string, importedF
   return { id: crypto.randomUUID(), title: documentTitle(source), source, updated: Date.now(), filename, importedFrom };
 }
 
-export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [], reservedLinks = [] }: Props) {
+export default function Editor({
+  ogEndpoint = '/api/editor/og',
+  colophon = [],
+  reservedLinks = [],
+  siteTimezone = 'Asia/Shanghai',
+}: Props) {
   const [previewEndpoint, setPreviewEndpoint] = useState(ogEndpoint);
   const [draft, setDraft] = useState<EditorDraft>(() => createDraft());
   const [drafts, setDrafts] = useState<DraftSummary[]>([]);
@@ -458,6 +464,7 @@ export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [], r
                 source={draft.source}
                 draftId={draft.id}
                 reservedLinks={reservedLinks}
+                siteTimezone={siteTimezone}
                 onPublished={(source) => {
                   setDraft((previous) => ({ ...previous, source }));
                   setStatus('文章已提交到 GitHub，等待网站自动更新');
@@ -836,6 +843,7 @@ export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [], r
                     />
                   ) : (
                     <ArticleProperties
+                      siteTimezone={siteTimezone}
                       data={parsed.data}
                       error={parsed.error}
                       colophon={colophon}

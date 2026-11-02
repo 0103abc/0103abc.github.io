@@ -1,4 +1,4 @@
-import { type Document, isMap, isSeq, parseDocument } from 'yaml';
+import { type Document, isMap, isScalar, isSeq, parseDocument, Scalar } from 'yaml';
 
 export interface EditorDocument {
   body: string;
@@ -36,7 +36,19 @@ function editFrontmatter(source: string, edit: (document: Document) => void): st
 export function updateEditorProperty(source: string, key: string, value: unknown): string {
   return editFrontmatter(source, (document) => {
     if (value === undefined || value === '') document.delete(key);
-    else document.set(key, value);
+    else {
+      document.set(key, value);
+      const node = document.get(key, true);
+      // Keep absolute timestamps as strings: YAML 1.1 date coercion otherwise makes
+      // the content loader reinterpret the instant as an offset-free site time.
+      if (
+        (key === 'date' || key === 'updated') &&
+        typeof value === 'string' &&
+        /(?:Z|[+-]\d{2}:?\d{2})$/i.test(value) &&
+        isScalar(node)
+      )
+        node.type = Scalar.QUOTE_DOUBLE;
+    }
   });
 }
 
@@ -71,9 +83,8 @@ export function documentTitle(source: string): string {
   return typeof data.title === 'string' && data.title.trim() ? data.title : '未命名文章';
 }
 
-export function createEditorSource(): string {
-  const now = new Date();
-  const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} 12:00:00`;
+export function createEditorSource(now = new Date()): string {
+  const date = JSON.stringify(new Date(Math.floor(now.getTime() / 60000) * 60000).toISOString());
   return `---\ntitle: 新的一篇\ndate: ${date}\ntags: []\ncategories: []\ndraft: true\n---\n\n# 从这里开始\n\n写下你的想法。右侧是博客实际的排版，手机上可以切换到预览。\n\n:::info\n打开「语法手册」，试试提醒块、标签卡、公式和更多 Shoka 语法。\n:::\n`;
 }
 

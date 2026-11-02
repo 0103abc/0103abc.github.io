@@ -10,6 +10,7 @@ import {
   toggleColophonMark,
 } from '../colophon';
 import type { ListEdit } from '../document';
+import DateTimeField from './DateTimeField';
 import ViewSwitch from './ViewSwitch';
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   colophon: readonly EditorColophonGroup[];
   onChange: (key: string, value: unknown) => void;
   onListChange: (key: string, edit: ListEdit) => void;
+  siteTimezone: string;
 }
 
 interface ListPropertyProps {
@@ -154,8 +156,6 @@ function ColophonProperty({ value, groups, onEdit }: ColophonPropertyProps) {
 
 const textFields = {
   title: { label: '标题', placeholder: '文章标题' },
-  date: { label: '发布时间', placeholder: '2026-01-01 12:00:00' },
-  updated: { label: '更新时间', placeholder: '留空则不显示' },
   cover: { label: '封面网址', placeholder: 'https://…' },
   description: { label: '摘要', placeholder: '显示在文章开头与列表中' },
 } as const;
@@ -166,7 +166,7 @@ const toggles = {
   tocNumbering: { label: '目录编号', hint: '为目录标题自动编号' },
 } as const;
 
-export default function ArticleProperties({ data, error, colophon, onChange, onListChange }: Props) {
+export default function ArticleProperties({ data, error, colophon, onChange, onListChange, siteTimezone }: Props) {
   const fieldId = useId();
   const textField = (key: keyof typeof textFields) => (
     <label key={key} className="editor-field">
@@ -183,10 +183,22 @@ export default function ArticleProperties({ data, error, colophon, onChange, onL
       <p className="editor-muted">与源码中的 YAML 同步；标签与分类用逗号分隔，自定义字段请在源码中编辑。</p>
       {error && <p className="editor-error">{error}</p>}
       {textField('title')}
-      <div className="editor-field-row editor-field-stack">
-        {textField('date')}
-        {textField('updated')}
-      </div>
+      <DateTimeField
+        label="发布时间"
+        value={data.date}
+        legacyTimezone={siteTimezone}
+        required
+        onChange={(value) => onChange('date', value)}
+      />
+      <DateTimeField
+        label="更新时间"
+        value={data.updated}
+        legacyTimezone={siteTimezone}
+        onChange={(value) => onChange('updated', value)}
+      />
+      <p className="editor-muted">
+        自动模式使用浏览器本地时区和夏令时规则；其他选项为固定 UTC 偏移。切换显示时区不会改变实际发布时间。
+      </p>
       {textField('description')}
       {textField('cover')}
       <div className="editor-field-row">

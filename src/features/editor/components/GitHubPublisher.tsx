@@ -15,10 +15,17 @@ interface Props {
   source: string;
   draftId: string;
   reservedLinks: readonly string[];
+  siteTimezone?: string;
   onPublished: (source: string) => void;
 }
 
-export default function GitHubPublisher({ source, draftId, reservedLinks, onPublished }: Props) {
+export default function GitHubPublisher({
+  source,
+  draftId,
+  reservedLinks,
+  onPublished,
+  siteTimezone = 'Asia/Shanghai',
+}: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
   const tokenInput = useRef<HTMLInputElement>(null);
   const token = useRef('');
@@ -86,7 +93,7 @@ export default function GitHubPublisher({ source, draftId, reservedLinks, onPubl
     setBusy(true);
     setError('');
     try {
-      const publication = preparePublication(source, slug.trim(), reservedLinks);
+      const publication = preparePublication(source, slug.trim(), reservedLinks, siteTimezone);
       const saved = await publishNewPost(token.current, publication);
       setResult(saved);
       onPublished(publication.source);
