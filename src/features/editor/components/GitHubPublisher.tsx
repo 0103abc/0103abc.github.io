@@ -113,6 +113,10 @@ export default function GitHubPublisher({
     setError('');
     try {
       if (remote) {
+        const document = parseEditorDocument(source);
+        if (document.data.link && document.data.link !== remote.slug)
+          throw new Error('当前草稿的文章地址与原文章不一致，已停止保存。请先下载草稿，再从正确的文章页面重新打开。');
+        if (document.data.title !== remote.title && !window.confirm(`当前标题与原文章标题不同。\n原文章：${remote.title}\n当前草稿：${String(document.data.title ?? '')}\n\n确定将当前内容保存到原文章吗？`)) return;
         const sourceToSave = preparePostUpdate(source, remote, siteTimezone);
         const saved = await changeRemotePost(token.current, remote, sourceToSave);
         if (!saved) throw new Error('未能确认文章更新结果');

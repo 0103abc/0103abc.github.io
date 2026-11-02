@@ -120,7 +120,7 @@ export default function Editor({
       setPreviewEndpoint(readOGEndpoint(localStorage, location.href) ?? ogEndpoint);
       setDrafts(listDrafts(localStorage));
       const previous = activeDraft(localStorage);
-      if (previous) setDraft(editPath ? previous : refreshNewArticleDate(previous));
+      if (previous && !editPath) setDraft(refreshNewArticleDate(previous));
     } catch {
       setError('浏览器存储不可用，请及时复制或下载文章。');
     }
