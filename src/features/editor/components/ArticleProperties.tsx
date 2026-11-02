@@ -11,6 +11,7 @@ import {
 } from '../colophon';
 import type { ListEdit } from '../document';
 import DateTimeField from './DateTimeField';
+import TagPicker from './TagPicker';
 import ViewSwitch from './ViewSwitch';
 
 interface Props {
@@ -206,6 +207,7 @@ export default function ArticleProperties({ data, error, colophon, onChange, onL
           <ListProperty key={key} name={key} value={data[key]} onChange={onChange} />
         ))}
       </div>
+      <TagPicker value={data.tags} onChange={(value) => onChange('tags', value)} />
       {colophon.length > 0 && (
         <ColophonProperty value={data.colophon} groups={colophon} onEdit={(edit) => onListChange('colophon', edit)} />
       )}

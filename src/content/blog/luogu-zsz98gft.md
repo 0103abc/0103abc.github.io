@@ -1,0 +1,18 @@
+---
+title: "CF1983F array-value 题解"
+date: "2025-01-16T08:38:54.000Z"
+link: "luogu-zsz98gft"
+categories: ["题解"]
+tags: ["Codeforces", "基础算法", "二分", "数据结构", "平衡树"]
+draft: false
+---
+
+> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/zsz98gft)。
+
+喜提最劣解，来补一下题解。考虑一个关键性质：
+
+对于任意三个正整数 $x,y,z$，若满足 $x\le y\le z$，则必然有 $\min(x\oplus y,y\oplus z)\le x\oplus z$（类似的题目是 AT_abc308_g）。证明可以按位考虑。
+
+然后显然的先二分答案是 $x$，那么只需要 check 是否有至少 $k$ 个位置，使得权值 $\le x$。然后发现在固定右端点，移动左端点时，权值具有单调性（单调不递增）。于是考虑记录一下对于每一个右端点，最右边的使得权值 $\le x$ 的位置 $f_i$。然后又能够发现 $f_i$ 单调不递减，于是考虑双指针维护 $f_i$ 的值。具体的，类似于 AT_abc308_g 的做法，开两个 `multiset`（或者平衡树）来维护当前区域内所有的 $a$ 的值和所有相邻两个 $a$ 值异或的值，然后加入当前的右端点，并更新两个 `multiset` 的值。此时若维护相邻异或值的 `multiset` 内的最小值已经小于或等于 $k$ 了，那么就移动左端点，并每一次在两个 `multiset` 中删除当前左端点更新答案，直到 `multiset` 内的最小值再次 $>k$ 为止。此时二分有一只值域的 $\log$，`multiset` 或者平衡树有一只巨大的 $\log$，合起来就是巨大常数的 $O(n\log n\log W)$，但是可以卡着时限通过。
+
+[代码](https://codeforces.com/contest/1983/submission/301210359)，感觉不如指针移动错了调了 $1.5$ 小时。

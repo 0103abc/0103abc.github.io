@@ -1,0 +1,14 @@
+---
+title: "P6898 [ICPC 2014 WF] Metal Processing Plant 题解"
+date: "2025-11-08T14:47:04Z"
+link: "note-obgeyrgs-p6898"
+categories: ["题解"]
+tags: ["洛谷", "基础算法", "贪心"]
+draft: false
+---
+
+> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
+
+正解很困难，但是注意到这是一个最优化问题，所以先考虑一个显然的贪心：按顺序插入每个物品然后分别计算其插入到两个集合内的代价，若插入到 A 集合里更优那么就插入到 A，否则就插入到 B。
+
+这一看就很没有道理，但是这个时候直接随机一个顺序贪心然后多随机几次就能过了，应该是卡不了的。
