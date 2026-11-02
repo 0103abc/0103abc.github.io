@@ -19,6 +19,14 @@
 
 原始网站逐字节存档在 [`migration/original/`](migration/original/)，SHA-256 校验和、原站提交及主题提交记录在 [`migration/manifest.json`](migration/manifest.json)。原文中的公式、C++ 代码与既有作者标注均保留；只修复 CF1654F 文末多余的 Markdown 代码围栏，P1001 从 HTML 转为 Markdown。旧版工具源码保持不变；GitHub Pages 与原站一样不能执行 PHP，其服务能力仍取决于原有外部接口或用户自行配置的后端。
 
+## 在网页写博客
+
+打开 [写作室](https://0103abc.github.io/editor/)，在「文章属性」中填写标题、日期、标签和分类，在编辑区写 Markdown 并实时预览，然后点击右上角「发布」。草稿自动保存在当前浏览器，也可下载 Markdown 备份。
+
+首次发布按面板提示创建 GitHub fine-grained token：Resource owner 为 `0103abc`，Repository access 只选 `0103abc.github.io`，Contents 权限为 **Read and write**。在写作室连接后即可直接发布；不需要本地 Git 或终端。令牌仅存在当前页面内存中，不进入文章、仓库、localStorage 或 sessionStorage。
+
+发布会在 `main` 分支的 `src/content/blog/` 下创建新 Markdown 文件，并将本次发布副本的 `draft` 设为 `false`；GitHub Actions 自动构建和部署。完成前可从面板查看发布进度。网页入口仅允许 `0103abc` 账号发布，重复地址会被拒绝，原有文章和题解不会被覆盖。现阶段支持**新文章发布**；编辑已有文章请使用 GitHub 仓库编辑器。详细说明见 [网页发布指南](docs/features/github-publishing.md)。
+
 ## 本地运行
 
 需要 Node.js >= 22.20.0（建议 Node.js 24）和 pnpm 10.28.2。

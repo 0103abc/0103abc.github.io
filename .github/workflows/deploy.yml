@@ -24,6 +24,7 @@ jobs:
           cache: pnpm
       - uses: actions/configure-pages@v5
       - run: pnpm install --frozen-lockfile
+      - run: pnpm test:editor
       - run: pnpm check
       - run: pnpm build
       - run: node scripts/verify-migration.mjs

@@ -1533,3 +1533,79 @@
     transition: none;
   }
 }
+
+/* GitHub publishing uses a native modal so keyboard focus stays with the form. */
+.editor-github-dialog {
+  width: min(560px, calc(100vw - 24px));
+  max-height: min(90dvh, 820px);
+  margin: auto;
+  padding: 22px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--editor-hairline);
+  border-radius: 20px;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  box-shadow: 0 20px 90px #16091b40;
+}
+.editor-github-dialog::backdrop {
+  background: #16091b80;
+}
+.editor-github-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.editor-github-heading h2 {
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+.editor-github-content {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
+.editor-github-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.editor-github-content a:not(.editor-primary) {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.editor-github-content .editor-button {
+  min-height: 40px;
+  justify-self: start;
+  padding-inline: 14px;
+}
+.editor-github-content .editor-field {
+  margin-top: 0;
+}
+.editor-github-help {
+  list-style: decimal;
+  padding-left: 1.4rem;
+  font-size: 13px;
+}
+.editor-github-help li + li {
+  margin-top: 8px;
+}
+.editor-github-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.editor-github-url {
+  overflow-wrap: anywhere;
+}
+.editor-github-error {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  background: hsl(var(--destructive) / 0.08);
+  color: hsl(var(--destructive));
+  line-height: 1.7;
+  font-size: 13px;
+}

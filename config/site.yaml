@@ -54,12 +54,16 @@ content:
   enableTweetEmbed: false
   enableCodePenEmbed: false
 editor:
-  enabled: false
+  enabled: true
 postActions:
   copyMarkdown: true
   downloadMarkdown: true
   openInEditor: off
 navigation:
+  - name: 写作室
+    path: /editor/
+    localeIndependent: true
+    icon: ri:edit-box-line
   - name: 首页
     path: /
     icon: ri:home-heart-fill

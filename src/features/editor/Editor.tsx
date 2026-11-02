@@ -1,3 +1,4 @@
+import { ErrorBoundary } from '@components/common/ErrorBoundary';
 import { useMediaQuery } from '@hooks/useMediaQuery';
 import { useRetainedValue } from '@hooks/useRetainedValue';
 import { type CSSProperties, type MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
@@ -6,6 +7,7 @@ import type { EditorColophonGroup } from './colophon';
 import ArticleProperties from './components/ArticleProperties';
 import CodeEditor, { type CodeEditorHandle } from './components/CodeEditor';
 import EditorIcon from './components/EditorIcon';
+import GitHubPublisher from './components/GitHubPublisher';
 import LinkPreviewSettings from './components/LinkPreviewSettings';
 import PreviewFrame from './components/PreviewFrame';
 import SheetHandle from './components/SheetHandle';
@@ -40,6 +42,7 @@ type Panel = 'drafts' | 'syntax' | 'properties' | 'copy' | 'service' | 'import' 
 interface Props {
   ogEndpoint?: string;
   colophon?: EditorColophonGroup[];
+  reservedLinks?: string[];
 }
 
 const draftTime = new Intl.DateTimeFormat('zh-CN', {
@@ -58,7 +61,7 @@ function createDraft(source = createEditorSource(), filename?: string, importedF
   return { id: crypto.randomUUID(), title: documentTitle(source), source, updated: Date.now(), filename, importedFrom };
 }
 
-export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [] }: Props) {
+export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [], reservedLinks = [] }: Props) {
   const [previewEndpoint, setPreviewEndpoint] = useState(ogEndpoint);
   const [draft, setDraft] = useState<EditorDraft>(() => createDraft());
   const [drafts, setDrafts] = useState<DraftSummary[]>([]);
@@ -448,7 +451,20 @@ export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [] }:
           {action('copy', '复制', (event) => {
             void copy(event.currentTarget);
           })}
-          {action('download', '下载 MD', download, cms ? '' : 'editor-primary')}
+          {action('download', '下载 MD', download)}
+          {!cms && (
+            <ErrorBoundary fallback={<span role="alert">发布组件暂时不可用，仍可下载文章。</span>}>
+              <GitHubPublisher
+                source={draft.source}
+                draftId={draft.id}
+                reservedLinks={reservedLinks}
+                onPublished={(source) => {
+                  setDraft((previous) => ({ ...previous, source }));
+                  setStatus('文章已提交到 GitHub，等待网站自动更新');
+                }}
+              />
+            </ErrorBoundary>
+          )}
           {cms && (
             <button
               type="button"
@@ -612,8 +628,8 @@ export default function Editor({ ogEndpoint = '/api/editor/og', colophon = [] }:
       </div>
       <footer className="editor-status">
         <span>{draft.source.length.toLocaleString()} 字符</span>
-        <a href="/post/note/shoka-features" target="_blank" rel="noreferrer">
-          Shoka 语法演示
+        <a href="https://github.com/0103abc/0103abc.github.io/actions/workflows/deploy.yml" target="_blank" rel="noreferrer">
+          网站发布进度
           <EditorIcon name="external" />
         </a>
       </footer>

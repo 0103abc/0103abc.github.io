@@ -53,7 +53,8 @@ test('reads and saves the complete UTF-8 source without rewriting frontmatter or
   assert.equal(saved.status, 200);
   assert.deepEqual(await saved.json(), { success: true, postId: 'post.md', source: edited });
   assert.deepEqual(await fs.readFile(path.join(f.contentRoot, 'post.md')), Buffer.from(edited));
-  assert.equal((await fs.stat(path.join(f.contentRoot, 'post.md'))).mode & 0o777, 0o664);
+  // Windows does not preserve POSIX group/other permission bits; byte preservation above applies everywhere.
+  if (process.platform !== 'win32') assert.equal((await fs.stat(path.join(f.contentRoot, 'post.md'))).mode & 0o777, 0o664);
   assert.deepEqual(await fs.readdir(f.contentRoot), ['post.md']);
 });
 

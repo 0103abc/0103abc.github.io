@@ -1,0 +1,244 @@
+import { useEffect, useId, useRef, useState } from 'react';
+import { parseEditorDocument } from '../document';
+import {
+  BLOG_REPOSITORY,
+  type PublishedPost,
+  preparePublication,
+  publishNewPost,
+  suggestPostSlug,
+  TOKEN_SETUP_URL,
+  verifyGitHubOwner,
+} from '../github-publish';
+import EditorIcon from './EditorIcon';
+
+interface Props {
+  source: string;
+  draftId: string;
+  reservedLinks: readonly string[];
+  onPublished: (source: string) => void;
+}
+
+export default function GitHubPublisher({ source, draftId, reservedLinks, onPublished }: Props) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const tokenInput = useRef<HTMLInputElement>(null);
+  const token = useRef('');
+  const busyRef = useRef(false);
+  const openedDraft = useRef('');
+  const [account, setAccount] = useState('');
+  const [slug, setSlug] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [result, setResult] = useState<PublishedPost | null>(null);
+  const id = useId();
+
+  useEffect(() => {
+    const clear = () => {
+      token.current = '';
+      setAccount('');
+      if (tokenInput.current) tokenInput.current.value = '';
+    };
+    window.addEventListener('pagehide', clear);
+    return () => {
+      clear();
+      window.removeEventListener('pagehide', clear);
+    };
+  }, []);
+
+  const open = () => {
+    if (openedDraft.current !== draftId) {
+      openedDraft.current = draftId;
+      setSlug(suggestPostSlug(source));
+      setResult(null);
+    }
+    setError('');
+    dialog.current?.showModal();
+  };
+  const close = () => {
+    if (busyRef.current) return;
+    if (tokenInput.current) tokenInput.current.value = '';
+    dialog.current?.close();
+  };
+  const connect = async () => {
+    if (busyRef.current) return;
+    const value = tokenInput.current?.value.trim() ?? '';
+    if (!value) {
+      setError('请先填写 GitHub 令牌。');
+      return;
+    }
+    busyRef.current = true;
+    setBusy(true);
+    setError('');
+    try {
+      const login = await verifyGitHubOwner(value);
+      token.current = value;
+      if (tokenInput.current) tokenInput.current.value = '';
+      setAccount(login);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : '连接失败，请重试。');
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  };
+  const publish = async () => {
+    if (busyRef.current || !token.current || result) return;
+    busyRef.current = true;
+    setBusy(true);
+    setError('');
+    try {
+      const publication = preparePublication(source, slug.trim(), reservedLinks);
+      const saved = await publishNewPost(token.current, publication);
+      setResult(saved);
+      onPublished(publication.source);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : '发布未完成，草稿仍在当前浏览器。');
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  };
+  const title = parseEditorDocument(source).data.title;
+
+  return (
+    <>
+      <button type="button" className="editor-button editor-primary" onClick={open} title="发布到博客" aria-label="发布到博客">
+        <EditorIcon name="save" />
+        <span>发布</span>
+      </button>
+      <dialog
+        ref={dialog}
+        className="editor-github-dialog"
+        aria-labelledby={`${id}-title`}
+        onCancel={(event) => {
+          event.preventDefault();
+          close();
+        }}
+      >
+        <div className="editor-github-heading">
+          <h2 id={`${id}-title`}>发布到博客</h2>
+          <button type="button" className="editor-icon-button" aria-label="关闭发布面板" onClick={close} disabled={busy}>
+            <EditorIcon name="close" />
+          </button>
+        </div>
+        {result ? (
+          <div className="editor-github-content" aria-live="polite">
+            <h3>文章已提交到 GitHub</h3>
+            <p>网站正在自动构建。部署完成后，文章会出现在首页、归档和搜索中。</p>
+            <div className="editor-github-actions">
+              <a
+                className="editor-button editor-primary"
+                href={`https://github.com/${BLOG_REPOSITORY}/actions/workflows/deploy.yml`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                查看发布进度
+              </a>
+              <a className="editor-button" href={result.articleUrl} target="_blank" rel="noreferrer">
+                部署完成后查看文章
+              </a>
+            </div>
+            <a href={result.sourceUrl} target="_blank" rel="noreferrer">
+              查看已保存的 Markdown
+            </a>
+            <p className="editor-muted">当前草稿已保留。可以关闭面板，点击「新建」继续写下一篇。</p>
+          </div>
+        ) : !account ? (
+          <form
+            key="github-connect"
+            className="editor-github-content"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void connect();
+            }}
+          >
+            <p>连接你自己的 GitHub 账号后，即可在这里发布新文章。</p>
+            <ol className="editor-github-help">
+              <li>
+                <a href={TOKEN_SETUP_URL} target="_blank" rel="noreferrer">
+                  创建博客专用令牌
+                </a>
+                （需要登录 0103abc）。
+              </li>
+              <li>
+                Repository access 选择 Only select repositories，只勾选 <strong>0103abc.github.io</strong>。
+              </li>
+              <li>
+                确认 Contents 为 <strong>Read and write</strong>，生成后粘贴到下方。
+              </li>
+            </ol>
+            <label className="editor-field" htmlFor={`${id}-token`}>
+              <span>GitHub 令牌</span>
+              <input
+                id={`${id}-token`}
+                ref={tokenInput}
+                type="password"
+                autoComplete="off"
+                spellCheck={false}
+                placeholder="github_pat_…"
+                disabled={busy}
+                required
+              />
+            </label>
+            <p className="editor-muted">
+              令牌只发送给 GitHub，不会写入文章、仓库或浏览器存储；刷新、离开页面或断开连接后需要重新填写。
+            </p>
+            <button className="editor-button editor-primary" type="submit" disabled={busy}>
+              {busy ? '正在连接…' : '连接 GitHub'}
+            </button>
+          </form>
+        ) : (
+          <form
+            key="github-publish"
+            className="editor-github-content"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void publish();
+            }}
+          >
+            <p>
+              已连接 <strong>{account}</strong> · {BLOG_REPOSITORY}
+            </p>
+            <h3>{typeof title === 'string' ? title : '请先在文章属性中填写标题'}</h3>
+            <label className="editor-field" htmlFor={`${id}-slug`}>
+              <span>文章地址（发布后保持不变）</span>
+              <input
+                id={`${id}-slug`}
+                value={slug}
+                onChange={(event) => setSlug(event.target.value)}
+                maxLength={100}
+                disabled={busy}
+                required
+                autoComplete="off"
+                spellCheck={false}
+              />
+            </label>
+            <p className="editor-muted editor-github-url">https://0103abc.github.io/post/{encodeURIComponent(slug)}</p>
+            <p>点击发布会将当前文章设为公开。已有文章和题解不会被覆盖。</p>
+            <div className="editor-github-actions">
+              <button className="editor-button editor-primary" type="submit" disabled={busy}>
+                {busy ? '正在提交…' : '发布新文章'}
+              </button>
+              <button
+                className="editor-button"
+                type="button"
+                disabled={busy}
+                onClick={() => {
+                  token.current = '';
+                  setAccount('');
+                  setError('');
+                }}
+              >
+                断开 GitHub
+              </button>
+            </div>
+          </form>
+        )}
+        {error && (
+          <p className="editor-github-error" role="alert">
+            {error}
+          </p>
+        )}
+      </dialog>
+    </>
+  );
+}

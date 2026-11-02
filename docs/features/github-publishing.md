@@ -1,0 +1,36 @@
+# 在 GitHub Pages 网页上写博客
+
+入口：[写作室](https://0103abc.github.io/editor/)。电脑上可以边写边预览，手机上用底部「编辑／预览」切换。
+
+## 写作与发布
+
+1. 点击「新建」，在「文章属性」里填写标题、日期、摘要、分类和标签。
+2. 用 Markdown 编写正文。代码块、公式和其他主题语法可参考写作室的「语法手册」。草稿自动保存在当前浏览器，也可下载 MD 文件备份。
+3. 点击右上角「发布」，连接自己的 GitHub 令牌，确认文章地址，再点「发布新文章」。文章地址可以保留自动生成的值，也可以改成英文、中文、数字、短横线或下划线。
+4. 看到「文章已提交到 GitHub」表示文件已保存。点击「查看发布进度」，待 GitHub Actions 成功后再打开文章。文章会出现在首页、归档、分类和站内搜索中。
+
+点击发布会将本次提交副本设为公开（`draft: false`），保留正文、自定义属性和注释。原来的浏览器草稿继续保留。浏览器清理存储会删除本地草稿，因此重要原文仍建议下载备份。
+
+## 首次连接 GitHub
+
+GitHub Pages 是静态网站。网页发布通过 [GitHub Contents API](https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents) 创建文件，不把仓库密码或访问令牌放进公开网页。它不会继承本机 Git 的登录状态。
+
+发布面板中「创建博客专用令牌」会打开 GitHub 的 fine-grained token 页面，预填 owner、有效期和 Contents 权限。请确认：
+
+- 使用 **0103abc** 账号；Resource owner 为 `0103abc`。
+- Repository access 选择 **Only select repositories**，只勾选 **0103abc.github.io**。
+- Repository permissions → **Contents: Read and write**。不需要为网页发布授予 Workflows 或 Administration 权限。
+- 按需要设定到期日，生成令牌后仅粘贴到自己网站写作室的密码输入框。
+
+令牌只发送给 `https://api.github.com`，仅保存在当前页面的内存中，不写入 Markdown、仓库、草稿、localStorage 或 sessionStorage。连接成功会清空输入框；刷新、离开页面或断开连接后需要重新填写。可在 [GitHub 令牌设置](https://github.com/settings/personal-access-tokens) 中撤销或更新到期令牌。
+
+## 现阶段的边界
+
+- 网页功能用于**创建新文章**。编辑已有文章请打开仓库中的原 Markdown 文件，或使用本地工作流；不会从此页面覆盖旧文章。
+- 发布前校验必填属性、文件地址、已存在的文章路径及大小。GitHub 创建请求不携带用于替换文件的 SHA，即使同时有人发布到相同地址，也不会覆盖已有文件。
+- 网络中断时可能已经提交成功。面板会尽量核对 GitHub 文件；如果仍无法确认，请先查看仓库，再用同一个文章地址重试，避免改名后重复发布。
+- 网页发布只处理公开文章，不接受含密码或加密块的原文；上传仓库后源文件是公开的。
+- 初始入口所有人都能打开并编写本地草稿，发布时检查 GitHub 账号为 `0103abc`；写入授权最终由 GitHub API 执行。其他访客没有所有者的令牌不能修改仓库。
+- 目录和配置在构建时读取，新文章的 `categories: [[题解, 洛谷]]` 会进入题解目录；普通博客无需填写该分类。
+
+主题代码和本站扩展仍遵循根目录的 AGPL-3.0 许可；文章的版权归属和授权仍按原文及 README 的版权说明处理。
