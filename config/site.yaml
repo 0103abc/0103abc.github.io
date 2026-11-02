@@ -77,6 +77,14 @@ navigation:
   - name: 做题记录
     path: /solve_list.html
     icon: ri:checkbox-circle-line
+  - name: 学习笔记
+    path: /learning_notes/
+    localeIndependent: true
+    icon: ri:book-open-line
+  - name: 闲话
+    path: /chat/
+    localeIndependent: true
+    icon: ri:chat-1-line
   - name: 文章
     icon: ri:quill-pen-line
     children:

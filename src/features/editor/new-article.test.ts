@@ -9,7 +9,8 @@ test('new article types set their category and the actual current instant', () =
     const parsed = parseEditorDocument(newArticleSource(id, now));
     assert.equal(parsed.data.date, '2026-11-02T03:04:00.000Z');
     assert.equal(parsed.data.draft, true);
-    assert.deepEqual(parsed.data.categories, id === 'blog' ? [] : [id === 'solution' ? '题解' : '做题笔记']);
+    const categories = { blog: [], solution: ['题解'], note: ['做题笔记'], learning: ['学习笔记'], chat: ['闲话'] };
+    assert.deepEqual(parsed.data.categories, categories[id]);
   }
 });
 

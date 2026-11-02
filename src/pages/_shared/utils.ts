@@ -81,6 +81,8 @@ const MIRROR_EXEMPT = new Set([
   // The first editor release is one shared Chinese workbench, including its preview frame.
   'editor/index',
   'editor/preview',
+  'learning_notes',
+  'chat',
 ]);
 
 const toRoute = (moduleKey: string) => moduleKey.replace('/src/pages/', '').replace(/\.(astro|md|mdx|ts)$/, '');

@@ -5,12 +5,18 @@ export const ARTICLE_KINDS = [
   { id: 'solution', label: '题解', description: '记录题意、思路与解题代码。' },
   { id: 'note', label: '做题笔记', description: '记录尝试、错题与做题复盘。' },
   { id: 'blog', label: '普通博客', description: '随笔、学习记录或其他文章。' },
+  { id: 'learning', label: '学习笔记', description: '记录算法和知识点。' },
+  { id: 'chat', label: '闲话', description: '写随笔和日常。' },
 ] as const;
 export type ArticleKind = (typeof ARTICLE_KINDS)[number]['id'];
 
 export function newArticleSource(kind: ArticleKind, now = new Date()): string {
   let source = createEditorSource(now);
   if (kind === 'blog') return source;
+  if (kind === 'learning' || kind === 'chat') {
+    source = updateEditorProperty(source, 'title', kind === 'learning' ? '新的学习笔记' : '新的闲话');
+    return updateEditorProperty(source, 'categories', [kind === 'learning' ? '学习笔记' : '闲话']);
+  }
   source = updateEditorProperty(source, 'title', kind === 'solution' ? '新题解' : '新的做题笔记');
   source = updateEditorProperty(source, 'categories', [kind === 'solution' ? '题解' : '做题笔记']);
   return source.replace(

@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import { displayDate } from '@/lib/date';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.categories?.flat().includes(title) === true)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+<PageLayout frontmatter={{ title, comments: false }}>
+  {posts.length === 0 ? <p>这里还没有文章。</p> : <ul>
+    {posts.map((post) => <li><a href={`/post/${encodeURIComponent(post.data.link ?? post.id)}`}>{post.data.title}</a> <small>{displayDate.date(post.data.date)}</small></li>)}
+  </ul>}
+</PageLayout>
