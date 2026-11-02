@@ -1,3 +1,5 @@
+import type { RemoteRevision } from './github-manage';
+
 export interface EditorDraft {
   id: string;
   title: string;
@@ -6,6 +8,7 @@ export interface EditorDraft {
   filename?: string;
   /** Same-origin `.md` path the draft was copied from, used to offer the existing copy on re-import. */
   importedFrom?: string;
+  remote?: RemoteRevision;
 }
 
 export type DraftSummary = Omit<EditorDraft, 'source'>;

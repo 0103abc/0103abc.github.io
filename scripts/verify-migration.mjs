@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import matter from 'gray-matter';
 
 const manifest = JSON.parse(fs.readFileSync('migration/manifest.json', 'utf8'));
 const read = (file) => fs.readFileSync(file, 'utf8').replaceAll('\r\n', '\n');
@@ -33,22 +34,24 @@ for (const [file, hash] of Object.entries(manifest.files)) {
   );
 }
 for (const post of manifest.posts) {
-  const original = read(`migration/original/${post.source}`);
+  // The immutable archive above preserves the original migration. Live articles
+  // may later be edited, hidden or deleted explicitly by the site owner.
+  if (!fs.existsSync(post.markdown) || matter(read(post.markdown)).data.draft === true) {
+    for (const route of [post.url, post.legacyUrl, `${post.url}.md`]) {
+      const target = path.join('dist', route.replace(/^\//, ''));
+      assert.ok(!fs.existsSync(target), `Hidden/deleted article was emitted: ${route}`);
+    }
+    continue;
+  }
   const markdown = read(post.markdown);
-  let source = original.match(/<script id="solutionMarkdown" type="text\/markdown">([\s\S]*?)<\/script>/)?.[1].trim();
-  if (post.source.endsWith('CF1654F.html')) source = source.replace(/\n````\s*$/, '');
-  if (source) assert.ok(markdown.includes(source), `Missing original Markdown: ${post.source}`);
-  const originalCodes = source
-    ? [...source.matchAll(/```cpp[^\n]*\n([\s\S]*?)\n`{3,4}/g)].map((match) => match[1].trim())
-    : codeBlocks(original);
+  const currentCodes = [...markdown.matchAll(/```cpp[^\n]*\n([\s\S]*?)\n`{3,4}/g)].map((match) => match[1].trim());
   for (const route of [post.url, post.legacyUrl]) {
     const html = emitted(route);
     assert.ok(html.includes('0103abc'), `Missing site identity: ${route}`);
-    assert.deepEqual(codeBlocks(html), originalCodes, `Changed C++ code: ${route}`);
+    for (const code of currentCodes) assert.ok(codeBlocks(html).includes(code), `Missing current C++ code: ${route}`);
     assert.ok(html.includes(`https://0103abc.github.io${post.url}`), `Missing canonical URL: ${route}`);
-    if (source) assert.ok(html.includes('katex'), `Missing math rendering: ${route}`);
+    if (/\$[^$\n]+\$/.test(markdown)) assert.ok(html.includes('katex'), `Missing math rendering: ${route}`);
   }
-  assert.ok(emitted('/').includes(post.url), `Post missing from homepage: ${post.url}`);
   assert.ok(emitted('/archives').includes(post.url), `Post missing from archives: ${post.url}`);
 }
 for (const url of ['/solution_list.html', '/solve_list.html', '/apps', '/about', '/categories', '/tags', '/rss.xml'])
@@ -65,5 +68,5 @@ assert.ok(
   'Missing search index',
 );
 console.log(
-  `PASS: ${Object.keys(manifest.files).length} archived originals, ${manifest.posts.length} complete solutions, old URLs, C++ code, math, applications and search index.`,
+  `PASS: ${Object.keys(manifest.files).length} archived originals, current public solutions, visibility, old URLs, C++ code, math, applications and search index.`,
 );

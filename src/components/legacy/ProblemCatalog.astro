@@ -2,33 +2,41 @@
 import { getCollection } from 'astro:content';
 import data from '@/data/legacy.json';
 import PageLayout from '@/layouts/PageLayout.astro';
+import { displayDate } from '@/lib/date';
 
 interface Props {
   records?: boolean;
 }
 const { records = false } = Astro.props;
 const title = records ? '做题记录' : '题解列表';
-const posts = await getCollection('blog', ({ data }) => !data.draft && data.categories?.flat().includes('题解') === true);
-const solutions = posts.map((post) => {
-  const original = data.solutions.find((item) => item.href === `solutions/${post.data.link}.html`);
-  return {
-    title: post.data.title,
-    href: `/post/${post.data.link ?? post.id}`,
-    date: original?.date ?? post.data.date.toISOString().slice(0, 10),
-    oj: original?.oj ?? post.data.categories?.flat()[1] ?? '',
-    difficulty: original?.difficulty ?? '',
-    tags: post.data.tags ?? [],
-    summary: post.data.description ?? '',
-    status: '',
-  };
-});
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const solutions = posts
+  .filter((post) => post.data.categories?.flat().includes(records ? '做题笔记' : '题解'))
+  .map((post) => {
+    const original = data.solutions.find((item) => item.href === `solutions/${post.data.link}.html`);
+    return {
+      title: post.data.title,
+      href: `/post/${post.data.link ?? post.id}`,
+      date: original?.date ?? displayDate.date(post.data.date),
+      oj: original?.oj ?? post.data.categories?.flat()[1] ?? '',
+      difficulty: original?.difficulty ?? '',
+      tags: post.data.tags ?? [],
+      summary: post.data.description ?? '',
+      status: '',
+    };
+  });
 const items = (
   records
-    ? data.solves.map((item) => ({
-        ...item,
-        href: `/${item.href}`,
-        oj: data.solutions.find((solution) => solution.href === item.href)?.oj ?? '',
-      }))
+    ? [
+        ...data.solves
+          .filter((item) => posts.some((post) => item.href === `solutions/${post.data.link ?? post.id}.html`))
+          .map((item) => ({
+            ...item,
+            href: `/${item.href}`,
+            oj: data.solutions.find((solution) => solution.href === item.href)?.oj ?? '',
+          })),
+        ...solutions,
+      ]
     : solutions
 ).sort((a, b) => b.date.localeCompare(a.date));
 const platforms = [...new Set(items.map((item) => item.oj).filter(Boolean))];

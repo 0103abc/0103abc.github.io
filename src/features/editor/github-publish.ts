@@ -106,7 +106,7 @@ export function preparePublication(
   return { source: published, slug, title: validated.data.title, path: `${ROOT}${slug}.md` };
 }
 
-function encodedContent(source: string): string {
+export function encodedContent(source: string): string {
   const bytes = new TextEncoder().encode(source);
   let binary = '';
   for (let offset = 0; offset < bytes.length; offset += 8192)
@@ -120,7 +120,7 @@ function checkedToken(value: string): string {
   return token;
 }
 
-function options(token: string, init: RequestInit = {}): RequestInit {
+export function options(token: string, init: RequestInit = {}): RequestInit {
   return {
     ...init,
     credentials: 'omit',
@@ -136,7 +136,7 @@ function options(token: string, init: RequestInit = {}): RequestInit {
   };
 }
 
-function githubError(status: number): Error {
+export function githubError(status: number): Error {
   if (status === 401) return new Error('GitHub 令牌无效或已过期，请重新连接。');
   if (status === 403)
     return new Error('GitHub 拒绝了请求。请确认令牌已选中此仓库，Contents 权限为 Read and write，或稍后再试。');

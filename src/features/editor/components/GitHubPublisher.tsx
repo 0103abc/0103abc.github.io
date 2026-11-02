@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { parseEditorDocument } from '../document';
+import { changeRemotePost, preparePostUpdate, type RemoteRevision } from '../github-manage';
 import {
   BLOG_REPOSITORY,
   type PublishedPost,
@@ -16,7 +17,8 @@ interface Props {
   draftId: string;
   reservedLinks: readonly string[];
   siteTimezone?: string;
-  onPublished: (source: string) => void;
+  remote?: RemoteRevision;
+  onPublished: (source: string, remote?: RemoteRevision) => void;
 }
 
 export default function GitHubPublisher({
@@ -24,6 +26,7 @@ export default function GitHubPublisher({
   draftId,
   reservedLinks,
   onPublished,
+  remote,
   siteTimezone = 'Asia/Shanghai',
 }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -54,9 +57,10 @@ export default function GitHubPublisher({
   const open = () => {
     if (openedDraft.current !== draftId) {
       openedDraft.current = draftId;
-      setSlug(suggestPostSlug(source));
+      setSlug(remote?.slug ?? suggestPostSlug(source));
       setResult(null);
     }
+    if (remote) setResult(null);
     setError('');
     dialog.current?.showModal();
   };
@@ -93,6 +97,18 @@ export default function GitHubPublisher({
     setBusy(true);
     setError('');
     try {
+      if (remote) {
+        const sourceToSave = preparePostUpdate(source, remote, siteTimezone);
+        const saved = await changeRemotePost(token.current, remote, sourceToSave);
+        if (!saved) throw new Error('未能确认文章更新结果');
+        const { source: savedSource, ...revision } = saved;
+        onPublished(savedSource, revision);
+        setResult({
+          articleUrl: `/post/${saved.slug.split('/').map(encodeURIComponent).join('/')}`,
+          sourceUrl: `https://github.com/${BLOG_REPOSITORY}/blob/main/${saved.path}`,
+        });
+        return;
+      }
       const publication = preparePublication(source, slug.trim(), reservedLinks, siteTimezone);
       const saved = await publishNewPost(token.current, publication);
       setResult(saved);
@@ -108,9 +124,15 @@ export default function GitHubPublisher({
 
   return (
     <>
-      <button type="button" className="editor-button editor-primary" onClick={open} title="发布到博客" aria-label="发布到博客">
+      <button
+        type="button"
+        className="editor-button editor-primary"
+        onClick={open}
+        title={remote ? '保存修改' : '发布到博客'}
+        aria-label={remote ? '保存修改' : '发布到博客'}
+      >
         <EditorIcon name="save" />
-        <span>发布</span>
+        <span>{remote ? '保存修改' : '发布'}</span>
       </button>
       <dialog
         ref={dialog}
@@ -122,7 +144,7 @@ export default function GitHubPublisher({
         }}
       >
         <div className="editor-github-heading">
-          <h2 id={`${id}-title`}>发布到博客</h2>
+          <h2 id={`${id}-title`}>{remote ? '更新原文章' : '发布到博客'}</h2>
           <button type="button" className="editor-icon-button" aria-label="关闭发布面板" onClick={close} disabled={busy}>
             <EditorIcon name="close" />
           </button>
@@ -158,7 +180,7 @@ export default function GitHubPublisher({
               void connect();
             }}
           >
-            <p>连接你自己的 GitHub 账号后，即可在这里发布新文章。</p>
+            <p>连接你自己的 GitHub 账号后，即可{remote ? '保存对原文章的修改' : '在这里发布新文章'}。</p>
             <ol className="editor-github-help">
               <li>
                 <a href={TOKEN_SETUP_URL} target="_blank" rel="noreferrer">
@@ -213,17 +235,21 @@ export default function GitHubPublisher({
                 value={slug}
                 onChange={(event) => setSlug(event.target.value)}
                 maxLength={100}
-                disabled={busy}
+                disabled={busy || Boolean(remote)}
                 required
                 autoComplete="off"
                 spellCheck={false}
               />
             </label>
             <p className="editor-muted editor-github-url">https://0103abc.github.io/post/{encodeURIComponent(slug)}</p>
-            <p>点击发布会将当前文章设为公开。已有文章和题解不会被覆盖。</p>
+            <p>
+              {remote
+                ? `将更新原文件 ${remote.path}。原网址保持不变；若已有其他修改，本次会停止保存。`
+                : '点击发布会将当前文章设为公开。已有文章和题解不会被覆盖。'}
+            </p>
             <div className="editor-github-actions">
               <button className="editor-button editor-primary" type="submit" disabled={busy}>
-                {busy ? '正在提交…' : '发布新文章'}
+                {busy ? '正在提交…' : remote ? '保存修改' : '发布新文章'}
               </button>
               <button
                 className="editor-button"

@@ -32,6 +32,8 @@ function finalizeLegacyUrls(directoryPath) {
     const target = path.resolve(dist, `.${post.legacyUrl}`);
     assert.ok(source.startsWith(`${dist}${path.sep}`));
     assert.ok(target.startsWith(`${dist}${path.sep}`));
+    // A hidden or deleted article has no canonical page in this build.
+    if (!fs.existsSync(source)) continue;
     fs.mkdirSync(path.dirname(target), { recursive: true });
     // Keep old URLs accessible while indexing each article only at its canonical URL.
     const content = fs.readFileSync(source, 'utf8').replace('<html ', '<html data-pagefind-ignore="all" ');

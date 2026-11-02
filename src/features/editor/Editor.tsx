@@ -9,6 +9,8 @@ import CodeEditor, { type CodeEditorHandle } from './components/CodeEditor';
 import EditorIcon from './components/EditorIcon';
 import GitHubPublisher from './components/GitHubPublisher';
 import LinkPreviewSettings from './components/LinkPreviewSettings';
+import NewArticlePanel from './components/NewArticlePanel';
+import PostPicker from './components/PostPicker';
 import PreviewFrame from './components/PreviewFrame';
 import SheetHandle from './components/SheetHandle';
 import SyntaxPanel from './components/SyntaxPanel';
@@ -24,6 +26,7 @@ import {
 } from './document';
 import { clearEditorHistory } from './editor-history';
 import { type EditorFormat, toolbarFormats } from './formatting';
+import { loadRemotePost } from './github-manage';
 import {
   fetchMarkdownSource,
   findImportedDraft,
@@ -34,11 +37,12 @@ import {
   withoutImportParam,
 } from './import-source';
 import { readOGEndpoint, saveOGEndpoint } from './link-service';
+import { newArticleSource, refreshNewArticleDate } from './new-article';
 import { cancelSheetMotion, playSheetEnter, playSheetExit } from './sheet-motion';
 import { activeDraft, type DraftSummary, type EditorDraft, listDrafts, readDraft, removeDraft, writeDraft } from './storage';
 import { syntaxEntries } from './syntax';
 
-type Panel = 'drafts' | 'syntax' | 'properties' | 'copy' | 'service' | 'import' | null;
+type Panel = 'drafts' | 'new' | 'manage' | 'syntax' | 'properties' | 'copy' | 'service' | 'import' | null;
 interface Props {
   ogEndpoint?: string;
   colophon?: EditorColophonGroup[];
@@ -89,6 +93,7 @@ export default function Editor({
   const [importFailure, setImportFailure] = useState<{ path: string; message: string } | null>(null);
   const [importing, setImporting] = useState(false);
   const importFromBlog = useRef<(path: string) => Promise<void>>(async () => {});
+  const openRemotePost = useRef<(path: string) => Promise<void>>(async () => {});
   const pendingSave = useRef<{ requestId: string; draftId: string; postId: string; source: string } | null>(null);
   const [cursor, setCursor] = useState({ line: 1, column: 1 });
   const editor = useRef<CodeEditorHandle>(null);
@@ -112,13 +117,27 @@ export default function Editor({
       setPreviewEndpoint(readOGEndpoint(localStorage, location.href) ?? ogEndpoint);
       setDrafts(listDrafts(localStorage));
       const previous = activeDraft(localStorage);
-      if (previous) setDraft(previous);
+      if (previous) setDraft(refreshNewArticleDate(previous));
     } catch {
       setError('浏览器存储不可用，请及时复制或下载文章。');
     }
     setInitialized(true);
+    const editPath = new URL(location.href).searchParams.get('edit');
+    if (editPath) {
+      let previous: EditorDraft | null = null;
+      try {
+        const summary = listDrafts(localStorage).find((entry) => entry.remote?.path === editPath);
+        if (summary) previous = readDraft(localStorage, summary.id);
+      } catch {
+        /* A new remote draft can still be loaded when storage is unavailable. */
+      }
+      if (previous) {
+        setDraft(previous);
+        setStatus('已恢复文章编辑草稿；保存时会检查原文版本');
+      } else void openRemotePost.current(editPath);
+    }
     const requested = new URL(location.href).searchParams.get(IMPORT_PARAM);
-    if (requested !== null) {
+    if (requested !== null && !editPath) {
       history.replaceState(history.state, '', withoutImportParam(location.href));
       const path = parseImportSource(requested, location.origin);
       let existing: DraftSummary | null = null;
@@ -311,6 +330,21 @@ export default function Editor({
   };
   const activateLatest = useRef(activate);
   activateLatest.current = activate;
+  openRemotePost.current = async (path: string) => {
+    setImporting(true);
+    setError('');
+    setStatus('正在载入 GitHub 最新原文…');
+    try {
+      const remote = await loadRemotePost(path);
+      const { source, ...revision } = remote;
+      activateLatest.current({ ...createDraft(source, path), remote: revision });
+      setStatus(remote.hidden ? '正在编辑隐藏草稿，关闭草稿开关后保存可恢复显示' : '正在编辑已有文章，保存后更新原网址');
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : '原文读取失败');
+    } finally {
+      setImporting(false);
+    }
+  };
   importFromBlog.current = async (path: string) => {
     setImportFailure(null);
     setImporting(true);
@@ -465,8 +499,9 @@ export default function Editor({
                 draftId={draft.id}
                 reservedLinks={reservedLinks}
                 siteTimezone={siteTimezone}
-                onPublished={(source) => {
-                  setDraft((previous) => ({ ...previous, source }));
+                remote={draft.remote}
+                onPublished={(source, remote) => {
+                  setDraft((previous) => ({ ...previous, source, remote: remote ?? previous.remote }));
                   setStatus('文章已提交到 GitHub，等待网站自动更新');
                 }}
               />
@@ -490,7 +525,12 @@ export default function Editor({
       <div className="editor-toolbar">
         <div className="editor-tools">
           {action('draft', '草稿', (event) => openPanel('drafts', event.currentTarget))}
-          {iconAction('new', '新建', () => activate(createDraft()))}
+          {iconAction('new', '新建', () => openPanel('new'))}
+          {iconAction('draft', '管理文章', () => openPanel('manage'))}
+          {draft.remote &&
+            iconAction('import', '重载最新原文（当前草稿会保留）', () => {
+              void openRemotePost.current(draft.remote?.path ?? '');
+            })}
           {iconAction('import', '导入', () => importInput.current?.click())}
           <span className="editor-divider" />
           {toolbarFormats.map((id) => {
@@ -685,17 +725,21 @@ export default function Editor({
           ref={dialog}
           className="editor-panel-backdrop"
           aria-label={
-            shownPanel === 'syntax'
-              ? '语法手册'
-              : shownPanel === 'drafts'
-                ? '浏览器草稿'
-                : shownPanel === 'copy'
-                  ? '复制 Markdown'
-                  : shownPanel === 'service'
-                    ? '链接预览服务'
-                    : shownPanel === 'import'
-                      ? '已有导入的草稿'
-                      : '文章属性'
+            shownPanel === 'new'
+              ? '新建文章'
+              : shownPanel === 'manage'
+                ? '管理文章'
+                : shownPanel === 'syntax'
+                  ? '语法手册'
+                  : shownPanel === 'drafts'
+                    ? '浏览器草稿'
+                    : shownPanel === 'copy'
+                      ? '复制 Markdown'
+                      : shownPanel === 'service'
+                        ? '链接预览服务'
+                        : shownPanel === 'import'
+                          ? '已有导入的草稿'
+                          : '文章属性'
           }
           onKeyDown={(event) => {
             if (event.key === 'Escape') {
@@ -726,25 +770,33 @@ export default function Editor({
                 <>
                   <div className="editor-panel-header">
                     <h2>
-                      {shownPanel === 'drafts'
-                        ? '你的草稿'
-                        : shownPanel === 'copy'
-                          ? '复制 Markdown'
-                          : shownPanel === 'service'
-                            ? '链接预览服务'
-                            : shownPanel === 'import'
-                              ? '已有导入的草稿'
-                              : '文章属性'}
+                      {shownPanel === 'new'
+                        ? '新建文章'
+                        : shownPanel === 'manage'
+                          ? '管理文章'
+                          : shownPanel === 'drafts'
+                            ? '你的草稿'
+                            : shownPanel === 'copy'
+                              ? '复制 Markdown'
+                              : shownPanel === 'service'
+                                ? '链接预览服务'
+                                : shownPanel === 'import'
+                                  ? '已有导入的草稿'
+                                  : '文章属性'}
                     </h2>
                     <button type="button" className="editor-icon-button" aria-label="关闭面板" onClick={() => closePanel()}>
                       <EditorIcon name="close" />
                     </button>
                   </div>
-                  {shownPanel === 'drafts' ? (
+                  {shownPanel === 'new' ? (
+                    <NewArticlePanel onCreate={(kind) => activate(createDraft(newArticleSource(kind)))} />
+                  ) : shownPanel === 'manage' ? (
+                    <PostPicker />
+                  ) : shownPanel === 'drafts' ? (
                     <div className="editor-panel-content">
                       <p className="editor-muted">草稿只保存在当前浏览器，下载 Markdown 即可带走完整原文。</p>
                       <div className="editor-draft-actions">
-                        {action('new', '新建文章', () => activate(createDraft()), 'editor-soft')}
+                        {action('new', '新建文章', () => openPanel('new'), 'editor-soft')}
                         {action('sample', '载入 Shoka 示例', () => {
                           void loadExample();
                         })}

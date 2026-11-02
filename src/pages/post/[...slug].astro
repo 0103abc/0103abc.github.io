@@ -36,6 +36,7 @@ import { getOgImageUrl } from '@lib/seo/og-image';
 import { Icon } from 'astro-icon/components';
 import { Comment } from '@/components/comment';
 import PostMarkdownActions from '@/components/post/PostMarkdownActions';
+import PostManager from '@/features/editor/components/PostManager';
 import { defaultLocale, getLocaleLabel, localizedPath, t } from '@/i18n';
 import { extractTextFromMarkdown } from '@/lib/sanitize';
 import { postRoute } from '../_shared/routes';
@@ -241,6 +242,12 @@ if (post.data.description) {
           )
         }
       </nav>
+      {editorConfig.enabled && postRelativePath && isPostSourcePublic(post.data, post.body, import.meta.env.PROD) && (
+        <div class="my-3 flex flex-wrap items-center gap-2" data-pagefind-ignore>
+          <a class="rounded-lg border border-current/20 px-3 py-1.5 text-sm transition-colors hover:bg-primary/10" href={`/editor/?edit=${encodeURIComponent(`src/content/blog/${postRelativePath}`)}`}>编辑文章</a>
+          <PostManager client:idle path={`src/content/blog/${postRelativePath}`} title={title} />
+        </div>
+      )}
       {isFallback && (
         <div class="flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-700 dark:text-amber-400">
           <Icon name="ri:translate-2" class="h-4 w-4 shrink-0" />
