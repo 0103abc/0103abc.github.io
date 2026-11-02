@@ -2,9 +2,10 @@
 title: "【学习笔记】随机游走优化 dp"
 date: "2026-04-15T02:47:07.000Z"
 link: "luogu-7zl18kne"
-categories: ["学习笔记"]
-tags: ["动态规划", "数学", "概率与期望"]
+categories: [ "学习笔记" ]
+tags: [ "动态规划", "数学", "概率与期望" ]
 draft: false
+updated: 2026-11-02T07:14:16.035Z
 ---
 
 upd：ChatGPT 给出的证明部分数学公式出现了一点问题，已经修复。
@@ -46,9 +47,7 @@ upd：ChatGPT 给出的证明部分数学公式出现了一点问题，已经修
 
 结合一开始得到的式子，有：
 
-$$
-\mathbb E[M_n]=
-\sum_{t\ge1}\Pr(M_n\ge t)\le\sum_{t\ge1}4e^{-t^2/(2n)}$$
+$\mathbb E[M_n]=\sum_{t\ge1}\Pr(M_n\ge t)\le\sum_{t\ge1}4e^{-t^2/(2n)}$
 
 而这个和的量级就是 $\sqrt n$。最简单的看法是把它和积分比较：
 
