@@ -4,6 +4,7 @@ import TagPill from '@/components/tag/TagPill.astro';
 import data from '@/data/legacy.json';
 import PageLayout from '@/layouts/PageLayout.astro';
 import { displayDate } from '@/lib/date';
+import { categoryAncestry } from '@/lib/content/index-categories';
 
 interface Props {
   records?: boolean;
@@ -23,7 +24,7 @@ const solutions = posts
       title: post.data.title,
       href: `/post/${post.data.link ?? post.id}`,
       date: original?.date ?? displayDate.date(post.data.date),
-      oj: original?.oj ?? post.data.categories?.flat()[1] ?? '',
+      oj: original?.oj ?? categoryAncestry(post.data)[1] ?? '',
       difficulty: original?.difficulty ?? '',
       tags: post.data.tags ?? [],
       summary: post.data.description ?? '',

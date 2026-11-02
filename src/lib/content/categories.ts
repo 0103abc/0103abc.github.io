@@ -9,6 +9,7 @@ import { encodeSlug } from '../url';
 import { memoize } from './cache';
 import { getSortedPosts } from './posts';
 import type { Category, CategoryListResult } from './types';
+import { categoryAncestry } from './index-categories';
 
 /** Reverse map: slug → category name for O(1) lookup */
 const slugToName = new Map<string, string>();
@@ -39,7 +40,7 @@ export async function getCategoryList(locale?: string): Promise<CategoryListResu
         continue;
       }
 
-      const firstCategory = categories[0];
+      const firstCategory = categoryAncestry(post.data);
       if (Array.isArray(firstCategory)) {
         // categories[0] = ['笔记', '算法']
         if (!firstCategory.length) continue;
