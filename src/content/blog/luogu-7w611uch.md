@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "算法思想", "倍增"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7w611uch)。
-
 暴力可过，所以不写郑洁了！！111
 
 考虑一个经典 dp。设 $f_{k,i,j}$ 表示从 $i$ 走到 $j$，且走了 $k$ 步，经过的路径的最大权值的和是多少。显然初始条件：对于每一条边 $u\to v$，且其边权为 $w$，都有 $f_{1,u,v}=w$。转移是简单的：枚举中转点 $x$，则 $f_{k,i,j}\leftarrow f_{k-1,i,x}+f_{1,x,y}$，可以做到 $O(n^4)$，氰微卡常可过。

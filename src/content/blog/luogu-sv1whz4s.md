@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/sv1whz4s)。
-
 建议先完成 [ARC205B](https://www.luogu.com.cn/problem/AT_arc205_b)，[P9841](https://www.luogu.com.cn/problem/P9841)（比较重要）和 [P14025](https://www.luogu.com.cn/problem/P14025)。
 
 其实也可以算是一类造计算机题？

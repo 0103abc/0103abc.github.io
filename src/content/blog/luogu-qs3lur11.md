@@ -7,8 +7,6 @@ tags: ["AtCoder", "算法思想", "构造", "数学", "数论", "搜索", "深�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/qs3lur11)。
-
 考虑对 $n$ 的奇偶性分类讨论答案。
 
 **I. $n$ 是偶数**

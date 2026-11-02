@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ha848p14)。
-
 考虑到经典结论：$\sum\limits_{i=1}^n\frac1i=O(n\log n)$。于是你可以发现，处理出每个位置所在的单词开头位置的下标后，直接暴力对每个长度模拟往后跳的过程，时间复杂度就是 $O(n\log n)$ 的，于是就做完了。
 
 ```cpp

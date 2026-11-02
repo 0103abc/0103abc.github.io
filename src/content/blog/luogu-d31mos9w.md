@@ -7,8 +7,6 @@ tags: ["AtCoder", "动态规划", "数学", "概率与期望"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/d31mos9w)。
-
 > 又一遍又一遍那天相见  
 又一遍又一遍思绪万千   
 在夏日尽头的你能否回忆起最初时的誓约  

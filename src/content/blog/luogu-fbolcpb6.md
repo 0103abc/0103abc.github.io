@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "倍增"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/fbolcpb6)。
-
 #### 007. Hyperspace Highways
 
 简单的。图为 semi-仙人掌，即把仙人掌中的环变为了连通子图。但是做法仍然是相似的。还是建立圆方树，这里把一个连通子图建立一个方点作为辅助，然后该子图中所有的点向这个方点连一条边权为 $1$ 的边，两个圆点之间连边权为 $2$ 的边。

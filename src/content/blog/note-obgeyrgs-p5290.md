@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "基础算法", "排序", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 先考虑一条链的情况。此时有两类形态：
 
 + $1$ 号结点是链的一个端点。

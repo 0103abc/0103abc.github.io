@@ -7,8 +7,6 @@ tags: ["AtCoder", "图论", "最短路", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7hrk7ruv)。
-
 有一个很粤台晋的做法就是说直接暴力 $O(n^2)$ 建图，然后 $O(n^3)$ 跑 Floyd 求答案。看得出来没有什么前途。
 
 考虑更聪明一些的做法。发现图十分特殊，$i,j$ 两个点有边当且仅当 $[l_i,r_i]\cap[l_j,r_j]=\emptyset$。因此大力猜测若两点连通，则最短路径经过的点数一定很少。

@@ -7,8 +7,6 @@ tags: ["Codeforces", "搜索", "深度优先搜索", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/sgujbwni)。
-
 ::::info[性质 $1$]{open}
 不论怎么进行操作，$u$ 结点的儿子 $a$ 值的大小关系不会发生变化。
 

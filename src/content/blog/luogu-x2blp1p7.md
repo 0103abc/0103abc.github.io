@@ -7,8 +7,6 @@ tags: ["洛谷", "字符串", "数学", "概率与期望"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/x2blp1p7)。
-
 manacher 算法通常用来在 $O(n)$ 时间复杂度内求解字符串最长回文子串 / 以串内一点为中心的最长回文半径问题。
 
 ---

@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mj48fg8k)。
-
 感觉没啥难度（？
 
 考虑先随便构造出一个比较大的二次集。

@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/gn3ssr8u)。
-
 比较厉害的题。题目给的操作太过于神秘，考虑用已有的操作构造出更加简单的操作。
 
 初始的操作形如：

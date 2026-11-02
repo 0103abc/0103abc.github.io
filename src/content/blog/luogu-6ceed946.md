@@ -7,8 +7,6 @@ tags: ["Codeforces", "搜索", "深度优先搜索", "数学", "组合数学", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6ceed946)。
-
 难度：$3/10$。
 
 比较无聊的题。先考虑一个比较暴力的做法。枚举根 $R$，然后再枚举点集 $S$ 的 LCA 所在位置 $i$。可以一遍 dfs 求出 $siz_i$ 数组表示 $i$ 点为根的子树，然后直接组合数统计答案。具体的，固定 $R,i$ 后的答案为：

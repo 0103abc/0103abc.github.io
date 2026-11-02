@@ -7,8 +7,6 @@ tags: ["洛谷", "数据结构", "线段树", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/vadp6yvj)。
-
 ~~你说的对但是我今天刚学会可持久化线段树~~
 
 这题怎么没题解啊/yun
@@ -296,8 +294,6 @@ signed main()
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
 
 直接暴力是 $O(Qn^3)$ 的，可以用一些手段优化到 $O(Qn^2)$，但是显然没有前途。
 

@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/khfrcogy)。
-
 ### Lagrange 插值
 
 > 给出 $n$ 个点 $(x_i,y_i)$ 满足 $x_i\neq x_j$，可以唯一确定一个 $n-1$ 次多项式 $y=f(x)$ 过上述所有 $n$ 个点。

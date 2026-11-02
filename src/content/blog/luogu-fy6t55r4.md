@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "线性代数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/fy6t55r4)。
-
 【模板】单位根反演（~~其实不太模板~~）
 
 单位根反演的关键结论是：$n[n\mid k]=\sum\limits_{i=0}^{n-1}{\omega_{n}^{ik}}$，其中 $\omega_{n}$ 是在模意义下的单位根。具体来说有 $\omega\equiv g^{\frac{p-1}{n}}\pmod p$，其中 $p$ 是模数，$g$ 是 $p$ 的一个原根。

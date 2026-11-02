@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "位运算"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/qkwmtyy2)。
-
 先做一点简单的观察：若存在两个数 $x,y\in[l,r]$，满足 $x\operatorname{ and }y=x$ 且 $x,y$ 的二进制数位数量相同，则把所有方案中的 $y$ 全部替换为 $x$ 一定不会更差（这里不考虑不能两个数相等的问题）。
 
 因此容易想到先求出所有一定不会更差的数 $x$ 组成的代表元素集合。可以证明对二进制长度为 $k$ 的区间，得到的代表元素集合的大小不会超过 $O(k)$。

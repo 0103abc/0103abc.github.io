@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "线性动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/trau57mg)。
-
 难度：$2.5/10$
 
 简单 dp。容易想到设 $f_{i,0/1}$ 表示当前处理了前 $i$ 个数：

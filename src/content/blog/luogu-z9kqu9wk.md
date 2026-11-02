@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "贪心", "排序", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/z9kqu9wk)。
-
 tags：贪心
 
 首先将数组升序排序。然后考虑对于每个位置 $i$，对于所有比其靠前的位置 $j$，最多存在一个 $j$ 使得 $a_i+a_j$ 是 $2$ 的幂次。证明显然。

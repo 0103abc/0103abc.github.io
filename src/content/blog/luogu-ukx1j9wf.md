@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ukx1j9wf)。
-
 考虑一个非常食的写法。
 
 首先观察性质，若存在 $i\in[1,n)\cap\mathbb{N_+}$，$s_i$ 为 `L` 且 $s_{i+1}$ 为 `R` 则 $[1,i]$ 区间中任何一个数都不能移动到 $[i+1,n]$ 区间，反之同理。

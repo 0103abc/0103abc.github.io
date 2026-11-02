@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "前缀和", "算法思想", "倍增", "二分"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ocb97llx)。
-
 不需要线代和 GF 的 $2\log$ 做法，感觉应该不太能继续优化时间复杂度了。
 
 先考虑一个线性的暴力做法。设 $f(n)$ 为答案，则初始条件为 $f(1)=f(2)=1$，转移方程为 $f(n)=\sum\limits_{i=\lceil\frac n2\rceil}^{n-1}f(i)$，拿前缀和优化一下可以做到线性。

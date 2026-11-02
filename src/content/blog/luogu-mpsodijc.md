@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "数学", "线性代数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mpsodijc)。
-
 打表可以发现，在 $n\neq 2$ 时：
 
 + 若 $2\mid n$，则答案为 $n^2-2$。

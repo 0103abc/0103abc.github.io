@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/5ppxjs2b)。
-
 ~~史中食~~
 
 考虑巨大分类讨论（后面需要满足前面的不满足）：

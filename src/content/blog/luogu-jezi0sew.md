@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "概率与期望", "数据结构", "线段树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/jezi0sew)。
-
 这真的不是 AT_abc331_f？
 
 考虑维护每一个数的值的期望。初始时时候显然 $i$ 位置的值期望为 $a_i$。

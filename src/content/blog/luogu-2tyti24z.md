@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论", "动态规划", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/2tyti24z)。
-
 题目就是说让你用 $1\sim k$ 填一个 $n\times m$ 的表格，要求表格任意两行不同且每一行单调不递减，求方案数。发现行与行之间互相独立，因此考虑分开统计，计算出有多少种可以选择的行填法，设这个值为 $x$ 那么答案显然就是 $A_x^n$，此时问题变为有多少个长度为 $m$ 元素在 $1\sim k$ 之间的单调不递减序列。平方 dp 是简单的，但是显然这样无法通过。
 
 考虑转化上面的问题：把下标看做 $x$ 坐标，值看做 $y$ 坐标，那么就相当于是求在一个平面直角坐标系上，从 $(1,1)$ 点向左 / 上走到 $(m,1),(m,2),\ldots,(m,k)$ 点的方案数的和，经典公式可得总方案数为 $\sum\limits_{i=1}^k\binom{m+i-2}{i-1}=\binom{m-1}{0}+\binom{m}{1}+\binom{m+1}{2}+\ldots+\binom{m+k-2}{k-1}=\binom{m}{0}+\binom{m}{1}+\binom{m+1}{2}+\ldots+\binom{m+k-2}{k-1}=\binom{m+k-1}{k-1}$，问题变为求 $\binom{a}{b}\bmod p$ 且 $a,b$ 都很大 $p$ 非质数且很大但是 $a-b$ 不大的神秘情况。考虑拆组合数，$\binom{a}{b}=\frac{a!}{b!(a-b)!}=\frac{a(a-1)(a-2)\ldots(b+1)}{(a-b)!}=\frac{a(a-1)(a-2)\ldots(b+1)}{1\times 2\times 3\times\ldots\times(a-b)}$，对这些项分解质因数然后扔到哈希表里一一抵消，分解质因数可以先线性筛出 $10^6$ 以内的数的最小质因子，然后若当前数 $\le 10^6$ 查表否则用 pollard rho 暴算，卡卡常可以通过。

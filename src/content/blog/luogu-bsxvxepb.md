@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "组合数学", "动态规划", "字符串"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/bsxvxepb)。
-
 [弱化版：P13382 [GCJ 2011 Finals] Runs](https://www.luogu.com.cn/problem/P13382)
 
 考虑连续段 dp。为了方便处理，这里把字符串 $s$ 离散化，记 $w$ 表示 $s$ 中最大的字符。

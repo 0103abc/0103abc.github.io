@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "差分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/3nveyaco)。
-
 选自 [11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ### 031. [P3641 [APIO2016] 最大差分](https://www.luogu.com.cn/problem/P3641)

@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/uaxtkndn)。
-
 先特判 $s=1$ 的情况。$s=2$ 和 $s=3$ 的做法类似，后面只讨论 $s=3$。类比 CRT 的做法，记 $\text{LCM}=\operatorname{lcm}(l_1,l_2,l_3),p_1=x_1\bmod\frac{\text{LCM}}{a_1},p_2=x_2\bmod\frac{\text{LCM}}{a_2},p_3=x_3\bmod\frac{\text{LCM}}{a_3}$。枚举 $p_1,p_2$ 的值，则此时转化为 $s=1$ 的情况，先判断是否有解然后求出 $p_1,p_2$ 对应的 $x_1,x_2$ 数量统计答案即可。
 
 ```cpp line-numbers

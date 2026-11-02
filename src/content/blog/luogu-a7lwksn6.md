@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/a7lwksn6)。
-
 可以证明只使用 $(A,B),(0,C)$ 两种变换就可以凑出所有的变换。
 
 考虑逐个加入新的变换。设当前加入的变换为 $(a,b)$，则：

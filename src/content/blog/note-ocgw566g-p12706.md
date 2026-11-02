@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/ocgw566g)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P12706).
 :::

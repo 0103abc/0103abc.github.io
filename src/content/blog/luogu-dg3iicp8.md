@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "二分", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/dg3iicp8)。
-
 首先问题具有单调性，因此考虑二分答案。设当前二分到的答案为 $p$，则对于每一个商品考虑贪心：
 
 + 前 $p$ 天内没有活动，那么最后一天以 $2$ 的价格购买。

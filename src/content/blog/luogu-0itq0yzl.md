@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序", "二分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/0itq0yzl)。
-
 容易证明一定存在一个最优形态，满足存在两个位置 $1\le l\le r\le n$，使得执行的操作形如：
 
 + 把 $l-1,l-2,\ldots,1$ 这些书按顺序移动到最左侧。

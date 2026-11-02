@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ug1svr36)。
-
 题解怎么没有分治 / semi-启发式合并做法（）
 
 根据 Master Theorem 可以得到下面的结论：

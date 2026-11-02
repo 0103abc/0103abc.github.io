@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心", "搜索", "深度优先搜索", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6lq54tkz)。
-
 好难啊/ll
 
 有一个贪心策略是连的一条边一定有一端是 $1$ 号点，证明是显然的。

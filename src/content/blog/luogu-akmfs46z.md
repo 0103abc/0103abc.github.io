@@ -7,8 +7,6 @@ tags: ["洛谷", "字符串", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/akmfs46z)。
-
 先观察性质，三个串 $A,B,C$（$A\ge B,C$）可以组成三角形当且仅当 $BC>A$ 或 $CB>A$ 成立。因此考虑对串的大小关系做分类讨论。
 
 ### $A=B\ge C$

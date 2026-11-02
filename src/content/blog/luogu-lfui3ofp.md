@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/lfui3ofp)。
-
 难度：$6/10$
 
 注意到有 $m\in\lbrace n-1,n,n+1\rbrace$，容易想到对 $m$ 的值分类讨论处理：

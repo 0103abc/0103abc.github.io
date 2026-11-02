@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "二分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 :::success[MEX 的单调性]
 $\text{MEX}(a_1,a_2,\ldots,a_{n-1})\le \text{MEX}(a_1,a_2,\ldots,a_n)$。
 :::

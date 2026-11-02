@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "概率与期望", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/1azbcr6a)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/CF1278F).
 :::

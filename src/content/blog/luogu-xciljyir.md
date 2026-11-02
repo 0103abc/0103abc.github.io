@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "图论", "树", "基础算法", "贪
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/xciljyir)。
-
 Official Solution.
 
 ### sol 1

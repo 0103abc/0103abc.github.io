@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论", "算法思想", "构造", "基础算法
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ihqa4a8y)。
-
 注意（不）到有这样一个结论：
 
 :::info[结论]{open}

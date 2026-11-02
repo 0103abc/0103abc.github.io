@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心", "二分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/fgec09k7)。
-
 笑点解析：不会 KMP
 
 考虑一个简单的贪心：新建的串中能多放一个串 $t$ 就是一个串 $t$。于是可以得到 $O(n)$ 的解法，然后很高兴的获得 wa。

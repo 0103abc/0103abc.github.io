@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "代数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/vyk57sac)。
-
 注意到当 $b=20639,c=260263$ 时：
 
 $$

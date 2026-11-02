@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "线性代数", "动态规划", "算法思想", "构�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/q3v9u748)。
-
 这里记 $d(A,B)$ 为 $A,B$ 两个点在三维空间中的曼哈顿距离。
 
 先特判掉一些 corner case：

@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "线性动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/ocgw566g)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P14347).
 :::

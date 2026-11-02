@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/e9abao0x)。
-
 可以证明下面的等式成立：
 
 $$

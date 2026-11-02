@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "位运算"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/o21p33aq)。
-
 考虑到 $d\ge k\times k$ 的时候一定可以在两次转弯之内得出答案，因此特判即可，剩余情况均满足 $d<k\times k$。
 
 此时暴力枚举答案为 $i$，则使用 bitset 维护当前所有可以到达的位置即可，更新答案可以直接暴力更新。

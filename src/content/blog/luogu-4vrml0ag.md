@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序", "动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/4vrml0ag)。
-
 900 AC，稍微写个题解。
 
 [$O(n^2)$](https://www.luogu.com.cn/problem/AT_abc273_f) 的区间 dp 做法是简单的，但是基于这个做法优化没啥前途。

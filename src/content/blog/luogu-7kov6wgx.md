@@ -7,8 +7,6 @@ tags: ["洛谷", "数据结构", "区间最值"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7kov6wgx)。
-
 先交换 $l,r$ 使得 $l\le r$。
 
 此时想要从 $l$ 移动到 $r$，找到区间中最高的位置 $id$，高度为 $h_{id}$，则显然在 $id$ 这个时刻移动到恰好 $h_{id}$ 高度是最优的，而在每个位置往上走的花费都是定值 $4$，因此考虑在最开始就移动到 $h_{id}$ 这个高度，花费的代价就是 $4(\max(h_i-i)-(h_l-l))$，维护 $a_i-i$ 的静态区间最值即可。
@@ -72,8 +70,6 @@ signed main()
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
 
 1hr AK 了代码源 B 队选拔赛，感觉很不牛，咋有一堆我做过的原啊？？
 

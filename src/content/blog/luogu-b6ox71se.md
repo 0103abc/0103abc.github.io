@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "线性代数", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/b6ox71se)。
-
 首先可以把原问题转化为下面的问题：
 
 > 给定值域区间 $[l,r]$，有集合 $S=\lbrace x\mid \exist i\in[l,r)\cap\mathbb{N},x=i\oplus(i+1)\rbrace$，求 $|\lbrace x\mid \exist T\in S\land T\neq\varnothing,x=\bigoplus\limits_{i\in T}i \rbrace|$。

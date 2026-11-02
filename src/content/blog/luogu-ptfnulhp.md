@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ptfnulhp)。
-
 upd 05/13/2026：修改了若干笔误。
 
 ### $O(2^nn^2)$ 

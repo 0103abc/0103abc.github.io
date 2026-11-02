@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "线性代数", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/gj3w7hpx)。
-
 容易证明，对于题目中给出的式子：
 
 $$

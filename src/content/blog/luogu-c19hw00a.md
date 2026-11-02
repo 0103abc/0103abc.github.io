@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/c19hw00a)。
-
 ~~为了写这个题学习的亚线性求区间质数个数~~ 写完这个题真的玉玉了
 
 思路参考第一篇题解。

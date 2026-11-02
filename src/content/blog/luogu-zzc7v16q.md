@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "最小生成树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/zzc7v16q)。
-
 感觉这场题质量很高的说，但是 unr 了（
 
 考虑对于三个数 $x,y,z$，若其满足 $x\le y\le z<2x$，且现在需要组合这三个点，则此时组合 $(x,y),(y,z)$ 一定不会比组合 $(x,y),(x,z)$ 差。

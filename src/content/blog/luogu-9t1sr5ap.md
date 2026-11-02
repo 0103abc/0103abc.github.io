@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树", "数据结构", "线段树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/9t1sr5ap)。
-
 ~~我说这个题很难有没有懂的。~~
 
 难点在于不把完美匹配看成求最大匹配大小。

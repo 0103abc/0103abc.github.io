@@ -7,8 +7,6 @@ tags: ["Codeforces", "搜索", "深度优先搜索", "数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/e54w6ukm)。
-
 考虑先写个暴力 dfs 程序打表，可以发现下面的关键结论：
 
 + 若 $n$ 是偶数，则先手必胜。

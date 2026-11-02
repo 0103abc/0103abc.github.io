@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "组合数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/m09lit4r)。
-
 ~~口胡做法，不知道对不对。~~ 是对的。
 
 简单推导可知 $a_n=[x^0](x^{-1}+1+x)^n$。

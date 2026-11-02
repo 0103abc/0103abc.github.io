@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "模拟", "数据结构", "并查集", "二分"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/ocgw566g)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P7843).
 :::

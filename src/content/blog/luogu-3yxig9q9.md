@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "前缀和"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/3yxig9q9)。
-
 建议降绿。把 $A_i$ 按照十进制拆成 $6$ 位，记这 $6$ 位分别为 $(v_{i,0},v_{i,1},v_{i,2},v_{i,3},v_{i,4},v_{i,5})$，则 $A_i+A_j$ 不会触发进位的充要条件就是 $\forall k\in\lbrace0,1,2,3,4,5\rbrace,v_{i,k}+v_{j,k}<10$，即合法的区间是一个连续的六面体，直接维护六维前缀和即可做到 $O(kn^k)$ 解决问题。
 
 ```cpp line-numbers

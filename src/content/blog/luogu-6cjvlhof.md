@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "倍增"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6cjvlhof)。
-
 很困难的题目。对每一列 $i$，记 $d_i$ 表示这一列从第 $0$ 行开始，连续可以通行的行数，也就是 $d_i=\min\limits_x\lbrace x\mid T_x\le H_i\rbrace$。
 
 然后再维护 $P_i=\max\limits_{0\le j<i}T_j$。在第 $x$ 行横穿 $[i,j]$ 需要满足 $T_x>\max\limits_{k=i}^jH_k$。因此两列 $i,j$ 之间可以直接连边当且仅当 $P_{\min(d_i,d_j)}>\max\limits_{i\le k\le j}H_k$。

@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ne558q9l)。
-
 首先考虑一条长度为 $n$ 的链上的情况。
 
 对于 $2\nmid n$ 的情况：链上存在编号为 $\frac{n+1}2$ 的中点，直接以这个点为中心，向两边扩展长度染色即可，需要耗费 $\frac {n+1}2$ 次操作。

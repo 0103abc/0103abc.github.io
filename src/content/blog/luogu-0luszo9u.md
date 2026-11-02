@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序", "算法思想", "分治", "动态规�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/0luszo9u)。
-
 题解区里怎么没有写二进制分组 KDT 的（）
 
 先考虑其弱化版 [P3769 [CH弱省胡策R2] TATT](https://www.luogu.com.cn/problem/P3769)。该问题求解的是四维意义下的 LIS，容易想到先按第一维排序，然后转化为三维的偏序关系。

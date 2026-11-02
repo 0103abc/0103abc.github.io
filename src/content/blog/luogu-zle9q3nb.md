@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "贪心", "排序", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/zle9q3nb)。
-
 注意到题目给出性质 **保证答案必然存在** 以及 $\forall i\in[1,n],b_i\le a_i$，因此考虑利用该性质解题。
 
 考虑到对于所有满足 $a_i=b_i$ 的位置 $i$，不如直接将其匹配掉。此时只会剩下若干个满足 $a_i<b_i$ 的位置。

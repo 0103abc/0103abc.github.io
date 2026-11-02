@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "概率与期望", "基础算法", "前缀和", "模
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/28pfx0r4)。
-
 经典套路为 $\text{dist}(i,j)=\text{dep}_i+\text{dep}_j-2\text{dep}_{\text{lca(i,j)}}$。考虑先求 $\text{dep}_i$ 的期望：显然有 $\text{dep}_1=0,\text{dep}_i=\dfrac{\sum\limits_{j=1}^{i-1}\text{dep}_j}{i-1}+a_i$，可以前缀和优化。
 
 问题在于计算 $\text{dep}_{\text{lca}(i,j)}$（$i<j$）的期望。因为 $p_i<i$ 所以 $\text{lca}(i,j)<i$。考虑模拟不加优化的 $\text{lca}$ 计算的过程：每一次把 $j$ 移动到父亲结点，直到 $j\le i$。考虑到 $p_j$ 在 $[1,j-1]$ 中等概率选取，因此假设 $j$ 跳到了 $p_j$，则 $p_j\le i$ 时落到的结点取 $1\sim i$ 的概率相等。否则令 $j\leftarrow p_j$ 然后此时仍有 $j>i$ 因此返回第一步。容易发现最终 $j$ 落在 $1\sim i$ 的概率是相同的。

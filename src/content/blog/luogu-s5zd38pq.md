@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/s5zd38pq)。
-
 :::info[Solution]{open}
 这个合法集合的限制看着就非常的紧，然后观察一下可以发现结论：
 

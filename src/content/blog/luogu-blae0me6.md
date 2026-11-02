@@ -7,8 +7,6 @@ tags: ["Codeforces", "数据结构", "线段树", "基础算法", "二分", "模
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/blae0me6)。
-
 可以发现题目模拟的其实就是二进制加法和二进制减法。因此考虑用一个线段树来维护每一位的值（$0/1$），然后对于每一个操作：
 
 + 若要让第 $i$ 位 $+1$，则：

@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/pvmooe5i)。
-
 首先问题可以被转化为计数长度为 $n$ 的整数序列 $a$ 满足下面两个条件：
 
 + $1\le a_i\le b_i$（$b_i$ 是所有对序列限制的上界）

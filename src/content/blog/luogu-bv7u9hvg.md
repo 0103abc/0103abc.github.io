@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "计数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/bv7u9hvg)。
-
 鉴定为唐题。套路的先考虑什么样的数组是平衡数组：
 
 + 记 $\text{sum}=\sum\limits_{i=1}^na_i,\text{ave}=\frac{\text{sum}}n$。

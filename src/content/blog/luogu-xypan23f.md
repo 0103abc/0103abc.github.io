@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/xypan23f)。
-
 【模板】极角排序
 
 把所有向量的起点平移到 $(0,0)$ 处，然后按 `atan` 值（即 C++ 中 cmath 库里的 `atan2` 函数）将所有向量的中点排序。此时所有向量按照夹角度数从小到大排序。

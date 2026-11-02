@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树", "动态规划", "字符串"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6st0hwtg)。
-
 不是很难。容易想到给所有串建一个 Trie 然后在 Trie 上 dp（为了方便，后面记 Trie 上的 $i$ 点是第 $i$ 个串的结尾位置，$0$ 号结点为 Trie 的根结点）。设 $f_i$ 表示到达 Trie 上 $i$ 号点所需要的最小操作次数。则初始条件是 $f_0=0$。容易想到有下面两种转移情况：
 
 + 直接填当前字符，即直接从父亲结点转移而来，$f_i\leftarrow f_{fa_i}+1$。

@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "倍增", "基础算法", "贪心", "模拟
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/lklgqtde)。
-
 用时：1 小时 37 分钟 15 秒。
 
 前置技巧：[影跃](https://www.luogu.com.cn/article/0s6u0tio)。

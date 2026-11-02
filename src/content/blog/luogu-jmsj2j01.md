@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "线性动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/jmsj2j01)。
-
 笑点解析：不会做
 
 记 $i$ 位置最大可覆盖到的区间范围是 $[l_i,r_i]$。考虑 dp。设 $f_{i,j}$ 表示当前用前 $i$ 个数确定了最后序列前 $j$ 个数的值。转移分为第 $i$ 个数不覆盖 / 用第 $j$ 个数覆盖两种情况，也就是不覆盖：$f_{i,j}\leftarrow f_{i-1,j}$；覆盖：$f_{i,j}\leftarrow f_{i,j-1}$。总时间复杂度为 $O(n^2)$ 可以通过该题。

@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/nbmyzjmn)。
-
 容易发现序列必须是单谷序列，否则必然不满足性质。
 
 考虑枚举谷的位置为 $p$，则有这样一个经典的刻画单谷序列的方式：

@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "搜索", "深度优先搜索"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/ocgw566g)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P15108).
 :::

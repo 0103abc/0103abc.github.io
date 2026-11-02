@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "组合数学", "基础算法", "二分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/75trwr3m)。
-
 简单容斥题。考虑到 $\text{lcm}(i,j,k)\ge i+j+k$ 不好做，于是可以求 $\text{lcm}(i,j,k)<i+j+k$ 的不同方案数。因为 $i<j<k$ 所以枚举 $k$，必有 $i+j+k<k+k+k=3k$。也就是说有且仅有下面的两种合法情况：
 
 + $\text{lcm}(i,j,k)=k$

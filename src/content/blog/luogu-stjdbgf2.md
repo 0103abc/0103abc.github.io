@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "基础算法", "贪心", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/stjdbgf2)。
-
 很牛的题。这个 $k$ 的限制看上去就很不舒服，考虑先处理 $k=1$ 的情况。
 
 此时 $O(nq)$ 的暴力是容易的。考虑对每次询问直接暴力 dp 处理，dp 限制内部考虑贪心，显然对于位置 $i$ 而言，在保证合法的情况下 $x_i$ 的值越小越好。因此设 $f_i$ 表示当前处理了 $L_i\sim i$ 的人，$x_i$ 的值最小是多少。显然有初始条件 $f_{L_i} = l_{L_i}$，转移方程 $f_i=\max(f_{i-1}+d,l_i)$。此时合法的充要条件即为 $\forall i\in[L_i,R_i]\cap\mathbb N,f_i\le r_i$。
@@ -210,8 +208,6 @@ namespace Loyalty
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/08l8b375)。
 
 难度评的比较高主要是因为 KTT 这个 ds 太冷门了（）oi wiki 上甚至都没有介绍（）
 

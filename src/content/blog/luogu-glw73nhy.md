@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/glw73nhy)。
-
 钦定 $x\ge y$，此时只需要考虑 $x'=ky'$ 的情况。特判已经满足条件的 $x,y$。
 
 然后考虑一个简单的暴力算法：枚举 $y$ 的变化量，然后直接通过公式计算出 $x$ 的变化量最小是多少。

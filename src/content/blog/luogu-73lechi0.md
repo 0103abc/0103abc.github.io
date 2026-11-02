@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "图论", "强连通分量", "数学", "组合�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/73lechi0)。
-
 （标题有含义）
 
 比较困难的题，考察了大量点双的性质

@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "基础算法", "贪心", "排序
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/bcz5kwiv)。
-
 不算太难的题，duel 的时候用了 1h 切掉了。
 
 注意到 $a_ia_j+t(a_i+a_j)=(a_i+t)(a_j+t)-t^2$（恭喜你你做完了这个题最难的一步）。最后的 $t^2$ 是容易省去的，于是问题可以转化为：

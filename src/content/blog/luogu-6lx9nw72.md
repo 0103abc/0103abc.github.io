@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "二分", "图论", "二分图匹配", "树
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6lx9nw72)。
-
 $u\oplus v\le\min(u,v)$ 十分的别扭，于是考虑转换条件。令 $l$ 表示 $u,v$ 二进制最高的 $1$ 位的最大值，则显然若 $u,v$ 在第 $l$ 位上的值相同，则等式成立，否则等式不成立。
 
 因此可以发现，若 $\exist i,s.t.u,v\in[2^i,2^{i+1})$，则 $u,v$ 两个点满足条件，否则不满足条件。因此给 $[2^i,2^{i+1})$ 段内所有元素定义为 $i$ 色。

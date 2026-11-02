@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6kyjbill)。
-
 套路题。考虑设函数 $F(i)$：
 
 + $F(i)=1$，$\exists j\in[1,n]\cap\mathbb{N_+},a_j\mid i$。

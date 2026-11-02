@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "线性代数", "数据结构", "线段树", "基础�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 前置题目：[P4839 P 哥的桶](https://www.luogu.com.cn/problem/P4839)。
 
 首先知道线性基是可以合并的，且具有交换律。因此容易想到线段树维护区间线性基，但是这样无法支持区间异或的操作。此时容易想到分块处理，但是这样时间复杂度变为 $O(n\sqrt n\omega^2)$ 其中 $\omega$ 为位数这里取 $\omega=32$，一看就不是能过得去的样子。

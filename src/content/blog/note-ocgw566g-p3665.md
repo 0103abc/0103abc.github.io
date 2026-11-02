@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "最小生成树", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/ocgw566g)。
-
 :::info[Description]
 [LInk](https://www.luogu.com.cn/problem/P3665).
 :::

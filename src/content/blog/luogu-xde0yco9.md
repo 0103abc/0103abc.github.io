@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/xde0yco9)。
-
 选自 [11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ### 029. [P6790 [SNOI2020] 生成树](https://www.luogu.com.cn/problem/P6790)

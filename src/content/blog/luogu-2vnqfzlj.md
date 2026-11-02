@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "双指针"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/2vnqfzlj)。
-
 首先若 $x\ge 0$ 则直接判断整个序列的和是否为正即可。若不为正则其必定不可能对于任意长度为 $k$ 的连续子序列都满足其和大于 $0$。
 
 否则 $x<0$。考虑双指针扫描答案，初始令 $l=\lceil\frac{n}{2}\rceil$，$r=n$ 并分类讨论：

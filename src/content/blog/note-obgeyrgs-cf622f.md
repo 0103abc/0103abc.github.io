@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 通过作差可以发现答案是一个 $k+1$ 次多项式的形式，因此想到 Lagrange 插值。将 $x_i=i$（$0\le i\le n$）带入，有：
 
 $$

@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "枚举"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/pqzx10ym)。
-
 很厉害的题。
 
 分类讨论 $(i,j,k)$（$i<j<k$）和相对高度之间的对应关系：

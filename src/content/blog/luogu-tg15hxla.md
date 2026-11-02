@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "动态规划", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/tg15hxla)。
-
 一道很恶心的题。
 
 [![pEEXXTS.png](https://s21.ax1x.com/2025/01/26/pEEXXTS.png)](https://imgse.com/i/pEEXXTS)

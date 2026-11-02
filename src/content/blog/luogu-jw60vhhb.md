@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "概率与期望", "动态规划", "搜索", "深度�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/jw60vhhb)。
-
 Official Solution.
 
 设 $f_{i,0/1}$ 表示当前处理完了以 $i$ 为根的子树，且 $i$ 号结点通关，当前不在 / 在 $i$ 号点放存档，最小期望通关代价是多少。

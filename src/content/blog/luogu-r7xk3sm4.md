@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "组合数学", "字符串", "算法思想", "分治
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/r7xk3sm4)。
-
 黑色的双倍经验！[P7670](https://www.luogu.com.cn/problem/P7670) 
 
 前置定义：$k_0$ 表示 $0$ 的数量，$k_1$ 表示 $1$ 的数量，$k_?$ 表示 $?$ 的数量。

@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "位运算"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mpv3q7j6)。
-
 性质的必然存在性.jpg
 
 注意到题目给出了十分特殊的性质 $\boldsymbol{k\le n}$，因此考虑从这个地方入手。

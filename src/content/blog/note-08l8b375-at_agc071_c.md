@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "二分", "图论", "二分图匹配", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/08l8b375)。
-
 :::info[结论 $1$]
 若无向图 $G$ 是一棵树，则一定不存在这样的一个数组 $X$ 满足题目中给出的条件。
 :::

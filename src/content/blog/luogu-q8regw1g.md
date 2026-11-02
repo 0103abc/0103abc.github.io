@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "线性代数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/q8regw1g)。
-
 尝试刻画题目的条件，不难想到混合操作就是值域在 $[0, 3]$ 中的数的异或。
 
 又由于只有两个数位，我们可以拆开看它们并设为 $2n$ 个布尔变量。不失一般性地，设白、红、黄、蓝分别对应矩阵 $\begin{bmatrix}0 & 0 \end{bmatrix}$，$\begin{bmatrix}0 & 1 \end{bmatrix}$，$\begin{bmatrix}1 & 0 \end{bmatrix}$，$\begin{bmatrix}1 & 1 \end{bmatrix}$，则三种变换操作相当于在模 $2$ 意义下给每个矩阵乘了一个 $2 \times 2$ 的矩阵。

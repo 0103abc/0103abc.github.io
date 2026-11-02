@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "基础算法", "前缀和"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mzgfd27w)。
-
 还是想介绍一下我的巨大哈希做法。
 
 题目本身是比较简单的，就是直接分类讨论：

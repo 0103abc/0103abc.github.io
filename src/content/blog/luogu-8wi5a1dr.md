@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "最短路"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/8wi5a1dr)。
-
 ~~出题人我谢谢你~~
 
 前置知识：Floyd 判环，分段打表

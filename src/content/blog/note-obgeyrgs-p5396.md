@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式", "算法思想", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 题目要求的东西太别扭了（你猜为什么我 wa 了一发），这里改一下变量名的顺序：
 
 > 给定 $n,k$，对 $i=0\ldots k$，求 $\begin{Bmatrix}i\\n\end{Bmatrix}$ 的值。

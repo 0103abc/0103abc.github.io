@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "推理"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/im4307dr)。
-
 通过观察样例可以发现答案就是 $n+1$。下面给出一个简单的说明：
 
 **关键结论 $1$**

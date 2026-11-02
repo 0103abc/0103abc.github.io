@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "数论", "组合数学", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/yowhprv2)。
-
 直接做比较困难，考虑容斥。于是得到下面的式子：
 
 $$

@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ky074b0h)。
-
 $k$ 很小，考虑对 $k$ 的值暴力分讨。
 
 计算出 $F_i$ 表示长度为 $i$ 的排列 $p$ 满足 $\forall j\in [1,i],p_i\neq i$ 的不同排列 $p$ 的数量。有 $F_0=1$，$F_1=0$，$F_2=1$，$F_3=2$，$F_4=9$。

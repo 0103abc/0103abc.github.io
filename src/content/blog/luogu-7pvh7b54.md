@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "背包"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7pvh7b54)。
-
 先观察题目的性质，可以发现：
 
 + 拿到货物之后一定是将其直接运回到 $1$ 位置（可能会在别的地方再上货物，但是不会把已经上过的货物再拿下来）。
@@ -80,8 +78,6 @@ namespace Loyalty
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
 
 先观察题目的性质，可以发现：
 

@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/8gnbueoj)。
-
 有点奇怪的题，想到了很多题解需要用到的结论但是就是导不出一个形式化做法...
 
 考虑一颗 $4$ 个节点的虚树 $x-a, x-b, x-c$，假设这三条边对应到原树的长度都不小于蛇的长度，那么蛇头 / 尾一旦到达 $x$ 点，就可以完成掉头。

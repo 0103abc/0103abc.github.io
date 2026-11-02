@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序", "图论", "强连通分量"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/qawkmrzg)。
-
 糖丸啦。~~是谁在比赛中获得了 30 分的好成绩来着？~~
 
 首先套路的对图做强连通缩点，得到一个 dag 森林。

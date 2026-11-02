@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "数学", "概率与期望"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/iwrlbyhy)。
-
 建议先阅读 [CF1144G](https://www.luogu.com.cn/article/trau57mg) 题解。
 
 直接按照上述做法暴力判断可以做到 $O(n^2)$ 求解，但是这显然过不去。

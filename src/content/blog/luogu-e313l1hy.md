@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "基础算法", "排序", "数据结构", "并
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/e313l1hy)。
-
 【模板】树上 Exchange-Argument，建议先做：[AGC023F](https://www.luogu.com.cn/problem/AT_agc023_f)，[CF277D](https://www.luogu.com.cn/problem/CF277D)，~~CBC020F~~
 
 考虑在某一时刻，已经确定了两个块内部的顺序，现在要给这两个块排序。设第一个块内有 $c_1$ 个元素，其值分别为  $a_1,a_2,\ldots,a_{c_1}$；第二个块内有 $c_2$ 个元素，其值分别为 $b_1,b_2,\ldots,b_{c_2}$。在此之前已经放了 $T$ 个数，那么：

@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "组合数学", "字符串", "算法思想", "分治"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/k2mvgbdl)。
-
 黑色的双倍经验！[AT_joi2018ho_e](https://www.luogu.com.cn/problem/AT_joi2018ho_e) 
 
 前置定义：$k_0$ 表示 $0$ 的数量，$k_1$ 表示 $1$ 的数量，$k_?$ 表示 $?$ 的数量。

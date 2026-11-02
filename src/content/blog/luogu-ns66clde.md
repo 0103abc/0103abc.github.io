@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ns66clde)。
-
 容易证明一个长度为 $n$ 的串 $s$ 是“完美回文”，当且仅当 $s_1=s_2=\ldots=s_n$。下面给出证明：
 
 **（1）$2\mid n$**

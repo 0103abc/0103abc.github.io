@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论", "基础算法", "二分", "算法思想
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/rquz8bqn)。
-
 ~~来水一篇题解~~
 
 十分简单的 $2400$。考虑到质数的因子数量相对较少，而且两个数 $a_1,a_2$ 若能表示为 $a_1=p_1p_2,a_2=p_3p_4$ 的形式（$\forall i\in[1,4],p_i\in\text{prime}$），则 $a_1=a_2$ 当且仅当 $\lbrace p_1,p_2\rbrace=\lbrace p_3,p_4\rbrace$。因此考虑二分选前 $m$ 个质数建图，对于任意两个质数都连一条边。然后就是问图上是否存在一个子边集使得这个子边集和点集合起来形成的新图存在欧拉路径，可以使用 Hierholzer Algorithm 求解，时间复杂度为 $O(n\log n)$。

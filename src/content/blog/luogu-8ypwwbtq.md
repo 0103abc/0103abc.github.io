@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "二分", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/8ypwwbtq)。
-
 XorForces。每日被 Hack。
 
 首先考虑异或的性质：

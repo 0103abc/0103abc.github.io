@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "概率与期望"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6a07qfa2)。
-
 不算很难的题（？
 
 注意到位置和位置之间是相互独立的，因此考虑对每个位置分别计算其期望值。设 $f_{i,j}$ 表示当前处理的数值为 $i$，进行了 $j$ 次操作的不同方案数。转移形如：

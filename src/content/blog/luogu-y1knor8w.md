@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "组合数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/y1knor8w)。
-
 记答案为 $f_{n,m}$，则考虑套路的对 $p_i\neq i$ 条件容斥，钦定有 $i$ 个位置 $x$ 满足 $x>m$ 且 $p_x=x$，剩下的数随便放，答案可以被表示为：
 
 $$

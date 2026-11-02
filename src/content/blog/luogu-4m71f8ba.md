@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/4m71f8ba)。
-
 可以发现若 $n\neq 1$，则可确定数字数量的上界是 $\max(0,n-4)$。下面考虑证明这一点：
 
 + 若 $n<3$，则显然无法询问出任何有效信息。

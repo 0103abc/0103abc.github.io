@@ -7,8 +7,6 @@ tags: ["AtCoder", "图论", "最短路", "算法思想", "构造", "动态规划
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ggdymok6)。
-
 题意：给定一张无向图 $G$，现在给定四个点 $S$，$T$，$u$，$v$，你需要任意选取 $S\to T$ 的一条最短路，并使得将其上所有边边权均赋为 $0$ 后 $u\to v$ 最短路长度最短。
 
 题解：

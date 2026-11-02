@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "贪心", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/nxuqv4yo)。
-
 目前这题 C++ 题解全都可以被下面数据 hack：
 
 ```

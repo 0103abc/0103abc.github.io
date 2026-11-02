@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/nytudzys)。
-
 好题啊！
 
 考虑一个经典套路。

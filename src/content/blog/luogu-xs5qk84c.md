@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "基础算法", "贪心", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/xs5qk84c)。
-
 因为 $01$ 序列的 $\text{mex}$ 值只有 $0,1,2$ 三种不同取值，所以考虑然后 dp：设 $f_{i,j,0/1}$ 表示当前处理了 $i$ 点为根的子树内的信息，$i$ 所对应的同色连通块的大小为 $j$，$i$ 点写的数字是 $0/1$，答案最少减少了多少。那么显然有下面的转移：
 
 + $f_{u,i,0}\leftarrow \min(f_{v,j,1}+f_{u,i,0},f_{v,i-j,0}+f_{u,j,0}+ij-i^2)$

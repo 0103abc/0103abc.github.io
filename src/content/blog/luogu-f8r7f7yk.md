@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "线性动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/f8r7f7yk)。
-
 简单题，考虑简单 dp。发现 $k$ 很小，因此设 $f_{i,j,0/1}$ 表示前 $i$ 个元素，修改了 $j$ 个位置，当前位置不选 / 必选，最大子段和的值。转移类似于普通的 1-D 最大子段和。具体见代码。
 
 ```cpp

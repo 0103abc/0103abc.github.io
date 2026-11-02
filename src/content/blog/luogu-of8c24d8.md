@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/of8c24d8)。
-
 ~~吐槽一句：这样例纯 10Q 吧~~
 
 对于任意两个位置 $i,j$ 满足 $l\le i<j\le r$，其 $\gcd$ 为：$\gcd(k^{2^i}+1,k^{2^j}+1)$。设这个值为 $g$，那么有 $k^{2^i}\equiv k^{2^j}\equiv g-1\pmod g$，又因为 $g-1\equiv -1\pmod g$，所以 $k^{2^i}\equiv (-1)^{2^i}\equiv 1\pmod g$ 即 $-1\equiv 1\pmod g$。因此可以确定 $g\mid 2$ 即 $g\in\lbrace 1,2\rbrace$。简单分类即可得到 $g=2$ 当且仅当 $k$ 是奇数，$g=1$ 当且仅当 $k$ 是偶数。

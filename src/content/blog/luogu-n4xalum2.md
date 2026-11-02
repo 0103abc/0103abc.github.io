@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/n4xalum2)。
-
 感觉知道 Landau 定理之后就很简单（）
 
 #### 前置知识

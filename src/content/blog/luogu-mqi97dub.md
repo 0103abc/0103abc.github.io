@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mqi97dub)。
-
 $a>b$ 时显然无解，直接特判掉这种情况。
 
 然后考虑对多项式 $P$ 的系数进行分类讨论：

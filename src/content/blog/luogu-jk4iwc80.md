@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "线性代数", "基础算法", "差分", "组合数�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/jk4iwc80)。
-
 记 $a_{i,j}\in\lbrace0,1\rbrace$ 表示 $(i,j)$ 位置格子的颜色。
 
 把 $2\times 2$ 相邻的四个 $6\times 7$ 矩阵拼到一起做差可以得到 $a_{i,j}+a_{i+6,j+7}=a_{i+6,j}+a_{i,j+7}$。因此容易想到按 $(i\bmod 6,j\bmod 7)$ 的值将整个矩阵划分为 $42$ 个等价类分别讨论。

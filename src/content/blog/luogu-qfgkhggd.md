@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/qfgkhggd)。
-
 我切 $3100$，真的假的？
 
 容易观察到若不考虑 $\exists i,d_i\neq 0$ 的限制，那么 $\forall i\in[1,n]$ 都给 $d_i\leftarrow 0$ 就是一组合法的构造。因此图不连通其实就是个幌子，若有一个连通块可以构造出合法解，那么其他连通块全填 $0$ 就是合法解。因此下面仅讨论图的一个连通块的情况。

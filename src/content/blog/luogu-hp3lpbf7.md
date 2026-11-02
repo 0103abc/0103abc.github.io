@@ -7,8 +7,6 @@ tags: ["Codeforces", "搜索", "深度优先搜索", "图论", "树", "基础算
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/hp3lpbf7)。
-
 APIO 讲课例题。
 
 独立集比较难找，考虑先处理更好找的简单环。注意到求出图的任意一棵生成树后，若图中存在一个 $v\to u$ 的返祖边，则 $u$ 到 $v$ 存在一个包含 $|dep_u-dep_v|+1$ 个点的简单环，其中 $dep_i$ 表示 $i$ 点在找到的 DFS 生成树上的深度。因此对每条这样的返祖边，若其满足 $|dep_u-dep_v|+1\ge\lceil\sqrt n\rceil$，则可以直接找到一个点数不小于 $\lceil\sqrt n\rceil$ 的简单环。

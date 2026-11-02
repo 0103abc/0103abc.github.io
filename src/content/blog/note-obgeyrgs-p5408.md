@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式", "算法思想", "分治", "倍增"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 考虑用第一类斯特林数的生成函数来解这个问题。设 $f_x(n)$ 是第 $n$ 行第一类斯特林数组成的生成函数，则有：$f_x(n)=\sum\limits_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}x^i=\prod\limits_{i=0}^{n-1}(x+i)$。
 
 现在要求 $f_x(n)$ 的每一项系数，容易想到用分治 NTT 做到 $O(n\log^2n)$，据说卡卡常能过。这里给出一种 $O(n\log n)$ 求多项式系数的解法。

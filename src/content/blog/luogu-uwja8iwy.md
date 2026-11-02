@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "二分图匹配", "基础算法", "二分", "动态�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/uwja8iwy)。
-
 警察局 $S$ 的数量很少，因此猜测最终做法的时间复杂度中带一个 $2^S$。记 $cnt_i$ 表示如果 $i$ 集合内的警察局都可以覆盖到的格子的数量（不包含警察局本身所在的格子），然后考虑 dp，设 $f_i$ 表示只能分配给集合 $i$ 中警察局的格子的数量，转移显然就是 $f_i=\sum\limits_{j\subseteq i}cnt_j$，直接 SOS dp 就可以做到 $O(S2^S)$ 时间复杂度解决。
 
 然后考虑求最小的最大任务数。设每个警察局最多分配 $x$ 个格子，则对于任意的非空集合 $U$ 所有覆盖集合完全包含于 $U$ 的格子只能交给 $U$，因此必须满足 $f_u\le x|U|$，由 Hall 定理可知这个也是充分条件。因此最小可能的最大值就是 $\max\limits_{U\neq\varnothing}\lceil\frac{f_U}{|U|}\rceil$。

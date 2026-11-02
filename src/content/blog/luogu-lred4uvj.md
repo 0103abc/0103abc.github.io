@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "字符串"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/lred4uvj)。
-
 upd：我觉得我题解格式没问题的啊（
 
 **请务必注意 本题解中下标从 $0$ 开始。**

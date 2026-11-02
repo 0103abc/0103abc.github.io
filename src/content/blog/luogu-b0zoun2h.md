@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/b0zoun2h)。
-
 首先有经典结论：对于一个长度为 $n$ 的数组 $a$，若交换其 $i,j$ 位置的元素的值（$i\neq j$），则其逆序对数必然发生改变。
 
 因此可以证明若 $n\equiv 2,3\pmod 4$，则必然无解。否则可以构造答案使得其存在合法解；

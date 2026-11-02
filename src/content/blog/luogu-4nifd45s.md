@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/4nifd45s)。
-
 注意到平均值在 $n\equiv 1\pmod 2$ 时是整数，$n\equiv 0\pmod 2$ 时是小数，因此容易想到利用这点性质进行分类讨论：
 
 ### $n\equiv 0\pmod 2$

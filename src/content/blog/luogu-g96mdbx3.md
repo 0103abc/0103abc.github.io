@@ -7,8 +7,6 @@ tags: ["洛谷", "字符串", "动态规划", "数学", "数论"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/g96mdbx3)。
-
 [部分内容参考了该题解](https://www.luogu.com.cn/article/zzaf1yya)。
 
 大的来了。

@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "哈希", "动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/wauuunbq)。
-
 简单题。注意到两个字符串 $s_1,s_2$ 都能产生同一个 Morse Code $x$ 当且仅当 $s_1=s_2$，因此只需要把所有不同的子串可以产生的不同 Morse Code 数量求和就是答案。设 $f_{l,r}$ 表示 $l\sim r$ 一段可以产生多少个不同的 Morse Code，转移枚举上一个转移点 $k$ 表示上一个完整的单词是 $k\sim r$ 然后判断是否可行即可。
 
 本题卡常 / 空，`__gnu_pbds::gp_hash_table` 和 `umap` 均无法通过，需要手写哈希表。时间复杂度为 $O(n^2)$ 可以通过。

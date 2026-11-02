@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "网络流", "基础算法", "差分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/9wpwpmpo)。
-
 为啥有黑来着。
 
 有经典结论：竞赛图三元环数量为 $\binom n3-\sum\limits_{i=1}^n\binom{\deg_i}{2}$，其中 $\deg_i$ 表示 $i$ 点的出度。最大化三元环的数量即最小化 $\sum\limits_{i=1}^n\binom{\deg_i}2$ 也就是最小化 $\sum \deg_i^2$ 的值。

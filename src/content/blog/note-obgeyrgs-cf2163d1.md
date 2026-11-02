@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 如果你不会做这个题，请注意题目询问的限制条件求的是 $\max$ 而不是 $\min$（）我绷不住了
 
 $\text{mex}$ 运算有一些比较有用的性质，例如：在任意一个给定的序列 $a$ 中，$\text{mex}(l:r)\le \text{mex}(l:r+1)$ 必然成立。而在本题中，因为给出的 $a$ 是一个 $0\sim n-1$ 的排列，所以必然只存在一个值为 $0$ 的位置。

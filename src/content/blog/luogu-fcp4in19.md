@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "字符串哈希"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/fcp4in19)。
-
 简单题。不知道为什么有 $2300$。
 
 考虑判断等式 $a+b=c$ 是否成立。直接做需要 $O(n)$ 的高精度计算，考虑优化。根据模运算的基本性质，可以知道，对于任意一个正整数 $p$，若 $a+b=c$ 成立，则 $(a\bmod p+b\bmod p)\bmod p=c\bmod p$ 也必然成立。因此考虑选取大模数 $p$，然后类似于哈希的方法计算一个前缀 $\bmod\ p$ 的值，从而 $O(1)$ 直接计算出某一个区间 $\bmod\ p$ 的值。此时枚举加号和等号的位置可以做到 $O(n^2)$。

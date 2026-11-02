@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/9cwssnhg)。
-
 > 管理员备注：本题可能是错题。
 > 
 > 2025.1.27 update：现在本题存在多项式解，但仍然无法在原数据范围下通过（UOJ941）。

@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "算法思想", "构造", "基础算法", "排
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/rptxe876)。
-
 ## Description
 
 这是一道交互题。

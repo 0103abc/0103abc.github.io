@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树", "搜索", "深度优先搜索"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/qvma8okp)。
-
 **这是一个不使用长剖的做法。**
 
 注意到一组三元点对 $(i,j,k)$ 是合法的，当且仅当树上存在中心点 $p$，使得 $\text{Dist}(i,j)=\text{Dist}(i,k)=\text{Dist}(j,k)$。

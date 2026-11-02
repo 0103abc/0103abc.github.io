@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "图论", "最短路", "数学", 
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7tt7wpba)。
-
 考虑建出 2-SAT 图论模型并各跑一遍 floyd 算法求解有向图闭包传递问题。接下来分类讨论：
 
 - 假设两张图的有解性不同，对有解的图直接构造一组解即可；

@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式", "算法思想", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/1g6cnwmo)。
-
 选自 [11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ### 039. [P6012 [P5087] 数学 加强版](https://www.luogu.com.cn/problem/P6012)
@@ -213,8 +211,6 @@ namespace Loyalty
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
 
 这是不是生成函数板子啊/yun
 

@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "强连通分量", "基础算法", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/2zljjdqr)。
-
 可是我还真的不知道这个性质啊/kel
 
 这题太麻森了，交互题不交互.jpg

@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论", "基础算法", "差分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/winfibfx)。
-
 和另一篇带代码的题解实现好像不太一样（）
 
 把问题差分，答案为 $f(r)-f(l-1)$。问题在于求 $f(n)$ 的值：

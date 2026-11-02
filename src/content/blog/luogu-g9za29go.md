@@ -7,8 +7,6 @@ tags: ["Codeforces", "数据结构", "树状数组", "基础算法", "前缀和"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/g9za29go)。
-
 为什么大家都会做这题啊呜呜呜/dk/dk/dk
 
 题目名叫 Fenwick Tree 那就提示我们这题和 Fenwick Tree 有关。可以发现题目中给出的 $s_i$ 和 $a$ 中的关系正好就是树状数组中根节点和子树内结点的关系。而每一次操作，就是对于每一个结点，将其子树内所有结点的权值添加到她身上。

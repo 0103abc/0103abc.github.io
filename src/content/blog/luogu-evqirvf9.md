@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "图论", "树", "数据结构", "线段树
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/evqirvf9)。
-
 设 $f_{i,j}$ 表示以 $i$ 为根的子树中满 $j$ 叉树的深度最大值是多少。由满 $j$ 叉树的性质可知若 $i$ 点共有 $c_i$ 个子结点，则 $j>c_i$ 时必有 $f_{i,j}=1$。因此合法的 dp 状态数是 $O(n)$ 级别的。转移也是容易的，直接在其子树内找 $f$ 值最大的 $k$ 个状态，即 $f_{i,j}=\operatorname{kthmax}\limits_{k\in\text{son}_i}f_{k,j}+1$。
 
 然后考虑怎么从 $f_{i,j}$ 还原出 $dp_k(u)$ 的信息，发现 $dp_k(u)$ 就是在子树内对 dp 信息取最大值，因此直接线段树合并即可做到 $O(n\log n)$ 解决问题。

@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "数位动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ttywbar3)。
-
 首先有一个[经典结论](https://www.luogu.com.cn/problem/P3949)是 Thue-Morse 序列的第 $i$ 项的值就是 $\operatorname{parity}(i)$。因此题目中给出的询问操作其实就是问 $\sum\limits_{i=0}^{m-1}\operatorname{parity}(i\oplus(i+n))$。
 
 记 $S(m,n)=\sum\limits_{i=0}^{m-1}\text{parity}(i\oplus(i+n))$。考虑到有 $\text{parity}(2x)=1-\text{parity}(2x+1)=\text{parity}(x)$。因此考虑按照 $n,m$ 的奇偶性分别讨论计算答案：

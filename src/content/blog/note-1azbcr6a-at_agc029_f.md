@@ -7,8 +7,6 @@ tags: ["AtCoder", "图论", "二分图匹配", "基础算法", "二分", "搜索
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/1azbcr6a)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/AT_agc029_f).
 :::

@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "二分", "数据结构", "平衡树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/zsz98gft)。
-
 喜提最劣解，来补一下题解。考虑一个关键性质：
 
 对于任意三个正整数 $x,y,z$，若满足 $x\le y\le z$，则必然有 $\min(x\oplus y,y\oplus z)\le x\oplus z$（类似的题目是 AT_abc308_g）。证明可以按位考虑。

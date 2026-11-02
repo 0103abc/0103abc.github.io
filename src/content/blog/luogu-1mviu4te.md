@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/1mviu4te)。
-
 给定 $n,r$，求 $\sum\limits_{d=1}^n(-1)^{\lfloor d\sqrt r\rfloor}$ 的值。
 
 ### Sol 3

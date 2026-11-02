@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "数学", "线性代数"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/wcd6p95z)。
-
 这是一个 240 分的做法，为目前最高得分。
 
 满分做法是非常简单的，直接对整张图做三染色即可满足条件。

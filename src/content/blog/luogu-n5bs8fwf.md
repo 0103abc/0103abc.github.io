@@ -7,8 +7,6 @@ tags: ["AtCoder", "动态规划", "数学", "组合数学", "基础算法", "排
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/n5bs8fwf)。
-
 题目中给的东西其实就是要求排列对应的坐标点落在大圆和小圆之间求排列的数量。记 $f_i$ 表示满足 $x^2+i^2<n^2$ 的 $x\in[0,2n)\cap\mathbb N$ 的数量，$g_i$ 表示满足 $x^2+i^2\le 4n^2$ 的 $x\in[0,2n)\cap\mathbb N$ 的数量。则排列 $p_i$ 的限制条件就可以看作是 $\forall i,f_i\le p_i<g_i$。
 
 考虑对内圆 $p_i\ge f_i$ 的限制做容斥，钦定排列前 $n$ 个位置中，有 $k$ 个位置是不满足 $p_i\ge f_i$，则记这样的排列的数量为 $F_k$ 则直接容斥可得答案为 $\sum\limits_{k=0}^n(-1)^kF_k$。

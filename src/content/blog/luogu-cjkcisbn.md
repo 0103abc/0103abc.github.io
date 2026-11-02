@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/cjkcisbn)。
-
 [选自 11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ### 028. [P10832 [COTS 2023] 传 Mapa](https://www.luogu.com.cn/problem/P10832)

@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "二分", "模拟", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/ng0txe27)。
-
 直接做是困难的，考虑二分答案，问题变为判定玩家是否可以中 $p$ 次奖。简单调整分析后可以发现对给定的区间 $[L,R]$ 而言 $p$ 合法的充要条件是：
 
 + $0\le p\le\min\limits_{i=L}^R(x_i+y_i)$

@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "回文"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/niawz1vn)。
-
 被 $2400$ 击败了，写点水题提提信心（
 
 考虑什么时候是不合法的。显然，此时 $S$ 串必须为回文串，且必须满足下面三个条件之一：

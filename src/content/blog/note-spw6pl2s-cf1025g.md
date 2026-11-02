@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "数学", "概率与期望"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/spw6pl2s)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/CF1025G).
 :::

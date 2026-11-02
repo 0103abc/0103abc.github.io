@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "基础算法", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/v9plzxe1)。
-
 首先特判 $r-l+1\le 20$ 的情况，可以直接暴力枚举。
 
 剩下的分类讨论：

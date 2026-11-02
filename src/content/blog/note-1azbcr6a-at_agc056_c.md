@@ -7,8 +7,6 @@ tags: ["AtCoder", "字符串", "基础算法", "差分", "图论", "最短路"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/1azbcr6a)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/AT_agc056_c).
 :::

@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "组合数学", "动态规划", "搜索", "深度
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/wmu42o1b)。
-
 怎么全世界都觉得这个是黑题，来写一个简单做法的题解。
 
 为了方便，后面记 $C_i=\frac{\binom{2i}i}{i+1}$ 为 Catalan 数列。

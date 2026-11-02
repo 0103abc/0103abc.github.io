@@ -7,8 +7,6 @@ tags: ["洛谷", "搜索", "深度优先搜索", "图论", "树", "动态规划"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/jl9fr15a)。
-
 对链公共部分的形态分类讨论。
 
 在讨论之前，先求出每条路径 $u_i\leftrightarrow v_i$ 在树上的 LCA 结点 $w_i$。

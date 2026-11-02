@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "博弈"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/byh56t8v)。
-
 三千的奥义，巴巴的博弈
 
 拆分方案一定是若干个 $3$ 加上 $O(1)$ 个 $2$ 或者 $4$。不难验证 $n$ 比较小的情况，而对 $n$ 较大的情况，$3 \times 3 > 2 \times 2 \times 2$，则拆出 $3$ 总是更优的。

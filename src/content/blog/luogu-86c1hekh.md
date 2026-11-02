@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "数论", "数据结构", "平衡树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/86c1hekh)。
-
 建议先阅读 [$\textbf{Easy Ver.}$](https://www.luogu.com.cn/article/no1m1rc4) 题解。
 
 前情提要：我不会做这题。所以我用了一个奇奇怪怪的时间复杂度极劣的做法通过了这个题。如果要学习正解建议跳过这篇题解。如果用这个做法的话这题最多蓝（

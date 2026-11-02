@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "二分", "数据结构", "单调栈"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/3i47q0t0)。
-
 我怎么不会这个啊（）
 
 先考虑一个（~~并非~~）简单的情况：若参数序列 $q$ 满足 $q_1<q_2<\ldots<q_Q$ 即 $q$ 序列单调递增：

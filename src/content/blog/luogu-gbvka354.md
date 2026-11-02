@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/gbvka354)。
-
 知道 Ramsey 数就很简单，注意到 $R(6,3)\le 46$，所以对于 $n\ge 46$ 的情况必然可以构造出一组合法的解，因此直接把 $n$ 对 $50$ 取 $\min$ 然后暴力枚举即可。
 
 ```cpp line-numbers

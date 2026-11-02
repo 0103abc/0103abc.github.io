@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "贪心", "图论", "树", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/lpdrrgcp)。
-
 考虑什么时候图合法。很显然，当且仅当图有且仅有一个环构成时图合法。更确切的说，一个图合法当且仅当：
 
 + 将所有的单向边扩展为双向边后图连通。

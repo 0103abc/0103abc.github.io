@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "多项式", "组合数学", "算法思想", "分
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/uafenvbx)。
-
 考虑直接容斥计算。记有至少 $i$ 个点不满足条件的答案为 $f_i$，则容斥可得最后的答案即为 $\sum\limits_{i=0}^n(-1)^if_i$。而因为点和点的权值互不相同，因此一个点最多只有一个儿子可以不合法。此时套路的把每个点写成一个多项式的形式那么就可以得到 $f_i=[x^i](|\text{son}_i|x+1)(n-i)!$（可以看作是，先钦定 $i$ 个点一定不合法，剩下的 $n-i$ 个点的值随便填），分治 NTT 把多项式乘起来即可做到 $O(n\log^2n)$ 求解答案。
 
 ```cpp line-numbers

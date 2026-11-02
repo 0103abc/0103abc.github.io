@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "贪心", "排序"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/spw6pl2s)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P9965)
 :::

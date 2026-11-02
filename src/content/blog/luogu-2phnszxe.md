@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论", "算法思想", "倍增", "基础算法", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/2phnszxe)。
-
 ~~题目名居然过审了，好神奇~~
 
 Fibonacci 数列有经典结论 $\gcd(f_a,f_b)=f_{\gcd(a,b)}$，因此考虑 gcd-lcm 反演，$\operatorname{lcm}(f_{a_1},f_{a_2},\ldots,f_{a_n})=\prod\limits_{\varnothing\neq I\subseteq\lbrace 1,2,3,\ldots,n\rbrace}(\gcd\limits_{i\in I}f_{a_i})^{(-1)^{|I|+1}}=\prod\limits_{\varnothing\neq I\subseteq\lbrace 1,2,3,\ldots,n\rbrace}f_{\gcd\limits_{i\in I}a_i}^{(-1)^{|I|+1}}$。然后再对指数部分做反演，定义 $g_d=\prod\limits_{e\mid d}f_e^{\mu(d/e)}$ 则有 $f_i=\prod\limits_{d\mid i}g_d$，代入上面反演的式子可得 $\operatorname{lcm}(f_{a_1},f_{a_2},\ldots,f_{a_n})=\prod\limits_{\varnothing\neq I\subseteq\lbrace1,2,3,\ldots,n\rbrace}(\prod\limits_{d\mid (\gcd\limits_{j\in I}a_j)}g_d)^{(-1)^{|I|+1}}=\prod\limits_{\varnothing\neq I\subseteq\lbrace1,2,3,\ldots,n\rbrace}(\prod\limits_{d\mid(\gcd\limits_{j\in I}a_j)}g_d^{(-1)^{|I|+1}})=\prod\limits_{d\ge 1}g_d^{\sum\limits_{\varnothing\neq I\subseteq\lbrace1,2,3,\ldots,n\rbrace,d\mid(\gcd\limits_{j\in I}a_j)}(-1)^{|I|+1}}$。为了方便，后面记指数部分 $E_d=\sum\limits_{\varnothing\neq I\subseteq\lbrace1,2,3,\ldots,n\rbrace,d\mid(\gcd\limits_{j\in I}a_j)}(-1)^{|I|+1}=\sum\limits_{\varnothing\neq I\subseteq\lbrace1,2,3,\ldots,n\rbrace,d\mid a_i,\forall i\in I}(-1)^{|I|+1}$。

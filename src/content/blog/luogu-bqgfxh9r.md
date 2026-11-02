@@ -7,8 +7,6 @@ tags: ["洛谷", "字符串", "算法思想", "倍增", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/bqgfxh9r)。
-
 前置知识：[回文自动机 PAM](https://www.luogu.com.cn/problem/P5496)。
 
 一些定义：

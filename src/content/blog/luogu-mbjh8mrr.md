@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mbjh8mrr)。
-
 推荐阅读：[三元环计数入门](https://www.luogu.com.cn/article/ckjwwy2o)。
 
 直接数蓝色子图是困难的，因此想到容斥计算，记 $f_i$ 表示选择四个点**恰好**有 $i$ 条红色边的方案数，$g_i$ 表示选择四个点**至少**有 $i$ 条红色边的方案数，则根据二项式反演可知有 $g_i=\sum\limits_{j=i}^6\binom ji(-1)^{j-i}f_j$，最终的答案就是 $|g_0-g_6|$，显然有 $g_0=f_0-f_1+f_2-f_3+f_4-f_5+f_6,g_6=f_6$，因此就有 $|g_0-g_6|=|f_0-f_1+f_2-f_3+f_4+f_5|$。

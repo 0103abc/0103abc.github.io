@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "分治", "动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/8taahd6r)。
-
 【模板】猫树分治。对于当前的分治区间 $[l,r]$ 而言：
 
 + 若 $l=r$，则直接处理即可。
@@ -96,8 +94,6 @@ namespace Loyalty
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/08l8b375)。
 
 【模板】猫树分治。对于当前的分治区间 $[l,r]$ 而言：
 

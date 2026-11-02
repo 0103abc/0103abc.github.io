@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "概率与期望", "动态规划", "算法思想", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/m2edrk7n)。
-
 贴的 $2024$ 年的题解，今天发现洛谷搬这个题了就发出来了（）
 
 **Hint**

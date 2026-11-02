@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "状态压缩"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/nix4ibzh)。
-
 难度：$3/10$
 
 感觉是没啥难度的题。先考虑一个暴力的 dp：设 $f_i$ 表示当前处理了 $i$ 集合内所有的简单路径，至少需要染几条边。初始条件是 $f_0=0$。然后再维护一下 $g_i$ 表示 $i$ 连向其父亲的边被哪些简单路径覆盖了，转移就是简单的了，直接 $f_{i\cup g_i}\leftarrow f_i+1$ 即可。

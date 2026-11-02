@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心", "动态规划"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/74gbaehz)。
-
 首先要知道 [Zeckendorf's Theorem](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem)，即任何一个正整数都可以被表示为若干个不连续的斐波那契数的和。更确切的来说，任意正整数 $n$，都可以找到至少一个单调递增的序列 $a_1,a_2,\ldots,a_k$ 使得 $\forall i\in[1,k),a_{i+1}-a_i\ge 2$，且 $\sum\limits_{i=1}^k F_{a_i}=n$，其中 $F_i$ 为 Fibonacci 数的第 $i$ 项。
 
 然后可以直接贪心的分解 Fibonacci 数，得到一个 Fibonacci 生成序列，设这个序列的元素从小到大分别为 $a_1,a_2,\ldots,a_k$，则可以知道，其实只有下面三种情况是合法的转移：

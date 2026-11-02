@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/n7wbjjde)。
-
 又是大水题。
 
 考虑连续两个元素对答案的贡献。

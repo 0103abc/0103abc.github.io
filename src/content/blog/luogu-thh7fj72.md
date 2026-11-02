@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心", "数学", "数论", "动态规划
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/thh7fj72)。
-
 ~~呃呃呃，大水题~~
 
 首先有一个简单的贪心策略：先加边权大的边，然后再加边权小的边。容易证明她是正确的。

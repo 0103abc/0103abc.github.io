@@ -7,8 +7,6 @@ tags: ["洛谷", "动态规划", "数学", "概率与期望", "基础算法", "�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/s0ailzvf)。
-
 Official Solution.
 
 同样考虑 dp。设 $f_{i,j}$ 表示因为其祖先结点不断失败，导致结点 $i$ 总共需要被重新通关 $j$ 次时，完成 $i$ 为根子树这一部分所需要的最小期望代价是多少。考虑如果 $i$ 需要成功 $j$ 次，因为单次成功的概率是 $\frac 1{p_i}$ 因此期望一共挑战 $jp_i$ 次，即 $i$ 结点自身期望花费 $jp_ic_i$ 的代价。

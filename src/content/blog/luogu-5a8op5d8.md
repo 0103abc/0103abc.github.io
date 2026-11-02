@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "贪心", "字符串", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/5a8op5d8)。
-
 因为字典序比较遵循贪心原则，所以考虑直接按中序遍历来贪心处理，即一个点被复制后优先处理其左子树。
 
 此时容易想到下面的贪心流程：

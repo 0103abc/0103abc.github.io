@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "基础算法", "排序", "数学", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/hmv4tezw)。
-
 Official Solution.
 
 因为 $n$ 个数最多有 $2^n$ 种选取方法，而需要覆盖的数的数量也是 $2^n$，这就告诉我们构造的序列 $a,b$ 需要满足所有的子集的异或均两两不同。

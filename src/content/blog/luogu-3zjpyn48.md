@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "构造", "分治"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/3zjpyn48)。
-
 十分好的不含杂质 Ad-Hoc 构造！难度：$8/10$，另外几道有难度然后这么好玩的构造题应该是 [P12336 第三心脏](https://www.luogu.com.cn/problem/P12336)（比这个题简单一点），[P14025 [ICPC 2024 Nanjing R] P ⊕ Q = R](https://www.luogu.com.cn/problem/P14025)（比这个题难一点）。~~[P14158 [ICPC 2022 Nanjing R] 三角形](https://www.luogu.com.cn/problem/P14158) 是史诗级大份，建议别做。~~
 
 首先容易发现当 $2\nmid n$ 的时候必然无解，因此只需要考虑 $2\mid n$ 的情况即可。

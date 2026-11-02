@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/lfit54fs)。
-
 难度：$4/10$
 
 考虑下面的几个性质（这也太难了）：

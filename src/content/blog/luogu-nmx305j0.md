@@ -7,8 +7,6 @@ tags: ["AtCoder", "基础算法", "排序", "模拟", "贪心"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/nmx305j0)。
-
 tags：博弈，贪心
 
 [差不多是双倍经验](https://www.luogu.com.cn/problem/CF794E)

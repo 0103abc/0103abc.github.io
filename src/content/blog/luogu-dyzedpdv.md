@@ -7,8 +7,6 @@ tags: ["AtCoder", "数学", "概率与期望", "基础算法", "模拟"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/dyzedpdv)。
-
 可以证明，$n>2$ 时答案一定只和 $\sum\limits_{i=1}^na_i,\sum\limits_{i=1}^na_i^2$ 有关。下面给出上述结论的证明：
 
 ::::success[证明]{open}

@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "组合数学", "线性代数", "基础算法", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/4do0zh1j)。
-
 **「感觉能独立想出这题的人，脑子和蛇一样聪明」**
 
 一眼看上去这题十分神秘不可做，因此考虑逐步挖掘其性质。

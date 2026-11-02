@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树", "搜索", "深度优先搜索", "基础算
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/o819cgpu)。
-
 首先考虑树形态为一条链的情况：很显然直接从链的一段往链的另外一段执行 $1$ 操作就行。
 
 扩展到树上可以考虑用最多 $\lfloor\frac n4\rfloor$ 次 $2$ 操作孤立若干个点然后让树形成若干条链。考虑贪心，设 $f_i$ 表示 $i$ 点的状态，这里令 $\text{RED}$ 表示 $i$ 点在链上，$\text{YELLOW}$ 表示 $i$ 点一定在链的顶端（即合并了两条链），$\text{GREEN}$ 表示 $i$ 点必须被封杀。则求 $f$ 数组可以一遍 dfs 解决：假设当前 dfs 到了树上的 $u$ 点，设其儿子集合为 $\text{son}_u$，那么若 $\exists v\in\text{son}_u,f_v=\text{YELLOW}$，则必有 $f_u=\text{GREEN}$，否则令 $\text{cnt}=\sum\limits_{v\in\text{son}_u}[f_v=\text{RED}]$，则若有 $\text{cnt}<2$ 则仍有 $f_v=\text{RED}$，若 $\text{cnt}=2$ 则有 $f_v=\text{YELLOW}$，否则必有 $f_v=\text{GREEN}$。

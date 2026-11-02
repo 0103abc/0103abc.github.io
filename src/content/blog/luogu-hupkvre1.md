@@ -7,8 +7,6 @@ tags: ["Codeforces", "动态规划", "状态压缩"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/hupkvre1)。
-
 题意可以转化为：有多少个数不能通过题目中给出的操作使得自己的值变得比最开始更小。
 
 然后考虑如果前一位填了 $x$，而且前面部分全都是合法的，那么后一位可以填哪些数字。假设这里填写了数字 $y$，则：

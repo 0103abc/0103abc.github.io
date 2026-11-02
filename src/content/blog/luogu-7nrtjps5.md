@@ -7,8 +7,6 @@ tags: ["Codeforces", "图论", "树", "扫描线"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/7nrtjps5)。
-
 发现要求的答案就是把所有贡献拆成每一对点 $(x,y)$ 和颜色 $c$ 对答案贡献的和，因此答案就是：
 
 $$

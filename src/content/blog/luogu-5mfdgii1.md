@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "组合数学"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/5mfdgii1)。
-
 Sol $1$. 用 $O(\log n)$ 次询问计算答案。
 
 首先肯定要询问一下 $0$，此时可以求得 $x+y$ 的值。然后对于每一个二进制位 $i$ 询问 $2^i$ 的值。此时设回答的值为 $o$，则：

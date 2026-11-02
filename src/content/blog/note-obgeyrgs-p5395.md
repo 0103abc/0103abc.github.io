@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 这个比上个题简单的不是一点半点吧（）
 
 根据第二类斯特林数的经典通项公式可知：

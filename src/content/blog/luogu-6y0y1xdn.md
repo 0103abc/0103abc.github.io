@@ -7,8 +7,6 @@ tags: ["洛谷", "数据结构", "线段树", "图论", "强连通分量", "基�
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6y0y1xdn)。
-
 选自 [$11$ 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ### 011. [P14315 [Aboi Round 2] Faputa](https://www.luogu.com.cn/problem/P14315)

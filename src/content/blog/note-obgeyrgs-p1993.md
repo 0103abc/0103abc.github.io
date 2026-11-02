@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "最短路", "基础算法", "差分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
-
 严肃学习差分约束。
 
 具体而言，对若干个不等关系可以考虑建图。假设不等关系形如 $x_a-x_b\le c$，那么从 $b$ 向 $a$ 连一条边权为 $c$ 的单向边。

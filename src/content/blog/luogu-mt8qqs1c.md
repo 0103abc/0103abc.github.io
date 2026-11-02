@@ -7,8 +7,6 @@ tags: ["Codeforces", "字符串", "算法思想", "倍增", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/mt8qqs1c)。
-
 十分经典的题（同样也是 PAM 的入门题之一），很多内容参考了 [这篇文章](https://www.luogu.com.cn/article/aytabs1n)。
 
 先考虑这样的一个问题（P14185 回文子串划分计数）：

@@ -7,8 +7,6 @@ tags: ["洛谷", "图论", "树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/1wy3eboh)。
-
 选自 [11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 这题真没啥思维含量吧，非常容易想到先考虑什么时候怪物会被抓住（后面是我的思考过程）：

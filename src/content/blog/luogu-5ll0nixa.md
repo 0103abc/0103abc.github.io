@@ -7,8 +7,6 @@ tags: ["Codeforces", "算法思想", "构造", "数学", "数论", "基础算法
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/5ll0nixa)。
-
 真不会做啊呜呜呜呜呜呜呜呜呜
 
 考虑一个简单的构造：给出一个质因子集合 $S$，然后用 $S$ 内的质因数组合出前 $k$ 小的数。但是这样很明显不能保证正确性，于是考虑调整答案：

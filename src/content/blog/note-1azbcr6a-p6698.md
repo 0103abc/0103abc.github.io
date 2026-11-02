@@ -7,8 +7,6 @@ tags: ["洛谷", "字符串", "自动机", "基础算法", "排序", "图论", "
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/1azbcr6a)。
-
 :::info[Description]
 [Link](https://www.luogu.com.cn/problem/P6698).
 :::

@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "二分", "图论", "二分图匹配", "模拟"
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/vr31jrc2)。
-
 好难。
 
 遇事不决考虑先打表猜结论，手玩若干组小数据后可以发现下面的结论：

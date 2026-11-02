@@ -7,8 +7,6 @@ tags: ["Codeforces", "数学", "概率与期望", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/tzz2ci52)。
-
 用时：37 分 17 秒
 
 这啥博弈啊！

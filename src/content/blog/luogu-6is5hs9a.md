@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数据结构", "线段树"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/6is5hs9a)。
-
 这我哪会啊
 
 因为 $a_i$ 时刻为奇数，所以考虑把 $a_i$ 表示成 $2b_i+1$ 的形式。此时区间 $[l,r]$ 的乘积即可以表示为 $\prod\limits_{i=l}^r(2b_i+1)$ 的形式。又因为答案是对 $2^{20}$ 取模的，且有 $2\mid 2b_i$，因此上面的这个式子只用考虑有最多 $19$ 个选 $2b_i$ 的情况。
@@ -238,8 +236,6 @@ signed main()
 ```
 
 ## 做题笔记补充
-
-> 原文作者：Priestess_SLG；[做题记录原文](https://www.luogu.com/article/obgeyrgs)。
 
 没见过就不会做系列
 

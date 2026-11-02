@@ -7,8 +7,6 @@ tags: ["洛谷", "算法思想", "分治", "数学", "多项式"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/xccdoukm)。
-
 唐题。
 
 先考虑一个十分暴力的做法：对数组进行分治。对于一个分治区间 $[l,r]$：

@@ -7,8 +7,6 @@ tags: ["洛谷", "基础算法", "交互"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/059cyh7v)。
-
 为什么我不喜欢函数交互：
 
 ![image](https://s21.ax1x.com/2025/11/20/pZFYmBd.png)

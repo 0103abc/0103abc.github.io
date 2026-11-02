@@ -7,8 +7,6 @@ tags: ["洛谷", "数学", "数论", "多项式", "算法思想", "构造"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/5ktdnuwk)。
-
 选自 [11 月做题笔记](https://www.luogu.com.cn/article/obgeyrgs)。
 
 ~~NTT 练的不少了，换点反演练（）~~ 事实上可能不太算反演（）

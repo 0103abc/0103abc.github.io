@@ -7,8 +7,6 @@ tags: ["Codeforces", "基础算法", "差分"]
 draft: false
 ---
 
-> 原文作者：Priestess_SLG；[洛谷原文](https://www.luogu.com/article/c33d0bg3)。
-
 一个很好理解很好写的做法。显然答案的上界是 $n$。
 
 考虑对于一条 $a\sim b$ 的路径，则要么在圆上顺时针走要么逆时针走。考虑定义一条路径的状态 $F(u\to v)$：
