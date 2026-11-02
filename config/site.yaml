@@ -6,10 +6,10 @@ site:
   name: 0103abc
   author: 0103abc
   description: 0103abc 的个人网站，记录算法题解、做题过程与学习笔记。
-  avatar: /img/0103abc-avatar.png
+  avatar: /img/0103abc-avatar-cf.jpg
   showLogo: false
   url: https://0103abc.github.io
-  defaultOgImage: /img/0103abc-avatar.png
+  defaultOgImage: /img/0103abc-avatar-cf.jpg
   startYear: 2026
   timezone: Asia/Shanghai
   keywords: [0103abc, 算法, 题解, 洛谷, CodeForces, C++]
@@ -70,6 +70,10 @@ navigation:
   - name: 题解
     path: /solution_list.html
     icon: ri:code-s-slash-line
+  - name: 题库
+    path: /oj/
+    localeIndependent: true
+    icon: ri:terminal-box-line
   - name: 做题记录
     path: /solve_list.html
     icon: ri:checkbox-circle-line
@@ -92,7 +96,19 @@ navigation:
     path: /about
     icon: ri:user-smile-line
 comment:
-  provider: none
+  provider: giscus
+  giscus:
+    repo: 0103abc/0103abc.github.io
+    repoId: R_kgDOS4XsVA
+    category: General
+    categoryId: DIC_kwDOS4XsVM4DKLpe
+    mapping: specific
+    strict: '1'
+    reactionsEnabled: '1'
+    emitMetadata: '0'
+    inputPosition: top
+    lang: zh-CN
+    loading: lazy
 analytics:
   umami:
     enabled: false

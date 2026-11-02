@@ -3,6 +3,7 @@ import { useTranslation } from '@hooks/useTranslation';
 import { useEffect, useState } from 'react';
 import { commentConfig } from '@/constants/site-config';
 import { getHtmlLang } from '@/i18n/utils';
+import { canonicalCommentTerm } from '@/lib/comment-term';
 
 type GiscusTheme = 'light' | 'dark';
 
@@ -21,8 +22,10 @@ export default function Giscus() {
   const { locale } = useTranslation();
   const [theme, setTheme] = useState<GiscusTheme>('light');
   const [mounted, setMounted] = useState(false);
+  const [term, setTerm] = useState('');
 
   useEffect(() => {
+    setTerm(canonicalCommentTerm(document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href, window.location.href));
     setMounted(true);
     setTheme(getTheme());
 
@@ -60,7 +63,7 @@ export default function Giscus() {
       category={config?.category}
       categoryId={config?.categoryId}
       mapping={config?.mapping ?? 'pathname'}
-      term={config?.term}
+      term={config?.term ?? term}
       strict={config?.strict}
       reactionsEnabled={config?.reactionsEnabled}
       emitMetadata={config?.emitMetadata}

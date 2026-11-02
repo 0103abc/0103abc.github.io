@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://hydro.tail6c7680.ts.net/",
+  "domains": [
+    { "id": "system", "name": "本站题库" },
+    { "id": "codeforces", "name": "Codeforces" },
+    { "id": "atcoder", "name": "AtCoder" },
+    { "id": "qoj", "name": "QOJ" },
+    { "id": "uoj", "name": "UOJ" }
+  ]
+}

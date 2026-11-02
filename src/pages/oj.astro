@@ -1,0 +1,38 @@
+---
+import HydroProblemJump from '@/components/oj/HydroProblemJump';
+import hydro from '@/data/hydro.json';
+import PageLayout from '@/layouts/PageLayout.astro';
+import { hydroUrl } from '@/lib/hydro';
+
+const links = [
+  { path: 'p', title: '题库与在线判题', description: '浏览题目，提交代码，查看测试点结果。' },
+  { path: 'record', title: '评测记录', description: '查看提交进度、得分、运行时间和内存。' },
+  { path: 'ranking', title: '排行榜', description: '查看解题情况与站内排名。' },
+  { path: 'training', title: '训练计划', description: '按计划练习，积累算法与编程经验。' },
+  { path: 'contest', title: '比赛', description: '进入 OJ 中已发布的比赛。' },
+  { path: 'login', title: '登录 OJ', description: '使用原 Hydro 账号继续做题。' },
+];
+---
+
+<PageLayout frontmatter={{ title: '题库', description: '0103abc 的 Hydro 题库与在线判题入口。', comments: false }}>
+  <p>在 Hydro 中做题、提交代码并查看评测结果。题目和提交记录与原 OJ 实时共用，登录后即可继续练习。</p>
+  <div class="not-prose my-6 grid gap-3 sm:grid-cols-2">
+    {links.map(({ path, title, description }) => (
+      <a
+        href={hydroUrl(hydro.baseUrl, path)}
+        class="block rounded-2xl border border-current/15 p-5 transition-colors hover:bg-primary/10"
+      >
+        <span class="font-semibold text-lg">{title} <span aria-hidden="true">↗</span></span>
+        <span class="mt-2 block text-sm opacity-75">{description}</span>
+      </a>
+    ))}
+  </div>
+  <HydroProblemJump baseUrl={hydro.baseUrl} domains={hydro.domains} client:load />
+  <noscript><p>也可以直接<a href={hydroUrl(hydro.baseUrl, 'p')}>进入 Hydro 题库</a>查找题目。</p></noscript>
+  <h2>更多题库</h2>
+  <ul>
+    {hydro.domains.map(({ id, name }) => <li><a href={hydroUrl(hydro.baseUrl, 'p', id)}>{name}</a></li>)}
+  </ul>
+  <p>本站 OJ 由个人电脑托管，电脑关机、休眠或网络中断时会暂时离线。博客文章与 GitHub 评论仍可正常访问。</p>
+  <p>博客评论可用 GitHub 账号登录；OJ 保留原有的 Hydro 账号体系。</p>
+</PageLayout>
