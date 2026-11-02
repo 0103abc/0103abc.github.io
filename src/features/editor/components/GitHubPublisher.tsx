@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { parseEditorDocument } from '../document';
-import { changeRemotePost, preparePostUpdate, type RemoteRevision } from '../github-manage';
+import { changeRemotePost, loadRemotePost, preparePostUpdate, type RemoteRevision } from '../github-manage';
 import {
   BLOG_REPOSITORY,
   type PublishedPost,
@@ -18,6 +18,7 @@ interface Props {
   reservedLinks: readonly string[];
   siteTimezone?: string;
   remote?: RemoteRevision;
+  recoveryPath?: string;
   onPublished: (source: string, remote?: RemoteRevision) => void;
 }
 
@@ -26,7 +27,8 @@ export default function GitHubPublisher({
   draftId,
   reservedLinks,
   onPublished,
-  remote,
+  remote: originalRemote,
+  recoveryPath,
   siteTimezone = 'Asia/Shanghai',
 }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -39,6 +41,10 @@ export default function GitHubPublisher({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<PublishedPost | null>(null);
+  const [recovered, setRecovered] = useState<{ draftId: string; revision: RemoteRevision } | null>(null);
+  const [confirmed, setConfirmed] = useState(false);
+  const remote = originalRemote ?? (recovered?.draftId === draftId ? recovered.revision : undefined);
+  const recovering = Boolean(recoveryPath && !originalRemote);
   const id = useId();
 
   useEffect(() => {
@@ -58,6 +64,7 @@ export default function GitHubPublisher({
     if (openedDraft.current !== draftId) {
       openedDraft.current = draftId;
       setSlug(remote?.slug ?? suggestPostSlug(source));
+      setConfirmed(false);
       setResult(null);
     }
     if (remote) setResult(null);
@@ -81,6 +88,14 @@ export default function GitHubPublisher({
     setError('');
     try {
       const login = await verifyGitHubOwner(value);
+      if (recovering && recoveryPath) {
+        const latest = await loadRemotePost(recoveryPath, value);
+        if (parseEditorDocument(source).data.link !== latest.slug)
+          throw new Error('当前草稿与要编辑的文章地址不一致。请先下载草稿，再从文章页重新打开。');
+        const { source: _original, ...revision } = latest;
+        setRecovered({ draftId, revision });
+        setSlug(revision.slug);
+      }
       token.current = value;
       if (tokenInput.current) tokenInput.current.value = '';
       setAccount(login);
@@ -92,7 +107,7 @@ export default function GitHubPublisher({
     }
   };
   const publish = async () => {
-    if (busyRef.current || !token.current || result) return;
+    if (busyRef.current || !token.current || result || (recovering && (!remote || !confirmed))) return;
     busyRef.current = true;
     setBusy(true);
     setError('');
@@ -128,11 +143,11 @@ export default function GitHubPublisher({
         type="button"
         className="editor-button editor-primary"
         onClick={open}
-        title={remote ? '保存修改' : '发布到博客'}
-        aria-label={remote ? '保存修改' : '发布到博客'}
+        title={remote || recoveryPath ? '保存修改' : '发布到博客'}
+        aria-label={remote || recoveryPath ? '保存修改' : '发布到博客'}
       >
         <EditorIcon name="save" />
-        <span>{remote ? '保存修改' : '发布'}</span>
+        <span>{remote || recoveryPath ? '保存修改' : '发布'}</span>
       </button>
       <dialog
         ref={dialog}
@@ -144,7 +159,7 @@ export default function GitHubPublisher({
         }}
       >
         <div className="editor-github-heading">
-          <h2 id={`${id}-title`}>{remote ? '更新原文章' : '发布到博客'}</h2>
+          <h2 id={`${id}-title`}>{remote || recoveryPath ? '更新原文章' : '发布到博客'}</h2>
           <button type="button" className="editor-icon-button" aria-label="关闭发布面板" onClick={close} disabled={busy}>
             <EditorIcon name="close" />
           </button>
@@ -180,7 +195,7 @@ export default function GitHubPublisher({
               void connect();
             }}
           >
-            <p>连接你自己的 GitHub 账号后，即可{remote ? '保存对原文章的修改' : '在这里发布新文章'}。</p>
+            <p>连接你自己的 GitHub 账号后，即可{remote || recoveryPath ? '保存对原文章的修改' : '在这里发布新文章'}。</p>
             <ol className="editor-github-help">
               <li>
                 <a href={TOKEN_SETUP_URL} target="_blank" rel="noreferrer">
@@ -247,8 +262,23 @@ export default function GitHubPublisher({
                 ? `将更新原文件 ${remote.path}。原网址保持不变；若已有其他修改，本次会停止保存。`
                 : '点击发布会将当前文章设为公开。已有文章和题解不会被覆盖。'}
             </p>
+            {recovering && remote && (
+              <label className="editor-field">
+                <span>
+                  此草稿缺少原始版本信息。请先
+                  <a href={`https://github.com/${BLOG_REPOSITORY}/blob/main/${remote.path}`} target="_blank" rel="noreferrer">
+                    查看 GitHub 当前原文
+                  </a>
+                  ，确认草稿包含需要保留的内容。
+                </span>
+                <span>
+                  <input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} />{' '}
+                  我已核对，使用当前草稿更新原文章
+                </span>
+              </label>
+            )}
             <div className="editor-github-actions">
-              <button className="editor-button editor-primary" type="submit" disabled={busy}>
+              <button className="editor-button editor-primary" type="submit" disabled={busy || (recovering && !confirmed)}>
                 {busy ? '正在提交…' : remote ? '保存修改' : '发布新文章'}
               </button>
               <button

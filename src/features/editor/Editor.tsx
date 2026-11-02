@@ -92,6 +92,7 @@ export default function Editor({
   const [importOffer, setImportOffer] = useState<{ path: string; draft: DraftSummary } | null>(null);
   const [importFailure, setImportFailure] = useState<{ path: string; message: string } | null>(null);
   const [importing, setImporting] = useState(false);
+  const [recoveryPath, setRecoveryPath] = useState<string>();
   const importFromBlog = useRef<(path: string) => Promise<void>>(async () => {});
   const openRemotePost = useRef<(path: string) => Promise<void>>(async () => {});
   const pendingSave = useRef<{ requestId: string; draftId: string; postId: string; source: string } | null>(null);
@@ -113,27 +114,35 @@ export default function Editor({
   }, [isDesktop, tab]);
 
   useEffect(() => {
+    const editPath = new URL(location.href).searchParams.get('edit');
+    setRecoveryPath(editPath ?? undefined);
     try {
       setPreviewEndpoint(readOGEndpoint(localStorage, location.href) ?? ogEndpoint);
       setDrafts(listDrafts(localStorage));
       const previous = activeDraft(localStorage);
-      if (previous) setDraft(refreshNewArticleDate(previous));
+      if (previous) setDraft(editPath ? previous : refreshNewArticleDate(previous));
     } catch {
       setError('浏览器存储不可用，请及时复制或下载文章。');
     }
     setInitialized(true);
-    const editPath = new URL(location.href).searchParams.get('edit');
     if (editPath) {
       let previous: EditorDraft | null = null;
       try {
         const summary = listDrafts(localStorage).find((entry) => entry.remote?.path === editPath);
         if (summary) previous = readDraft(localStorage, summary.id);
+        if (!previous) {
+          const active = activeDraft(localStorage);
+          const link = active && parseEditorDocument(active.source).data.link;
+          if (active && typeof link === 'string' && editPath.endsWith(`/${link}.md`)) previous = active;
+        }
       } catch {
         /* A new remote draft can still be loaded when storage is unavailable. */
       }
       if (previous) {
         setDraft(previous);
-        setStatus('已恢复文章编辑草稿；保存时会检查原文版本');
+        setStatus(
+          previous.remote ? '已恢复文章编辑草稿；保存时会检查原文版本' : '已保留当前草稿，连接 GitHub 后可核对并更新原文章',
+        );
       } else void openRemotePost.current(editPath);
     }
     const requested = new URL(location.href).searchParams.get(IMPORT_PARAM);
@@ -500,6 +509,9 @@ export default function Editor({
                 reservedLinks={reservedLinks}
                 siteTimezone={siteTimezone}
                 remote={draft.remote}
+                recoveryPath={
+                  !draft.remote && recoveryPath?.endsWith(`/${String(parsed.data.link)}.md`) ? recoveryPath : undefined
+                }
                 onPublished={(source, remote) => {
                   setDraft((previous) => ({ ...previous, source, remote: remote ?? previous.remote }));
                   setStatus('文章已提交到 GitHub，等待网站自动更新');
