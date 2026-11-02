@@ -97,7 +97,7 @@ export function rehypeShokaAttrs() {
 
           if (child.type === 'text') {
             textNode = child;
-          } else if (child.type === 'element' && child.children.length > 0) {
+          } else if (child.type === 'element' && child.tagName === 'p' && child.children.length > 0) {
             const last = child.children[child.children.length - 1];
             if (last?.type === 'text') textNode = last as Text;
           }
@@ -107,6 +107,7 @@ export function rehypeShokaAttrs() {
           const match = textNode.value.match(/\{([^}]+)\}\s*$/);
           if (match) {
             const attrs = parseAttrs(match[1]);
+            if (Object.keys(attrs).length === 0) continue;
             textNode.value = textNode.value.slice(0, match.index).trimEnd();
             applyAttrs(node, attrs);
             liHandled = true;

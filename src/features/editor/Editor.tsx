@@ -118,9 +118,17 @@ export default function Editor({
     setRecoveryPath(editPath ?? undefined);
     try {
       setPreviewEndpoint(readOGEndpoint(localStorage, location.href) ?? ogEndpoint);
-      setDrafts(listDrafts(localStorage));
       const previous = activeDraft(localStorage);
-      if (previous && !editPath) setDraft(refreshNewArticleDate(previous));
+      const resetKey = 'koharu-editor:reset-active-20261102';
+      if (!editPath && !localStorage.getItem(resetKey)) {
+        if (previous) {
+          removeDraft(localStorage, previous.id);
+          clearEditorHistory(sessionStorage, previous.id);
+        }
+        localStorage.setItem(resetKey, '1');
+        setStatus('已清除上次的当前草稿，恢复默认新文章。');
+      } else if (previous && !editPath) setDraft(refreshNewArticleDate(previous));
+      setDrafts(listDrafts(localStorage));
     } catch {
       setError('浏览器存储不可用，请及时复制或下载文章。');
     }

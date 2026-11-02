@@ -107,13 +107,13 @@ export default function GitHubPublisher({
       setBusy(false);
     }
   };
-  const publish = async () => {
-    if (busyRef.current || !token.current || result || (recovering && (!remote || !confirmed))) return;
+  const publish = async (asNew = false) => {
+    if (busyRef.current || !token.current || result || (!asNew && recovering && (!remote || !confirmed))) return;
     busyRef.current = true;
     setBusy(true);
     setError('');
     try {
-      if (remote) {
+      if (remote && !asNew) {
         const document = parseEditorDocument(source);
         if (document.data.title !== remote.title && !window.confirm(`当前标题与原文章标题不同。\n原文章：${remote.title}\n当前草稿：${String(document.data.title ?? '')}\n\n确定将当前内容保存到原文章吗？`)) return;
         if (slug.trim() !== remote.slug && !window.confirm(`文章地址将从 ${remote.slug} 改为 ${slug.trim()}，原地址可能失效。确定继续吗？`)) return;
@@ -131,7 +131,12 @@ export default function GitHubPublisher({
       const publication = preparePublication(source, slug.trim(), reservedLinks, siteTimezone);
       const saved = await publishNewPost(token.current, publication);
       setResult(saved);
-      onPublished(publication.source);
+      if (asNew) {
+        try {
+          const { source: savedSource, ...revision } = await loadRemotePost(publication.path, token.current);
+          onPublished(savedSource, revision);
+        } catch { /* Published successfully; retain the original draft if the new revision cannot be read. */ }
+      } else onPublished(publication.source);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : '发布未完成，草稿仍在当前浏览器。');
     } finally {
@@ -285,6 +290,7 @@ export default function GitHubPublisher({
               <button className="editor-button editor-primary" type="submit" disabled={busy || (recovering && !confirmed)}>
                 {busy ? '正在提交…' : remote ? '保存修改' : '发布新文章'}
               </button>
+              {remote && <button className="editor-button" type="button" disabled={busy} onClick={() => void publish(true)}>另存为新文章</button>}
               <button
                 className="editor-button"
                 type="button"

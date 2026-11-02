@@ -8,6 +8,12 @@ import { shokaMetaTransformer } from '../../lib/markdown/shiki-meta-transformer'
 import { encryptEditorContent, encryptEditorPost } from './crypto';
 import { renderEditorMarkdown } from './render';
 
+test('inline fractions in list items retain their denominator', async () => {
+  const { html } = await renderEditorMarkdown(String.raw`+ $\frac sm$ 和 $\frac mn$ 和 $\frac{x(n+m)}{2m}$ 和 $\frac{\min(s,x(n+m)/2)}m$。`);
+  assert.doesNotMatch(html, /katex-error/);
+  assert.equal((html.match(/class="katex"/g) ?? []).length, 4);
+});
+
 test('real Shoka inline effects, containers and annotated quiz lists retain the blog markup', async () => {
   const markdown = [
     '## Shoka 示例',
