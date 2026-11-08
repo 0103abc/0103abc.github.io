@@ -16,3 +16,19 @@ comments: false
 ## AI 猫娘
 
 [打开 AI 猫娘](/ai/catgirl/)
+
+## 分解质因数
+
+[打开质因数分解](/tools/factor/)
+
+## 判断质数
+
+[打开质数判断](/tools/prime/)
+
+## 在线画图
+
+[打开在线画图](/tools/draw/)
+
+## 在线 Markdown 工具
+
+[打开 Markdown 写作与实时预览](/editor/)

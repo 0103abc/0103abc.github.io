@@ -1,0 +1,24 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+---
+<PageLayout frontmatter={{ title: '质因数分解', comments: false }}>
+  <p>输入 2 到 1,000,000,000,000 之间的整数。</p>
+  <form id="factor-form"><label>整数 <input name="number" type="number" min="2" max="1000000000000" step="1" required /></label> <button type="submit">分解</button></form>
+  <p id="factor-result" role="status" aria-live="polite"></p>
+</PageLayout>
+<script>
+  document.querySelector<HTMLFormElement>('#factor-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = document.querySelector<HTMLInputElement>('[name=number]')!;
+    const result = document.querySelector<HTMLElement>('#factor-result')!;
+    let n = Number(input.value);
+    if (!Number.isSafeInteger(n) || n < 2 || n > 1e12) { result.textContent = '请输入范围内的整数。'; return; }
+    const original = n; const factors: string[] = [];
+    for (let p = 2; p * p <= n; p += p === 2 ? 1 : 2) {
+      let count = 0; while (n % p === 0) { n /= p; count++; }
+      if (count) factors.push(count > 1 ? `${p}^${count}` : String(p));
+    }
+    if (n > 1) factors.push(String(n));
+    result.textContent = `${original} = ${factors.join(' × ')}`;
+  });
+</script>

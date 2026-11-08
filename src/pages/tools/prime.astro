@@ -1,0 +1,22 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+---
+<PageLayout frontmatter={{ title: '质数判断', comments: false }}>
+  <p>输入 0 到 1,000,000,000,000 之间的整数。</p>
+  <form id="prime-form"><label>整数 <input name="number" type="number" min="0" max="1000000000000" step="1" required /></label> <button type="submit">判断</button></form>
+  <p id="prime-result" role="status" aria-live="polite"></p>
+</PageLayout>
+<script>
+  document.querySelector<HTMLFormElement>('#prime-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = document.querySelector<HTMLInputElement>('[name=number]')!;
+    const result = document.querySelector<HTMLElement>('#prime-result')!;
+    const n = Number(input.value);
+    if (!Number.isSafeInteger(n) || n < 0 || n > 1e12) { result.textContent = '请输入范围内的整数。'; return; }
+    if (n < 2) { result.textContent = `${n} 不是质数。`; return; }
+    for (let p = 2; p * p <= n; p += p === 2 ? 1 : 2) {
+      if (n % p === 0) { result.textContent = `${n} 不是质数，可以被 ${p} 整除。`; return; }
+    }
+    result.textContent = `${n} 是质数。`;
+  });
+</script>

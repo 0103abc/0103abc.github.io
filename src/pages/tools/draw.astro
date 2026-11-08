@@ -1,0 +1,48 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+---
+<PageLayout frontmatter={{ title: '在线画图', comments: false }}>
+  <p>用鼠标或手指绘画，拖动画直线和图形，完成后可以下载 PNG。</p>
+  <div class="drawing-controls">
+    <label>工具 <select id="draw-tool"><option value="pen">画笔</option><option value="pencil">铅笔</option><option value="marker">马克笔</option><option value="eraser">橡皮擦</option><option value="line">直线</option><option value="rect">矩形</option><option value="ellipse">椭圆</option></select></label>
+    <label>颜色 <input id="pen-color" type="color" value="#ed788b" /></label>
+    <label>粗细 <input id="pen-size" type="range" min="1" max="40" value="4" /></label>
+    <button id="undo-drawing" type="button">撤销</button><button id="clear-drawing" type="button">清空</button><button id="download-drawing" type="button">下载 PNG</button>
+  </div>
+  <canvas id="drawing" width="1200" height="700" aria-label="绘画画布"></canvas>
+</PageLayout>
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('#drawing')!;
+  const ctx = canvas.getContext('2d')!;
+  const tool = document.querySelector<HTMLSelectElement>('#draw-tool')!;
+  const history: ImageData[] = [];
+  let drawing = false; let startX = 0; let startY = 0; let before: ImageData | null = null;
+  const remember = () => { history.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); if (history.length > 20) history.shift(); };
+  const point = (event: PointerEvent) => { const r = canvas.getBoundingClientRect(); return [(event.clientX-r.left)*canvas.width/r.width, (event.clientY-r.top)*canvas.height/r.height] as const; };
+  canvas.addEventListener('pointerdown', (event) => {
+    drawing = true; canvas.setPointerCapture(event.pointerId); remember(); before = history[history.length - 1]; [startX, startY] = point(event);
+    ctx.beginPath(); ctx.moveTo(startX,startY); ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.strokeStyle=document.querySelector<HTMLInputElement>('#pen-color')!.value; ctx.lineWidth=Number(document.querySelector<HTMLInputElement>('#pen-size')!.value);
+    ctx.globalCompositeOperation=tool.value === 'eraser' ? 'destination-out' : 'source-over'; ctx.globalAlpha=tool.value === 'marker' ? 0.35 : 1;
+    if (tool.value === 'pencil') ctx.lineWidth=Math.max(1,ctx.lineWidth/2);
+    if (['pen','pencil','marker','eraser'].includes(tool.value)) { ctx.lineTo(startX+0.01,startY); ctx.stroke(); }
+  });
+  canvas.addEventListener('pointermove', (event) => {
+    if (!drawing) return; const [x,y] = point(event);
+    if (['pen','pencil','marker','eraser'].includes(tool.value)) { ctx.lineTo(x,y); ctx.stroke(); return; }
+    if (before) ctx.putImageData(before,0,0); ctx.beginPath();
+    if (tool.value === 'line') { ctx.moveTo(startX,startY); ctx.lineTo(x,y); }
+    else if (tool.value === 'rect') ctx.rect(startX,startY,x-startX,y-startY);
+    else if (tool.value === 'ellipse') ctx.ellipse((x+startX)/2,(y+startY)/2,Math.abs(x-startX)/2,Math.abs(y-startY)/2,0,0,Math.PI*2);
+    ctx.stroke();
+  });
+  const finish = () => { drawing=false; ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over'; };
+  canvas.addEventListener('pointerup', finish); canvas.addEventListener('pointercancel', finish);
+  document.querySelector('#undo-drawing')?.addEventListener('click', () => { const previous=history.pop(); if (previous) ctx.putImageData(previous,0,0); });
+  document.querySelector('#clear-drawing')?.addEventListener('click', () => { if (confirm('确定清空画布吗？')) { remember(); ctx.clearRect(0,0,canvas.width,canvas.height); } });
+  document.querySelector('#download-drawing')?.addEventListener('click', () => { const a=document.createElement('a'); a.download='drawing.png'; a.href=canvas.toDataURL('image/png'); a.click(); });
+</script>
+<style>
+  canvas { display:block; width:100%; height:auto; background:white; border:1px solid #ed788b; border-radius:8px; touch-action:none; cursor:crosshair; }
+  .drawing-controls { display:flex; flex-wrap:wrap; align-items:center; gap:1rem; margin-bottom:1rem; }
+</style>
