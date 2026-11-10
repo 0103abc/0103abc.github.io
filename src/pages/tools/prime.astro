@@ -1,10 +1,13 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import '../../styles/apps-ui.css';
 ---
 <PageLayout frontmatter={{ title: '质数判断', comments: false }}>
+  <div class="tool-shell"><a class="tool-back" href="/apps/">← 返回应用</a><div class="tool-header"><span class="apps-eyebrow">TOOLBOX / PRIME</span><h2>质数判断</h2><p>看看一个整数是否为质数</p></div><div class="tool-workspace">
   <p>输入 0 到 1,000,000,000,000 之间的整数。</p>
   <form id="prime-form"><label>整数 <input name="number" type="number" min="0" max="1000000000000" step="1" required /></label> <button type="submit">判断</button></form>
   <p id="prime-result" role="status" aria-live="polite"></p>
+  </div></div>
 </PageLayout>
 <script>
   document.querySelector<HTMLFormElement>('#prime-form')?.addEventListener('submit', (event) => {

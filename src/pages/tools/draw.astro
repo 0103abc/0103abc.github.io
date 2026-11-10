@@ -1,7 +1,9 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import '../../styles/apps-ui.css';
 ---
 <PageLayout frontmatter={{ title: '在线画图', comments: false }}>
+  <div class="tool-shell"><a class="tool-back" href="/apps/">← 返回应用</a><div class="tool-header"><span class="apps-eyebrow">TOOLBOX / DRAW</span><h2>在线画图</h2><p>用画笔和形状记录你的灵感</p></div><div class="tool-workspace">
   <p>用鼠标或手指绘画，拖动画直线和图形，完成后可以下载 PNG。</p>
   <div class="drawing-controls">
     <label>工具 <select id="draw-tool"><option value="pen">画笔</option><option value="pencil">铅笔</option><option value="marker">马克笔</option><option value="eraser">橡皮擦</option><option value="line">直线</option><option value="rect">矩形</option><option value="ellipse">椭圆</option></select></label>
@@ -10,6 +12,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
     <button id="undo-drawing" type="button">撤销</button><button id="clear-drawing" type="button">清空</button><button id="download-drawing" type="button">下载 PNG</button>
   </div>
   <canvas id="drawing" width="1200" height="700" aria-label="绘画画布"></canvas>
+  </div></div>
 </PageLayout>
 <script>
   const canvas = document.querySelector<HTMLCanvasElement>('#drawing')!;

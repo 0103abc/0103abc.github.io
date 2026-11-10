@@ -1,10 +1,13 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import '../../styles/apps-ui.css';
 ---
 <PageLayout frontmatter={{ title: '质因数分解', comments: false }}>
+  <div class="tool-shell"><a class="tool-back" href="/apps/">← 返回应用</a><div class="tool-header"><span class="apps-eyebrow">TOOLBOX / FACTOR</span><h2>质因数分解</h2><p>把一个整数拆解成质数的乘积</p></div><div class="tool-workspace">
   <p>输入 2 到 1,000,000,000,000 之间的整数。</p>
   <form id="factor-form"><label>整数 <input name="number" type="number" min="2" max="1000000000000" step="1" required /></label> <button type="submit">分解</button></form>
   <p id="factor-result" role="status" aria-live="polite"></p>
+  </div></div>
 </PageLayout>
 <script>
   document.querySelector<HTMLFormElement>('#factor-form')?.addEventListener('submit', (event) => {
