@@ -1,14 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { LEVELS } from '@/lib/city-game/ai';
-import { CITY_POOL, SCORE_VERSION } from '@/lib/city-game/data';
 import { type Action, applyAction, createGame, type Game, legalActions, observe, type Side } from '@/lib/city-game/engine';
 import './city-game.css';
 
-const dateKey = () =>
-  new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(
-    new Date(),
-  );
 const sideName = (side: Side | null) => (side === null ? '未定阵营' : side === 0 ? '红方' : '蓝方');
 export default function CityGame() {
   return (
@@ -19,18 +14,14 @@ export default function CityGame() {
 }
 function GameView() {
   const [game, setGame] = useState<Game | null>(null);
-  const [day, setDay] = useState('');
   const [seed, setSeed] = useState('');
   const [level, setLevel] = useState(3);
   const [selected, setSelected] = useState<number | null>(null);
   const [undoUsed, setUndoUsed] = useState(false);
-  const [search, setSearch] = useState('');
   const [compact, setCompact] = useState(false);
   const [notice, setNotice] = useState('');
   const checkpoint = useRef<Game | null>(null);
   useEffect(() => {
-    const today = dateKey();
-    setDay(today);
     const randomSeed = crypto.randomUUID();
     setSeed(randomSeed);
     setGame(createGame(randomSeed));
@@ -78,7 +69,7 @@ function GameView() {
       worker?.terminate();
     };
   }, [game, level]);
-  if (!game) return <output>正在准备今日棋局…</output>;
+  if (!game) return <output>正在准备棋局…</output>;
   const humanSide = game.humanSide;
   const busy = game.turn === 1 && game.winner === null;
   const ended = game.winner !== null;
@@ -110,11 +101,11 @@ function GameView() {
     if (p?.open && p.side === humanSide) setSelected(selected === index ? null : index);
     else {
       setSelected(null);
-      setNotice(p ? `${p.city.name}属于${sideName(p.side)}，${p.city.score}分。` : '先选择一枚己方明棋，再走向相邻空格。');
+      setNotice(p ? `${p.city.name}属于${sideName(p.side)}。` : '先选择一枚己方明棋，再走向相邻空格。');
     }
   };
   const restart = () => {
-    if (!window.confirm('重开今天同一盘棋？当前进度将清空，已用掉的悔棋不会恢复。')) return;
+    if (!window.confirm('重开当前这盘棋？当前进度将清空，已用掉的悔棋不会恢复。')) return;
     setGame(createGame(seed));
     checkpoint.current = null;
     setSelected(null);
@@ -155,11 +146,11 @@ function GameView() {
     <div className="city-game">
       <header className="city-heading">
         <div>
-          <span className="city-kicker">CITY CHESS · 2025 DATA</span>
+          <span className="city-kicker">CITY CHESS</span>
           <h2>
             城市揭棋 <small>17 × 17</small>
           </h2>
-          <p>{day} · 随机棋盘 · 2025 数据 · 288 枚城市棋子</p>
+          <p>随机城市棋盘 · 五档策略对手</p>
         </div>
         <a href="/apps/">← 应用</a>
       </header>
@@ -195,20 +186,13 @@ function GameView() {
         <span>
           对手 · <b>{sideName(humanSide === null ? null : humanSide === 0 ? 1 : 0)}</b>
         </span>
-        <span className="city-red">红方 {144 - game.lost[0]}</span>
-        <span className="city-blue">蓝方 {144 - game.lost[1]}</span>
-        <span>暗子 {game.board.filter((p) => p && !p.open).length}</span>
       </div>
       <output className={`city-status ${ended ? 'finished' : ''}`} aria-live="polite">
         <strong>{result}</strong>
         <span>{game.message}</span>
         {notice && <span>{notice}</span>}
       </output>
-      {selectedPiece?.open && (
-        <p className="city-selected">
-          已选：{selectedPiece.city.name} · {selectedPiece.city.score} 分。亮框可走，红框可交战；高分获胜，同分同归于尽。
-        </p>
-      )}
+      {selectedPiece?.open && <p className="city-selected">已选：{selectedPiece.city.name}。亮框可走，红框可交战。</p>}
       <section className="city-scroll" aria-label="17乘17棋盘，窄屏可横向滚动">
         <div className={`city-board ${compact ? 'compact' : ''}`}>
           {game.board.map((p, index) => (
@@ -217,17 +201,14 @@ function GameView() {
               // biome-ignore lint/suspicious/noArrayIndexKey: fixed board coordinates are stable keys
               key={`cell-${index}`}
               className={`city-cell ${p ? (p.open ? (p.side === 0 ? 'red' : 'blue') : 'covered') : 'empty'} ${selected === index ? 'selected' : ''} ${targets.includes(index) ? (p ? 'attack' : 'target') : ''}`}
-              aria-label={`第${Math.floor(index / 17) + 1}行第${(index % 17) + 1}列，${p ? (p.open ? `${sideName(p.side)}${p.city.name}，${p.city.score}分` : '未翻开') : '空格'}`}
+              aria-label={`第${Math.floor(index / 17) + 1}行第${(index % 17) + 1}列，${p ? (p.open ? `${sideName(p.side)}${p.city.name}` : '未翻开') : '空格'}`}
               aria-pressed={selected === index}
               disabled={busy || ended}
               onClick={() => click(index)}
             >
               {p ? (
                 p.open ? (
-                  <>
-                    <span>{p.city.name}</span>
-                    <small>{p.city.score}</small>
-                  </>
+                  <span>{p.city.name}</span>
                 ) : (
                   <span aria-hidden="true">?</span>
                 )
@@ -261,58 +242,24 @@ function GameView() {
           </li>
         </ol>
         <p>
-          完全本地运行。GDP 分 = 10 + 90 × (ln(本市 2025 GDP) − ln(最低 GDP)) / (ln(最高 GDP) − ln(最低 GDP))。最终强度 =
-          四舍五入(GDP 分 × 80% + 城市地位分 × 20%)；同分同归于尽。地位分：副省级省会 100、计划单列市 90、普通省会或自治区首府
-          80、普通地级市 30；权重及地位分是游戏设定，不代表官方综合排名。全部 {CITY_POOL.length} 个可选城市均有 2025 年
-          GDP，三沙因缺少该年度数据暂不入池。部分城市的 2025
-          年常住人口仅供查询；人口、面积数据未完整覆盖全体城市，统一不参与评分，也不混用旧年数据。版本 {SCORE_VERSION}。
-          数据来自{' '}
+          对局与策略完全在本地运行，依据 2025 年 GDP
+          和城市行政地位判定交战强弱；数值不在对局界面显示。城市范围为地级市，排除直辖市、港澳台、县级市和林区，三沙因缺少该年度数据暂不入池。
+        </p>
+        <p>
+          数据与名单来源：
           <a href="https://www.oweidata.com/rank/gdp/city" target="_blank" rel="noreferrer">
-            2025 年 GDP 汇编
+            GDP 汇编
           </a>
-          ，补充值及人口来源可在下方逐项打开。行政类别参考{' '}
+          、
           <a href="https://fgw.wuhan.gov.cn/xwzx/mtgz/202001/t20200116_864672.html" target="_blank" rel="noreferrer">
-            武汉市发改委资料
+            行政类别资料
           </a>
-          。城市名单来自{' '}
+          、
           <a href="https://github.com/modood/Administrative-divisions-of-China" target="_blank" rel="noreferrer">
             行政区划数据（WTFPL）
           </a>
-          ；只使用地级市，排除直辖市、港澳台、县级市与林区。
+          。
         </p>
-      </details>
-      <details className="city-panel">
-        <summary>查看 2025 年数据与游戏强度</summary>
-        <label>
-          搜索城市 <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="输入城市名" />
-        </label>
-        <div className="city-roster">
-          {CITY_POOL.filter((c) => c.name.includes(search.trim()))
-            .sort((a, b) => b.score - a.score || a.code.localeCompare(b.code))
-            .map((c) => (
-              <span key={c.code} className="city-data-row">
-                <strong>
-                  {c.name} · {c.score}分
-                </strong>
-                <small>
-                  {c.status} · 地位分 {c.statusScore}
-                </small>
-                <small>GDP：{c.gdp2025.toLocaleString('zh-CN')} 亿元（2025）</small>
-                <small>
-                  GDP 分 {c.gdpScore.toFixed(2)} × 80% + {c.statusScore} × 20%
-                </small>
-                <small>人口：{c.population2025 ? `${c.population2025} 万人（2025）` : '2025 数据未收录'}</small>
-                <a href={c.source} target="_blank" rel="noreferrer">
-                  GDP 来源 ↗
-                </a>
-                {c.population2025 && (
-                  <a href={c.populationSource} target="_blank" rel="noreferrer">
-                    人口来源 ↗
-                  </a>
-                )}
-              </span>
-            ))}
-        </div>
       </details>
     </div>
   );

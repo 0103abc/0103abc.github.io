@@ -25,6 +25,9 @@ try {
     await page.waitForFunction(() => document.querySelector('.city-status strong')?.textContent?.includes('你的回合'));
     assert.doesNotMatch(await page.locator('.city-status').innerText(), /策略线程不可用/);
     assert.equal(await page.locator('.city-cell.covered').count(), 286, 'worker must respond with a legal reveal');
+    assert.doesNotMatch(await page.locator('.city-board').innerText(), /\d/);
+    assert.doesNotMatch(await page.locator('.city-cell').first().getAttribute('aria-label'), /\d+分/);
+    assert.doesNotMatch(await page.locator('.city-status').innerText(), /\d+分|GDP/);
     const first = await page.locator('.city-cell').first().getAttribute('aria-label');
     await page.getByRole('button', { name: '悔棋 1 次', exact: true }).click();
     assert.equal(await page.locator('.city-cell.covered').count(), 288);
@@ -41,11 +44,9 @@ try {
     await page.getByRole('button', { name: '随机新局', exact: true }).click();
     assert.equal(await page.locator('.city-cell.covered').count(), 288);
     assert.equal(await page.getByRole('button', { name: '悔棋 1 次', exact: true }).count(), 1);
-    await page.getByText('查看 2025 年数据与游戏强度', { exact: true }).click();
-    assert.equal(await page.locator('.city-data-row').count(), 292);
-    await page.getByPlaceholder('输入城市名').fill('深圳');
-    assert.equal(await page.locator('.city-data-row').count(), 1);
-    assert.match(await page.locator('.city-data-row').innerText(), /2025/);
+    assert.equal(await page.locator('.city-roster, .city-data-row, .city-cell small').count(), 0);
+    assert.doesNotMatch(await page.locator('.city-board').innerText(), /\d/);
+    assert.doesNotMatch(await page.locator('.city-status').innerText(), /\d+分|GDP/);
     const bounds = await page.evaluate(() => ({
       body: document.documentElement.scrollWidth,
       width: innerWidth,
@@ -57,7 +58,7 @@ try {
     await page.screenshot({ path: `../city-game-${width}.png`, fullPage: true });
     assert.deepEqual(errors, []);
     console.log(
-      `PASS ${width}px: board, hidden labels, five levels, local worker, full-round undo, repeat/random restart, 2025 records and contained overflow`,
+      `PASS ${width}px: board, hidden labels, five levels, local worker, full-round undo, repeat/random restart, no displayed scores or data tables and contained overflow`,
     );
     await context.close();
   }

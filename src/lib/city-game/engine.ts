@@ -118,7 +118,7 @@ export function applyAction(game: Game, action: Action): Game {
     const p = game.board[action.at]!;
     next.board[action.at] = { ...p, open: true };
     if (game.humanSide === null) next.humanSide = p.side;
-    next.message = `翻开 ${p.city.name}（${p.city.score}分，${p.side === 0 ? '红' : '蓝'}方）。`;
+    next.message = `翻开 ${p.city.name}（${p.side === 0 ? '红' : '蓝'}方）。`;
   } else if (action.type === 'move') {
     const p = game.board[action.from]!,
       target = game.board[action.to];
@@ -136,7 +136,7 @@ export function applyAction(game: Game, action: Action): Game {
         next.lost[p.side]++;
         if (p.city.score === target.city.score) next.board[action.to] = null;
       }
-      next.message = `${p.city.name}（${p.city.score}）挑战${target.city.name}（${target.city.score}）：${p.city.score === target.city.score ? '同归于尽' : p.city.score > target.city.score ? '进攻方获胜' : '进攻方消失'}。`;
+      next.message = `${p.city.name}挑战${target.city.name}：${p.city.score === target.city.score ? '同归于尽' : p.city.score > target.city.score ? '进攻方获胜' : '进攻方消失'}。`;
     }
   } else next.message = '无棋可走，跳过回合。';
   if (next.lost[0] === 144 && next.lost[1] === 144) next.winner = 'draw';
