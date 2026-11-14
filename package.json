@@ -68,6 +68,8 @@
     "acceptance:report": "node acceptance/scripts/report.mjs",
     "acceptance:open": "node acceptance/scripts/report.mjs && node acceptance/scripts/open.mjs",
     "test:comments": "tsx --test src/lib/comment-term.test.ts",
+    "test:city:browser": "node tests/city-game/browser.mjs",
+    "test:city": "tsx --test src/lib/city-game/*.test.ts",
     "test:hydro": "tsx --test src/lib/hydro.test.ts"
   },
   "dependencies": {

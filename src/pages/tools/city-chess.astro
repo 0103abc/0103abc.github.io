@@ -1,0 +1,7 @@
+---
+import CityGame from '@/components/city-game/CityGame';
+import PageLayout from '@/layouts/PageLayout.astro';
+---
+<PageLayout frontmatter={{ title: '城市揭棋 17×17', description: '随机城市揭棋，2025 年数据，五档本地策略对手。', comments: false }}>
+  <CityGame client:only="react" />
+</PageLayout>

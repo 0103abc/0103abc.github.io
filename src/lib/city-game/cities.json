@@ -1,0 +1,2402 @@
+[
+  {
+    "code": "1301",
+    "name": "石家庄",
+    "year": 2025,
+    "gdp2025": 8651.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1124.69,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1302",
+    "name": "唐山",
+    "year": 2025,
+    "gdp2025": 10450.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 771.25,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1303",
+    "name": "秦皇岛",
+    "year": 2025,
+    "gdp2025": 2200.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 310.07,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1304",
+    "name": "邯郸",
+    "year": 2025,
+    "gdp2025": 4920.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 916.68,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1305",
+    "name": "邢台",
+    "year": 2025,
+    "gdp2025": 2800.8,
+    "source": "https://tjgb.hongheiku.com/xjtjgb/xj2020/79380.html",
+    "population2025": 682.49,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1306",
+    "name": "保定",
+    "year": 2025,
+    "gdp2025": 5002.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 1008.61,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1307",
+    "name": "张家口",
+    "year": 2025,
+    "gdp2025": 1970.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 401.12,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1308",
+    "name": "承德",
+    "year": 2025,
+    "gdp2025": 2001.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 326.01,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1309",
+    "name": "沧州",
+    "year": 2025,
+    "gdp2025": 4930.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 717.96,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1310",
+    "name": "廊坊",
+    "year": 2025,
+    "gdp2025": 4040.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 544.66,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1311",
+    "name": "衡水",
+    "year": 2025,
+    "gdp2025": 2011.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "1401",
+    "name": "太原",
+    "year": 2025,
+    "gdp2025": 5382.45,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 552.61,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1402",
+    "name": "大同",
+    "year": 2025,
+    "gdp2025": 1815.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 304.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1403",
+    "name": "阳泉",
+    "year": 2025,
+    "gdp2025": 870.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "1404",
+    "name": "长治",
+    "year": 2025,
+    "gdp2025": 2558.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 307.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1405",
+    "name": "晋城",
+    "year": 2025,
+    "gdp2025": 2429.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "1406",
+    "name": "朔州",
+    "year": 2025,
+    "gdp2025": 1303.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "1407",
+    "name": "晋中",
+    "year": 2025,
+    "gdp2025": 2462.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 329.45,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1408",
+    "name": "运城",
+    "year": 2025,
+    "gdp2025": 2248.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 463.23,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1409",
+    "name": "忻州",
+    "year": 2025,
+    "gdp2025": 1330.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 256.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1410",
+    "name": "临汾",
+    "year": 2025,
+    "gdp2025": 2513.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 383.14,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1411",
+    "name": "吕梁",
+    "year": 2025,
+    "gdp2025": 2575.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 328.08,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1501",
+    "name": "呼和浩特",
+    "year": 2025,
+    "gdp2025": 4278.27,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 366.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1502",
+    "name": "包头",
+    "year": 2025,
+    "gdp2025": 4711.92,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 277.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1503",
+    "name": "乌海",
+    "year": 2025,
+    "gdp2025": 540.75,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "1504",
+    "name": "赤峰",
+    "year": 2025,
+    "gdp2025": 2407.08,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 388.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1505",
+    "name": "通辽",
+    "year": 2025,
+    "gdp2025": 1737.71,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 275.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "1506",
+    "name": "鄂尔多斯",
+    "year": 2025,
+    "gdp2025": 6122.21,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1"
+  },
+  {
+    "code": "1507",
+    "name": "呼伦贝尔",
+    "year": 2025,
+    "gdp2025": 1749.74,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "1508",
+    "name": "巴彦淖尔",
+    "year": 2025,
+    "gdp2025": 1277.57,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "1509",
+    "name": "乌兰察布",
+    "year": 2025,
+    "gdp2025": 1260.27,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "2101",
+    "name": "沈阳",
+    "year": 2025,
+    "gdp2025": 9100.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 927.6,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2102",
+    "name": "大连",
+    "year": 2025,
+    "gdp2025": 10002.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 755.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2103",
+    "name": "鞍山",
+    "year": 2025,
+    "gdp2025": 2180.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "2104",
+    "name": "抚顺",
+    "year": 2025,
+    "gdp2025": 1003.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2105",
+    "name": "本溪",
+    "year": 2025,
+    "gdp2025": 1006.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2106",
+    "name": "丹东",
+    "year": 2025,
+    "gdp2025": 1019.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2107",
+    "name": "锦州",
+    "year": 2025,
+    "gdp2025": 1365.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 257.52,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2108",
+    "name": "营口",
+    "year": 2025,
+    "gdp2025": 1570.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "2109",
+    "name": "阜新",
+    "year": 2025,
+    "gdp2025": 651.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2110",
+    "name": "辽阳",
+    "year": 2025,
+    "gdp2025": 1001.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2111",
+    "name": "盘锦",
+    "year": 2025,
+    "gdp2025": 1417.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "2112",
+    "name": "铁岭",
+    "year": 2025,
+    "gdp2025": 788.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2113",
+    "name": "朝阳",
+    "year": 2025,
+    "gdp2025": 1156.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "2114",
+    "name": "葫芦岛",
+    "year": 2025,
+    "gdp2025": 1013.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2201",
+    "name": "长春",
+    "year": 2025,
+    "gdp2025": 8005.59,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 910.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2202",
+    "name": "吉林",
+    "year": 2025,
+    "gdp2025": 1702.3,
+    "source": "https://tjj.jl.gov.cn/tjsj/tjgb/ndgb/202608/t20260825_3665455.html"
+  },
+  {
+    "code": "2203",
+    "name": "四平",
+    "year": 2025,
+    "gdp2025": 601.57,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2204",
+    "name": "辽源",
+    "year": 2025,
+    "gdp2025": 547.09,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2205",
+    "name": "通化",
+    "year": 2025,
+    "gdp2025": 592.14,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2206",
+    "name": "白山",
+    "year": 2025,
+    "gdp2025": 590.17,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2207",
+    "name": "松原",
+    "year": 2025,
+    "gdp2025": 1030.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2208",
+    "name": "白城",
+    "year": 2025,
+    "gdp2025": 626.52,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2301",
+    "name": "哈尔滨",
+    "year": 2025,
+    "gdp2025": 6188.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 988.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2302",
+    "name": "齐齐哈尔",
+    "year": 2025,
+    "gdp2025": 1402.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "2303",
+    "name": "鸡西",
+    "year": 2025,
+    "gdp2025": 648.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2304",
+    "name": "鹤岗",
+    "year": 2025,
+    "gdp2025": 392.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2305",
+    "name": "双鸭山",
+    "year": 2025,
+    "gdp2025": 571.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2306",
+    "name": "大庆",
+    "year": 2025,
+    "gdp2025": 2693.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 263.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "2307",
+    "name": "伊春",
+    "year": 2025,
+    "gdp2025": 380.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2308",
+    "name": "佳木斯",
+    "year": 2025,
+    "gdp2025": 1052.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2309",
+    "name": "七台河",
+    "year": 2025,
+    "gdp2025": 249.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "2310",
+    "name": "牡丹江",
+    "year": 2025,
+    "gdp2025": 1094.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2311",
+    "name": "黑河",
+    "year": 2025,
+    "gdp2025": 742.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "2312",
+    "name": "绥化",
+    "year": 2025,
+    "gdp2025": 1285.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 339.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3201",
+    "name": "南京",
+    "year": 2025,
+    "gdp2025": 19428.78,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 963.85,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3202",
+    "name": "无锡",
+    "year": 2025,
+    "gdp2025": 16773.94,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 753.74,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3203",
+    "name": "徐州",
+    "year": 2025,
+    "gdp2025": 9957.22,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 896.71,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3204",
+    "name": "常州",
+    "year": 2025,
+    "gdp2025": 11158.71,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 541.54,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3205",
+    "name": "苏州",
+    "year": 2025,
+    "gdp2025": 27695.09,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1304.77,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3206",
+    "name": "南通",
+    "year": 2025,
+    "gdp2025": 12801.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1"
+  },
+  {
+    "code": "3207",
+    "name": "连云港",
+    "year": 2025,
+    "gdp2025": 4830.94,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 456.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3208",
+    "name": "淮安",
+    "year": 2025,
+    "gdp2025": 5630.11,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 449.34,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3209",
+    "name": "盐城",
+    "year": 2025,
+    "gdp2025": 8045.28,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 661.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3210",
+    "name": "扬州",
+    "year": 2025,
+    "gdp2025": 8056.75,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 456.49,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3211",
+    "name": "镇江",
+    "year": 2025,
+    "gdp2025": 5736.78,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 322.33,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3212",
+    "name": "泰州",
+    "year": 2025,
+    "gdp2025": 7255.27,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 445.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3213",
+    "name": "宿迁",
+    "year": 2025,
+    "gdp2025": 5026.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 495.73,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3301",
+    "name": "杭州",
+    "year": 2025,
+    "gdp2025": 23010.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1270.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3302",
+    "name": "宁波",
+    "year": 2025,
+    "gdp2025": 18715.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 983.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3303",
+    "name": "温州",
+    "year": 2025,
+    "gdp2025": 10213.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 990.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3304",
+    "name": "嘉兴",
+    "year": 2025,
+    "gdp2025": 7851.06,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 561.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3305",
+    "name": "湖州",
+    "year": 2025,
+    "gdp2025": 4452.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 347.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3306",
+    "name": "绍兴",
+    "year": 2025,
+    "gdp2025": 8932.13,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 544.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3307",
+    "name": "金华",
+    "year": 2025,
+    "gdp2025": 7313.47,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 726.9,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3308",
+    "name": "衢州",
+    "year": 2025,
+    "gdp2025": 2401.63,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "3309",
+    "name": "舟山",
+    "year": 2025,
+    "gdp2025": 2346.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "3310",
+    "name": "台州",
+    "year": 2025,
+    "gdp2025": 7005.87,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 676.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3311",
+    "name": "丽水",
+    "year": 2025,
+    "gdp2025": 2301.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 253.9,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3401",
+    "name": "合肥",
+    "year": 2025,
+    "gdp2025": 14210.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1000.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3402",
+    "name": "芜湖",
+    "year": 2025,
+    "gdp2025": 5402.69,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2"
+  },
+  {
+    "code": "3403",
+    "name": "蚌埠",
+    "year": 2025,
+    "gdp2025": 2421.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "3404",
+    "name": "淮南",
+    "year": 2025,
+    "gdp2025": 1750.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 300.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3405",
+    "name": "马鞍山",
+    "year": 2025,
+    "gdp2025": 2920.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3"
+  },
+  {
+    "code": "3406",
+    "name": "淮北",
+    "year": 2025,
+    "gdp2025": 1419.15,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3407",
+    "name": "铜陵",
+    "year": 2025,
+    "gdp2025": 1415.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3408",
+    "name": "安庆",
+    "year": 2025,
+    "gdp2025": 3306.08,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 405.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3410",
+    "name": "黄山",
+    "year": 2025,
+    "gdp2025": 1204.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3411",
+    "name": "滁州",
+    "year": 2025,
+    "gdp2025": 4221.11,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 403.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3412",
+    "name": "阜阳",
+    "year": 2025,
+    "gdp2025": 3777.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 800.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3413",
+    "name": "宿州",
+    "year": 2025,
+    "gdp2025": 2538.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 517.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3415",
+    "name": "六安",
+    "year": 2025,
+    "gdp2025": 2407.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 425.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3416",
+    "name": "亳州",
+    "year": 2025,
+    "gdp2025": 2621.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 481.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3417",
+    "name": "池州",
+    "year": 2025,
+    "gdp2025": 1225.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3418",
+    "name": "宣城",
+    "year": 2025,
+    "gdp2025": 2148.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "3501",
+    "name": "福州",
+    "year": 2025,
+    "gdp2025": 15112.32,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 852.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3502",
+    "name": "厦门",
+    "year": 2025,
+    "gdp2025": 8980.37,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 536.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3503",
+    "name": "莆田",
+    "year": 2025,
+    "gdp2025": 3579.52,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 318.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3504",
+    "name": "三明",
+    "year": 2025,
+    "gdp2025": 2511.98,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3"
+  },
+  {
+    "code": "3505",
+    "name": "泉州",
+    "year": 2025,
+    "gdp2025": 13778.34,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1"
+  },
+  {
+    "code": "3506",
+    "name": "漳州",
+    "year": 2025,
+    "gdp2025": 6154.12,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 508.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3507",
+    "name": "南平",
+    "year": 2025,
+    "gdp2025": 2189.73,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 260.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3508",
+    "name": "龙岩",
+    "year": 2025,
+    "gdp2025": 3578.55,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 266.8,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3509",
+    "name": "宁德",
+    "year": 2025,
+    "gdp2025": 4251.72,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 317.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3601",
+    "name": "南昌",
+    "year": 2025,
+    "gdp2025": 8141.69,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1"
+  },
+  {
+    "code": "3602",
+    "name": "景德镇",
+    "year": 2025,
+    "gdp2025": 1189.63,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3603",
+    "name": "萍乡",
+    "year": 2025,
+    "gdp2025": 1276.04,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3604",
+    "name": "九江",
+    "year": 2025,
+    "gdp2025": 4246.51,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 448.42,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3605",
+    "name": "新余",
+    "year": 2025,
+    "gdp2025": 1215.58,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3606",
+    "name": "鹰潭",
+    "year": 2025,
+    "gdp2025": 1459.41,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "3607",
+    "name": "赣州",
+    "year": 2025,
+    "gdp2025": 5221.29,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 895.62,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3608",
+    "name": "吉安",
+    "year": 2025,
+    "gdp2025": 3105.67,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 427.14,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3609",
+    "name": "宜春",
+    "year": 2025,
+    "gdp2025": 3930.24,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 482.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3610",
+    "name": "抚州",
+    "year": 2025,
+    "gdp2025": 2298.11,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 354.57,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3611",
+    "name": "上饶",
+    "year": 2025,
+    "gdp2025": 3935.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 627.08,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3701",
+    "name": "济南",
+    "year": 2025,
+    "gdp2025": 14210.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 961.6,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3702",
+    "name": "青岛",
+    "year": 2025,
+    "gdp2025": 17560.67,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1051.55,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3703",
+    "name": "淄博",
+    "year": 2025,
+    "gdp2025": 5088.89,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 460.64,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3704",
+    "name": "枣庄",
+    "year": 2025,
+    "gdp2025": 2502.52,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 380.04,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3705",
+    "name": "东营",
+    "year": 2025,
+    "gdp2025": 4502.73,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2"
+  },
+  {
+    "code": "3706",
+    "name": "烟台",
+    "year": 2025,
+    "gdp2025": 11350.98,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 700.05,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3707",
+    "name": "潍坊",
+    "year": 2025,
+    "gdp2025": 8587.36,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 927.12,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3708",
+    "name": "济宁",
+    "year": 2025,
+    "gdp2025": 6128.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 812.93,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3709",
+    "name": "泰安",
+    "year": 2025,
+    "gdp2025": 3803.5,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 523.18,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3710",
+    "name": "威海",
+    "year": 2025,
+    "gdp2025": 3896.09,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 291.16,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3711",
+    "name": "日照",
+    "year": 2025,
+    "gdp2025": 2689.96,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 291.05,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3713",
+    "name": "临沂",
+    "year": 2025,
+    "gdp2025": 6862.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1075.96,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3714",
+    "name": "德州",
+    "year": 2025,
+    "gdp2025": 4214.61,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 542.66,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3715",
+    "name": "聊城",
+    "year": 2025,
+    "gdp2025": 3304.15,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 575.86,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3716",
+    "name": "滨州",
+    "year": 2025,
+    "gdp2025": 3558.17,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 384.77,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "3717",
+    "name": "菏泽",
+    "year": 2025,
+    "gdp2025": 4937.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 843.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4101",
+    "name": "郑州",
+    "year": 2025,
+    "gdp2025": 15244.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1313.8,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4102",
+    "name": "开封",
+    "year": 2025,
+    "gdp2025": 2860.06,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 468.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4103",
+    "name": "洛阳",
+    "year": 2025,
+    "gdp2025": 6164.52,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 708.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4104",
+    "name": "平顶山",
+    "year": 2025,
+    "gdp2025": 2929.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 484.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4105",
+    "name": "安阳",
+    "year": 2025,
+    "gdp2025": 2765.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 535.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4106",
+    "name": "鹤壁",
+    "year": 2025,
+    "gdp2025": 1144.12,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "4107",
+    "name": "新乡",
+    "year": 2025,
+    "gdp2025": 3687.07,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 609.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4108",
+    "name": "焦作",
+    "year": 2025,
+    "gdp2025": 2479.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 346.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4109",
+    "name": "濮阳",
+    "year": 2025,
+    "gdp2025": 2106.17,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 366.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4110",
+    "name": "许昌",
+    "year": 2025,
+    "gdp2025": 3583.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 434.6,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4111",
+    "name": "漯河",
+    "year": 2025,
+    "gdp2025": 1954.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "4112",
+    "name": "三门峡",
+    "year": 2025,
+    "gdp2025": 1702.61,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4113",
+    "name": "南阳",
+    "year": 2025,
+    "gdp2025": 5167.86,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 939.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4114",
+    "name": "商丘",
+    "year": 2025,
+    "gdp2025": 3475.38,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 756.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4115",
+    "name": "信阳",
+    "year": 2025,
+    "gdp2025": 3196.7,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 595.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4116",
+    "name": "周口",
+    "year": 2025,
+    "gdp2025": 3810.83,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 859.9,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4117",
+    "name": "驻马店",
+    "year": 2025,
+    "gdp2025": 3501.64,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 665.9,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4201",
+    "name": "武汉",
+    "year": 2025,
+    "gdp2025": 22147.35,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1386.19,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4202",
+    "name": "黄石",
+    "year": 2025,
+    "gdp2025": 2430.28,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "4203",
+    "name": "十堰",
+    "year": 2025,
+    "gdp2025": 2704.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 312.45,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4205",
+    "name": "宜昌",
+    "year": 2025,
+    "gdp2025": 6464.42,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 390.06,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4206",
+    "name": "襄阳",
+    "year": 2025,
+    "gdp2025": 6113.85,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 525.12,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4207",
+    "name": "鄂州",
+    "year": 2025,
+    "gdp2025": 1416.02,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4208",
+    "name": "荆门",
+    "year": 2025,
+    "gdp2025": 2602.26,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 253.43,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4209",
+    "name": "孝感",
+    "year": 2025,
+    "gdp2025": 3398.86,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 414.61,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4210",
+    "name": "荆州",
+    "year": 2025,
+    "gdp2025": 3712.34,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 508.29,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4211",
+    "name": "黄冈",
+    "year": 2025,
+    "gdp2025": 3303.59,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 575.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4212",
+    "name": "咸宁",
+    "year": 2025,
+    "gdp2025": 2033.31,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 258.93,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4213",
+    "name": "随州",
+    "year": 2025,
+    "gdp2025": 1502.81,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4301",
+    "name": "长沙",
+    "year": 2025,
+    "gdp2025": 15737.82,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1072.14,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4302",
+    "name": "株洲",
+    "year": 2025,
+    "gdp2025": 4063.46,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 382.04,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4303",
+    "name": "湘潭",
+    "year": 2025,
+    "gdp2025": 3077.23,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 267.02,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4304",
+    "name": "衡阳",
+    "year": 2025,
+    "gdp2025": 4689.55,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 636.36,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4305",
+    "name": "邵阳",
+    "year": 2025,
+    "gdp2025": 2883.49,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 621.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4306",
+    "name": "岳阳",
+    "year": 2025,
+    "gdp2025": 5386.88,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 493.27,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4307",
+    "name": "常德",
+    "year": 2025,
+    "gdp2025": 4770.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 510.65,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4308",
+    "name": "张家界",
+    "year": 2025,
+    "gdp2025": 667.83,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "4309",
+    "name": "益阳",
+    "year": 2025,
+    "gdp2025": 2381.46,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 369.19,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4310",
+    "name": "郴州",
+    "year": 2025,
+    "gdp2025": 3502.08,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 455.74,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4311",
+    "name": "永州",
+    "year": 2025,
+    "gdp2025": 2829.58,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 494.86,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4312",
+    "name": "怀化",
+    "year": 2025,
+    "gdp2025": 2191.55,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 438.39,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4313",
+    "name": "娄底",
+    "year": 2025,
+    "gdp2025": 2237.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 368.28,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4401",
+    "name": "广州",
+    "year": 2025,
+    "gdp2025": 32039.46,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1910.1,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4402",
+    "name": "韶关",
+    "year": 2025,
+    "gdp2025": 1705.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 283.39,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4403",
+    "name": "深圳",
+    "year": 2025,
+    "gdp2025": 38731.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1824.85,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4404",
+    "name": "珠海",
+    "year": 2025,
+    "gdp2025": 4573.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 254.31,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4405",
+    "name": "汕头",
+    "year": 2025,
+    "gdp2025": 3023.83,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 557.69,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4406",
+    "name": "佛山",
+    "year": 2025,
+    "gdp2025": 13157.35,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 979.19,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4407",
+    "name": "江门",
+    "year": 2025,
+    "gdp2025": 4293.91,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 482.85,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4408",
+    "name": "湛江",
+    "year": 2025,
+    "gdp2025": 3952.94,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 712.29,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4409",
+    "name": "茂名",
+    "year": 2025,
+    "gdp2025": 4106.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 626.46,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4412",
+    "name": "肇庆",
+    "year": 2025,
+    "gdp2025": 2974.84,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 411.74,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4413",
+    "name": "惠州",
+    "year": 2025,
+    "gdp2025": 6363.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 619.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4414",
+    "name": "梅州",
+    "year": 2025,
+    "gdp2025": 1583.23,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 381.56,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4415",
+    "name": "汕尾",
+    "year": 2025,
+    "gdp2025": 1546.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 272.19,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4416",
+    "name": "河源",
+    "year": 2025,
+    "gdp2025": 1434.57,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 281.42,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4417",
+    "name": "阳江",
+    "year": 2025,
+    "gdp2025": 1671.22,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 261.19,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4418",
+    "name": "清远",
+    "year": 2025,
+    "gdp2025": 2317.47,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 397.64,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4419",
+    "name": "东莞",
+    "year": 2025,
+    "gdp2025": 12760.2,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1080.04,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4420",
+    "name": "中山",
+    "year": 2025,
+    "gdp2025": 4260.56,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 457.23,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4451",
+    "name": "潮州",
+    "year": 2025,
+    "gdp2025": 1452.17,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 257.88,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4452",
+    "name": "揭阳",
+    "year": 2025,
+    "gdp2025": 2553.75,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 568.72,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4453",
+    "name": "云浮",
+    "year": 2025,
+    "gdp2025": 1344.87,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4501",
+    "name": "南宁",
+    "year": 2025,
+    "gdp2025": 6212.46,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 901.66,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4502",
+    "name": "柳州",
+    "year": 2025,
+    "gdp2025": 3096.91,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 412.58,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4503",
+    "name": "桂林",
+    "year": 2025,
+    "gdp2025": 2579.53,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 490.86,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4504",
+    "name": "梧州",
+    "year": 2025,
+    "gdp2025": 1719.79,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 282.27,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4505",
+    "name": "北海",
+    "year": 2025,
+    "gdp2025": 1974.04,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "4506",
+    "name": "防城港",
+    "year": 2025,
+    "gdp2025": 1201.26,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4507",
+    "name": "钦州",
+    "year": 2025,
+    "gdp2025": 1907.61,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 330.27,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4508",
+    "name": "贵港",
+    "year": 2025,
+    "gdp2025": 1628.44,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 425.27,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4509",
+    "name": "玉林",
+    "year": 2025,
+    "gdp2025": 2437.44,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 576.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4510",
+    "name": "百色",
+    "year": 2025,
+    "gdp2025": 2101.34,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 342.45,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4511",
+    "name": "贺州",
+    "year": 2025,
+    "gdp2025": 1006.74,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "4512",
+    "name": "河池",
+    "year": 2025,
+    "gdp2025": 1453.62,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5",
+    "population2025": 327.26,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4513",
+    "name": "来宾",
+    "year": 2025,
+    "gdp2025": 1049.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "4514",
+    "name": "崇左",
+    "year": 2025,
+    "gdp2025": 1358.64,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "4601",
+    "name": "海口",
+    "year": 2025,
+    "gdp2025": 2562.85,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 305.63,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "4602",
+    "name": "三亚",
+    "year": 2025,
+    "gdp2025": 1033.88,
+    "source": "https://tjj.sanya.gov.cn/tjjsite/gzdt/202601/67d2e3769fc940b090ecf405708c7cc1.shtml"
+  },
+  {
+    "code": "4604",
+    "name": "儋州",
+    "year": 2025,
+    "gdp2025": 1030.34,
+    "source": "https://www.danzhou.gov.cn/danzhou/zfxxgkzl/bm/fgw/gkml/202605/t20260526_4081573.html"
+  },
+  {
+    "code": "5101",
+    "name": "成都",
+    "year": 2025,
+    "gdp2025": 24763.61,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 2153.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5103",
+    "name": "自贡",
+    "year": 2025,
+    "gdp2025": 2003.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "5104",
+    "name": "攀枝花",
+    "year": 2025,
+    "gdp2025": 1409.57,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5105",
+    "name": "泸州",
+    "year": 2025,
+    "gdp2025": 3004.29,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 421.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5106",
+    "name": "德阳",
+    "year": 2025,
+    "gdp2025": 3387.12,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 342.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5107",
+    "name": "绵阳",
+    "year": 2025,
+    "gdp2025": 4600.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2"
+  },
+  {
+    "code": "5108",
+    "name": "广元",
+    "year": 2025,
+    "gdp2025": 1348.78,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5109",
+    "name": "遂宁",
+    "year": 2025,
+    "gdp2025": 2002.14,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 274.7,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5110",
+    "name": "内江",
+    "year": 2025,
+    "gdp2025": 2050.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "5111",
+    "name": "乐山",
+    "year": 2025,
+    "gdp2025": 2501.54,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 311.9,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5113",
+    "name": "南充",
+    "year": 2025,
+    "gdp2025": 2901.76,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 541.5,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5114",
+    "name": "眉山",
+    "year": 2025,
+    "gdp2025": 2008.72,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 292.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5115",
+    "name": "宜宾",
+    "year": 2025,
+    "gdp2025": 4134.73,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2"
+  },
+  {
+    "code": "5116",
+    "name": "广安",
+    "year": 2025,
+    "gdp2025": 1700.87,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5117",
+    "name": "达州",
+    "year": 2025,
+    "gdp2025": 2990.86,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 523.0,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5118",
+    "name": "雅安",
+    "year": 2025,
+    "gdp2025": 1131.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "5119",
+    "name": "巴中",
+    "year": 2025,
+    "gdp2025": 916.64,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6",
+    "population2025": 257.8,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5120",
+    "name": "资阳",
+    "year": 2025,
+    "gdp2025": 1150.81,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5201",
+    "name": "贵阳",
+    "year": 2025,
+    "gdp2025": 6038.15,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 666.89,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5202",
+    "name": "六盘水",
+    "year": 2025,
+    "gdp2025": 1777.75,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 303.47,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5203",
+    "name": "遵义",
+    "year": 2025,
+    "gdp2025": 5206.12,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 646.69,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5204",
+    "name": "安顺",
+    "year": 2025,
+    "gdp2025": 1232.35,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5205",
+    "name": "毕节",
+    "year": 2025,
+    "gdp2025": 2541.14,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 660.83,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5206",
+    "name": "铜仁",
+    "year": 2025,
+    "gdp2025": 1722.66,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 313.67,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5301",
+    "name": "昆明",
+    "year": 2025,
+    "gdp2025": 8637.45,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 874.4,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5303",
+    "name": "曲靖",
+    "year": 2025,
+    "gdp2025": 3777.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 558.3,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5304",
+    "name": "玉溪",
+    "year": 2025,
+    "gdp2025": 2688.3,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3"
+  },
+  {
+    "code": "5305",
+    "name": "保山",
+    "year": 2025,
+    "gdp2025": 1347.01,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5306",
+    "name": "昭通",
+    "year": 2025,
+    "gdp2025": 2103.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 479.2,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "5307",
+    "name": "丽江",
+    "year": 2025,
+    "gdp2025": 744.27,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "5308",
+    "name": "普洱",
+    "year": 2025,
+    "gdp2025": 1252.4,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "5309",
+    "name": "临沧",
+    "year": 2025,
+    "gdp2025": 1127.75,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "5401",
+    "name": "拉萨",
+    "year": 2025,
+    "gdp2025": 1090.99,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "5402",
+    "name": "日喀则",
+    "year": 2025,
+    "gdp2025": 509.87,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "5403",
+    "name": "昌都",
+    "year": 2025,
+    "gdp2025": 424.86,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "5404",
+    "name": "林芝",
+    "year": 2025,
+    "gdp2025": 292.34,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "5405",
+    "name": "山南",
+    "year": 2025,
+    "gdp2025": 331.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "5406",
+    "name": "那曲",
+    "year": 2025,
+    "gdp2025": 267.83,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "6101",
+    "name": "西安",
+    "year": 2025,
+    "gdp2025": 13902.67,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 1323.63,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6102",
+    "name": "铜川",
+    "year": 2025,
+    "gdp2025": 607.15,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6103",
+    "name": "宝鸡",
+    "year": 2025,
+    "gdp2025": 2648.87,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 321.56,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6104",
+    "name": "咸阳",
+    "year": 2025,
+    "gdp2025": 3104.53,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 403.77,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6105",
+    "name": "渭南",
+    "year": 2025,
+    "gdp2025": 2231.76,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 453.38,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6106",
+    "name": "延安",
+    "year": 2025,
+    "gdp2025": 2372.17,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "6107",
+    "name": "汉中",
+    "year": 2025,
+    "gdp2025": 2003.89,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4",
+    "population2025": 312.76,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6108",
+    "name": "榆林",
+    "year": 2025,
+    "gdp2025": 7501.06,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=1",
+    "population2025": 360.13,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6109",
+    "name": "安康",
+    "year": 2025,
+    "gdp2025": 1190.03,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "6110",
+    "name": "商洛",
+    "year": 2025,
+    "gdp2025": 823.92,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6201",
+    "name": "兰州",
+    "year": 2025,
+    "gdp2025": 3903.61,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 445.14,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6202",
+    "name": "嘉峪关",
+    "year": 2025,
+    "gdp2025": 391.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "6203",
+    "name": "金昌",
+    "year": 2025,
+    "gdp2025": 670.24,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6204",
+    "name": "白银",
+    "year": 2025,
+    "gdp2025": 789.23,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6205",
+    "name": "天水",
+    "year": 2025,
+    "gdp2025": 980.88,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6",
+    "population2025": 286.12,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6206",
+    "name": "武威",
+    "year": 2025,
+    "gdp2025": 802.27,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6207",
+    "name": "张掖",
+    "year": 2025,
+    "gdp2025": 734.35,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6208",
+    "name": "平凉",
+    "year": 2025,
+    "gdp2025": 754.88,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6209",
+    "name": "酒泉",
+    "year": 2025,
+    "gdp2025": 1103.6,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6210",
+    "name": "庆阳",
+    "year": 2025,
+    "gdp2025": 1235.32,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "6211",
+    "name": "定西",
+    "year": 2025,
+    "gdp2025": 793.9,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6212",
+    "name": "陇南",
+    "year": 2025,
+    "gdp2025": 716.0,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6301",
+    "name": "西宁",
+    "year": 2025,
+    "gdp2025": 1914.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=4"
+  },
+  {
+    "code": "6302",
+    "name": "海东",
+    "year": 2025,
+    "gdp2025": 615.8,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6401",
+    "name": "银川",
+    "year": 2025,
+    "gdp2025": 3033.52,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=3",
+    "population2025": 294.26,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6402",
+    "name": "石嘴山",
+    "year": 2025,
+    "gdp2025": 579.84,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "6403",
+    "name": "吴忠",
+    "year": 2025,
+    "gdp2025": 961.67,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6404",
+    "name": "固原",
+    "year": 2025,
+    "gdp2025": 488.07,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=7"
+  },
+  {
+    "code": "6405",
+    "name": "中卫",
+    "year": 2025,
+    "gdp2025": 633.38,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6501",
+    "name": "乌鲁木齐",
+    "year": 2025,
+    "gdp2025": 4658.19,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=2",
+    "population2025": 415.39,
+    "populationSource": "https://m.gotohui.com/ranking/renkou/city"
+  },
+  {
+    "code": "6502",
+    "name": "克拉玛依",
+    "year": 2025,
+    "gdp2025": 1303.96,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  },
+  {
+    "code": "6504",
+    "name": "吐鲁番",
+    "year": 2025,
+    "gdp2025": 668.1,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=6"
+  },
+  {
+    "code": "6505",
+    "name": "哈密",
+    "year": 2025,
+    "gdp2025": 1162.95,
+    "source": "https://www.oweidata.com/rank/gdp/city?page=5"
+  }
+]
